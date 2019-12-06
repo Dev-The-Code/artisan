@@ -1,0 +1,17 @@
+.ecomshopcard{
+  clear: both;
+  margin-bottom: 25px;
+  margin-top: 0;
+  padding: 0;
+
+  width: 100%;
+}
+
+.ecomshopcard img{
+
+
+width: 100%;
+height: 200px;
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+}

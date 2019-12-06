@@ -1,0 +1,21 @@
+/*==================
+	POST_BUSINESS
+====================*/
+.main_c_panel{
+	/*background: url(../images/default/noise-bg.png) repeat 0 0;*/
+    font-size: 34px;
+    line-height: 26px;
+    /*text-shadow: 2px 2px 0 #fff;*/
+    font-family: 'Crimson Text', serif !important;
+    padding: 15px;
+}
+.bold_c_text{
+	font-weight: bold;
+}
+.font-size_c{
+	font-size:17px;
+}
+.margin_font_location{
+	margin:10px;
+	font-size:16px;
+}
