@@ -8,7 +8,7 @@ class HomeBanner extends Component{
         return (
             <div className="container" style={{width:"100%", padding:'0', position:"relative", top:"-156px"}}>
                 <div className="homebanneropa">
-                    <img src="../images/main-banner.jpg" alt="" style={{width: "100%", height:"600px"}}/>
+                    <img src="../images/main-banner.jpg" alt=""/>
                 </div>
                 <BannerInside/>
             </div>

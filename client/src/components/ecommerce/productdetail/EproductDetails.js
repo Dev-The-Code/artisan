@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import HeaderMenu from '../../header/headermenu';
 import Slider from '../../header/Slider';
 import PthreeColumn from './PthreeColumn';
 import { Redirect } from 'react-router';
@@ -183,7 +183,7 @@ class EproductDetail extends Component {
         <span>
           <div className="" style={isMobile ? { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "10px", backgroundSize: 'cover' } : { "backgroundImage": "url('../images/bgc-images/buy-sell.png')", marginTop: "105px", backgroundSize: 'cover' }}>
             <div className="background-image">
-              <Burgermenu cartCount={cartCount} />
+              <HeaderMenu cartCount={cartCount} />
               <Slider mainH1="Your Market Hub for all Products" mainH2="Find what you need" />
             </div>
           </div>

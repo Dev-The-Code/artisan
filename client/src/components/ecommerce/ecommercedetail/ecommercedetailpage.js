@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import Headermenu from '../../header/headermenu';
 import Footer from '../../footer/footer';
 import { Link } from "react-router-dom";
 import EightEcom from './eightEcom';
@@ -15,7 +15,7 @@ class EcomDetail extends Component{
   render(){
     return(
       <div className="">
-        <Burgermenu/>
+        <Headermenu/>
         <div className="row jobdetail-page" style={{ marginTop:"100px"}}>
         </div>
           <div className="row">

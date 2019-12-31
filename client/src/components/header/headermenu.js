@@ -71,7 +71,7 @@ class HeaderMenu extends Component {
         return (
             <div>
                 <nav className="navbar navbar-fixed-top hidden-xs"
-                    style={{ position: "fixed", width: "100%", "zIndex": "999", height:"90px", border: 'none', backgroundColor:"#ffffff00" }}>
+                    style={{ position: "fixed", width: "100%", "zIndex": "999", height:"90px", border: 'none', backgroundColor:"#33333338" }}>
                     <div className="container-fluid" style={{padding:"0"}}>
                         <div className="col-md-2 col-sm-6 col-xs-6">
                             <div className="navbar-header">
@@ -221,12 +221,12 @@ class HeaderMenu extends Component {
                         </span>
                     </div>
                 </div>
-                <div className="row visible-xs" style={{ background: 'white' }}>
+                <div className="row visible-xs" style={{ background: 'white', marginTop:"0px", height:"60px" }}>
                     <div className="col-md-4 col-xs-4">
-                        <i onClick={this.openNav} className="fa fa-bars" style={{ color: 'rgb(3, 42, 48)', marginLeft: '8px', fontSize: '24px', marginTop: '0px', cursor: 'pointer' }}></i>
+                        <i onClick={this.openNav} className="fa fa-bars" style={{ color: 'rgb(3, 42, 48)', marginLeft: '8px', fontSize: '24px', marginTop: '10px', cursor: 'pointer' }}></i>
                     </div>
                     <div className="col-md-4 col-xs-5">
-                        <Link to={`/`}><img src="../images/pakjazba_new.png" alt='img' style={{ width: '100%' }} /></Link>
+                        <Link to={`/`}><img src="../images/Artisans Pakistan Logo-04.png" alt='img' style={{ width: '100%', marginTop:"5px" }} /></Link>
                     </div>
                     <div className="col-md-4 col-xs-3">
                     </div>

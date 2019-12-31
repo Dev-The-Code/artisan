@@ -54,22 +54,74 @@ class ArtisanStories extends Component{
                         </div>             
                     </div>
                     <div class="item">
-                        <img src="http://placehold.it/1200x500/9b59b6/8e44ad" alt="Second slide"/>
-                        <div class="carousel-caption">
-                            <h3>
-                                Second slide</h3>
-                            <p>
-                                Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </div>
+                    <div class="artisanstory1">
+                            <div className="row" style={{padding:"51px 20px"}}>
+                                <div className="col-md-3 col-sm-3">
+                                    <div className="storyheading">
+                                        <h4>Michele</h4>
+                                    </div>
+                                </div>
+                                <div className="col-md-5 col-sm-9">
+                                    <div className="storytext"> 
+                                        <p>Andrea di Michele di Francesco de' Cioni, was an Italian painter, sculptor, and goldsmith who was 
+                                            a master of an important workshop in Florence. He apparently became known as Verrocchio after the
+                                             surname of his master, a goldsmith. Few paintings are 
+                                            attributed to him with certainty, but a number of important painters were trained at his workshop. </p>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 col-sm-6">
+                                    <div className="bannertext">
+                                        <img src="../images/homepage/weaver-image.jpg" alt=""/>
+                                    </div>
+                                </div>              
+                            </div>
+                                
+                            <div className="row" style={{padding:"0px 20px"}}>
+                                <div className="col-md-3 col-sm-3">
+                                        <div className="storyheading">
+                                            <h4>Michele Products</h4>
+                                        </div>
+                                </div>
+                            </div>
+                            <div>
+                                <EcommerceProducts/>
+                            </div>
+                        </div>   
                     </div>
                     <div class="item">
-                        <img src="http://placehold.it/1200x500/34495e/2c3e50" alt="Third slide"/>
-                        <div class="carousel-caption">
-                            <h3>
-                                Third slide</h3>
-                            <p>
-                                Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </div>
+                    <div class="artisanstory1">
+                            <div className="row" style={{padding:"51px 20px"}}>
+                                <div className="col-md-3 col-sm-3">
+                                    <div className="storyheading">
+                                        <h4>Andrea</h4>
+                                    </div>
+                                </div>
+                                <div className="col-md-5 col-sm-9">
+                                    <div className="storytext"> 
+                                        <p>Andrea Francesco de' Cioni, was an Italian painter, sculptor, and goldsmith who was 
+                                            a master of an important workshop in Florence. He apparently became known as Verrocchio after the
+                                             surname of his master, a goldsmith. Few paintings are 
+                                            attributed to him with certainty, but a number of important painters were trained at his workshop. </p>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 col-sm-6">
+                                    <div className="bannertext">
+                                        <img src="../images/homepage/painter-image.jpg" alt=""/>
+                                    </div>
+                                </div>              
+                            </div>
+                                
+                            <div className="row" style={{padding:"0px 20px"}}>
+                                <div className="col-md-3 col-sm-3">
+                                        <div className="storyheading">
+                                            <h4>Andrea Products</h4>
+                                        </div>
+                                </div>
+                            </div>
+                            <div>
+                                <EcommerceProducts/>
+                            </div>
+                        </div>   
                     </div>
                 </div>
                 <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

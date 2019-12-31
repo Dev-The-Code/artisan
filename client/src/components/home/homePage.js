@@ -98,17 +98,9 @@ class HomePage extends Component{
 
     return(
       <div className="">
-          <div className="visible-xs" style={{marginTop:'-19px',backgroundSize: 'cover'}}>
-              <div className="background-image">
-              <Burgermenu/>
-              </div>
-          </div>
-          <div className ="hidden-xs hidden-sm" style={{marginTop:'86px',backgroundSize: 'cover'}}>
-              <div className="background-image">
-                  
+
                   <HeaderMenu/>
-              </div>
-          </div>
+
           <HomeBanner/>
             <div>
                 <SecondfoldCard/>

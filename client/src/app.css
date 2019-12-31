@@ -2015,7 +2015,7 @@ color: #fff;
 
 /*=================mobile menu start=====================================*/
 .overlay {
-  background:rgb(3, 42, 48) !important;
+  background:#333 !important;
   height: 100%;
   width: 0;
   position: fixed;
@@ -2049,7 +2049,7 @@ color: #fff;
 }
 
 .overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
+  color: #D9A67E;
 }
 
 .overlay .closebtn {

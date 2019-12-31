@@ -6,25 +6,54 @@
 
 
 
+ 
+
 /*Media Queries for Home banner inside Elements for every device*/
 /*For Laptops*/
-    .onbanner{
+.homebanneropa img{
+    width: 100%;
+    height: 600px;
+}
+
+.onbanner{
         position: absolute;
         top: 300px;
         left: 415px;
+}
 
-    }
+.onbanner h2{
+    font-size: 60px;
+    text-align: center;
+    color: white;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+}
 
+/*For LAptops*/
     @media screen 
     and (min-device-width: 1200px) 
     and (max-device-width: 1600px) 
     and (-webkit-min-device-pixel-ratio: 1) { 
+      
+        .homebanneropa img{
+            width: 100%;
+            height: 600px;
+        }
+
         .onbanner{
             position: absolute;
             top: 300px;
-            left: 300px;
+            left: 355px;
+        }
+
         
-    
+
+        .onbanner h2{
+            font-size: 60px;
+            text-align: center;
+            color: white;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
         }
     
   }
@@ -34,22 +63,60 @@
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1) {
+    
+
+    .homebanneropa img{
+        width: 100%;
+        height: 500px;
+    }
+
     .onbanner{
         position: absolute;
         top: 200px;
         left: 20px;
         width: 95%;
     }
+
+    .onbanner h2{
+        font-size: 40px;
+        text-align: center;
+        color: white;
+        font-weight: 800;
+        font-family: 'Poppins', sans-serif;
+    }
 }
 
 @media 
   (min-device-width: 800px) 
   and (max-device-width: 1280px) {
+    
+    .homebanneropa img{
+        width: 100%;
+        height: 550px;
+    }
+
+    .onbanner h2{
+        font-size: 40px;
+        text-align: center;
+        color: white;
+        font-weight: 800;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    
     .onbanner{
         position: absolute;
         top: 350px;
         left: 55px;
         width: 90%;
+    }
+
+    .onbanner h2{
+        font-size: 40px;
+        text-align: center;
+        color: white;
+        font-weight: 800;
+        font-family: 'Poppins', sans-serif;
     }
 }
 
@@ -61,23 +128,52 @@
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
   and (-webkit-min-device-pixel-ratio: 2) { 
+    .homebanneropa img{
+        width: 100%;
+        height: 400px;
+        margin-top:85px;
+    }
+
     .onbanner{
         position: absolute;
         top: 200px;
-        left: 20px;
-        width: 95%;
+        left: 0px;
+        width: 100%;
     }
+
+    .onbanner h2{
+        font-size: 40px !important;
+        text-align: center;
+        color: white;
+        font-weight: 800;
+        margin-top: 50px;
+    }
+
 }
 
 @media only screen 
   and (min-device-width: 414px) 
   and (max-device-width: 736px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
+    
+    .homebanneropa img{
+        width: 100%;
+        height: 400px;
+        margin-top:85px;
+    }
+
     .onbanner{
         position: absolute;
         top: 200px;
-        left: 20px;
-        width: 95%;
+        width: 100%;
+    }
+
+    .onbanner h2{
+        font-size: 40px;
+        text-align: center;
+        color: white;
+        font-weight: 800;
+        font-family: 'Poppins', sans-serif;
     }
 }
 
@@ -88,18 +184,20 @@
     .onbanner{
         position: absolute;
         top: 200px;
-        left: 20px;
-        width: 95%;
+        width: 100%;
+        margin-top:85px;
+    }
+
+    .onbanner h2{
+        font-size: 40px;
+        text-align: center;
+        color: white;
+        font-weight: 800;
+        font-family: 'Poppins', sans-serif;
     }
 }
 
-.onbanner h2{
-    font-size: 60px;
-    text-align: center;
-    color: white;
-    font-weight: 800;
-    font-family: 'Poppins', sans-serif;
-}
+
 .onbanner h4{
     font-size: 20px;
     text-align: center;
