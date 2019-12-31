@@ -7,7 +7,7 @@ import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 class SecondfoldCard extends Component{
     render() {
         return (
-            <div className="container" style={isTablet ? {marginTop:"0px", width:"100%", backgroundColor:"#4cadc98f"} : {marginTop:"-120px", width:"99%", backgroundColor:"#4cadc98f", borderRadius:"5px"}}>
+            <div className="container" style={isTablet ? {marginTop:"0px", width:"100%", backgroundColor:"#4cadc98f"} : {marginTop:"20px", width:"99%", backgroundColor:"#4cadc98f", borderRadius:"5px"}}>
                 <div className="row" style={{padding:"51px 20px"}}>
                     <div className="col-md-2 col-sm-3">
                         <div className="hometext">

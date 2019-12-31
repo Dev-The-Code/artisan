@@ -202,22 +202,7 @@ class HeaderMenu extends Component {
                             </div>
                         </div>{/*row*/}
                         <span>
-                            <Link rel="noopener noreferrer" to={`/market_roommates`} onClick={this.closeNav}>Room Renting</Link>
-                        </span>
-                        <span style={{ marginTop: "8px" }}>
-                            <Link rel="noopener noreferrer" to={`/market_business`}>Business Listing</Link>
-                        </span>
-                        <span style={{ marginTop: "8px" }}>
-                            <Link rel="noopener noreferrer" to={`/market_classified`}>Buy & Sell</Link>
-                        </span>
-                        <span style={{ marginTop: "8px" }}>
-                            <Link rel="noopener noreferrer" to={`/market_jobPortal`}>Job Portal</Link>
-                        </span>
-                        <span style={{ marginTop: "8px" }}>
-                            <Link rel="noopener noreferrer" to={'/market_eventPortal'}>Events</Link>
-                        </span>
-                        <span style={{ marginTop: "8px" }}>
-                            <Link rel="noopener noreferrer" to={`/entertainment_Home`}>Entertainment</Link>
+                            <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} onClick={this.closeNav}>Explore</Link>
                         </span>
                     </div>
                 </div>
