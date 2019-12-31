@@ -1,0 +1,36 @@
+h1{
+    margin: 0;
+    color: white;
+}
+
+.categoriescard{
+    background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+    padding: 30px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.categoriescard2{
+    background: linear-gradient(to bottom, #aeeeca 0%, #e994aa 100%);
+    padding: 30px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.categoriescard3{
+    background: linear-gradient(to bottom, #eeaeca 0%, #94bbe9 100%);
+    padding: 30px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.categoriescard4{
+    background: linear-gradient(to bottom, #c4aeee 0%, #e9c494 100%);
+    padding: 30px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 0;
+}

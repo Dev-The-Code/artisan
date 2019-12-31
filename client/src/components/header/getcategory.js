@@ -36,7 +36,7 @@ class getCategory extends Component{
         return(
             <div>
                 <Dropdown overlay={menu} placement="bottomRight">
-                    <Button className="post_need" style={{backgroundColor:'#37a99b',color:'white'}}>Post Your Need</Button>
+                     <Button className="headerbuttontop">Post Your Need</Button>
                 </Dropdown>
             </div>
         )

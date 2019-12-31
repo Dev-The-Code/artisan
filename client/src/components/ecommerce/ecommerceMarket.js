@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import Footer from '../footer/footer';
 import Slider from '../header/Slider';
 import EcomCard from './EcomCard';
@@ -7,6 +7,8 @@ import Eshopcard from './EcomShopcard';
 import DealsEcom from './EcomDeals';
 import { HttpUtils } from "../../Services/HttpUtils";
 import { Spin, Icon, Radio } from 'antd';
+import Ecomtabs from './ecommercetabs';
+
 
 class EcommerceMarket extends Component {
   constructor(props) {
@@ -44,6 +46,8 @@ class EcommerceMarket extends Component {
       }
     }
   }
+
+
 
   searcProduct = (e) => {
     const { allData } = this.state;
@@ -138,20 +142,21 @@ class EcommerceMarket extends Component {
     return (
       <div>
         <span>
-          <div className="vissible-xs" style={{ "background": "#d8e7e4", marginTop: "102px", backgroundSize: 'cover' }}>
+          <div className="vissible-xs" style={{ marginTop: "102px", backgroundSize: 'cover' }}>
             <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
             <div className="background-image">
-              <Burgermenu />
+              <HeaderMenu />
 
-              <Slider mainH1="Pakjazba Ecommerce" mainH2="" searcProduct={this.searcProduct} searchProduct={this.searchProduct}
-                onChange={this.onChange} searchBy={searchBy} checkRadioBtn={checkRadioBtn} />
+              <Ecomtabs/>
+              {/* <Slider mainH1="Pakjazba Ecommerce" mainH2="" searcProduct={this.searcProduct} searchProduct={this.searchProduct}
+                onChange={this.onChange} searchBy={searchBy} checkRadioBtn={checkRadioBtn} /> */}
             </div>
           </div>
         </span>
         {loader && <div style={{ textAlign: 'center', marginLeft: '-100px', marginBottom: '15px' }}>
           <Spin indicator={antIcon} />
         </div>}
-        {featuredCategories ?
+        {/* {featuredCategories ?
           <div>
             <div className="row" style={{ marginTop: "20px" }}>
               <h1 className="" style={{ fontWeight: "bold", textAlign: "center" }}> Feature Categories  </h1>
@@ -161,21 +166,21 @@ class EcommerceMarket extends Component {
             </div>
           </div>
           : null
-        }
+        } */}
         {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
         {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can find your search by type</h5></span>}
         {noRecordFound && <div className="col-md-12" style={{ textAlign: "center" }}><button type="button" className="btn2 btn2-success" onClick={this.onAddMore}>Go Back</button></div>}
         {recordFound ? <div className="row">
-          <Eshopcard productsData={productsData} />
+          {/* <Eshopcard productsData={productsData} /> */}
         </div> : null}
-        <div className="row" style={{ marginTop: "-70px" }}>
+        {/* <div className="row" style={{ marginTop: "-70px" }}>
           <DealsEcom />
-        </div>
-        <div className="row">
+        </div> */}
+        {/* <div className="row">
           <div className="col-md-12">
             <img src="../images/businesslistingimage.png" style={{ width: '100%' }} alt='img' />
           </div>
-        </div>
+        </div> */}
         <Footer />
       </div>
     )

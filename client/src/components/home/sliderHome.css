@@ -1,0 +1,38 @@
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 160px;
+  line-height: 30px;
+  background: #d8e7e4 !important;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.ant-carousel .slick-slide h3 {
+
+  font-size: 40px;
+}
+
+.ant-carousel .slick-slide p{
+  margin: 0;
+  color: black;
+}
+.carousel-indicators li {
+
+    border-radius: 10px !important;
+}
+
+{/*.carousel-indicators {
+    top: 94% !important;
+    bottom: 20px;
+}
+
+
+.carousel-inner{
+  text-align: center;
+  padding: 40px;
+}
+
+.carousel-inner h3{
+  font-weight: bold;
+}
+*/}

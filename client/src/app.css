@@ -4,6 +4,21 @@
     /*font-family: 'Roboto Slab', serif;*/
 
 }
+
+.headerbuttontop{
+  background-color: #3C3C47;
+  height: 45px;
+  color: white;
+  border: #3C3C47;
+}
+
+.headerbuttontop:hover{
+  border-color: #3C3C47;
+  height: 45px;
+  color: #3C3C47;
+  font-weight: 700;
+}
+
 .anticon-down{
   color:black !important;
 }
@@ -17,11 +32,11 @@
 hr {
   display: block;
   border: 0;
-  border-top: 1px solid rgb(55, 169, 155);
+  border-top: 1px solid gray;
   /* margin: 1em 0; */
   /* padding: 0; */
-  width: 235px;
-  border-top-width:2px;
+  width: 100%;
+  margin: 0;
 }
 h1{
 font-family: 'Crimson Text', serif !important;
@@ -808,7 +823,7 @@ color: #fff;
 }
 
 .navbar-fixed-top.scrolled {
-  background-color: white !important;
+  background-color: rgba(0, 0, 0, 0.72) !important;
   transition: background-color 200ms linear;
 }
 
@@ -1787,10 +1802,7 @@ color: #fff;
   height:250px;*/
 }
 
-.navbar-fixed-top.scrolled {
-  background-color: white !important;
-  transition: background-color 200ms linear;
-}
+
 
 /* new codeeeeeeeeeeeeeeeeeeeee*/
 
@@ -1879,13 +1891,19 @@ color: #fff;
 
 .ant-tabs-nav .ant-tabs-tab-active {
   color: white ;
-  background-color: rgb(55, 169, 155);
+  background-color: white !important;
 }
 .ant-tabs-nav .ant-tabs-tab:active{
   color:white ;
 }
 .ant-tabs-nav .ant-tabs-tab{
   color:white
+}
+
+.ant-tabs-nav-scroll{
+  overflow: hidden;
+    white-space: nowrap;
+    background-color: #f0f8ff00 !important;
 }
 .b-sec>p{
   color:#34414c !important;
@@ -2152,7 +2170,7 @@ color: #fff;
 
 /*================footer coding start=================================*/
 .jazba_footer{
-  background: rgba(236, 236, 236, 0.48);
+  background: #3C3C47;
 }
 .jazba_text_align{
   text-align: center;
@@ -2163,4 +2181,13 @@ color: #fff;
     border: none;
     font-size: 21px;
 }
+
+.panel{
+  box-shadow: 0 5px 10px rgba(0,0,0,.15);
+  border-radius: 20px;
+}
 /*==============footer coding end=====================================*/
+.ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover {
+  background-color: #f0f8ff00;
+  color: #D9A67E;
+}

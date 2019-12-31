@@ -13,7 +13,7 @@
 
 .fa {
   padding: 10px;
-  font-size: 10px;
+  font-size: 18px;
   width: 30px;
   height: 30px;
   text-align: center;
@@ -28,17 +28,14 @@
 }
 
 .fa-facebook {
-  background: black;
-  color: white;
+
 }
 
 .fa-twitter {
-  background: black;
-  color: white;
+
 }
 .fa-linkedin {
-  background: black;
-  color: white;
+
 }
 
 .Contactprofile {

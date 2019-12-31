@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './EcomShopcard.css'
 
-class EshopCard extends Component {
+class ExploreCards extends Component {
   constructor(props) {
     super(props)
   }
@@ -23,7 +23,7 @@ class EshopCard extends Component {
             {productsData && productsData.map((elem, key) => {
               console.log(elem.category, "Category finder")
               return (
-                <div className="col-md-4 col-sm-4">
+                <div className="col-md-3 col-sm-6">
                   <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} >
                     <div className="ecomshopcard">
                       <div className="ecommerce-card" >
@@ -86,4 +86,4 @@ class EshopCard extends Component {
   }
 }
 
-export default EshopCard;
+export default ExploreCards;
