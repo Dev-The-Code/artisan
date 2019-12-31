@@ -55,37 +55,35 @@ class Footer extends Component{
                         </div>
                     </div>
                 </div>*/}
-                <div className="row hidden-xs">
-                    <div className="col-md-12 jazba_text_align">
+                <div className="row hidden-xs" style={{padding:"20px"}}>
+                    <div className="col-md-4">
                         <Link to={`/`}>
-                            <img alt='' src="../images/pakjazba_new.png" style={{width:'19%'}} />
+                            <img alt='' src="../images/Artisans Pakistan Logo-04.png" style={{width:'45%', marginTop:"38px"}} />
                         </Link>
                     </div>
-                    <div className="row" style={{padding:'0px'}}>
-                        <div className="col-md-6" style={{textAlign:'left'}}>
-                            <span style={{marginLeft:'55%'}}><b>Contact Us</b></span>
-                        </div>
-                        <div className="col-md-6" style={{textAlign:'left'}}>
-                            <span style={{marginRight:'0',marginLeft:'24%'}}><b>For All Your Local Need</b></span>
-                           {/*<span style={{marginLeft:"160px"}}><b>Post Your Need</b></span>*/}
-                        </div>
+                    <div className="col-md-4">
+                        <div className="gridstyle">
+                            <span style={{fontSize:'18px'}}><b>Contact Us</b></span>
+                            <span>Email:<b>info@pakjazba.com</b></span>
+                            <span>Phone:<b>+01 456 7890</b></span>
+                            <span style={{fontSize:'18px', marginTop:'15px'}}><b>Follow Us</b></span>
+                            <div className="row" style={{padding:'0px'}}>
+                                <div className="col-md-12" style={{padding:"0"}}>
+                                    <a href="https://www.facebook.com" target="_blank" className="fa fa-facebook "><i></i></a>
+                                    <a href="https://www.linkedin.com" target="_blank" className="fa fa-linkedin " ></a>
+                                    <a href="https://mail.google.com" target="_blank" className="fa fa-google-plus "></a>
+                                </div>
+                            </div>
+                         </div>
                     </div>
-                    <div className="row" style={{padding:'0px'}}>
-                        <div className="col-md-6" style={{textAlign:'left'}}>
-                            <span style={{marginLeft:'55%',}}><b>info@pakjazba.com</b></span>
-                        </div>
-                        <div className="col-md-6" style={{textAlign:'left'}}>
-                           <span style={{marginLeft:'24%'}}><b>Find expert service providers</b></span>
-                           
-                        </div>
-                    </div>
-                    <div className="row" style={{padding:'0px'}}>
-                        <div className="col-md-6" style={{textAlign:'left'}}>
-                            <span style={{marginLeft:'55%'}}><b>+01 456 7890</b></span>
-                        </div>
-                        <div className="col-md-6" style={{textAlign:'left'}}>
-                        <span><Link to={`/privacypolicy`} target="blank" style={{color:'#666666',marginLeft:'24%'}}><b>privacy policy</b></Link></span>
-                           <span style={{marginLeft: '10px'}}><Link to="/termofservice" target="blank" style={{color:'#666666',marginLeft:'0%'}}><b>term of service</b></Link></span>
+                    <div className="col-md-4">
+                        <div className="gridstyle">
+                            <span style={{fontSize:'18px'}}><b>Others</b></span>
+                            <span><b>For All Your Local Need</b></span>
+                            <span><b>Find expert service providers</b></span>
+                            <span><Link to={`/privacypolicy`} target="blank" style={{color:'#D9A67E'}}><b>privacy policy</b></Link></span>
+                           <span><Link to="/termofservice" target="blank" style={{color:'#D9A67E'}}><b>term of service</b></Link></span>
+
                         </div>
                     </div>
                     {/*<div className="row" style={{padding:'0px'}}>
@@ -95,12 +93,7 @@ class Footer extends Component{
                         <div className="col-md-6" style={{textAlign:'left'}}>
                            <span style={{marginLeft:"160px"}}><b>Get Started Now!</b></span>
                         </div>
-                    </div>*/}
-                    <div className="row" style={{padding:'0px'}}>
-                        <div className="col-md-12" style={{textAlign:'center'}}>
-                            <span><b>Follow Us</b></span>
-                        </div>
-                    </div>
+                     </div>*/}
                 </div>
 
                 <div className="row visible-xs">
@@ -151,7 +144,7 @@ class Footer extends Component{
                     </div>
                 </div>
 
-                <div className="row" style={{padding:'0px'}}>
+                <div className="row visible-xs" style={{padding:'0px'}}>
                     <div className="col-md-12" style={{textAlign:'center'}}>
                         <a href="https://www.facebook.com" target="_blank" className="fa fa-facebook social_button" style={{width:"40px", height:"40px"}}><i></i></a>
                         <a href="https://www.linkedin.com" target="_blank" className="fa fa-linkedin social_button" style={{margin:'6px', width:"40px", height:"40px"}}></a>

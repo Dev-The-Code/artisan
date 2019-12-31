@@ -1,3 +1,8 @@
+.gridstyle{
+    display: grid;
+    color: white;
+}
+
 #myFooter {
     background-color: #032a30;
     /*background:url('/images/footer-background-icons.jpg');*/

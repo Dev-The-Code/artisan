@@ -1,0 +1,357 @@
+.hometext{
+    border-top: 2px solid black;
+}
+
+
+.hometext h1{
+    color: black;
+    font-weight: 700;
+}
+
+.bannertext{
+
+}
+
+.bannertext h2{
+font-size: 35px;
+line-height: 40px;
+color:#676a6a;
+}
+
+.bannertext p{
+font-size: 24px;
+line-height: 38px;
+}
+
+.hometext h4{
+    color: #333c;
+    text-align: center;
+    margin-left: 110px;
+    font-weight: 900;
+    font-size: 22px;
+}
+
+.width20{
+    background-color: #337ab7;
+    width: 20%;
+    padding: 0;
+    margin: 0;
+}
+
+.width80{
+    background-color: #f5222d;
+    width: 80%;
+    padding: 0;
+    margin: 0;
+}
+
+.cardsecond_fold{
+    border-radius: 10px;
+    
+}
+
+.cardsecond_fold img{
+    border-radius: 10px !important;
+}
+
+.cardsecond_fold:hover{
+    -webkit-filter: brightness(70%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+
+}
+
+.border-brown{
+    border: 1px solid rgb(165, 81, 13);
+    width: 250px;
+    height: 250px;
+    margin-left: 130px;
+    position: absolute;
+}
+
+/*Iphones*/
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    .hometext{
+        border-top: 2px solid black;
+    }
+    
+    
+    .hometext h1{
+        color: black;
+        font-weight: 700;
+    }
+    
+    .bannertext{
+    
+    }
+    
+    .bannertext h2{
+    font-size: 35px;
+    line-height: 40px;
+    color:#676a6a;
+    }
+    
+    .bannertext p{
+    font-size: 24px;
+    line-height: 38px;
+    }
+    
+    .hometext h4{
+        color: #333c;
+        text-align: center;
+        margin-left: 110px;
+        font-weight: 900;
+        font-size: 22px;
+    }
+}
+
+/*Iphone plus*/
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+    .hometext{
+        border-top: 2px solid black;
+    }
+    
+    
+    .hometext h1{
+        color: black;
+        font-weight: 700;
+    }
+    
+    .bannertext{
+    
+    }
+    
+    .bannertext h2{
+    font-size: 35px;
+    line-height: 40px;
+    color:#676a6a;
+    }
+    
+    .bannertext p{
+    font-size: 24px;
+    line-height: 38px;
+    }
+    
+    .hometext h4{
+        color: #333c;
+        text-align: center;
+        margin-left: 110px;
+        font-weight: 900;
+        font-size: 22px;
+    }
+}
+
+/*Iphone 10*/
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    .hometext{
+        border-top: 2px solid black;
+    }
+    
+    
+    .hometext h1{
+        color: black;
+        font-weight: 700;
+    }
+    
+    .bannertext{
+    
+    }
+    
+    .bannertext h2{
+    font-size: 35px;
+    line-height: 40px;
+    color:#676a6a;
+    }
+    
+    .bannertext p{
+    font-size: 24px;
+    line-height: 38px;
+    }
+    
+    .hometext h4{
+        color: #333c;
+        text-align: center;
+        margin-left: 110px;
+        font-weight: 900;
+        font-size: 22px;
+    }
+
+}
+
+/*Galaxy Phones*/
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: landscape) {
+
+    .hometext{
+        border-top: 2px solid black;
+    }
+    
+    
+    .hometext h1{
+        color: black;
+        font-weight: 700;
+    }
+    
+    .bannertext{
+    
+    }
+    
+    .bannertext h2{
+    font-size: 35px;
+    line-height: 40px;
+    color:#676a6a;
+    }
+    
+    .bannertext p{
+    font-size: 24px;
+    line-height: 38px;
+    }
+    
+    .hometext h4{
+        color: #333c;
+        text-align: center;
+        margin-left: 110px;
+        font-weight: 900;
+        font-size: 22px;
+    }
+}
+
+
+
+/* Ipad */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .hometext{
+        border-top: 2px solid black;
+    }
+    
+    
+    .hometext h1{
+        color: black;
+        font-weight: 700;
+    }
+    
+    .bannertext{
+    
+    }
+    
+    .bannertext h2{
+    font-size: 35px;
+    line-height: 40px;
+    color:#676a6a;
+    }
+    
+    .bannertext p{
+    font-size: 24px;
+    line-height: 38px;
+    }
+    
+    .hometext h4{
+        color: #333c;
+        text-align: center;
+        margin-left: 110px;
+        font-weight: 900;
+        font-size: 22px;
+    }
+
+}
+
+/*Ipad Pro 12 inch*/
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+    .hometext{
+        border-top: 2px solid black;
+    }
+    
+    
+    .hometext h1{
+        color: black;
+        font-weight: 700;
+    }
+    
+    .bannertext{
+    
+    }
+    
+    .bannertext h2{
+    font-size: 35px;
+    line-height: 40px;
+    color:#676a6a;
+    }
+    
+    .bannertext p{
+    font-size: 24px;
+    line-height: 38px;
+    }
+    
+    .hometext h4{
+        color: #333c;
+        text-align: center;
+        margin-left: 110px;
+        font-weight: 900;
+        font-size: 22px;
+    }
+}
+
+/*Laptops*/
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    .hometext{
+        border-top: 2px solid black;
+    }
+    
+    
+    .hometext h1{
+        color: black;
+        font-weight: 700;
+    }
+    
+    .bannertext{
+    
+    }
+    
+    .bannertext h2{
+        font-size: 30px;
+        line-height: 36px;
+        color: #676a6a;
+    }
+    
+    .bannertext p{
+        font-size: 18px;
+        line-height: 32px;
+    }
+    
+    .hometext h4{
+        color: #333c;
+        text-align: center;
+        margin-left: 73px;
+        font-weight: 900;
+        font-size: 22px;
+    }
+}
+
+
+

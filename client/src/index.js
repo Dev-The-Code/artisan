@@ -22,13 +22,14 @@ import EcomForms from './components/ecommerce/EcomForms/EcomForms';
 import AddProduct from './components/ecommerce/addProduct/addProduct';
 import CheckOutPage from './components/ecommerce/checkOutPage';
 import ShopForm from './components/ecommerce/shops/ShopForm'
+import ShopForm2 from './components/ecommerce/shops/ShopForm2'
 import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile';
 import OrderList from './components/ecommerce/shops/orderList';
 
 import { PrivateRoute } from './components/signin_seperate';
 
 
-// import HomePage from './components/home/homePage';
+//  import HomePage from './components/home/homePage';
 // import Postbusiness from './components/business/postBusiness';
 // import JobPortal from './components/job_portal/postJob';
 // import EventPortal from './components/events/eventPortal';
@@ -61,6 +62,7 @@ import { PrivateRoute } from './components/signin_seperate';
 
 //css
 import './app.css';
+import HomePage from './components/home/homePage';
 
 const initialState = {
   text: '',
@@ -97,13 +99,13 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Favicon url="https://res.cloudinary.com/dxk0bmtei/image/upload/v1534159021/pakjazba_f3orb0.png" />
-        <Route exact path="/" component={EcommerceMarket}></Route>
+        <Route exact path="/" component={HomePage}></Route>
         <Route path="/sigin" component={Signin}></Route>
         <Route exact path="/reset/:token" component={ResetPassword} />
 
 
         {/*============Ecommerce=============*/}
-        {/* <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route> */}
+        <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
         <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
         <Route path="/products_GridStyle" component={GridProducts}></Route>
         <Route path="/products_DetailStyle/:value" component={EproductDetails}></Route>
@@ -111,6 +113,7 @@ ReactDOM.render(
         <Route path="/Forms_addproduct" component={AddProduct}></Route>
         <Route path="/checkOutProduct" component={CheckOutPage}></Route>
         <PrivateRoute path="/shopForm" component={ShopForm}></PrivateRoute>
+        <PrivateRoute path="/shopForm2" component={ShopForm2}></PrivateRoute>
         <Route path="/EcommerceProfile/:value" component={EcomProile}></Route>
         <Route path="/oderList/:value" component={OrderList}></Route>
 

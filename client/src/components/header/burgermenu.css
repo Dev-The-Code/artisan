@@ -53,6 +53,14 @@ Version:3.3.3  ▾    / assets / stylesheets / bootstrap / _navbar.scss
 // vertically and include a `max-height` to overflow in case you have too much
 // content for the user's viewport.*/
 
+
+.homeheader{
+  color: white;
+  font-weight: 600;
+  font-size: 14PX;
+}
+
+
 .navbar-collapse {
   overflow-x: visible;
   padding-right: $navbar-padding-horizontal;
