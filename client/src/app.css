@@ -87,10 +87,10 @@ font-family: 'Crimson Text', serif !important;
 }
 .paragraph:hover{
 	cursor:pointer;
-	background: #8cbc40;
+
     color: white;
     width: 50px;
-    border-radius: 5px;
+
 }
 .insideDiv{
   border-radius:4px;
@@ -133,7 +133,7 @@ font-family: 'Crimson Text', serif !important;
 	text-align:center;
 }
 .ant-modal-header{
-	background-color:#8cbc40;
+	background-color:#D9A67E;
 
 }
 .mainlogin{
@@ -258,6 +258,8 @@ width:100%;
 }
 .mainLoginDiv{
   display: flex;
+  margin-top: 6px;
+  font-weight: 700;
 }
 .upload-list-inline .ant-upload-list-item {
   float: left;
@@ -906,10 +908,64 @@ color: #fff;
 }
 .signuphover:hover{
   cursor:pointer;
-  background: #8cbc40;
+ 
     color: white;
     width: 100px;
-    border-radius: 5px;
+
+}
+
+.sign-up-btn{
+  background-color: #3C3C47;
+  height: 45px;
+  color: white;
+  border: #3C3C47;
+  width: 80%;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.sign-up-btn:hover{
+  height: 45px;
+  color: white;
+  border: #3C3C47;
+  width: 80%;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.sign-in-btn{
+  background-color: #3C3C47;
+  height: 45px;
+  color: white;
+  border: #3C3C47;
+  width: 80%;
+  margin-top: 25px;
+}
+
+.sign-in-btn:hover{
+  height: 45px;
+  color: white;
+  border: #3C3C47;
+  width: 80%;
+  margin-top: 25px;
+}
+
+.modal-button{
+  background-image:linear-gradient( #D9A67E, #3C3C47) ;
+    height: 45px;
+    color: white;
+    border: #3C3C47;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.modal-button:hover{
+  background-image:linear-gradient(#3C3C47, #D9A67E) ;
+    height: 45px;
+    color: white;
+    border: #3C3C47;
+    width: 100%;
+    margin-top: 25px;
 }
 .ant-tabs-nav .ant-tabs-tab:active{
   color:white !important;
@@ -1074,13 +1130,7 @@ h6{
 .padding_left_p{
   padding-left: 51px;
 }
-.paragraph:hover{
-	cursor:pointer;
-	background: #8cbc40;
-    color: white;
-    width: 50px;
-    border-radius: 5px;
-}
+
 .insideDiv{
   border-radius:4px;
   margin-right:8px;
@@ -1121,10 +1171,7 @@ h6{
 	font-size: 20px;
 	text-align:center;
 }
-.ant-modal-header{
-	background-color:#8cbc40;
 
-}
 .mainlogin{
 	color: #999;
 }
@@ -1237,9 +1284,7 @@ h6{
 .width_class{
 width:100%;
 }
-.mainLoginDiv{
-  display: flex;
-}
+
 .upload-list-inline .ant-upload-list-item {
   float: left;
   width: 200px;
@@ -1881,13 +1926,7 @@ color: #fff;
 .signuphover{
 
 }
-.signuphover:hover{
-  cursor:pointer;
-  background: #8cbc40;
-    color: white;
-    width: 100px;
-    border-radius: 5px;
-}
+
 
 .ant-tabs-nav .ant-tabs-tab-active {
   color: white ;

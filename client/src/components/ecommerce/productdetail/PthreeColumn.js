@@ -4,6 +4,7 @@ import { InputNumber, Icon } from 'antd';
 import ProductInformation from './ProductInformation';
 import ProductReviews from './ProductReviews';
 import { Link, Redirect } from "react-router-dom";
+import RelatedInformation from './relatedInformation';
 
 
 class PthreeColumn extends Component {
@@ -71,26 +72,84 @@ class PthreeColumn extends Component {
       )
     }
     return (
-      <div class="container" style={{ width: "100%", padding: "0px" }}>
+      <div class="container" style={{ width: "80%", padding: "0px" }}>
         <div class="card-three-column">
-          <div class="row" style={{ padding: "0px" }}>
-            <div class="preview col-md-5">
-              <div className="row" style={{ padding: '0px' }}>
-                <div className="col-md-3 col-xs-3">
-                  <ul class="preview-thumbnail enavigation enav-tabs" style={{ listStyle: 'none' }}>
-                    {/* rendering li in dom & show images */}
-                    {this.state.images.map(img => <li onClick={() => this.renderImagesinLi(img)}><a ><img src={img} /></a></li>)}
-                  </ul>
+          <div class="row" style={{ padding: "15px" }}>
+            <div class="col-md-6" style={{padding:"0"}}>
+              <div className="preview">
+                <div class="preview-pic tab-content">
+                  <div class="tab-pane active" id="pic-1"><img src={this.state.imgUrl} /></div>
                 </div>
-                <div className="col-md-9 col-xs-9">
-                  <div class="preview-pic tab-content">
-                    <div class="tab-pane active" id="pic-1"><img src={this.state.imgUrl} /></div>
+                <ul class="preview-thumbnail nav nav-tabs">
+                  {this.state.images.map(img => <li onClick={() => this.renderImagesinLi(img)}><a ><img src={img} /></a></li>)}
+                </ul>
+              </div>
+              <ProductInformation data={this.props.data} />   
+            </div> 
+              
+  
+            <div className="col-md-6">
+              <div className="new-card">
+                <div class="">
+                  <div className="produc-description">
+                    <h2>Description</h2>
+                    <p>{data.description}</p>
+                    
                   </div>
+                  {/* <h3 class=""
+                  >{data.product}</h3>
+                  <Link to={{
+                    pathname: `/EcommerceProfile/${data.shopId}`,
+                    // state: data.shopId
+                  }}>
+                    <div className="" >
+                      <p>
+                        {`By ${data.shopName}`}
+                      </p>
+                    </div>
+                  </Link>
+                  <h3>{'$' + data.price} & Free Shipping</h3> */}
+                 
+                  
+                 
+                    
+                    {/* <ul className="margins">
+                      <p>Description: {data.description}</p>
+                    </ul>  */}
+                  
+                  {/* <div>
+                    <h4 className="margin"> From The Manufacturer </h4>
+                    <h5>{data.manufacturer} <br />{data.manufacturerPart}</h5>
+                    <p>Warranty Description: {data.warrantyDescription}</p>
+                  </div> */}
+                </div>
+                {data.profileId == profileId ? <Icon
+                  type="edit" size={26}
+                  style={{ marginLeft: '10%', cursor: 'pointer' }}
+                  onClick={() => { this.onGoEditProduct() }}
+                >
+                </Icon>
+                  : null}
+              </div>
+              <div className="new-card" style={{marginTop:"20px"}}>
+                <div className="produc-features">
+                  <h2>Product Features</h2>
+                  <p>{data.productFeature} </p>
+                  <p class="vote">Size: <strong>{data.size}</strong></p>
+                  <p>Color: <strong>{data.color}</strong></p>
                 </div>
               </div>
+              <div className="new-card" style={{marginTop:"20px"}}>
+                  <div className="product-manufacturer">
+                    <h2>Manufacturer </h2>
+                    <h5>{data.manufacturer} <br />{data.manufacturerPart}</h5>
+                    <h4>Warranty Desciption</h4>
+                    <p>{data.warrantyDescription}</p>
+                  </div>
+              </div>
+              <RelatedInformation/>
             </div>
-            <div className="col-md-7">
-              <div className="row">
+              {/* <div className="row">
                 <div class="details col-md-7">
                   <h3 class="product-title"
                   >{data.product}</h3>
@@ -148,17 +207,20 @@ class PthreeColumn extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div> */}
+            
+            
             <div>
               {/* <PTable /> */}
-              <ProductInformation data={this.props.data} />
+              
+            </div>
+          </div>
+        
+         
               {/* <ProductFaq /> */}
               {data &&
                 <ProductReviews shopId={this.props.shopId} productId={this.props.productId}
                 />}
-            </div>
-          </div>
         </div>
       </div>
     )

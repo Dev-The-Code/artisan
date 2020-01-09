@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import { InputNumber, Modal, Spin, Icon } from 'antd';
 import { Link } from "react-router-dom";
 // import CardDetail from '../../components/events/event_listing/CardDetail';
@@ -229,7 +229,7 @@ class CheckOutPage extends Component {
         const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
         return (
             <div>
-                <Burgermenu />
+                <HeaderMenu />
                 <div >
                     <div className="" style={{ textAlign: "center", marginTop: "25px" }}>
                         <h1 style={{ fontFamily: 'Crimson Text, serif', fontWeight: "bold", color: "white" }}></h1>

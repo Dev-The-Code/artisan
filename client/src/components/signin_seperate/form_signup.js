@@ -183,7 +183,7 @@ class Form_signup extends Component {
                             <Input type="password" onBlur={this.handleConfirmBlur} />
                         )}
                     </FormItem>
-                    <FormItem {...tailFormItemLayout}>
+                    <FormItem {...tailFormItemLayout} style={{marginLeft:"0", marginTop:"10px"}}>
                         {getFieldDecorator('notrobot', {
                             valuePropName: 'checked',
                         })(
@@ -194,7 +194,7 @@ class Form_signup extends Component {
                         <span style={{ color: 'red', fontWeight: 'bold' }}>{this.state.msg}</span>
                     </div>}
                     <div style={{ marginTop: '5px' }} className="row center_global">
-                        {this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
+                        {this.state.loader ? antIcon : null} <button className="btn sign-up-btn">Sign up</button>
                     </div>{/*row*/}
                     <div className="row term_condition">
                         <p>(By clicking register, you agree to our <a>terms</a>, our <a>data policy</a> and cookies use)</p>

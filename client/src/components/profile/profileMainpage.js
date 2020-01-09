@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../header/burgermenu';
+import HeaderMenu from '../header/headermenu';
 import ProfileSidebar from './sideBarprofile';
 import ProfileDetail from './profileDetail';
 import ProfileTabs from './profileTabs';
@@ -37,7 +37,7 @@ class ProfileMain extends Component {
             <div>
                 <div className="" style={{ "background": "#d8e7e4", backgroundSize: 'cover' }}>
                     <div className="background-image">
-                        <Burgermenu />
+                        <HeaderMenu />
 
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Burgermenu from '../../header/burgermenu';
+import HeaderMenu from '../../header/headermenu';
 import Footer from '../../footer/footer';
 import './ecommerceProfile.css';
 import { Redirect } from "react-router-dom";
@@ -640,23 +640,24 @@ class EcomProfile extends Component {
     }
     return (
       <div>
-        <span>
+        {/* <span>
           <div className="" style={{
             "backgroundImage": "url('../images/bgc-images/busnes-listing.png')",
-            marginTop: "-20px", backgroundSize: 'cover'
+            marginTop: "100px", backgroundSize: ''
           }}>
             <div className="background-image">
-              <Burgermenu />
+              
             </div>
           </div>
-        </span>
+        </span> */}
+        <HeaderMenu />
         <div className="row jobdetail-page" style={{ marginTop: "100px" }}>
         </div>
         {shopData &&
           <div className>
             <div className="row">
               <div className="col-md-12">
-                <div className="col-md-8 col-sm-7">
+                <div className="col-md-6 col-sm-7">
                   <div className="row" style={{ padding: '0px' }}>
                     <div className="col-md-12">
                       <div className="col-md-2 col-sm-3 col-xs-3">
@@ -675,40 +676,40 @@ class EcomProfile extends Component {
                   </div>
                 </div>
                 {shopData.profileId == profileId &&
-                  <div className="col-md-4 col-sm-5">
-                    <div className="col-md-6 col-sm-6 col-xs-6">
+                  <div className="col-md-6 col-sm-5">
+                    <div className="col-md-3 col-sm-6 col-xs-6">
                       <div className="buttontoleft">
                         <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
                           onClick={this.oderList}>
                           {/* Edit Home */}
                           <div className="font-style fontClolor">
                             Order List
+                          </div>
+                          </button>
                         </div>
-                        </button>
                       </div>
-                    </div>
-                    <div className="col-md-6 col-sm-6 col-xs-6">
-                      <div className="buttontoleft">
-                        <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
-                          onClick={this.editShop}>
-                          {/* Edit Home */}
-                          <div className="font-style fontClolor">
-                            Edit Home
+                      <div className="col-md-4 col-sm-6 col-xs-6">
+                        <div className="buttontoleft">
+                          <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
+                            onClick={this.editShop}>
+                            {/* Edit Home */}
+                            <div className="font-style fontClolor">
+                              Edit Home
+                          </div>
+                          </button>
                         </div>
-                        </button>
                       </div>
-                    </div>
-                    <div className="col-md-6 col-sm-6 col-xs-6">
-                      <div className="buttontoleft">
-                        <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
-                          onClick={this.addProductOnShop}>
-                          {/* Add Product */}
-                          <div className="font-style fontClolor">
-                            Publish Your Product
+                      <div className="col-md-5 col-sm-6 col-xs-6">
+                        <div className="buttontoleft">
+                          <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
+                            onClick={this.addProductOnShop}>
+                            {/* Add Product */}
+                            <div className="font-style fontClolor">
+                              Publish Your Product
+                          </div>
+                          </button>
                         </div>
-                        </button>
                       </div>
-                    </div>
                   </div>
                 }
               </div>
@@ -716,7 +717,7 @@ class EcomProfile extends Component {
           </div>
         }
         <div className="container" style={{ width: '98%' }}>
-          <div className="row">
+          <div className="row" style={{marginBottom:"20px"}}>
             <div className="col-md-12">
               <Tabs defaultActiveKey="1">
                 <TabPane tab="Home" key="1">

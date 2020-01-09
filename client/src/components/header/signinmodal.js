@@ -373,7 +373,7 @@ class Signin extends Component {
                                     and cookies use)
                                 </Checkbox>
                                 <div className="row center_global">
-                                    {this.state.loader ? antIcon : null} <button className="btn color_button" disabled={!termCondition}>Sign up</button>
+                                    {this.state.loader ? antIcon : null} <button className="btn modal-button" disabled={!termCondition}>Sign up</button>
                                 </div>{/*row*/}
                                 <div className="row term_condition">
                                     {/*<p>(By clicking register, you agree to our <Link to={`/privacypolicy`} target="blank">terms & condition</Link>, our <Link to="/termofservice" target="blank">term of service</Link> and cookies use)</p>*/}
@@ -397,7 +397,7 @@ class Signin extends Component {
                                         <Input />
                                     )}
                                 </FormItem>
-                                <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}><Spin indicator={antIcon} />Sign up</button>
+                                <button className="btn modal-button" disabled={!email2} onClick={this.socialSignUp.bind(this)}><Spin indicator={antIcon} />Sign up</button>
                             </Form>
                         </div>}
                     </Modal>

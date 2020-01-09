@@ -8,6 +8,7 @@ import AsyncStorage from "@callstack/async-storage/lib/index";
 import { connect } from "react-redux";
 import { Modal, Form, Input } from 'antd'
 import { Redirect, } from 'react-router-dom';
+import HeaderMenu from '../header/headermenu';
 
 const FormItem = Form.Item;
 
@@ -204,15 +205,10 @@ class Signin extends Component {
 
         return (
             <div>
+                <HeaderMenu/>
                 <span></span>
-                <div className="row">
-                    <div className="col-md-2"></div>
-                    <div className="col-md-8 signin_background">
-                        <span><img alt='' src="../images/logo.png" /></span>
-                    </div>
-                    <div className="col-md-2"></div>
-                </div>{/*row*/}<br />
-                <div className="row">
+                <div className="" style={{marginTop:"110px"}}>     
+                    <div className="row">
                     <div className="col-md-2"></div>
                     <div className="col-md-3">
                         <span className="font_weight_signin_seperate_he">Sign in to your Pakjazba account</span><br /><br />
@@ -247,17 +243,18 @@ class Signin extends Component {
                                             <Input />
                                         )}
                                     </FormItem>
-                                    <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
+                                    <button className="btn headerbuttontop" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
                                 </Form>
                             </div>
                         </Modal>
                     </div>
                     <div className="col-md-3">
-                        <span className="font_weight_signin_seperate_he">Create a new Pakjazba account</span><br /><br />
+                        <span className="font_weight_signin_seperate_he">Create a new Artisans account</span><br /><br />
                         <div className="main_seperate_div">
                             <Form_signup to={to} />
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         )

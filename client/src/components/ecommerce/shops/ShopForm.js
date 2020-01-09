@@ -104,6 +104,9 @@ class ShopForm extends Component {
             shopAddress: '',
             shopCity: '',
             shopState: '',
+            shopPhone:'',
+            shopEmail:'',
+            shopURL:'',
             shopCategories: '',
             shopDescription: '',
             shopCategories: [],
@@ -121,6 +124,9 @@ class ShopForm extends Component {
                 shopAddress: data.shopAddress,
                 shopCity: data.shopCity,
                 shopState: data.shopState,
+                shopEmail: data.shopEmail,
+                shopPhone: data.shopPhone,
+                shopURL: data.shopURL,
                 shopDescription: data.shopDescription,
                 shopPurpose: data.shopPurpose,
                 shopCategories: data.shopCategories,
@@ -397,6 +403,9 @@ class ShopForm extends Component {
             shopAddress: values.shopAddress,
             shopCity: values.shopCity,
             shopState: values.shopState,
+            shopEmail: values.shopEmail,
+            shopPhone: values.shopPhone,
+            shopURL: values.shopURL,
             shopDescription: values.shopDescription,
             images: images,
             gridImageSrc: banner,
@@ -857,7 +866,7 @@ class ShopForm extends Component {
                                                     <div className="col-md-12">
                                                         <div className="form-group">
                                                             <label htmlFor="sel1">Address</label>
-                                                            <Form.Item sty>
+                                                            <Form.Item>
                                                                 {getFieldDecorator('shopAddress', {
                                                                     initialValue: this.state.shopAddress,
                                                                     rules: [{
@@ -907,6 +916,27 @@ class ShopForm extends Component {
                                                             </Form.Item>
                                                         </div>
                                                     </div>
+                                                    <hr className="location-hr"/>
+                                                
+                                                <div className="row">
+                                                    <div className="col-md-12">
+                                                        <div className="form-group">
+                                                            <label htmlFor="sel1">Email Address</label>
+                                                            <Form.Item>
+                                                                {getFieldDecorator('shopEmail', {
+                                                                    initialValue: this.state.shopEmail,
+                                                                    rules: [{
+                                                                        required: true,
+                                                                        message: 'Please input your Address!',
+                                                                        whitespace: true
+                                                                    }],
+                                                                })(
+                                                                    <Input style={{border:"0"}} />
+                                                                )}
+                                                            </Form.Item>   
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

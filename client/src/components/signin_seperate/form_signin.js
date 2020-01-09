@@ -108,8 +108,8 @@ class Form_signin extends Component{
                         {this.state.msg.length > 0 && <div style={{marginBottom: '10px'}}>
                             <span style={{ color: 'red', fontWeight: 'bold'}}>{this.state.msg}</span>
                         </div>}
-                        <div style={{marginTop: '10px'}} className="row center_global signup_button_signin_seperate">
-                            <button className="btn color_button">Login</button>
+                        <div style={{marginTop: '10px'}} className="">
+                            <button className="btn sign-in-btn">Login</button>
                         </div>{/*row*/}
                     </Form>
                 </div>

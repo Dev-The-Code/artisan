@@ -303,7 +303,7 @@ class Signup extends Component {
                             <div className="col-md-3"></div>
                             {this.state.showloader && <Spin indicator={antIcon} />}
                             <div className="col-md-6">
-                                <Button type="primary" htmlType="submit" disabled={this.state.showloader} className="login-form-button width_class">
+                                <Button type="primary" htmlType="submit" disabled={this.state.showloader} className="modal-button">
                                     Log in
                                 </Button>
                             </div>
@@ -327,7 +327,7 @@ class Signup extends Component {
                                     <Input />
                                 )}
                             </FormItem>
-                            <button className="btn color_button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
+                            <button className="btn modal-button" disabled={!email2} onClick={this.socialSignUp.bind(this)}>Sign up</button>
                         </Form>
                     </div>}
                 </Modal>

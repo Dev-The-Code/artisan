@@ -6,7 +6,7 @@ import { Redirect } from 'react-router';
 import AsyncStorage from "@callstack/async-storage";
 import { HttpUtils } from "../../Services/HttpUtils";
 import { Tabs, Radio } from 'antd';
-
+import './testcomponent.css'
 const TabPane = Tabs.TabPane;
 
 class TestComponent extends Component {
@@ -196,7 +196,7 @@ class TestComponent extends Component {
                             </div>
                         </TabPane> */}
                         <TabPane tab='E Commerce' key="1">
-                            <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
+                            <div className="secondfold">
                                 <div className="index-content" style={{ marginTop: '20px' }}>
                                     <div className="row">
                                         {arr5 && arr5.length ? arr5.map((elem) => {
@@ -215,17 +215,18 @@ class TestComponent extends Component {
                                                 }}>
                                                     <div className="sellercardopacity" style={{ cursor: 'pointer' }}>
                                                         <div className="overlay1">
-                                                            <Link to={{
-                                                                pathname: `/EcommerceProfile/${elem._id}`,
-                                                                state: elem
-                                                            }}>
+                                                            
                                                                 <div className="sellerstorecard" >
                                                                     <img alt='img' src={img} />
                                                                 </div>
-                                                                <h4 style={{ marginTop: "20px", textAlign: "left" }}>{elem.shopTitle}</h4>
-                                                                <div class="middle">
-                                                                    <div class="text">View Shop</div>
-                                                                </div>
+                                                                <h4 style={{ marginTop: "20px", textAlign: "left", padding:"15px" }}>{elem.shopTitle}</h4>
+
+                                                        </div>
+                                                        <div class="middle">
+                                                            <Link to={{
+                                                                pathname: `/EcommerceProfile/${elem._id}`,
+                                                                state: elem
+                                                            }}><div class="text">View Shop</div>
                                                             </Link>
                                                         </div>
 

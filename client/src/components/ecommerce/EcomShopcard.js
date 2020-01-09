@@ -31,7 +31,7 @@ class EshopCard extends Component {
                       </div>
                       <div className="">
                         <div className="pricing">
-                          <h4 style={{margin:"0", color:"#337ab7"}}>{`$${elem.price}`} </h4>
+                          <h4>{`$${elem.price}`} </h4>
                         </div>
                         <div className="category">
                           <h4>
@@ -40,7 +40,7 @@ class EshopCard extends Component {
                         </div>
                       </div>
                       <div className="otherdetails">
-                        <span><h3>{elem.product}</h3></span>
+                        <span><h3>{elem.product.slice(0,18)}...</h3></span>
                         <span><h5>By:{elem.shopName}</h5></span>
                         <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} ><button className="shop-btn">Shop Now</button></Link>
                       </div>

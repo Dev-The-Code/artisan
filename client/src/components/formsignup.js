@@ -133,7 +133,7 @@ compareToFirstPassword = (rule, value, callback) => {
 						          )}
         					</FormItem>
         					<div className="row center_global">
-	        					{this.state.loader ? antIcon : null} <button className="btn color_button">Sign up</button>
+	        					{this.state.loader ? antIcon : null} <button className="btn modal-button" style={{width:"35%"}}>Sign up</button>
         					</div>{/*row*/}
         				<div className="row term_condition">
         					<p>(By clicking register, you agree to our <a href="#">terms</a>, our <a href="#">data policy</a> and cookies use)</p>

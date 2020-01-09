@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HttpUtils } from "../../../Services/HttpUtils";
 import './orderList.css';
-import Burgermenu from '../../header/burgermenu';
+import HeaderMenu from '../../header/headermenu';
 import { Modal } from 'antd';
 import Footer from '../../footer/footer';
 
@@ -87,7 +87,7 @@ class OrderList extends Component {
         );
         return (
             <div>
-                <Burgermenu />
+                <HeaderMenu />
                 <div className="container">
                     <div className="hidden-xs" style={{ width: "100%", height: "67px", marginTop: "3px" }}></div>
 
