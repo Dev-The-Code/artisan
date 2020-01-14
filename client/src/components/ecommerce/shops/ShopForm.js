@@ -29,52 +29,28 @@ const Dragger = Upload.Dragger;
 
 const category = [
     {
-        value: 'Automotive & Motorbike',
-        label: 'Automotive & Motorbike',
+        value: 'Clothing',
+        label: 'Clothing',
     },
     {
-        value: 'Babies & Toys',
-        label: 'Babies & Toys',
+        value: 'Jwellery',
+        label: 'Jwellery',
     },
     {
-        value: 'Electronic Accessories',
-        label: 'Electronic Accessories',
+        value: 'Shoes',
+        label: 'Shoes',
     },
     {
-        value: 'Electronic Devices',
-        label: 'Electronic Devices'
+        value: 'Decor',
+        label: 'Decor'
     },
     {
-        value: 'Fashion Accessories',
-        label: 'Fashion Accessories',
+        value: 'Gardening',
+        label: 'Gardening',
     },
     {
-        value: 'Groceries & Pets',
-        label: 'Groceries & Pets',
-    },
-    {
-        value: 'Health & Beauty',
-        label: 'Health & Beauty'
-    },
-    {
-        label: 'Home & Lifestyle',
-        value: 'Home & Lifestyle',
-    },
-    {
-        value: 'Men,s Fashion',
-        label: 'Men,s Fashion',
-    },
-    {
-        value: 'Sports & Outdoor',
-        label: 'Sports & Outdoor',
-    },
-    {
-        value: 'TV & Home Appliances',
-        label: 'TV & Home Appliances',
-    },
-    {
-        label: 'Women,s Fashion',
-        value: 'Women,s Fashion',
+        value: 'Furniture',
+        label: 'Furniture',
     },
 ];
 

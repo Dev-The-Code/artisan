@@ -40,7 +40,7 @@ class ExploreCards extends Component {
                         </div>
                       </div>
                       <div className="otherdetails">
-                        <span><h3>{elem.product}</h3></span>
+                        <span><h3>{elem.product.slice(0, 18)}</h3></span>
                         <span><h5>By:{elem.shopName}</h5></span>
                         <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} ><button className="shop-btn">Shop Now</button></Link>
                       </div>

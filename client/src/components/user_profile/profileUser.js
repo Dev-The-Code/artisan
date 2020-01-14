@@ -85,6 +85,7 @@ class ProfileUser extends Component {
 
     async getprofileData(id, userId) {
         let req = await HttpUtils.get('getprofile?profileId=' + id)
+        console.log(req, "data")
         let user = req.content;
         this.setState({
             name: user.name,
