@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import HeaderMenu from '../../header/headermenu';
 import Slider from '../../header/Slider';
 import Footer from '../../footer/footer';
+import KeywordsForm from './keywordsForm';
+import EcommerceForm from './ecommerceforms';
 import EcomTabs from './EcomTabs';
 import NewForm from './new_form';
 import VitalInfo from './EvitalInfo';
@@ -26,7 +28,7 @@ class EcomForms extends Component {
         </div>
         <div className="container">
           {/* <EcomTabs data={this.props.location.state} /> */}
-          <NewForm/>
+          <EcommerceForm/>
         </div>
         <Footer />
       </div>

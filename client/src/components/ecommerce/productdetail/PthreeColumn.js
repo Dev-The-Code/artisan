@@ -7,7 +7,8 @@ import { Link, Redirect } from "react-router-dom";
 import RelatedInformation from './relatedInformation';
 
 
-class PthreeColumn extends Component {
+class 
+  PthreeColumn extends Component {
   constructor(props) {
     super(props)
     this.state = {

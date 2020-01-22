@@ -82,6 +82,7 @@ require('./models/ecommerceProductRating');
 require('./models/ecommercePayment');
 require('./models/shopCollection');
 require('./models/orderListCollection');
+require('./models/postProduct');
 
 
 require('./config/passport');
@@ -109,6 +110,8 @@ var ecommerceProductReview = mongoose.model('ecommercereview');
 var ecommercerPayment = mongoose.model('ecommercepayment');
 var postShopCollection = mongoose.model('shopCollection');
 var postOrderListCollection = mongoose.model('orderListCollection');
+var postEcomProduct = mongoose.model('postProduct');
+
 
 var sess;
 
@@ -1968,61 +1971,73 @@ app.post('/api/postecommercedata', (req, res) => {
     const postEcommerceData = new postecommerce({
       user_Id: ecommerceData.user_Id,
       profileId: ecommerceData.profileId,
-      category: ecommerceData.category,
-      status: ecommerceData.status,
-      brandName: ecommerceData.brandName,
-      UPC: ecommerceData.UPC,
-      color: ecommerceData.color,
-      gtin: ecommerceData.gtin,
-      allTabs: ecommerceData.allTabs,
-      itemLength: ecommerceData.itemLength,
-      itemWeight: ecommerceData.itemWeight,
-      itemWidth: ecommerceData.itemWidth,
-      lenseColor: ecommerceData.lenseColor,
-      manufacturer: ecommerceData.manufacturer,
-      manufacturerPart: ecommerceData.manufacturerPart,
-      materialType: ecommerceData.materialType,
-      maximumWeight: ecommerceData.maximumWeight,
-      orientation: ecommerceData.orientation,
-      pakageQuantity: ecommerceData.pakageQuantity,
-      product: ecommerceData.product,
-      warrantyDescription: ecommerceData.warrantyDescription,
-      shaft: ecommerceData.shaft,
-      shape: ecommerceData.shape,
-      size: ecommerceData.size,
-      tension: ecommerceData.tension,
-      variationTheme: ecommerceData.variationTheme,
-      conditionNote: ecommerceData.conditionNote,
-      condition: ecommerceData.condition,
-      country: ecommerceData.country,
-      countryLabeled: ecommerceData.countryLabeled,
-      handlingTime: ecommerceData.handlingTime,
-      importDesignation: ecommerceData.importDesignation,
-      legalDesclaimer: ecommerceData.legalDesclaimer,
-      price: ecommerceData.price,
-      productId: ecommerceData.productId,
-      quantity: ecommerceData.quantity,
-      salePrice: ecommerceData.salePrice,
-      seller: ecommerceData.seller,
-      taxCode: ecommerceData.taxCode,
-      offering: ecommerceData.offering,
-      restockDate: ecommerceData.restockDate,
-      salePriceDate1: ecommerceData.salePriceDate1,
-      salePriceDate2: ecommerceData.salePriceDate2,
-      sellingDate: ecommerceData.sellingDate,
-      images: ecommerceData.images,
-      description: ecommerceData.description,
-      productFeature: ecommerceData.productFeature,
-      IntendedUsekeyWords: ecommerceData.IntendedUsekeyWords,
-      targetAudience: ecommerceData.targetAudience,
-      intendedUse: ecommerceData.intendedUse,
-      platinumKeywords: ecommerceData.platinumKeywords,
-      searchTerms: ecommerceData.searchTerms,
-      subjectMatter: ecommerceData.subjectMatter,
       shopId: ecommerceData.shopId,
       shopName: ecommerceData.shopName,
-      percantageOfProduct: ecommerceData.percantageOfProduct,
-      averageRateProduct: ecommerceData.averageRateProduct
+      
+      product: ecommerceData.product,
+      categories: ecommerceData.categories,
+      sizes: ecommerceData.sizes,
+      price: ecommerceData.price,
+      salePrice: ecommerceData.salePrice,
+      materialType: ecommerceData.materialType,
+      description: ecommerceData.description,
+      color: ecommerceData.color,
+      images: ecommerceData.images,
+     
+      
+      // status: ecommerceData.status,
+      // brandName: ecommerceData.brandName,
+      // UPC: ecommerceData.UPC,
+      // color: ecommerceData.color,
+      // gtin: ecommerceData.gtin,
+      // allTabs: ecommerceData.allTabs,
+      // itemLength: ecommerceData.itemLength,
+      // itemWeight: ecommerceData.itemWeight,
+      // itemWidth: ecommerceData.itemWidth,
+      // lenseColor: ecommerceData.lenseColor,
+      // manufacturer: ecommerceData.manufacturer,
+      // manufacturerPart: ecommerceData.manufacturerPart,
+      // materialType: ecommerceData.materialType,
+      // maximumWeight: ecommerceData.maximumWeight,
+      // orientation: ecommerceData.orientation,
+      // pakageQuantity: ecommerceData.pakageQuantity,
+      // product: ecommerceData.product,
+      // warrantyDescription: ecommerceData.warrantyDescription,
+      // shaft: ecommerceData.shaft,
+      // shape: ecommerceData.shape,
+      // size: ecommerceData.size,
+      // tension: ecommerceData.tension,
+      // variationTheme: ecommerceData.variationTheme,
+      // conditionNote: ecommerceData.conditionNote,
+      // condition: ecommerceData.condition,
+      // country: ecommerceData.country,
+      // countryLabeled: ecommerceData.countryLabeled,
+      // handlingTime: ecommerceData.handlingTime,
+      // importDesignation: ecommerceData.importDesignation,
+      // legalDesclaimer: ecommerceData.legalDesclaimer,
+      // price: ecommerceData.price,
+      // productId: ecommerceData.productId,
+      // quantity: ecommerceData.quantity,
+      // salePrice: ecommerceData.salePrice,
+      // seller: ecommerceData.seller,
+      // taxCode: ecommerceData.taxCode,
+      // offering: ecommerceData.offering,
+      // restockDate: ecommerceData.restockDate,
+      // salePriceDate1: ecommerceData.salePriceDate1,
+      // salePriceDate2: ecommerceData.salePriceDate2,
+      // sellingDate: ecommerceData.sellingDate,
+      // images: ecommerceData.images,
+      // description: ecommerceData.description,
+      // productFeature: ecommerceData.productFeature,
+      // IntendedUsekeyWords: ecommerceData.IntendedUsekeyWords,
+      // targetAudience: ecommerceData.targetAudience,
+      // intendedUse: ecommerceData.intendedUse,
+      // platinumKeywords: ecommerceData.platinumKeywords,
+      // searchTerms: ecommerceData.searchTerms,
+      // subjectMatter: ecommerceData.subjectMatter,
+     
+      // percantageOfProduct: ecommerceData.percantageOfProduct,
+      // averageRateProduct: ecommerceData.averageRateProduct
     })
     postEcommerceData.save(function (err, data) {
       if (err) {
@@ -2438,6 +2453,46 @@ app.post('/api/getSpecificORderProductShopId', (req, res) => {
       })
     }
   })
+})
+
+
+app.post('/api/postEcomreceProduct', (req, res) => {
+  var postData = req.body;
+  // console.log(req.body.images,'iiiimmmmaaggessss')
+  // if (postData.objectId === '') {
+    const postData = new postEcomProduct({
+      user_Id: postData.user_Id,
+      profileId: postData.profileId,
+      shopId: postData.shopId,
+      shopName: postData.shopName,
+      
+      product: postData.product,
+      categories: postData.categories,
+      sizes: postData.sizes,
+      price: postData.price,
+      salePrice: postData.salePrice,
+      materialType: postData.materialType,
+      description: postData.description,
+      color: postData.color,
+      images: postData.images,
+    })
+    postData.save(function (err, data) {
+      if (err) {
+        res.send({
+          code: 500,
+          content: 'Internal Server Error',
+          msg: 'API not called properly'
+        })
+      }
+      else if (data) {
+        res.send({
+          code: 200,
+          msg: 'Data saved successfully',
+          content: data
+        });
+      }
+    })
+  // }
 })
 
 
