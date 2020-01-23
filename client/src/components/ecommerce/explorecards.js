@@ -8,6 +8,7 @@ class ExploreCards extends Component {
   }
   render() {
     const { productsData } = this.props;
+    console.log(productsData ,'productsData')
     return (
 
       <div className="container" style={{width:"100%"}}>
@@ -21,7 +22,6 @@ class ExploreCards extends Component {
         <div className="row">
           <div className="col-md-12">
             {productsData && productsData.map((elem, key) => {
-              console.log(elem.category, "Category finder")
               return (
                 <div className="col-md-3 col-sm-6">
                   <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} >
@@ -31,11 +31,11 @@ class ExploreCards extends Component {
                       </div>
                       <div className="">
                         <div className="pricing">
-                          <h4 style={{margin:"0", color:"#337ab7"}}>{`$${elem.price}`} </h4>
+                          <h4 style={{margin:"0", color:"#337ab7"}}>{`${elem.price.number} ${elem.price.currency}`} </h4>
                         </div>
                         <div className="category">
                           <h4>
-                                {elem.category[1]}
+                                {elem.categories[1]}
                               </h4>
                         </div>
                       </div>

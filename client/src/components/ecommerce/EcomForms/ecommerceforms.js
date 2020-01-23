@@ -2,25 +2,26 @@ import React, { Component } from 'react';
 import superagent from "superagent";
 import sha1 from "sha1";
 import { HttpUtils } from "../../../Services/HttpUtils";
-
+import { Redirect } from "react-router-dom";
 import {
   Form,
   Select,
   Input,
   InputNumber,
-  Switch,
   Cascader,
   notification,
-  Radio,
-  Slider,
   Button,
   Upload,
   Icon,
-  Rate,
   Checkbox,
   Row,
   Col,
-  Modal
+  Modal,
+  Spin,
+  Switch,
+  Radio,
+  Slider,
+  Rate,
 } from 'antd';
 
 const { Option } = Select;
@@ -573,29 +574,55 @@ class PriceInput extends React.Component {
 
 
 
-class EcommerceForm extends Component{
+class EcommerceForm extends Component {
 
-constructor(props){
-  super(props)
-  this.state={
-    fileList:[],
-    previewVisible: false,
-    previewImage: '',
+  constructor(props) {
+    super(props)
+    this.state = {
+      fileList: [],
+      previewVisible: false,
+      previewImage: '',
+      data: "",
+      btnDisabeld: false,
+      mgs: '',
+      loader: false,
+      objectId: '',
+      product: '',
+      category: [],
+      sizes: [],
+      quantity: 0,
+      price: { number: 0, currency: 'pkr' },
+      salePrice: { number: 0, currency: 'pkr' },
+      materialType: '',
+      description: '',
+      color: '',
+      productData: "",
+      goProductDetailPage: false,
+      producId: ''
+    }
   }
-}
 
 
+  componentDidMount() {
+    let data = this.props.data;
+    if (data) {
+      this.setState({
+        data: data
+      })
+    }
+  }
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         // this.handleEvent(values)
-        this.setState({ loader: true })
+        this.setState({
+          loader: true,
+          btnDisabeld: true
+        })
         this.funcForUpload(values)
         console.log(values, 'values')
-        //   let responseEcommreceData = await HttpUtils.post('postEcomreceProduct', val)
-  //   console.log(responseEcommreceData, 'reqProductsObj')
       }
     });
   }
@@ -607,14 +634,6 @@ constructor(props){
   //   console.log(responseEcommreceData, 'reqProductsObj')
   // }
 
-  normFile = e => {
-    console.log('Upload event:', e);
-    if (Array.isArray(e)) {
-      return e;
-    }
-    return e && e.fileList;
-  };
-
 
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
@@ -622,9 +641,6 @@ constructor(props){
     }
     callback('Price must greater than zero!');
   };
-
-  /*Upload options*/
-
 
 
   handleCancel = () => this.setState({ previewVisible: false });
@@ -643,70 +659,115 @@ constructor(props){
   handleChange = ({ fileList }) => this.setState({ fileList });
 
 
-    async funcForUpload(values, key) {
-      const { fileList } = this.state;
-      Promise.all(fileList.map((val) => {
-        return this.uploadFile(val).then((result) => {
-          return result.body.url
-        })
-      })).then((results) => {
-        this.postData(values, results, key)
+  async funcForUpload(values, key) {
+    const { fileList } = this.state;
+    Promise.all(fileList.map((val) => {
+      return this.uploadFile(val).then((result) => {
+        return result.body.url
+      })
+    })).then((results) => {
+      this.postData(values, results, key)
+    })
+  }
+
+  //--------------function for cloudnary url ---------------
+  uploadFile = (files) => {
+    const image = files.originFileObj
+    const cloudName = 'dxk0bmtei'
+    const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
+    const timestamp = Date.now() / 1000
+    const uploadPreset = 'toh6r3p2'
+    const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+    const signature = sha1(paramsStr)
+    const params = {
+      'api_key': '878178936665133',
+      'timestamp': timestamp,
+      'upload_preset': uploadPreset,
+      'signature': signature
+    }
+    return new Promise((res, rej) => {
+      let uploadRequest = superagent.post(url)
+      uploadRequest.attach('file', image)
+      Object.keys(params).forEach((key) => {
+        uploadRequest.field(key, params[key])
+      })
+
+      uploadRequest.end((err, resp) => {
+        err ? rej(err) : res(resp);
+      })
+    })
+  }
+
+  //-----------------cloudnary function end ------------------//
+  async postData(values, response, key) {
+    const { data, objectId } = this.state;
+    var user = JSON.parse(localStorage.getItem('user'));
+
+    let objOfProduct = {
+      product: values.product,
+      categories: values.categories,
+      sizes: values.sizes,
+      quantity: values.quantity,
+      price: values.price,
+      salePrice: values.salePrice,
+      materialType: values.materialType,
+      description: values.description,
+      color: values.color,
+      images: response,
+      shopId: data.shopId,
+      shopName: data.shopTitle,
+      user_Id: user._id,
+      profileId: user.profileId,
+    }
+    console.log(response , 'response')
+    console.log(objOfProduct , 'objOfProduct')
+
+    let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
+
+    if (responseEcommreceData.code == 200) {
+      this.setState({
+        loader: false,
+        btnDisabeld: false,
+        mgs: responseEcommreceData.mgs,
+        productData: responseEcommreceData.content,
+        producId: responseEcommreceData.content._id,
+        goProductDetailPage: true
+      })
+      console.log(responseEcommreceData, 'reqProductsObj')
+      let msg = 'Your product is saved successfully.'
+      this.openNotification(msg)
+    }
+    else {
+      this.setState({
+        loader: false,
+        btnDisabeld: false,
+        mgs: responseEcommreceData.mgs,
+        goProductDetailPage: false,
       })
     }
-  
-    //--------------function for cloudnary url ---------------
-    uploadFile = (files) => {
-      const image = files.originFileObj
-      const cloudName = 'dxk0bmtei'
-      const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
-      const timestamp = Date.now() / 1000
-      const uploadPreset = 'toh6r3p2'
-      const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
-      const signature = sha1(paramsStr)
-      const params = {
-        'api_key': '878178936665133',
-        'timestamp': timestamp,
-        'upload_preset': uploadPreset,
-        'signature': signature
-      }
-      return new Promise((res, rej) => {
-        let uploadRequest = superagent.post(url)
-        uploadRequest.attach('file', image)
-        Object.keys(params).forEach((key) => {
-          uploadRequest.field(key, params[key])
-        })
-  
-        uploadRequest.end((err, resp) => {
-          err ? rej(err) : res(resp);
-        })
-      })
-    }
-  
-    //-----------------cloudnary function end ------------------
-    async postData(values, response, key) {
-      console.log(values, "get Data")
-      console.log(response, "get Data")
-      console.log(key, "get Data")
-      values.images=response
-      
-      
-        let msg = 'Your Images is saved successfully.'
-        this.openNotification(msg)
-      
-    }
+    let msg = 'Your product is not submit successfully.'
+    this.openNotification(msg)
+  }
 
 
-      openNotification(msg) {
-        notification.open({
-          message: 'Success ',
-          description: msg
-        });
-      };
-  
-  
+  openNotification(msg) {
+    notification.open({
+      message: 'Success ',
+      description: msg
+    });
+  };
+
+
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { previewVisible, previewImage, fileList } = this.state;
+    const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice, price, materialType, description, color, productData, goProductDetailPage , producId} = this.state;
+
+    // if (goProductDetailPage) {
+    //   return (
+    //     <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
+    //   )
+    // }
+
     const uploadButton = (
       <div>
         <Icon type="plus" />
@@ -717,129 +778,184 @@ constructor(props){
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
     };
-
+    const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-        {/*Product Name*/}
-        <Form.Item label="Product Name">
-          {getFieldDecorator('product', {
+      <div>
+        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+          {/*Product Name*/}
+          <Form.Item label="Product Name">
+            {getFieldDecorator('product', {
+              initialValue: product,
+              rules: [{
+                required: true,
+                message: 'Please enter your product Title!',
+                whitespace: true
+              }],
+            })(<Input />)}
+          </Form.Item>
 
-          })(<Input />)}
-        </Form.Item>
+          {/*Category*/}
+          <Form.Item label="Select Category">
+            {getFieldDecorator('categories', {
+              initialValue: category,
+              rules: [
+                {
+                  type: 'array',
+                  required: true,
+                  message: 'Please select your product category'
+                },
+              ],
+            })(<Cascader options={categories} />)}
+          </Form.Item>
 
-        {/*Category*/}
-        <Form.Item label="Select Category">
-          {getFieldDecorator('categories', {
-            initialValue: [],
-            rules: [
-              { type: 'array', required: true, message: 'Please select your product category' },
-            ],
-          })(<Cascader options={categories} />)}
-        </Form.Item>
+          {/*Sizes*/}
+          <Form.Item label="Select Sizes">
+            {getFieldDecorator('sizes', {
+              initialValue: sizes,
+              rules: [
+                { required: true, message: 'Please select your sizes!', type: 'array' },
+              ],
+            })(
+              <Checkbox.Group style={{ width: '100%' }}>
+                <Row>
+                  <Col span={8}>
+                    <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
+                  </Col>
+                  <Col span={8}>
+                    <Checkbox value="Small">Small</Checkbox>
+                  </Col>
+                  <Col span={8}>
+                    <Checkbox value="Medium">Medium</Checkbox>
+                  </Col>
+                  <Col span={8}>
+                    <Checkbox value="Large">Large</Checkbox>
+                  </Col>
+                  <Col span={8}>
+                    <Checkbox value="Xrta-Large">Xtra Large</Checkbox>
+                  </Col>
+                </Row>
+              </Checkbox.Group>,
+            )}
+          </Form.Item>
 
-        {/*Sizes*/}
-        <Form.Item label="Select Sizes">
-          {getFieldDecorator('sizes', {
-            initialValue: [],
-          })(
-            <Checkbox.Group style={{ width: '100%' }}>
-              <Row>
-                <Col span={8}>
-                  <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="Small">Small</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="Medium">Medium</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="Large">Large</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="Xrta-Large">Xtra Large</Checkbox>
-                </Col>
-              </Row>
-            </Checkbox.Group>,
-          )}
-        </Form.Item>
+          {/*Quantity*/}
+          <Form.Item label="Select Quantity">
+            {getFieldDecorator('quantity', {
+              initialValue: quantity,
 
-        {/*Quantity*/}
-        <Form.Item label="Select Quantity">
-          {getFieldDecorator('input-number', { initialValue: 0 })(<InputNumber min={1} max={10} />)}
+            })(
+              <InputNumber min={1} max={5000} />
+            )}
 
-        </Form.Item>
+          </Form.Item>
 
-        {/*Pricing*/}
-        <Form.Item label="Price">
-          {getFieldDecorator('price', {
-            initialValue: { number: 0, currency: 'pkr' },
-            rules: [{ validator: this.checkPrice }],
-          })(<PriceInput />)}
-        </Form.Item>
+          {/*Pricing*/}
+          <Form.Item label="Price">
+            {getFieldDecorator('price', {
+              initialValue: price,
+              rules: [{ validator: this.checkPrice }],
+            })(<PriceInput />)}
+          </Form.Item>
 
-        {/*Sale Pricing*/}
-        <Form.Item label="Sale Price">
-          {getFieldDecorator('salePrice', {
-            initialValue: { number: 0, currency: 'pkr' },
-            rules: [{ validator: this.checkPrice }],
-          })(<PriceInput />)}
-        </Form.Item>
+          {/*Sale Pricing*/}
+          <Form.Item label="Sale Price">
+            {getFieldDecorator('salePrice', {
+              initialValue: salePrice,
+              rules: [{ validator: this.checkPrice }],
+            })(<PriceInput />)}
+          </Form.Item>
 
-        {/*Material type*/}
-        <Form.Item label="Material Type">
-          {getFieldDecorator('materialType', {
+          {/*Material type*/}
+          <Form.Item label="Material Type">
+            {getFieldDecorator('materialType',
+              {
+                initialValue: materialType,
+                rules: [{
+                  required: true,
+                  message: 'Please enter your material type!',
+                  whitespace: true
+                }],
+              })(<Input />)}
+          </Form.Item>
 
-          })(<Input />)}
-        </Form.Item>
-
-        {/*Description*/}
-        <Form.Item label="Description">
-          {getFieldDecorator('description', {
-
-          })(<TextArea rows={4} />)}
-        </Form.Item>
-
-
-        {/*Color*/}
-        <Form.Item label="Product Color">
-          {getFieldDecorator('color', {
-
-          })(<Input />)}
-        </Form.Item>
-
-
-        {/*Uplaod Images*/}
-
-        <Form.Item label="upload">
-          {getFieldDecorator('images', {
-
-          })
-            (
-              <div className="clearfix">
-                <Upload
-                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                  listType="picture-card"
-                  fileList={fileList}
-                  onPreview={this.handlePreview}
-                  onChange={this.handleChange}
-                >
-                  {fileList.length >= 8 ? null : uploadButton}
-                </Upload>
-                <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
-                  <img alt="example" style={{ width: '100%' }} src={previewImage} />
-                </Modal>
-              </div>)}
-        </Form.Item>
+          {/*Description*/}
+          <Form.Item label="Description">
+            {getFieldDecorator('description', {
+              initialValue: description,
+              rules: [{
+                required: true,
+                message: 'Please enter your description!',
+                whitespace: true
+              }],
+            })(<TextArea rows={4} />)}
+          </Form.Item>
 
 
-        {/*Button*/}
-        <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
+          {/*Color*/}
+          <Form.Item label="Product Color">
+            {getFieldDecorator('color', {
+              initialValue: color,
+              rules: [{
+                required: true,
+                message: 'Please enter your color!',
+                whitespace: true
+              }],
+            })(<Input />)}
+          </Form.Item>
+
+
+          {/*Uplaod Images*/}
+
+          <Form.Item label="upload">
+            {getFieldDecorator('images', {
+
+            })
+              (
+                <div className="clearfix">
+                  <Upload
+                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                    listType="picture-card"
+                    fileList={fileList}
+                    onPreview={this.handlePreview}
+                    onChange={this.handleChange}
+                  >
+                    {fileList.length >= 8 ? null : uploadButton}
+                  </Upload>
+                  <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                    <img alt="example" style={{ width: '100%' }} src={previewImage} />
+                  </Modal>
+                </div>)}
+          </Form.Item>
+
+
+          {/*Button*/}
+          {btnDisabeld ?
+            <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+              <Button disabled type="primary" htmlType="submit">
+                Submit
+          </Button>
+            </Form.Item>
+            :
+            <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+              <Button type="primary" htmlType="submit">
+                Submit
               </Button>
-        </Form.Item>
-      </Form>
+            </Form.Item>
+          }
+
+          <div className="col-md-12">
+            <div className="col-md-4"></div>
+            <div className="col-md-4">
+              {mgs != "" && <p style={{ marginTop: '20px', fontWeight: 'bold', color: 'red' }}>{mgs}</p>}
+            </div>
+            <div className="col-md-4"></div>
+          </div>
+          {loader && <div style={{ textAlign: 'center', marginLeft: '-100px', marginBottom: '15px' }}>
+            <Spin indicator={antIcon} />
+
+          </div>}
+        </Form>
+      </div>
     );
   }
 }
