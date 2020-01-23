@@ -11,12 +11,23 @@ function callback(key) {
     console.log(key);
   }
 
+let filterSubCategoryName = [];
+let filterColorFamily = [];
+
 class Ecomtabs extends Component{
     constructor(props) {
         super(props);
         this.state = {
+          user: false,
           productsData: '',
           featureData: '',
+          featuredCategories: true,
+          noRecordFound: false,
+          recordFound: true,
+          filteredData: [],
+          notFoundFilterData: false,
+
+          categoryofProduct: [],
         };
     }
     
