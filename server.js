@@ -2460,7 +2460,7 @@ app.post('/api/postEcomreceProduct', (req, res) => {
   var postData = req.body;
   // console.log(req.body.images,'iiiimmmmaaggessss')
   // if (postData.objectId === '') {
-    const postData = new postEcomProduct({
+    const postDataReq = new postEcomProduct({
       user_Id: postData.user_Id,
       profileId: postData.profileId,
       shopId: postData.shopId,
@@ -2476,7 +2476,7 @@ app.post('/api/postEcomreceProduct', (req, res) => {
       color: postData.color,
       images: postData.images,
     })
-    postData.save(function (err, data) {
+    postDataReq.save(function (err, data) {
       if (err) {
         res.send({
           code: 500,

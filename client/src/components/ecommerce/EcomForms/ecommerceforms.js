@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import superagent from "superagent";
+import sha1 from "sha1";
 import { HttpUtils } from "../../../Services/HttpUtils";
 
 import {
@@ -8,6 +10,7 @@ import {
   InputNumber,
   Switch,
   Cascader,
+  notification,
   Radio,
   Slider,
   Button,
@@ -570,7 +573,16 @@ class PriceInput extends React.Component {
 
 
 
-class EcommerceForm extends Component {
+class EcommerceForm extends Component{
+
+constructor(props){
+  super(props)
+  this.state={
+    fileList:[],
+    previewVisible: false,
+    previewImage: '',
+  }
+}
 
 
 
@@ -578,17 +590,22 @@ class EcommerceForm extends Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.handleEvent(values)
+        // this.handleEvent(values)
+        this.setState({ loader: true })
+        this.funcForUpload(values)
+        console.log(values, 'values')
+        //   let responseEcommreceData = await HttpUtils.post('postEcomreceProduct', val)
+  //   console.log(responseEcommreceData, 'reqProductsObj')
       }
     });
   }
 
-  handleEvent = async (val) => {
-    console.log(val, "getproducts")
+  // handleEvent = async (val) => {
+  //   console.log(val, "getproducts")
 
-    let responseEcommreceData = await HttpUtils.post('postEcomreceProduct', val)
-    console.log(responseEcommreceData, 'reqProductsObj')
-  }
+  //   let responseEcommreceData = await HttpUtils.post('postEcomreceProduct', val)
+  //   console.log(responseEcommreceData, 'reqProductsObj')
+  // }
 
   normFile = e => {
     console.log('Upload event:', e);
@@ -609,11 +626,6 @@ class EcommerceForm extends Component {
   /*Upload options*/
 
 
-  state = {
-    previewVisible: false,
-    previewImage: '',
-    fileList: []
-  }
 
   handleCancel = () => this.setState({ previewVisible: false });
 
@@ -630,6 +642,68 @@ class EcommerceForm extends Component {
 
   handleChange = ({ fileList }) => this.setState({ fileList });
 
+
+    async funcForUpload(values, key) {
+      const { fileList } = this.state;
+      Promise.all(fileList.map((val) => {
+        return this.uploadFile(val).then((result) => {
+          return result.body.url
+        })
+      })).then((results) => {
+        this.postData(values, results, key)
+      })
+    }
+  
+    //--------------function for cloudnary url ---------------
+    uploadFile = (files) => {
+      const image = files.originFileObj
+      const cloudName = 'dxk0bmtei'
+      const url = 'https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload'
+      const timestamp = Date.now() / 1000
+      const uploadPreset = 'toh6r3p2'
+      const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + uploadPreset + 'U8W4mHcSxhKNRJ2_nT5Oz36T6BI'
+      const signature = sha1(paramsStr)
+      const params = {
+        'api_key': '878178936665133',
+        'timestamp': timestamp,
+        'upload_preset': uploadPreset,
+        'signature': signature
+      }
+      return new Promise((res, rej) => {
+        let uploadRequest = superagent.post(url)
+        uploadRequest.attach('file', image)
+        Object.keys(params).forEach((key) => {
+          uploadRequest.field(key, params[key])
+        })
+  
+        uploadRequest.end((err, resp) => {
+          err ? rej(err) : res(resp);
+        })
+      })
+    }
+  
+    //-----------------cloudnary function end ------------------
+    async postData(values, response, key) {
+      console.log(values, "get Data")
+      console.log(response, "get Data")
+      console.log(key, "get Data")
+      values.images=response
+      
+      
+        let msg = 'Your Images is saved successfully.'
+        this.openNotification(msg)
+      
+    }
+
+
+      openNotification(msg) {
+        notification.open({
+          message: 'Success ',
+          description: msg
+        });
+      };
+  
+  
   render() {
     const { getFieldDecorator } = this.props.form;
     const { previewVisible, previewImage, fileList } = this.state;
