@@ -21,7 +21,6 @@ class EshopCard extends Component {
         <div className="row">
           <div className="col-md-12">
             {productsData && productsData.map((elem, key) => {
-              console.log(elem.category, "Category finder")
               return (
                 <div className="col-md-4 col-sm-4">
                   <Link rel="noopener noreferrer" to={{ pathname: `/products_DetailStyle/${elem._id}`, state: elem }} >
@@ -31,11 +30,11 @@ class EshopCard extends Component {
                       </div>
                       <div className="">
                         <div className="pricing">
-                          <h4>{`$${elem.price}`} </h4>
+                          <h4>{`${elem.price.number} ${elem.price.currency}`} </h4>
                         </div>
                         <div className="category">
                           <h4>
-                                {elem.category[1]}
+                                {elem.categories[1]}
                               </h4>
                         </div>
                       </div>

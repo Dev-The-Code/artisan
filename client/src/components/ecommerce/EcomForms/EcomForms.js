@@ -15,11 +15,12 @@ class EcomForms extends Component {
   constructor(props) {
     super(props)
   }
+
   render() {
     return (
       <div className="">
         <HeaderMenu />
-        <div className="row jobdetail-page" style={isMobile ? { marginTop: "0px" } : {marginTop: "100px" }}>
+        <div className="row jobdetail-page" style={isMobile ? { marginTop: "0px" } : { marginTop: "100px" }}>
           <div className="col-md-12 col-sm-12 col-xs-12" style={{ textAlign: "center", marginTop: "25px" }}>
             <div className="container">
               <h1 style={{ fontFamily: 'Crimson Text, serif', fontWeight: "bold", color: "#D9A67E" }}>Add Your Product</h1>
@@ -28,7 +29,7 @@ class EcomForms extends Component {
         </div>
         <div className="container">
           {/* <EcomTabs data={this.props.location.state} /> */}
-          <EcommerceForm/>
+          <EcommerceForm data={this.props.location.state}/>
         </div>
         <Footer />
       </div>

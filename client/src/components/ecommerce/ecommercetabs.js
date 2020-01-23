@@ -21,7 +21,8 @@ class Ecomtabs extends Component{
     }
     
     async componentDidMount() {
-        let res = await HttpUtils.get('getecommercedata');
+        let res = await HttpUtils.get('getYourProduct');
+        console.log(res , 'get com data in tb')
         let featureData = [];
         if (res) {
           if (res.code == 200) {

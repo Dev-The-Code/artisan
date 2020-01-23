@@ -134,21 +134,24 @@ class
               </div>
               <div className="new-card" style={{marginTop:"20px"}}>
                 <div className="produc-features">
-                  <h2>Product Features</h2>
-                  <p>{data.productFeature} </p>
-                  <p class="vote">Size: <strong>{data.size}</strong></p>
+                  {/* <h2>Product Features</h2>
+                  <p>{data.productFeature} </p> */}
+                  {/* {data.sizes && data.sizes.map((elem , key)=>{
+                    return(<p class="vote">Size: <strong>{elem}</strong></p>)
+
+                  })} */}
                   <p>Color: <strong>{data.color}</strong></p>
                 </div>
               </div>
-              <div className="new-card" style={{marginTop:"20px"}}>
+              {/* <div className="new-card" style={{marginTop:"20px"}}>
                   <div className="product-manufacturer">
                     <h2>Manufacturer </h2>
                     <h5>{data.manufacturer} <br />{data.manufacturerPart}</h5>
                     <h4>Warranty Desciption</h4>
                     <p>{data.warrantyDescription}</p>
                   </div>
-              </div>
-              <RelatedInformation/>
+              </div> */}
+              <RelatedInformation data={this.props.data}/>
             </div>
               {/* <div className="row">
                 <div class="details col-md-7">

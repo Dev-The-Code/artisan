@@ -1973,7 +1973,7 @@ app.post('/api/postecommercedata', (req, res) => {
       profileId: ecommerceData.profileId,
       shopId: ecommerceData.shopId,
       shopName: ecommerceData.shopName,
-      
+
       product: ecommerceData.product,
       categories: ecommerceData.categories,
       sizes: ecommerceData.sizes,
@@ -1983,8 +1983,8 @@ app.post('/api/postecommercedata', (req, res) => {
       description: ecommerceData.description,
       color: ecommerceData.color,
       images: ecommerceData.images,
-     
-      
+
+
       // status: ecommerceData.status,
       // brandName: ecommerceData.brandName,
       // UPC: ecommerceData.UPC,
@@ -2035,7 +2035,7 @@ app.post('/api/postecommercedata', (req, res) => {
       // platinumKeywords: ecommerceData.platinumKeywords,
       // searchTerms: ecommerceData.searchTerms,
       // subjectMatter: ecommerceData.subjectMatter,
-     
+
       // percantageOfProduct: ecommerceData.percantageOfProduct,
       // averageRateProduct: ecommerceData.averageRateProduct
     })
@@ -2382,7 +2382,7 @@ app.post('/api/getSpecificShopById', (req, res) => {
 
 app.post('/api/getShopProducts', (req, res) => {
   let shopIdForProduct = req.body.shopIdForProduct;
-  postecommerce.find({ "shopId": shopIdForProduct }, function (err, shopSpecificData) {
+  postEcomProduct.find({ "shopId": shopIdForProduct }, function (err, shopSpecificData) {
     if (err) {
       res.send({
         code: 404,
@@ -2456,45 +2456,62 @@ app.post('/api/getSpecificORderProductShopId', (req, res) => {
 })
 
 
-app.post('/api/postEcomreceProduct', (req, res) => {
+app.post('/api/postYourProduct', (req, res) => {
   var postData = req.body;
   // console.log(req.body.images,'iiiimmmmaaggessss')
   // if (postData.objectId === '') {
-    const postDataReq = new postEcomProduct({
-      user_Id: postData.user_Id,
-      profileId: postData.profileId,
-      shopId: postData.shopId,
-      shopName: postData.shopName,
-      
-      product: postData.product,
-      categories: postData.categories,
-      sizes: postData.sizes,
-      price: postData.price,
-      salePrice: postData.salePrice,
-      materialType: postData.materialType,
-      description: postData.description,
-      color: postData.color,
-      images: postData.images,
-    })
-    postDataReq.save(function (err, data) {
-      if (err) {
-        res.send({
-          code: 500,
-          content: 'Internal Server Error',
-          msg: 'API not called properly'
-        })
-      }
-      else if (data) {
-        res.send({
-          code: 200,
-          msg: 'Data saved successfully',
-          content: data
-        });
-      }
-    })
+  const postDataReq = new postEcomProduct({
+    user_Id: postData.user_Id,
+    profileId: postData.profileId,
+    shopId: postData.shopId,
+    shopName: postData.shopName,
+    product: postData.product,
+    categories: postData.categories,
+    sizes: postData.sizes,
+    quantity: postData.quantity,
+    price: postData.price,
+    salePrice: postData.salePrice,
+    materialType: postData.materialType,
+    description: postData.description,
+    color: postData.color,
+    images: postData.images,
+  })
+  postDataReq.save(function (err, data) {
+    if (err) {
+      res.send({
+        code: 500,
+        content: 'Internal Server Error',
+        msg: 'API not called properly'
+      })
+    }
+    else if (data) {
+      res.send({
+        code: 200,
+        msg: 'Data saved successfully',
+        content: data
+      });
+    }
+  })
   // }
 })
 
+app.get('/api/getYourProduct', (req, res) => {
+  postEcomProduct.find(function (err, ecommerceData) {
+    if (err) {
+      res.send({
+        code: 404,
+        msg: 'Something went wrong'
+      })
+    }
+    else if (ecommerceData) {
+      res.send({
+        code: 200,
+        msg: 'All Ecommerce Data',
+        content: ecommerceData
+      })
+    }
+  })
+})
 
 
 /*===================event seats arrangment API end================================================================*/

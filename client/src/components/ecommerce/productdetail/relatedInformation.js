@@ -41,13 +41,13 @@ class RelatedInformation extends Component {
                          {data.price ?
                         <tr>
                             <td><strong>Price</strong></td>
-                            <td>{'$ ' + data.price}</td>
+                            <td>{ data.price.number + ' Pkr'}</td>
                         </tr>
                         : null}
                         {data.salePrice ?
                         <tr>
                             <td><strong>Sale Price</strong></td>
-                            <td>{'$ ' + data.salePrice}</td>
+                            <td>{ data.salePrice.number + ' Pkr'}</td>
                         </tr>
                         : null}
                     </tbody>

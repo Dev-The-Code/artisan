@@ -33,8 +33,8 @@ class EproductDetail extends Component {
   }
   async componentDidMount() {
     let data = this.props.location.state;
+    console.log(data ,'data')
     const userData = JSON.parse(localStorage.getItem('user'));
-    console.log(data, 'data of product')
     if (userData) {
       this.setState({
         visible: false,
@@ -47,7 +47,7 @@ class EproductDetail extends Component {
         objectId: data._id,
         images: data.images,
         productName: data.product,
-        price: data.price,
+        price: data.price.number,
         description: data.description,
         productId: data._id,
         data: data,
@@ -56,16 +56,14 @@ class EproductDetail extends Component {
         shopName: data.shopName,
         
       })
-      let logoshop = {shopId: data.shopId
-
+      let logoshop = {
+        shopId: data.shopId
       }
       let reqShopData = await HttpUtils.post('getSpecificShopById', logoshop)
-      console.log(reqShopData, "Shop LOfo")
       this.setState({
         shopLogo: reqShopData.content[0].shopLogo[0]
       })
     }
-
     else {
       let obj = {
         productId: this.props.location.pathname.slice(22)
@@ -76,7 +74,7 @@ class EproductDetail extends Component {
         objectId: data._id,
         images: data.images,
         productName: data.product,
-        price: data.price,
+        price: data.price.number,
         description: data.description,
         data: data,
         productId: data._id,
@@ -187,7 +185,6 @@ class EproductDetail extends Component {
   }
   render() {
     const { dataShow, data, productId, cartCount, goForLogin, profileId, shopId, shopLogo, productName, shopName, price } = this.state;
-    console.log(productName, "Product ka naam")
     if (goForLogin) {
       return <Redirect to={{ pathname: '/sigin', state: { from: { pathname: `/products_DetailStyle/${productId}` }, state: data } }} />;
     }
@@ -222,7 +219,7 @@ class EproductDetail extends Component {
                 </span>
             </div>
             <div className="price-product">
-              <h2>${price}</h2>
+              <h2>{price} PKR</h2>
             </div>
             <div className="product-title">
                 <h2>{productName}</h2>

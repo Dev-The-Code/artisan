@@ -28,7 +28,8 @@ class EcommerceMarket extends Component {
   }
 
   async componentDidMount() {
-    let res = await HttpUtils.get('getecommercedata');
+    let res = await HttpUtils.get('getYourProduct');
+    console.log(res , 'rs in ecom market ')
     let featureData = [];
     if (res) {
       if (res.code == 200) {
@@ -68,7 +69,8 @@ class EcommerceMarket extends Component {
     const { ecomSerchValue, allData, searchBy } = this.state;
     e.preventDefault();
     let data;
-    let res = await HttpUtils.get('getecommercedata');
+    let res = await HttpUtils.get('getYourProduct');
+    console.log(res , 'data in search bar')
     if (res) {
       if (res.code = 200) {
         data = res.content;

@@ -7,17 +7,17 @@ var postProduct = new mongoose.Schema({
   profileId: { type: String },
   shopId: { type: String },
   shopName: { type: String },
-  
   product: { type: String },
   categories: { type: Array },
   sizes: { type: Array },
+  quantity: { type: Number },
   price: { type: Object },
-  salePrice:{type:Object},
-  materialType:{type:String},
-  description:{type:String},
-  color:{type:String},
-  images:{type:String},
-  
+  salePrice: { type: Object },
+  materialType: { type: String },
+  description: { type: String },
+  color: { type: String },
+  images: { type: Array },
+
 });
 
 mongoose.model('postProduct', postProduct);

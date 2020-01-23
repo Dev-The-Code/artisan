@@ -86,6 +86,7 @@ class EcomProfile extends Component {
       shopIdForProduct: shopId
     }
     let reqShopData = await HttpUtils.post('getShopProducts', obj)
+
     if (reqShopData.code == 200) {
       let allProducts = reqShopData.content;
       for (var i = 0; i < allProducts.length; i++) {
@@ -93,17 +94,17 @@ class EcomProfile extends Component {
           const color = allProducts[i].color.charAt(0).toUpperCase() + allProducts[i].color.substring(1);
           colorArr.push(color)
         }
-        if (locationArr.indexOf(allProducts[i].country) == -1) {
-          const location = allProducts[i].country.charAt(0).toUpperCase() + allProducts[i].country.substring(1);
-          locationArr.push(location)
-        }
-        if (brandNameArr.indexOf(allProducts[i].brandName) == -1) {
-          const brandName = allProducts[i].brandName.charAt(0).toUpperCase() + allProducts[i].brandName.substring(1);
-          brandNameArr.push(brandName)
-        }
-        for (var j = 0; j < allProducts[i].category.length; j++) {
-          if (categoriesArr.indexOf(allProducts[i].category[1]) == -1) {
-            const category = allProducts[i].category[1].charAt(0).toUpperCase() + allProducts[i].category[1].substring(1);
+        // if (locationArr.indexOf(allProducts[i].country) == -1) {
+        //   const location = allProducts[i].country.charAt(0).toUpperCase() + allProducts[i].country.substring(1);
+        //   locationArr.push(location)
+        // }
+        // if (brandNameArr.indexOf(allProducts[i].brandName) == -1) {
+        //   const brandName = allProducts[i].brandName.charAt(0).toUpperCase() + allProducts[i].brandName.substring(1);
+        //   brandNameArr.push(brandName)
+        // }
+        for (var j = 0; j < allProducts[i].categories.length; j++) {
+          if (categoriesArr.indexOf(allProducts[i].categories[1]) == -1) {
+            const category = allProducts[i].categories[1].charAt(0).toUpperCase() + allProducts[i].categories[1].substring(1);
             categoriesArr.push(category)
           }
         }
@@ -624,6 +625,11 @@ class EcomProfile extends Component {
   render() {
     const { shopData, shopEdit, addProduct, profileId, addProductObj, allProducts, categories, color, location, brandName,
       filteredData, filterDataNotFound, filterDataShow, categoriesName, priceRangeNotGiven, oderList, shopId } = this.state;
+      console.log(addProductObj , 'addProductObj')
+      console.log(shopData , 'shopData')
+      console.log(shopId , 'shopId')
+
+
     if (shopEdit) {
       return (
         <Redirect to={{ pathname: '/shopForm', state: shopData }} />

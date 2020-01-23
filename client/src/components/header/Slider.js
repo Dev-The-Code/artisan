@@ -44,7 +44,8 @@ class Slider extends Component {
     serachEcom = async (e) => {
         const { ecomSerchValue } = this.state;
         e.preventDefault();
-        let res = await HttpUtils.get('getecommercedata');
+        let res = await HttpUtils.get('getYourProduct');
+        console.log(res , 'rees in slider')
         let data = res.content
         let ecommreceFilterData = [];
         let obj = {

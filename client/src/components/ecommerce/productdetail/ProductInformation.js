@@ -32,84 +32,105 @@ class ProductInformation extends Component {
     let width = data.itemWidth;
     return (
 
-      <div class="container" style={isMobile? { width: "100%" } : {width: '100%', padding:"0", marginTop:"10px"} }>
+      <div class="container" style={isMobile ? { width: "100%" } : { width: '100%', padding: "0", marginTop: "10px" }}>
         <div className="card-specification">
           <span><h4><strong>General Information</strong>  </h4></span>
           <table class="table table-specification">
             <tbody>
-                {data.brandName ? <tr>
+              {/* {data.brandName ? <tr>
                   <td><strong>Brand Name</strong></td>
                   <td className="float-right">{data.brandName}</td>
                 </tr>
-                  : null}
-              
-                {data.condition ?
+                  : null} */}
+
+              {/* {data.condition ?
                 <tr>
                   <td><strong>Condition</strong></td>
                   <td className="float-right">{data.condition}</td>
                 </tr>
-                : null}
-                {data.conditionNote ?
+                : null} */}
+              {/* {data.conditionNote ?
                 <tr>
                   <td><strong>Condition Note</strong></td>
                   <td className="float-right">{data.conditionNote}</td>
-                </tr>
-                : null}
+                </tr> */}
+              {/* : null} */}
 
-                {data.country ?
+              {/* {data.country ?
                   <tr>
                     <td><strong>Country</strong></td>
                     <td className="float-right">{data.country}</td>
                   </tr>
-                  : null}
-                {data.countryLabeled ?
+                  : null} */}
+              {/* {data.countryLabeled ?
                   <tr>
                     <td><strong>Country Labeled</strong></td>
                     <td className="float-right">{data.countryLabeled}</td>
                   </tr>
-                  : null}
+                  : null} */}
 
-                {length ?
+              {/* {length ?
                   <tr>
                     <td><strong>Item Length</strong></td>
                     <td className="float-right">{length.itemLengthNumber} {length.itemLengthUnit}</td>
                   </tr>
-                : null}
-                
-                {weight ?
+                : null} */}
+
+              {/* {weight ?
                   <tr>
                     <td><strong>Item Weight</strong></td>
                     <td className="float-right">{weight.itemWeightNumber} {weight.itemWeightUnit}</td>
                   </tr>
-                : null}
-                
-                {width ?
+                : null} */}
+
+              {/* {width ?
                   <tr>
                     <td><strong>Item Width</strong></td>
                     <td className="float-right">{width.itemWidthNumber} {width.itemWidthUnit}</td>
                   </tr>
-                : null}
+                : null} */}
 
-                {data.materialType ?
-                  <tr>
-                    <td><strong>Material Type</strong></td>
-                    <td className="float-right">{data.materialType}</td>
-                  </tr>
+              {/* {data.color ?
+                <tr>
+                <td><strong>Color</strong></td>
+                <td>{data.color}</td>
+                </tr>
+              : null} */}
+              {data.materialType ?
+                <tr>
+                  <td><strong>Material Type</strong></td>
+                  <td className="float-right">{data.materialType}</td>
+                </tr>
                 : null}
+              {data.quantity ?
+                <tr>
+                  <td><strong>Quantity</strong></td>
+                  <td>{data.quantity}</td>
+                </tr>
+                : null}
+              {data.sizes ?
+                <tr>
+                  <td><strong>Size</strong></td>
+                  {data.sizes && data.sizes.map((elem, key) => {
+                    // <p class="vote">Size: <strong>{elem}</strong></p>
+                    return (<td>{elem}</td>)
 
-                {data.handlingTime ?
+                  })}
+                </tr>
+                : null}
+              {/* {data.handlingTime ?
                   <tr>
                     <td><strong>Handling Time</strong></td>
                     <td className="float-right">{data.handlingTime}</td>
                   </tr>
-                : null}
+                : null} */}
 
-                {data.tension ?
+              {/* {data.tension ?
                 <tr>
                   <td><strong>Tension</strong></td>
                   <td className="float-right">{data.tension}</td>
                 </tr>
-                : null}
+                : null} */}
             </tbody>
           </table>
         </div>
@@ -121,19 +142,14 @@ class ProductInformation extends Component {
               <td>{data.brandName}</td>
             </tr>
               : null} */}
-           
-            {/* {data.color ?
-              <tr>
-                <td><strong>Color</strong></td>
-                <td>{data.color}</td>
-              </tr>
-              : null} */}
-            {data.lenseColor ?
+
+
+            {/* {data.lenseColor ?
               <tr>
                 <td><strong>Lense Color</strong></td>
                 <td>{data.lenseColor}</td>
               </tr>
-              : null}
+              : null} */}
             {/* {data.condition ?
               <tr>
                 <td><strong>Condition</strong></td>
@@ -158,24 +174,24 @@ class ProductInformation extends Component {
                 <td>{data.countryLabeled}</td>
               </tr>
               : null} */}
-            {data.gtin ?
+            {/* {data.gtin ?
               <tr>
                 <td><strong>GTIN</strong></td>
                 <td>{data.gtin}</td>
               </tr>
-              : null}
+              : null} */}
             {/* {data.handlingTime ?
               <tr>
                 <td><strong>Handling Time</strong></td>
                 <td>{data.handlingTime}</td>
               </tr>
               : null} */}
-            {data.importDesignation ?
+            {/* {data.importDesignation ?
               <tr>
                 <td><strong>Import Designation</strong></td>
                 <td>{data.importDesignation}</td>
               </tr>
-              : null}
+              : null} */}
             {/* {length ?
               <tr>
                 <td><strong>Item Length</strong></td>
@@ -202,7 +218,7 @@ class ProductInformation extends Component {
                 <td>{data.materialType}</td>
               </tr>
               : null} */}
-            {data.maximumWeight ?
+            {/* {data.maximumWeight ?
               <tr>
                 <td><strong>Maximum Weight</strong></td>
                 <td>{data.maximumWeight}</td>
@@ -213,14 +229,9 @@ class ProductInformation extends Component {
                 <td><strong>Orientation</strong></td>
                 <td>{data.orientation}</td>
               </tr>
-              : null}
-            {data.quantity ?
-              <tr>
-                <td><strong>Quantity</strong></td>
-                <td>{data.quantity}</td>
-              </tr>
-              : null}
-            {data.pakageQuantity ?
+              : null} */}
+
+            {/* {data.pakageQuantity ?
               <tr>
                 <td><strong>Pakage Quantity</strong></td>
                 <td>{data.pakageQuantity}</td>
@@ -244,32 +255,27 @@ class ProductInformation extends Component {
                 <td><strong>Shape</strong></td>
                 <td>{data.shape}</td>
               </tr>
-              : null}
-            {data.size ?
-              <tr>
-                <td><strong>Size</strong></td>
-                <td>{data.size}</td>
-              </tr>
-              : null}
-            {data.taxCode ?
+              : null} */}
+
+            {/* {data.taxCode ?
               <tr>
                 <td><strong>Tax Code</strong></td>
                 <td>{data.taxCode}</td>
               </tr>
-              : null}
+              : null} */}
             {/* {data.tension ?
               <tr>
                 <td><strong>Tension</strong></td>
                 <td>{data.tension}</td>
               </tr>
               : null} */}
-            {data.variationTheme ?
+            {/* {data.variationTheme ?
               <tr>
                 <td><strong>Variation Theme</strong></td>
                 <td>{data.variationTheme}</td>
               </tr>
-              : null}
-            {data.legalDesclaimer ?
+              : null} */}
+            {/* {data.legalDesclaimer ?
               <tr>
                 <td><strong>Legal Desclaimer</strong></td>
                 <td>{data.legalDesclaimer}</td>
@@ -304,7 +310,7 @@ class ProductInformation extends Component {
                 <td><strong>Offering Date</strong></td>
                 <td>{data.offering}</td>
               </tr>
-              : null}
+              : null} */}
           </tbody>
         </table>
       </div>
