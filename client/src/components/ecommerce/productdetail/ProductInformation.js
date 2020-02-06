@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Rate } from 'antd';
 import { isMobile, isTablet, isBrowser } from 'react-device-detect';
-import './productInformation.css';
+import './productInfo.css';
 
 class ProductInformation extends Component {
   constructor(props) {
