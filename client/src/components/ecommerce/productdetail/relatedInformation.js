@@ -31,27 +31,35 @@ class RelatedInformation extends Component {
     let weight = data.itemWeight;
     let width = data.itemWidth;
     return (
-        <div className="new-card">
-            <div className="More-Information">
-                <h2>More Information</h2>
-            </div>
-            <div>
-                <table class="table table-specification">
-                    <tbody>
+        <div className="">
+            
+            
+            <div className="new-card">
+                    <div className="">
+                      {data.product ?
+                      <span>
+                        <strong>{data.product}</strong>
+                      </span>
+
+                      :null}
+                    </div>
+                    <div>
                          {data.price ?
-                        <tr>
-                            <td><strong>Price</strong></td>
-                            <td>{ data.price.number + ' Pkr'}</td>
-                        </tr>
+                          <span>
+                            <strong>Price</strong>
+                            { data.price.number + ' Pkr'}
+                            </span>
                         : null}
+                    </div>
+                    <div>
+                        
                         {data.salePrice ?
-                        <tr>
-                            <td><strong>Sale Price</strong></td>
-                            <td>{ data.salePrice.number + ' Pkr'}</td>
-                        </tr>
+                          <span>
+                            <strong>Sale Price</strong>
+                            { data.salePrice.number + ' Pkr'}
+                          </span>
                         : null}
-                    </tbody>
-                </table>
+                    </div>
             </div>
             
         </div>

@@ -1,7 +1,5 @@
 .homebanneropa{
-    margin-top: 70px;
-    -webkit-filter: brightness(60%);
-    
+    -webkit-filter: brightness(60%); 
 }
 
 
@@ -39,7 +37,6 @@
         .homebanneropa img{
             width: 100%;
             height: 600px;
-            margin-top: -70px;
         }
 
         .onbanner{
@@ -66,11 +63,9 @@
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1) {
     
-
     .homebanneropa img{
         width: 100%;
         height: 500px;
-        margin-top: -70px;
     }
 
     .onbanner{
@@ -92,11 +87,9 @@
 @media 
   (min-device-width: 800px) 
   and (max-device-width: 1280px) {
-    
     .homebanneropa img{
         width: 100%;
         height: 550px;
-        margin-top: -70px;
     }
 
     .onbanner h2{
@@ -135,7 +128,6 @@
     .homebanneropa img{
         width: 100%;
         height: 400px;
-        margin-top:-70px;
     }
 
     .onbanner{
@@ -159,11 +151,10 @@
   and (min-device-width: 414px) 
   and (max-device-width: 736px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
-    
+
     .homebanneropa img{
         width: 100%;
         height: 400px;
-        margin-top:-70px;
     }
 
     .onbanner{
@@ -185,6 +176,11 @@
   and (device-width: 360px) 
   and (device-height: 640px) 
   and (-webkit-device-pixel-ratio: 2) {
+    .homebanneropa{
+        margin-top: 70px;
+        -webkit-filter: brightness(60%);
+        
+    }
     .onbanner{
         position: absolute;
         top: 200px;

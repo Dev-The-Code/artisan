@@ -18,7 +18,7 @@ class EcomCardsfor extends Component {
                         <div className="sellerstorecard" >
                             <img alt='' src={cardDetails.images[0]} />
                         </div>
-                        <h4 style={{ marginTop: "20px", textAlign: "left" }}>{cardDetails.product}</h4>
+                        <h4 style={{ marginTop: "20px", textAlign: "left", padding:'10px' }}>{cardDetails.product.slice(0,18)}</h4>
                         <p> {`${cardDetails.price.number} ${cardDetails.price.currency}`}</p>
                         <div className='row' style={{ padding: '0' }}>
                             <div className='col-md-8 col-xs-8'>

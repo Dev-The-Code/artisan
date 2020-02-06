@@ -21,13 +21,27 @@ img {
 
 .preview-thumbnail.nav-tabs {
   border: none;
-  padding: 15px; }
+  padding: 0 10px;
+  display: grid; }
   .preview-thumbnail.nav-tabs li {
-    width: 18%;
-    margin-right: 2.5%; }
+    margin-bottom: 5px;
+   }
     .preview-thumbnail.nav-tabs li img {
       max-width: 100%;
-      display: block; }
+      display: block;
+      filter: brightness(0.5); }
+
+      .preview-thumbnail.nav-tabs li img :active {
+        max-width: 100%;
+        display: block;
+        filter: brightness();
+      border: 2px solid black; }
+  
+
+      .preview-thumbnail.nav-tabs li img:hover {
+        max-width: 100%;
+        display: block;
+        filter: brightness();}
     .preview-thumbnail.nav-tabs li a {
       padding: 0;
       margin: 0; }
@@ -42,7 +56,7 @@ img {
     animation-name: opacity;
     -webkit-animation-duration: .3s;
     animation-duration: .3s;
-    height: 450px; }
+    height: auto; }
 
 
 .new-card{

@@ -19,7 +19,7 @@ class ProfileHome extends Component {
                 <div className="">
                     <h4 className="headingtext" style={{ marginLeft: '-11px', marginTop: '-15px' }}> </h4>
                     <hr />
-                    <div style={{ marginTop: '-2%' }}>
+                    <div>
                         <ProfileCarousel data={allProducts} />
                     </div>
                 </div>

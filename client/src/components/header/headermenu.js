@@ -71,7 +71,7 @@ class HeaderMenu extends Component {
         return (
             <div>
                 <nav className="navbar navbar-fixed-top hidden-xs"
-                    style={{ position: "fixed", width: "100%", "zIndex": "999", height:"90px", border: 'none', backgroundColor:"#33333338" }}>
+                    style={{ position: "fixed", width: "100%", "zIndex": "999", height:"90px", border: 'none', backgroundColor:"#000000a6" }}>
                     <div className="container-fluid" style={{padding:"0"}}>
                         <div className="col-md-2 col-sm-6 col-xs-6">
                             <div className="navbar-header">

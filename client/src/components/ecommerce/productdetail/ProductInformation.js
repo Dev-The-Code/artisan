@@ -110,10 +110,10 @@ class ProductInformation extends Component {
                 : null}
               {data.sizes ?
                 <tr>
-                  <td><strong>Size</strong></td>
+                  
                   {data.sizes && data.sizes.map((elem, key) => {
                     // <p class="vote">Size: <strong>{elem}</strong></p>
-                    return (<td>{elem}</td>)
+                    return ({elem})
 
                   })}
                 </tr>

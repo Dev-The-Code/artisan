@@ -2,11 +2,29 @@ import React, { Component } from 'react';
 import './stories.css';
 import SecondfoldCard from './secondfold_card';
 import EcommerceProducts from './ecomerceproductdata';
+import {HttpUtils} from '../../Services/HttpUtils';
 
 
 
 class ArtisanStories extends Component{
+    constructor(props){
+        super(props)
+        this.state={
+            shopsData:[],
+            content:[],
+        }
+    }
+    
+    componentDidMount(){
+        this.shopss()
+    }
+    shopss =async()=>{
+        let reqe = await HttpUtils.post('getShops');
+        let content=[]
+        console.log(content, 'reqest')
+    }
     render(){
+       
         return(
             <div className="container" style={{backgroundColor:"white", borderRadius:"5px", width:"99%", marginTop:"75px"}}>
                 <div className="row">
@@ -89,6 +107,32 @@ class ArtisanStories extends Component{
                         </div>   
                     </div>
                     <div class="item">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <div class="artisanstory1">
                             <div className="row" style={{padding:"51px 20px"}}>
                                 <div className="col-md-3 col-sm-3">

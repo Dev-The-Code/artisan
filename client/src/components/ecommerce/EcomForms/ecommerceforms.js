@@ -80,170 +80,255 @@ const categories = [
       value: 'Mens',
       label: 'Mens',
       children: [{
-        value: 'Jackets',
-        label: 'Jackets',
+        value: 'Sneakers & Athletic Shoes',
+        label: 'Sneakers & Athletic Shoes',
       }, {
-        value: 'Jumpers',
-        label: 'Jumpers',
+        value: 'Boots',
+        label: 'Boots',
       }, {
-        value: 'Costumes',
-        label: 'Costumes',
+        value: 'Sandals',
+        label: 'Sandals',
+      },{
+        value: 'Slippers',
+        label: 'Slippers',
+      },{
+        value: 'Loafers & Slip Ons',
+        label: 'Loafers & Slip Ons',
+      },{
+
+      },{
+        value: 'Oxfords & Wingtips',
+        label: 'Oxfords & Wingtips',
       }],
     }, {
       value: 'Womens',
       label: 'Womens',
       children: [{
-        value: 'Dresses',
-        label: 'Dresses',
+        value: 'Sandals',
+        label: 'Sandals',
       }, {
-        value: 'Tops',
-        label: 'Tops',
+        value: 'Boots',
+        label: 'Boots',
       }, {
-        value: 'Skirts',
-        label: 'Skirts',
+        value: 'Sneakers & Athletic Shoes',
+        label: 'Sneakers & Athletic Shoes',
       }, {
-        value: 'Jackets',
-        label: 'Jackets & Coats',
+        value: 'Slip Ons',
+        label: 'Slip Ons',
       }, {
-        value: 'Trousers',
-        label: 'Trousers & Pants',
+        value: 'Pumps',
+        label: 'Pumps',
       }, {
-        value: 'Jumpers',
-        label: 'Jumpers',
+        value: 'Slippers',
+        label: 'Slippers',
       }, {
-        value: 'Costumes',
-        label: 'Costumes',
+        value: 'Clogs & Mules',
+        label: 'Clogs & Mules',
+      },{
+        value: 'Oxfords & Tie Shoes',
+        label: 'Oxfords & Tie Shoes',
+      },{
+        value: 'Costume Shows',
+        label: 'Costume Shows',
       }],
     }]
+  },
+  {
+    value: 'Bags & Puses',
+    label: 'Bags & Puses',
+      children: [{
+        value: 'Handbags',
+        label: 'Handbags',
+          children: [{
+            value: 'Shoulder bags',
+            label: 'Shoulder bags', 
+          },{
+            value: 'Clutches & Evening Bags',
+            label: 'Clutches & Evening Bags',
+          },{
+            value: 'Crossbody Bags',
+            label: 'Crossbody Bags',
+          },{
+            value: 'Top HandleBags',
+            label: 'Top HandleBags',
+          }]
+      },{
+        value: 'Wallets & Money Clips',
+        label: 'Wallets & Money Clips',
+          children:[{
+            value: 'Wallets',
+            label: 'Wallets',
+          },{
+            value: 'Business Card Cases',
+            label: 'Business Card Cases',
+          },{
+            value: 'Money Clips',
+            label: 'Money Clips',
+          }]
+      },{
+        value: 'Electronic Cases',
+        label: 'Electronic Cases',
+          children:[{
+            value: 'Phone Cases',
+            label: 'Phone Cases',
+          },{
+            value: 'Laptop Sleeves',
+            label: 'Laptop Sleeves',
+          },{
+            value: 'Tablet & E-Reader Cases',
+            label: 'Tablet & E-Reader Cases',
+          },{
+            value: 'Camera Bags ',
+            label: 'Camera Bags ',
+          }]
+      }]
   },
   {
     value: 'Jwellery',
     label: 'Jwellery',
     children: [{
-      value: 'BodyJwellery',
-      label: 'BodyJwellery',
+      value: 'Body Jwellery',
+      label: 'Body Jwellery',
       children: [{
-        value: 'Projectors',
-        label: 'Projectors',
+        value: 'HairJwellery',
+        label: 'Hair Jwellery',
       }, {
-        value: 'LED Televisons',
-        label: 'LED Televisons',
+        value: 'Anklets',
+        label: 'Anklets',
       }, {
-        value: 'Smart Televisions',
-        label: 'Smart Televisions',
+        value: 'Nose Rings & Studs',
+        label: 'Nose Rings & Studs',
       }, {
-        value: 'OLED Televisions',
-        label: 'OLED Televisions',
+        value: 'Gauge & Plug Earring',
+        label: 'Gauge & Plug Earring',
       }, {
-        value: 'QLED Televisions',
-        label: 'QLED Televisions',
-      }, {
-        value: 'Other Televisons',
-        label: 'Other Televisons',
-      }, {
-        value: 'Blu-Ray/DVD Players',
-        label: 'Blu-Ray/DVD Players',
+        value: 'Toe Rings',
+        label: 'Toe Rings',
       }]
     }, {
       value: 'Bracelets',
       label: 'Bracelets',
       children: [{
-        value: 'Soundbars',
-        label: 'Soundbars',
+        value: 'Woven & Braided Bracelets',
+        label: 'Woven & Braided Bracelets',
       }, {
-        value: 'Home Entertainment',
-        label: 'Home Entertainment',
+        value: 'Beaded Bracelets',
+        label: 'Beaded Bracelets',
       }, {
-        value: 'Portable Players',
-        label: 'Portable Players',
+        value: 'Charm Bracelets',
+        label: 'Charm Bracelets',
       }, {
-        value: 'Live Sound & Stage Equipment',
-        label: 'Live Sound & Stage Equipment',
+        value: 'Cuff Bracelets',
+        label: 'Cuff Bracelets',
       }]
     }, {
       value: 'Earring',
       label: 'Earring',
       children: [{
-        value: 'TV Recievers',
-        label: 'TV Recievers',
+        value: 'Ear Jackets & Climber',
+        label: 'Ear Jackets & Climber',
       }, {
-        value: 'Wall Mounts & Protectors',
-        label: 'Wall Mounts & Protectors',
+        value: 'Dangle & Drop Earrings',
+        label: 'Dangle & Drop Earrings',
+      },{
+        value: 'Stud Earrings',
+        label: 'Stud Earrings',
+      },{
+        value: 'Hoop Earrings',
+        label: 'Hoop Earrings',
+      },{
+        value: 'Clip-On Earrings', 
+        label: 'Clip-On Earrings',
+      },{
+        value: 'Chandelier Earrings', 
+        label: 'Chandelier Earrings',
+      },{
+        value: 'Screw Back Earrings',
+        label: 'Screw Back Earrings',
       }]
     }, {
       value: 'Necklaces',
       label: 'Necklaces',
       children: [{
-        value: 'Washing Machines',
-        label: 'Washing Machines',
+        value: 'Pendants',
+        label: 'Pendants',
       }, {
-        value: 'Refrigerators',
-        label: 'Refrigerators',
+        value: 'Beaded Necklaces',
+        label: 'Beaded Necklaces',
       }, {
-        value: 'Microwave',
-        label: 'Microwave',
+        value: 'Charm Necklaces',
+        label: 'Charm Necklaces',
       }, {
-        value: 'Oven',
-        label: 'Oven',
+        value: 'Chokers',
+        label: 'Chokers',
       }, {
-        value: 'Freezer',
-        label: 'Freezer',
+        value: 'Crystal Necklaces',
+        label: 'Crystal Necklaces',
       }, {
-        value: 'Cooktop & Range',
-        label: 'Cooktop & Range',
+        value: 'Chains',
+        label: 'Chains',
       }, {
-        value: 'Water Heater',
-        label: 'Water Heater',
+        value: 'Monogram & Name Necklaces',
+        label: 'Monogram & Name Necklaces',
+      },{
+        value: 'Lockets',
+        label: 'Lockets',
+      },{
+        value: 'Bib Necklaces',
+        label: 'Bib Necklaces'
       }]
     }, {
       value: 'Rings',
       label: 'Rings',
       children: [{
-        value: 'Rice Cooker',
-        label: 'Rice Cooker',
+        value: 'Wedding & Engagement',
+        label: 'Wedding & Engagement',
       }, {
-        value: 'Blender, Mixer & Grinder',
-        label: 'Blender, Mixer & Grinder',
+        value: 'Signet Rings',
+        label: 'Signet Rings',
       }, {
-        value: 'Electric Ketttle',
-        label: 'Electric Ketttle',
+        value: 'Statement Rings',
+        label: 'Statement Rings',
       }, {
-        value: 'Juicer & Fruit Extraction',
-        label: 'Juicer & Fruit Extraction',
+        value: 'Bands',
+        label: 'Bands',
       }, {
-        value: 'Fryer',
-        label: 'Fryer',
+        value: 'Solitaire Rings',
+        label: 'Solitaire Rings',
       }, {
-        value: 'Water Purifier',
-        label: 'Water Purifier',
+        value: 'Stackable Rings',
+        label: 'Stackable Rings',
       }, {
-        value: 'Pressure Cookers',
-        label: 'Pressure Cookers',
+        value: 'Multi-Stone Rings',
+        label: 'Multi-Stone Rings',
       }, {
-        value: 'Speciality Cookware',
-        label: 'Speciality Cookware',
+        value: 'Midi Rings',
+        label: 'Midi Rings',
+      },{
+        value:'Triplet & Double Rings',
+        label:'Triplet & Double Rings',
       }]
     }, {
       value: 'Accessories',
       label: 'Accessories',
       children: [{
-        value: 'Fan',
-        label: 'Fan',
+        value: 'Hair Accessories',
+        label: 'Hair Accessories',
       }, {
-        value: 'Air Conditioner',
-        label: 'Air Conditioner',
+        value: 'Hats & Caps',
+        label: 'Hats & Caps',
       }, {
-        value: 'Air Cooler',
-        label: 'Air Cooler',
+        value: 'Keychains & Lanyards',
+        label: 'Keychains & Lanyards',
       }, {
-        value: 'Air Purifier',
-        label: 'Air Purifier',
+        value: 'Scarves & Wraps',
+        label: 'Scarves & Wraps',
       }, {
-        value: 'Dehumidier',
-        label: 'Dehumidier',
+        value: 'Suits & Tie Accessories',
+        label: 'Suits & Tie Accessories',
       }, {
-        value: 'Humidifier',
-        label: 'Humidifier',
+        value: 'Baby Accessories',
+        label: 'Baby Accessories',
       }]
     }]
   }, {
@@ -253,51 +338,48 @@ const categories = [
       value: 'Wall Decor',
       label: 'Wall Decor',
       children: [{
-        value: 'BodyMassage',
-        label: 'Body & Massage Oils'
+        value: 'Wall Hangings',
+        label: 'Wall Hangings',
       }, {
-        value: 'BodySoaps',
-        label: 'Body  Soaps & Shower Gels',
+        value: 'Wall Decals & Murals',
+        label: 'Wall Decals & Murals',
+      },{
+        value: 'Wallpapers',
+        label: 'Wallpapers',
+      },{
+        value: 'Wall Stencils',
+        label: 'Wall Stencils',
       }]
     }, {
       value: 'Decorative Cushions',
       label: 'Decorative Cushions',
       children: [{
-        value: 'CurlingIrons',
-        label: 'Curling Irons & Wands',
-      }, {
-        value: 'FlatIrons',
-        label: 'Flat Irons',
+        value: 'Cushions',
+        label: 'Cushions',
       }]
     }, {
       value: 'Picture Frames',
       label: 'Picture Frames',
       children: [{
-        value: 'Women Fragrances',
-        label: 'Women Fragrances',
-      }, {
-        value: 'Men Fragrances',
-        label: 'Men Fragrances',
-      }, {
-        value: 'Unisex',
-        label: 'Unisex',
+        value: 'Frames',
+        label: 'Frames',
       }]
     }, {
       value: 'Candles & Holders',
       label: 'Candles & Holders',
       children: [{
-        value: 'Shampoo',
-        label: 'Shampoo',
+        value: 'Candles',
+        label: 'Candles',
       }, {
-        value: 'Hair Treatments',
-        label: 'Hait Treatments',
+        value: 'Candle Holders',
+        label: 'Candle Holders',
       }, {
-        value: 'Hair Accessories',
-        label: 'Hair Accessories',
+        value: 'Wax Melts',
+        label: 'Wax Melts',
+      },{
+        value: 'Incense',
+        label: 'Incense',
       }]
-    }, {
-      value: 'Vases',
-      label: 'Vases',
     }]
   }, {
     value: 'Pets',
@@ -306,68 +388,89 @@ const categories = [
       value: 'Collars & Leashes',
       label: 'Collars & Leashes',
       children: [{
-        value: 'Utensils',
-        label: 'Utensils',
+        value: 'Pet Collars & Jwellery',
+        label: 'Pet Collars & Jwellery',
       }, {
-        value: 'Bottle-Feeding',
-        label: 'Bottle-Feeding',
+        value: 'Pet ID Tags',
+        label: 'Pet ID Tags',
+      },{
+        value: 'Pet Leashes',
+        label: 'Pet Leashes', 
+      }, {
+        value: 'Pet Harnesses & Backpacks',
+        label: 'Pet Harnesses & Backpacks',
       }]
     }, {
       value: 'Furniture',
       label: 'Furniture',
       children: [{
-        value: 'Kids Bag',
-        label: 'Kids Bag',
+        value: 'Pet Beds & Cots',
+        label: 'Pet Beds & Cots',
       }, {
-        value: 'Swings, Jumpers & Bouncers',
-        label: 'Swings, Jumpers & Bouncers',
+        value: 'Pet Hammocks',
+        label: 'Pet Hammocks',
+      },{
+        value: 'Play Furniture',
+        label: 'Play Furniture',
+      },{
+        value: 'Pet Steps',
+        label: 'Pet Steps',
       }]
     }, {
       value: 'Colting & Shoes',
       label: 'Colting & Shoes',
       children: [{
-        value: 'Activity Gym & Playmats',
-        label: 'Activity Gym & Playmats',
+        value: 'Pet Jackets',
+        label: 'Pet Jackets',
       }, {
-        value: 'Bath Toys',
-        label: 'Bath Toys',
+        value: 'Pet Tops',
+        label: 'Pet Tops',
       }, {
-        value: 'Building Blocks Toys',
-        label: 'Building Blocks Toys',
+        value: 'Pet Dresses',
+        label: 'Pet Dresses',
       }, {
-        value: 'Crib Toys & Attachmensts',
-        label: 'Crib Toys & Attachmensts',
+        value: 'Pet Hat & Wigs',
+        label: 'Pet Hat & Wigs',
       }, {
-        value: 'Early Development Toys',
-        label: 'Early Development Toys',
+        value: 'Pet Booties',
+        label: 'Pet Booties',
       }, {
-        value: 'Music & Sounds',
-        label: 'Music & Sounds',
+        value: 'Pet Shoes',
+        label: 'Pet Shoes',
       }, {
-        value: 'Ratlles',
-        label: 'Ratlles',
+        value: 'Pet Neckwear',
+        label: 'Pet Neckwear',
       }, {
-        value: 'Push & Pull Toys',
-        label: 'Push & Pull Toys',
+        value: 'Pet Bows and Bells',
+        label: 'Pet Bows and Bells',
       }]
     }, {
       value: 'Carriers & House',
       label: 'Carriers & House',
       children: [{
-        value: 'Die-Cast Vehicles',
-        label: 'Die-Cast Vehicles',
+        value: 'Pet Houses',
+        label: 'Pet Houses',
       }, {
-        value: 'Drones & Accessories',
-        label: 'Drones & Accessories',
+        value: 'Aquariums & Tank Decor',
+        label: 'Aquariums & Tank Decor',
       }, {
-        value: 'Play Trains & Railway Sets',
-        label: 'Play Trains & Railway Sets',
+        value: 'Nests & Bags',
+        label: 'Nests & Bags',
       }, {
-        value: 'Play Vehicles',
-        label: 'Play Vehicles',
+        value: 'Pet Slings',
+        label: 'Pet Slings',
       }, {
-        value: 'RC Vehicles & Batteries',
-        label: 'RC Vehicles & Batteries',
+        value: 'Bird Cages',
+        label: 'Bird Cages',
+      },{
+        value: 'Pet Totes',
+        label: 'Pet Totes',
+      },{
+        value: 'Pet Crates & Kennels',
+        label: 'Pet Crates & Kennels',
+      },{
+        value: 'Coops',
+        label: 'Coops',
       }]
     }]
   }, {
@@ -377,110 +480,65 @@ const categories = [
       value: 'Living Room',
       label: 'Living Room',
       children: [{
-        value: 'Fresh',
-        label: 'Fresh Vegetables',
+        value: 'Drawer Pulls & Knobs',
+        label: 'Drawer Pulls & Knobs',
       }, {
-        value: 'FreshFruits',
-        label: 'FreshFruits',
+        value: 'Coffee & End Tables',
+        label: 'Coffee & End Tables',
+      },{
+        value: 'Chairs & Ottomans',
+        label: 'Chairs & Ottomans',
+      },{
+        value: 'Floor Cushions',
+        label: 'Floor Cushions',
       }]
     }, {
       value: 'Dinning Room',
       label: 'Dinning Room',
       children: [{
-        value: 'Coffee',
-        label: 'Coffee',
+        value: 'Kitchen & Dinning Tables',
+        label: 'Kitchen & Dinning Tables',
       }, {
-        value: 'Tea',
-        label: 'Tea',
+        value: 'Dining Chairs',
+        label: 'Dining Chairs',
       }, {
-        value: 'HotChocolate',
-        label: 'Hot Chocolate Drinks',
+        value: 'Stools & Banquettes',
+        label: 'Stools & Banquettes',
       }, {
-        value: 'UHTMilk',
-        label: 'UHT, Milk & Milk Powder',
-      }, {
-        value: 'PowderedMixes',
-        label: 'Powdered Drink Mixes',
-      }, {
-        value: 'FlavoringSyrups',
-        label: 'Flavoring Syrups',
-      }, {
-        value: 'Water',
-        label: 'Water',
-      }, {
-        value: 'SoftDrinks',
-        label: 'Soft Drinks',
-      }, {
-        value: 'Juices',
-        label: 'Juices',
+        value: 'Buffets & China Cabinets',
+        label: 'Buffets & China Cabinets',
       }]
     }, {
       value: 'Bedroom',
       label: 'Bedroom',
       children: [{
-        value: 'Biscuits',
-        label: 'Biscuits',
+        value: 'Dressers & Armoires',
+        label: 'Dressers & Armoires',
       }, {
-        value: 'BreakfastCereals',
-        label: 'Breakfast Cereals',
+        value: 'Vanities & Nightstands',
+        label: 'Vanities & Nightstands',
       }, {
-        value: 'Chocolate',
-        label: 'Chocolate',
+        value: 'Beds & Headboards',
+        label: 'Beds & Headboards',
       }, {
-        value: 'Nuts',
-        label: 'Nuts',
-      }, {
-        value: 'Oatmeals',
-        label: 'Oatmeals',
-      }, {
-        value: 'BreakfastBars',
-        label: 'Breakfast Bars',
-      }, {
-        value: 'Snacks',
-        label: 'Snacks',
-      }, {
-        value: 'InstantBreakfast',
-        label: 'Instant Breakfast Drinks',
-      }, {
-        value: 'JamsHoney',
-        label: 'Jams, Honey & Spread',
-      }, {
-        value: 'PancakeWaffle',
-        label: 'Pancake & Waffle Mixes',
+        value: 'Steps & Stools',
+        label: 'Steps & Stools',
       }]
     }, {
       value: 'Kids Furniture',
       label: 'Kids Furniture',
       children: [{
-        value: 'CannedFood',
-        label: 'Canned Food',
+        value: 'Desks, Tables & Chairs',
+        label: 'Desks, Tables & Chairs',
       }, {
-        value: 'CondimentDressing',
-        label: 'Condiment Dressing',
+        value: 'Bean Bag Chairs',
+        label: 'Bean Bag Chairs',
       }, {
-        value: 'CookingIngredients',
-        label: 'Cooking Ingredients',
+        value: 'Steps & Stools',
+        label: 'Steps & Stools',
       }, {
-        value: 'GrainsBeans',
-        label: 'Grains, Beans & Pulses',
-      }, {
-        value: 'HomeBaking',
-        label: 'Home Baking & Sugar',
-      }, {
-        value: 'InstantReady',
-        label: 'Instant & Ready-to-Eat',
-      }, {
-        value: 'JarredFood',
-        label: 'Jarred Food',
-      }, {
-        value: 'Nooddles',
-        label: 'Nooddles',
-      }, {
-        value: 'Rice',
-        label: 'Rice',
-      }, {
-        value: 'Oil',
-        label: 'Oil',
+        value: 'Toddlers Beds',
+        label: 'Toddlers Beds',
       }]
     }]
   }];
@@ -513,6 +571,38 @@ const sizes = [
 
 ];
 
+
+const color = [{
+  value: 'Black',
+  label: 'Black',
+},{
+  value: 'Blue',
+  label: 'Blue',
+},{
+  value: 'Green',
+  label: 'Green',
+},{
+  value: 'Yellow',
+  label: 'Yellow',
+},{
+  value: 'White',
+  label: 'White',
+},{
+  value: 'Brown',
+  label: 'Brown',
+},{
+  value: 'Red',
+  label: 'Red',
+},{
+  value: 'Maroon',
+  label: 'Maroon',
+},{
+  value: 'Customize',
+  label: 'Customize',
+},{
+  value: 'Orange',
+  label: 'Orange',
+}];
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -595,7 +685,7 @@ class EcommerceForm extends Component {
       salePrice: { number: 0, currency: 'pkr' },
       materialType: '',
       description: '',
-      color: '',
+      color: [],
       productData: "",
       goProductDetailPage: false,
       producId: ''
@@ -617,11 +707,11 @@ class EcommerceForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         // this.handleEvent(values)
-        this.setState({
-          loader: true,
-          btnDisabeld: true
-        })
-        this.funcForUpload(values)
+        // this.setState({
+        //   loader: true,
+        //   btnDisabeld: true
+        // })
+        // this.funcForUpload(values)
         console.log(values, 'values')
       }
     });
@@ -670,6 +760,18 @@ class EcommerceForm extends Component {
     })
   }
 
+  onChangeSizes = (values) => {
+    console.log(values, "onchange")
+    const {sizes} = this.state
+    let arr=[];
+    arr.push(values[2])
+    this.setState({
+      sizes: arr
+    })
+
+
+  }
+  
   //--------------function for cloudnary url ---------------
   uploadFile = (files) => {
     const image = files.originFileObj
@@ -697,6 +799,7 @@ class EcommerceForm extends Component {
       })
     })
   }
+
 
   //-----------------cloudnary function end ------------------//
   async postData(values, response, key) {
@@ -760,8 +863,8 @@ class EcommerceForm extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice, price, materialType, description, color, productData, goProductDetailPage , producId} = this.state;
-
+    const { previewVisible,  previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice, price, materialType, description, color, productData, goProductDetailPage , producId} = this.state;
+    console.log(sizes,"Sizes")
     // if (goProductDetailPage) {
     //   return (
     //     <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
@@ -805,7 +908,7 @@ class EcommerceForm extends Component {
                   message: 'Please select your product category'
                 },
               ],
-            })(<Cascader options={categories} />)}
+            })(<Cascader options={categories} onChange={this.onChangeSizes}/>)}
           </Form.Item>
 
           {/*Sizes*/}
@@ -898,9 +1001,12 @@ class EcommerceForm extends Component {
               rules: [{
                 required: true,
                 message: 'Please enter your color!',
-                whitespace: true
+                whitespace: true,
+                type: 'array',
               }],
-            })(<Input />)}
+            })(<Select mode="multiple" placeholder="Please select favourite colors">
+              <Option value="blue">Blue</Option>
+            </Select>)}
           </Form.Item>
 
 

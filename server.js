@@ -2456,6 +2456,24 @@ app.post('/api/getSpecificORderProductShopId', (req, res) => {
 })
 
 
+app.post('/api/getShops', (req, res) => {
+  postShopCollection.find(function (err, shopCollection) {
+    if (err) {
+      res.send({
+        code: 404,
+        msg: 'Something went wrong'
+      })
+    }
+    else if (shopCollection) {
+      res.send({
+        code: 200,
+        msg: 'All Ecommerce Data',
+        content: shopCollection
+      })
+    }
+  })
+})
+
 app.post('/api/postYourProduct', (req, res) => {
   var postData = req.body;
   // console.log(req.body.images,'iiiimmmmaaggessss')
