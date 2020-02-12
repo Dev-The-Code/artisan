@@ -2456,7 +2456,7 @@ app.post('/api/getSpecificORderProductShopId', (req, res) => {
 })
 
 
-app.post('/api/getShops', (req, res) => {
+app.get('/api/getShops', (req, res) => {
   postShopCollection.find(function (err, shopCollection) {
     if (err) {
       res.send({

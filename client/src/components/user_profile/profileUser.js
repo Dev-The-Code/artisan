@@ -85,21 +85,22 @@ class ProfileUser extends Component {
 
     async getprofileData(id, userId) {
         let req = await HttpUtils.get('getprofile?profileId=' + id)
-        console.log(req, "data")
-        let user = req.content;
-        this.setState({
-            name: user.name,
-            email: user.email,
-            location: user.location,
-            description: user.description,
-            desLen: user.description ? 500 - user.description.length : 500,
-            phone: user.phone,
-            twitter: user.twitterlink,
-            facebook: user.facebooklink,
-            imageUrl: user.imageurl,
-            url: user.imageurl
-        })
-        this.getAllBusiness(userId)
+        if (req) {
+            let user = req.content;
+            this.setState({
+                name: user.name,
+                email: user.email,
+                location: user.location,
+                description: user.description,
+                desLen: user.description ? 500 - user.description.length : 500,
+                phone: user.phone,
+                twitter: user.twitterlink,
+                facebook: user.facebooklink,
+                imageUrl: user.imageurl,
+                url: user.imageurl
+            })
+            this.getAllBusiness(userId)
+        }
     }
 
     async getAllBusiness(id) {
@@ -107,7 +108,7 @@ class ProfileUser extends Component {
         let arr2 = [];
         let arr3 = [];
         let arr4 = [];
-        let arr5 ;
+        let arr5;
 
         let req = await HttpUtils.get('marketplace')
         req.roomrentsdata && req.roomrentsdata.map((elem) => {
@@ -145,7 +146,7 @@ class ProfileUser extends Component {
             userId: userData._id
         }
         let reqShopData = await HttpUtils.post('getShopById', obj)
-        if (reqShopData.code == 200){
+        if (reqShopData.code == 200) {
             arr5 = reqShopData.content
         }
         this.setState({
@@ -947,7 +948,7 @@ class ProfileUser extends Component {
                                                                                         </div>
                                                                                     </Link>
                                                                                 </div>
-                        
+
                                                                             </div>
                                                                         </div>
 

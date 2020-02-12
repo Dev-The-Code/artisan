@@ -85,8 +85,9 @@ class EcomProfile extends Component {
     let obj = {
       shopIdForProduct: shopId
     }
+    console.log(obj, 'obj')
     let reqShopData = await HttpUtils.post('getShopProducts', obj)
-
+    console.log(reqShopData, 'reqShopData')
     if (reqShopData.code == 200) {
       let allProducts = reqShopData.content;
       for (var i = 0; i < allProducts.length; i++) {
@@ -625,10 +626,6 @@ class EcomProfile extends Component {
   render() {
     const { shopData, shopEdit, addProduct, profileId, addProductObj, allProducts, categories, color, location, brandName,
       filteredData, filterDataNotFound, filterDataShow, categoriesName, priceRangeNotGiven, oderList, shopId } = this.state;
-      console.log(addProductObj , 'addProductObj')
-      console.log(shopData , 'shopData')
-      console.log(shopId , 'shopId')
-
 
     if (shopEdit) {
       return (
@@ -646,16 +643,6 @@ class EcomProfile extends Component {
     }
     return (
       <div>
-        {/* <span>
-          <div className="" style={{
-            "backgroundImage": "url('../images/bgc-images/busnes-listing.png')",
-            marginTop: "100px", backgroundSize: ''
-          }}>
-            <div className="background-image">
-              
-            </div>
-          </div>
-        </span> */}
         <HeaderMenu />
         <div className="row jobdetail-page" style={{ marginTop: "100px" }}>
         </div>
@@ -691,31 +678,31 @@ class EcomProfile extends Component {
                           <div className="font-style fontClolor">
                             Order List
                           </div>
-                          </button>
-                        </div>
+                        </button>
                       </div>
-                      <div className="col-md-4 col-sm-6 col-xs-6">
-                        <div className="buttontoleft">
-                          <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
-                            onClick={this.editShop}>
-                            {/* Edit Home */}
-                            <div className="font-style fontClolor">
-                              Edit Home
+                    </div>
+                    <div className="col-md-4 col-sm-6 col-xs-6">
+                      <div className="buttontoleft">
+                        <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
+                          onClick={this.editShop}>
+                          {/* Edit Home */}
+                          <div className="font-style fontClolor">
+                            Edit Home
                           </div>
-                          </button>
-                        </div>
+                        </button>
                       </div>
-                      <div className="col-md-5 col-sm-6 col-xs-6">
-                        <div className="buttontoleft">
-                          <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
-                            onClick={this.addProductOnShop}>
-                            {/* Add Product */}
-                            <div className="font-style fontClolor">
-                              Publish Your Product
+                    </div>
+                    <div className="col-md-5 col-sm-6 col-xs-6">
+                      <div className="buttontoleft">
+                        <button type="button" className="btn btn-sm btn-editprofile" style={{ width: "100%" }}
+                          onClick={this.addProductOnShop}>
+                          {/* Add Product */}
+                          <div className="font-style fontClolor">
+                            Publish Your Product
                           </div>
-                          </button>
-                        </div>
+                        </button>
                       </div>
+                    </div>
                   </div>
                 }
               </div>
@@ -723,7 +710,7 @@ class EcomProfile extends Component {
           </div>
         }
         <div className="container" style={{ width: '98%' }}>
-          <div className="row" style={{marginBottom:"20px"}}>
+          <div className="row" style={{ marginBottom: "20px" }}>
             <div className="col-md-12">
               <Tabs defaultActiveKey="1">
                 <TabPane tab="Home" key="1">

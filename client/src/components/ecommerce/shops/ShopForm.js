@@ -33,6 +33,10 @@ const category = [
         label: 'Clothing',
     },
     {
+        value: 'Bags & Puses',
+        label: 'Bags & Puses',
+    },
+    {
         value: 'Jwellery',
         label: 'Jwellery',
     },
@@ -47,6 +51,10 @@ const category = [
     {
         value: 'Gardening',
         label: 'Gardening',
+    },
+    {
+        value: 'Pets',
+        label: 'Pets',
     },
     {
         value: 'Furniture',
