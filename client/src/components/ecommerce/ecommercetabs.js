@@ -224,7 +224,7 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'sizes') {
-          filteredData = productsData.filter((elem) => {
+          filteredData = data1.filter((elem) => {
             return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) || 
             elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
             elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
@@ -293,7 +293,7 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'sizes') {
-          data2 = productsData.filter((elem) => {
+          data2 = data1.filter((elem) => {
             return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) || 
             elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
             elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
@@ -314,7 +314,7 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'sizes') {
-          filteredData = productsData.filter((elem) => {
+          filteredData = data2.filter((elem) => {
             return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) || 
             elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
             elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
