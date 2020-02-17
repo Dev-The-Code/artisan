@@ -44,6 +44,7 @@ class EcomProfile extends Component {
   componentDidMount() {
     this.shops();
   }
+
   shops = async () => {
     let shopId = this.props.location.pathname.slice(18)
     let shopData = this.props.location.state;
@@ -59,8 +60,10 @@ class EcomProfile extends Component {
         shopData: shopData,
         shopId: shopId,
       })
+
       this.getShopData(shopId)
     }
+
     else {
       let obj = {
         shopId: shopId
@@ -85,9 +88,7 @@ class EcomProfile extends Component {
     let obj = {
       shopIdForProduct: shopId
     }
-    console.log(obj, 'obj')
     let reqShopData = await HttpUtils.post('getShopProducts', obj)
-    console.log(reqShopData, 'reqShopData')
     if (reqShopData.code == 200) {
       let allProducts = reqShopData.content;
       for (var i = 0; i < allProducts.length; i++) {
@@ -115,7 +116,6 @@ class EcomProfile extends Component {
         categories: categoriesArr,
         color: colorArr,
         location: locationArr,
-        brandName: brandNameArr,
       })
     }
     if (allProducts.length > 0) {
@@ -156,6 +156,7 @@ class EcomProfile extends Component {
       oderList: true
     })
   }
+
   editShop = () => {
     this.setState({
       shopEdit: true
@@ -174,13 +175,7 @@ class EcomProfile extends Component {
     })
   }
 
-  removeCategories = (key) => {
-    if (key == 'categories') {
-      categoriesArr = [];
-      let arr = [];
-      this.onChange("categoriess", arr)
-    }
-  }
+
 
   //Collect the filtraion keys and values in seprate array for filtration
   onChange = (key, value) => {
@@ -239,6 +234,13 @@ class EcomProfile extends Component {
     this.pushFilterArrayData(filterKey)
   }
 
+  removeCategories = (key) => {
+    if (key == 'categories') {
+      categoriesArr = [];
+      let arr = [];
+      this.onChange("categoriess", arr)
+    }
+  }
 
   pushFilterArrayData = (filterKeysArr) => {
 

@@ -73,7 +73,7 @@ ReactDOM.render(
         <Route exact path="/reset/:token" component={ResetPassword} />
 
         {/*============Ecommerce=============*/}
-        <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
+        <Route path="/explore_Market" component={EcommerceMarket}></Route>
         <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
         <Route path="/products_GridStyle" component={GridProducts}></Route>
         <Route path="/products_DetailStyle/:value" component={EproductDetails}></Route>
@@ -86,8 +86,6 @@ ReactDOM.render(
         <Route path="/oderList/:value" component={OrderList}></Route>
 
         {/*============Ecommerce=============*/}
-
-
 
         <Route path="/profile_user/:value" component={ProfileUser}></Route>
         <Route path="/profile_userDetail" component={ProfileUser}></Route>

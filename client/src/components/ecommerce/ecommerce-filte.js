@@ -4,6 +4,8 @@ import {
   Checkbox,
   Row,
   Col,
+  Input,
+  Button
 } from 'antd';
 
 
@@ -584,6 +586,34 @@ class EcommerceFiler extends Component {
             </Row>
           </Checkbox.Group>
         </div>
+        <div className="col-md-12 col-sm-12" style={{ marginTop: '1vw' }}>
+          <p style={{ marginBottom: '5px' }}><b>Price</b></p>
+        </div>
+        {/* <div className="col-md-12 col-sm-12 hidden-xs"> */}
+          <div size="large" style={{ marginLeft: '10px' }}>
+            <Row gutter={8}>
+              <Col span={8}>
+                <Input
+                  placeholder="Min"
+                  // onChange={this.onChangeMin}
+                  type="Number"
+                />
+              </Col>
+              <Col span={8}>
+                <Input
+                  // onChange={this.onChangeMax}
+                  placeholder="Max"
+                  type="Number"
+                />
+              </Col>
+              <Col>
+                <Button type="primary" icon="caret-right"
+                  onClick={this.filterRoomWithPrice}
+                />
+              </Col>
+            </Row>
+          </div>
+        {/* </div> */}
       </div>
 
     )

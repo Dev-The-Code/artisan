@@ -107,7 +107,7 @@ class HeaderMenu extends Component {
                                      <Link to={`/`} className="homeheader">Home</Link>
                                 </div>
                                 <div className="col-md-2" style={{ marginTop: "33px", width:"12%", paddingRight:"0" }}>
-                                    <Link to={`/market_ecommerceMarket`} className="homeheader">Explore</Link>
+                                    <Link to={`/explore_Market`} className="homeheader">Explore</Link>
                                 </div>
                                 <div className="col-md-2 col-sm-2 col-xs-12" style={{ marginTop: "28px", color: '#D9A67E' }}>
                                     <MainLogin />
@@ -202,7 +202,7 @@ class HeaderMenu extends Component {
                             </div>
                         </div>{/*row*/}
                         <span>
-                            <Link rel="noopener noreferrer" to={`/market_ecommerceMarket`} onClick={this.closeNav}>Explore</Link>
+                            <Link rel="noopener noreferrer" to={`/explore_Market`} onClick={this.closeNav}>Explore</Link>
                         </span>
                     </div>
                 </div>

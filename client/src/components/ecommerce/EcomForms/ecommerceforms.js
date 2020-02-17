@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import superagent from "superagent";
 import sha1 from "sha1";
 import { HttpUtils } from "../../../Services/HttpUtils";
-import { Redirect } from "react-router-dom";
 import {
   Form,
   Select,
@@ -18,11 +17,8 @@ import {
   Col,
   Modal,
   Spin,
-  Switch,
-  Radio,
-  Slider,
-  Rate,
 } from 'antd';
+import stateCities from "../../../lib/countrycitystatejson";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -88,15 +84,15 @@ const categories = [
       }, {
         value: 'Sandals',
         label: 'Sandals',
-      },{
+      }, {
         value: 'Slippers',
         label: 'Slippers',
-      },{
+      }, {
         value: 'Loafers & Slip Ons',
         label: 'Loafers & Slip Ons',
-      },{
+      }, {
 
-      },{
+      }, {
         value: 'Oxfords & Wingtips',
         label: 'Oxfords & Wingtips',
       }],
@@ -124,10 +120,10 @@ const categories = [
       }, {
         value: 'Clogs & Mules',
         label: 'Clogs & Mules',
-      },{
+      }, {
         value: 'Oxfords & Tie Shoes',
         label: 'Oxfords & Tie Shoes',
-      },{
+      }, {
         value: 'Costume Shows',
         label: 'Costume Shows',
       }],
@@ -136,52 +132,52 @@ const categories = [
   {
     value: 'Bags & Puses',
     label: 'Bags & Puses',
+    children: [{
+      value: 'Handbags',
+      label: 'Handbags',
       children: [{
-        value: 'Handbags',
-        label: 'Handbags',
-          children: [{
-            value: 'Shoulder bags',
-            label: 'Shoulder bags', 
-          },{
-            value: 'Clutches & Evening Bags',
-            label: 'Clutches & Evening Bags',
-          },{
-            value: 'Crossbody Bags',
-            label: 'Crossbody Bags',
-          },{
-            value: 'Top HandleBags',
-            label: 'Top HandleBags',
-          }]
-      },{
-        value: 'Wallets & Money Clips',
-        label: 'Wallets & Money Clips',
-          children:[{
-            value: 'Wallets',
-            label: 'Wallets',
-          },{
-            value: 'Business Card Cases',
-            label: 'Business Card Cases',
-          },{
-            value: 'Money Clips',
-            label: 'Money Clips',
-          }]
-      },{
-        value: 'Electronic Cases',
-        label: 'Electronic Cases',
-          children:[{
-            value: 'Phone Cases',
-            label: 'Phone Cases',
-          },{
-            value: 'Laptop Sleeves',
-            label: 'Laptop Sleeves',
-          },{
-            value: 'Tablet & E-Reader Cases',
-            label: 'Tablet & E-Reader Cases',
-          },{
-            value: 'Camera Bags ',
-            label: 'Camera Bags ',
-          }]
+        value: 'Shoulder bags',
+        label: 'Shoulder bags',
+      }, {
+        value: 'Clutches & Evening Bags',
+        label: 'Clutches & Evening Bags',
+      }, {
+        value: 'Crossbody Bags',
+        label: 'Crossbody Bags',
+      }, {
+        value: 'Top HandleBags',
+        label: 'Top HandleBags',
       }]
+    }, {
+      value: 'Wallets & Money Clips',
+      label: 'Wallets & Money Clips',
+      children: [{
+        value: 'Wallets',
+        label: 'Wallets',
+      }, {
+        value: 'Business Card Cases',
+        label: 'Business Card Cases',
+      }, {
+        value: 'Money Clips',
+        label: 'Money Clips',
+      }]
+    }, {
+      value: 'Electronic Cases',
+      label: 'Electronic Cases',
+      children: [{
+        value: 'Phone Cases',
+        label: 'Phone Cases',
+      }, {
+        value: 'Laptop Sleeves',
+        label: 'Laptop Sleeves',
+      }, {
+        value: 'Tablet & E-Reader Cases',
+        label: 'Tablet & E-Reader Cases',
+      }, {
+        value: 'Camera Bags ',
+        label: 'Camera Bags ',
+      }]
+    }]
   },
   {
     value: 'Jwellery',
@@ -230,19 +226,19 @@ const categories = [
       }, {
         value: 'Dangle & Drop Earrings',
         label: 'Dangle & Drop Earrings',
-      },{
+      }, {
         value: 'Stud Earrings',
         label: 'Stud Earrings',
-      },{
+      }, {
         value: 'Hoop Earrings',
         label: 'Hoop Earrings',
-      },{
-        value: 'Clip-On Earrings', 
+      }, {
+        value: 'Clip-On Earrings',
         label: 'Clip-On Earrings',
-      },{
-        value: 'Chandelier Earrings', 
+      }, {
+        value: 'Chandelier Earrings',
         label: 'Chandelier Earrings',
-      },{
+      }, {
         value: 'Screw Back Earrings',
         label: 'Screw Back Earrings',
       }]
@@ -270,10 +266,10 @@ const categories = [
       }, {
         value: 'Monogram & Name Necklaces',
         label: 'Monogram & Name Necklaces',
-      },{
+      }, {
         value: 'Lockets',
         label: 'Lockets',
-      },{
+      }, {
         value: 'Bib Necklaces',
         label: 'Bib Necklaces'
       }]
@@ -304,9 +300,9 @@ const categories = [
       }, {
         value: 'Midi Rings',
         label: 'Midi Rings',
-      },{
-        value:'Triplet & Double Rings',
-        label:'Triplet & Double Rings',
+      }, {
+        value: 'Triplet & Double Rings',
+        label: 'Triplet & Double Rings',
       }]
     }, {
       value: 'Accessories',
@@ -343,10 +339,10 @@ const categories = [
       }, {
         value: 'Wall Decals & Murals',
         label: 'Wall Decals & Murals',
-      },{
+      }, {
         value: 'Wallpapers',
         label: 'Wallpapers',
-      },{
+      }, {
         value: 'Wall Stencils',
         label: 'Wall Stencils',
       }]
@@ -376,7 +372,7 @@ const categories = [
       }, {
         value: 'Wax Melts',
         label: 'Wax Melts',
-      },{
+      }, {
         value: 'Incense',
         label: 'Incense',
       }]
@@ -393,9 +389,9 @@ const categories = [
       }, {
         value: 'Pet ID Tags',
         label: 'Pet ID Tags',
-      },{
+      }, {
         value: 'Pet Leashes',
-        label: 'Pet Leashes', 
+        label: 'Pet Leashes',
       }, {
         value: 'Pet Harnesses & Backpacks',
         label: 'Pet Harnesses & Backpacks',
@@ -409,10 +405,10 @@ const categories = [
       }, {
         value: 'Pet Hammocks',
         label: 'Pet Hammocks',
-      },{
+      }, {
         value: 'Play Furniture',
         label: 'Play Furniture',
-      },{
+      }, {
         value: 'Pet Steps',
         label: 'Pet Steps',
       }]
@@ -462,13 +458,13 @@ const categories = [
       }, {
         value: 'Bird Cages',
         label: 'Bird Cages',
-      },{
+      }, {
         value: 'Pet Totes',
         label: 'Pet Totes',
-      },{
+      }, {
         value: 'Pet Crates & Kennels',
         label: 'Pet Crates & Kennels',
-      },{
+      }, {
         value: 'Coops',
         label: 'Coops',
       }]
@@ -485,10 +481,10 @@ const categories = [
       }, {
         value: 'Coffee & End Tables',
         label: 'Coffee & End Tables',
-      },{
+      }, {
         value: 'Chairs & Ottomans',
         label: 'Chairs & Ottomans',
-      },{
+      }, {
         value: 'Floor Cushions',
         label: 'Floor Cushions',
       }]
@@ -575,31 +571,31 @@ const sizes = [
 const color = [{
   value: 'Black',
   label: 'Black',
-},{
+}, {
   value: 'Blue',
   label: 'Blue',
-},{
+}, {
   value: 'Green',
   label: 'Green',
-},{
+}, {
   value: 'Yellow',
   label: 'Yellow',
-},{
+}, {
   value: 'White',
   label: 'White',
-},{
+}, {
   value: 'Brown',
   label: 'Brown',
-},{
+}, {
   value: 'Red',
   label: 'Red',
-},{
+}, {
   value: 'Maroon',
   label: 'Maroon',
-},{
+}, {
   value: 'Customize',
   label: 'Customize',
-},{
+}, {
   value: 'Orange',
   label: 'Orange',
 }];
@@ -700,7 +696,23 @@ class EcommerceForm extends Component {
         data: data
       })
     }
+    this.stateAndCities();
   }
+
+  stateAndCities() {
+    let states = stateCities.getStatesByShort('US');
+    console.log(states, 'state')
+    states = states.map((elem) => {
+      return {
+        label: elem,
+        value: elem
+      }
+    })
+    this.setState({
+      states: states,
+    })
+  }
+
 
   handleSubmit = e => {
     e.preventDefault();
@@ -762,8 +774,8 @@ class EcommerceForm extends Component {
 
   onChangeSizes = (values) => {
     console.log(values, "onchange")
-    const {sizes} = this.state
-    let arr=[];
+    const { sizes } = this.state
+    let arr = [];
     arr.push(values[2])
     this.setState({
       sizes: arr
@@ -771,7 +783,7 @@ class EcommerceForm extends Component {
 
 
   }
-  
+
   //--------------function for cloudnary url ---------------
   uploadFile = (files) => {
     const image = files.originFileObj
@@ -822,8 +834,8 @@ class EcommerceForm extends Component {
       user_Id: user._id,
       profileId: user.profileId,
     }
-    console.log(response , 'response')
-    console.log(objOfProduct , 'objOfProduct')
+    console.log(response, 'response')
+    console.log(objOfProduct, 'objOfProduct')
 
     let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
 
@@ -863,8 +875,8 @@ class EcommerceForm extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { previewVisible,  previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice, price, materialType, description, color, productData, goProductDetailPage , producId} = this.state;
-    console.log(sizes,"Sizes")
+    const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice, price, materialType, description, color, productData, goProductDetailPage, producId } = this.state;
+    console.log(sizes, "Sizes")
     // if (goProductDetailPage) {
     //   return (
     //     <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
@@ -908,7 +920,7 @@ class EcommerceForm extends Component {
                   message: 'Please select your product category'
                 },
               ],
-            })(<Cascader options={categories} onChange={this.onChangeSizes}/>)}
+            })(<Cascader options={categories} onChange={this.onChangeSizes} />)}
           </Form.Item>
 
           {/*Sizes*/}
@@ -1006,6 +1018,8 @@ class EcommerceForm extends Component {
               }],
             })(<Select mode="multiple" placeholder="Please select favourite colors">
               <Option value="blue">Blue</Option>
+              <Option value="blue">Black</Option>
+
             </Select>)}
           </Form.Item>
 
