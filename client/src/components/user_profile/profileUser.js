@@ -87,19 +87,21 @@ class ProfileUser extends Component {
         let req = await HttpUtils.get('getprofile?profileId=' + id)
         if (req) {
             let user = req.content;
-            this.setState({
-                name: user.name,
-                email: user.email,
-                location: user.location,
-                description: user.description,
-                desLen: user.description ? 500 - user.description.length : 500,
-                phone: user.phone,
-                twitter: user.twitterlink,
-                facebook: user.facebooklink,
-                imageUrl: user.imageurl,
-                url: user.imageurl
-            })
-            this.getAllBusiness(userId)
+            if (user) {
+                this.setState({
+                    name: user.name,
+                    email: user.email,
+                    location: user.location,
+                    description: user.description,
+                    desLen: user.description ? 500 - user.description.length : 500,
+                    phone: user.phone,
+                    twitter: user.twitterlink,
+                    facebook: user.facebooklink,
+                    imageUrl: user.imageurl,
+                    url: user.imageurl
+                })
+                this.getAllBusiness(userId)
+            }
         }
     }
 

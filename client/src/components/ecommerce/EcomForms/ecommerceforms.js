@@ -539,66 +539,6 @@ const categories = [
     }]
   }];
 
-const sizes = [
-  {
-    value: 'xtra-small',
-    label: 'Xtra Small',
-  },
-  {
-    value: 'small',
-    label: 'Small',
-  },
-  {
-    value: 'medium',
-    label: 'Medium',
-  },
-  {
-    value: 'large',
-    label: 'Large',
-  },
-  {
-    value: 'xtra-large',
-    label: 'Xtra Large',
-  },
-  {
-    value: 'XXl',
-    label: 'XX Large',
-  }
-
-];
-
-
-const color = [{
-  value: 'Black',
-  label: 'Black',
-}, {
-  value: 'Blue',
-  label: 'Blue',
-}, {
-  value: 'Green',
-  label: 'Green',
-}, {
-  value: 'Yellow',
-  label: 'Yellow',
-}, {
-  value: 'White',
-  label: 'White',
-}, {
-  value: 'Brown',
-  label: 'Brown',
-}, {
-  value: 'Red',
-  label: 'Red',
-}, {
-  value: 'Maroon',
-  label: 'Maroon',
-}, {
-  value: 'Customize',
-  label: 'Customize',
-}, {
-  value: 'Orange',
-  label: 'Orange',
-}];
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
