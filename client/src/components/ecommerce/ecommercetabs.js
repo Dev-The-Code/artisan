@@ -56,9 +56,7 @@ class Ecomtabs extends Component {
           if (colorsOfProducts.indexOf(colors) == -1) {
             colorsOfProducts.push(colors)
           }
-          for (var j = 0; j < size.length; j++) {
-            console.log(size[j] , 'size[i')
-            
+          for (var j = 0; j < size.length; j++) {            
             const sizesOfTheProducts = size[j].charAt(0).toUpperCase() + size[j].substring(1);
             if (sizesOfProducts.indexOf(sizesOfTheProducts) == -1) {
               sizesOfProducts.push(sizesOfTheProducts)
@@ -603,9 +601,7 @@ class Ecomtabs extends Component {
       categoryofProduct, categoryProduct, colorsofProduct, sizesofProducts,
       shopsData, filteredDataShop, locationCitiesShops, shopCategory, shopLocation,
       showRecordShop, notFoundFilterDataShop } = this.state;
-      console.log(colorsProduct , 'colorsProduct')
-      console.log(sizesProduct , 'sizesProduct')
-
+    
     return (
       <div className="">
         <Tabs defaultActiveKey="2" style={{ textAlign: "center" }}>

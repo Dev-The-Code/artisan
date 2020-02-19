@@ -81,7 +81,6 @@ ReactDOM.render(
         <Route path="/Forms_addproduct" component={AddProduct}></Route>
         <Route path="/checkOutProduct" component={CheckOutPage}></Route>
         <PrivateRoute path="/shopForm" component={ShopForm}></PrivateRoute>
-        <PrivateRoute path="/shopForm2" component={ShopForm2}></PrivateRoute>
         <Route path="/EcommerceProfile/:value" component={EcomProile}></Route>
         <Route path="/oderList/:value" component={OrderList}></Route>
 

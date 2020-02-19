@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './thirdfold.css';
-import { Link } from "react-router-dom";
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 
 
 class ThirdFold extends Component{
