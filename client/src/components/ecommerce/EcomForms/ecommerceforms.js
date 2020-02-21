@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import superagent from "superagent";
 import sha1 from "sha1";
 import { HttpUtils } from "../../../Services/HttpUtils";
@@ -18,8 +19,6 @@ import {
   Modal,
   Spin,
 } from 'antd';
-import stateCities from "../../../lib/countrycitystatejson";
-
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -624,58 +623,54 @@ class EcommerceForm extends Component {
       color: [],
       productData: "",
       goProductDetailPage: false,
-      producId: ''
+      producId: '',
+      imageList: []
     }
   }
 
 
   componentDidMount() {
     let data = this.props.data;
-    if (data) {
+    console.log(data, 'data')
+    if (data._id != undefined) {
+      console.log('edit product')
+      this.setState({
+        product: data.product,
+        category: data.categories,
+        sizes: data.sizes,
+        price: data.price,
+        salePrice: data.salePrice,
+        materialType: data.materialType,
+        description: data.description,
+        data: data.color,
+        quantity: data.quantity,
+        objectId: data._id,
+        data: data,
+        imageList: data.images
+      })
+    }
+    else if (data._id == undefined) {
+      console.log('add product')
       this.setState({
         data: data
       })
     }
-    this.stateAndCities();
   }
 
-  stateAndCities() {
-    let states = stateCities.getStatesByShort('US');
-    console.log(states, 'state')
-    states = states.map((elem) => {
-      return {
-        label: elem,
-        value: elem
-      }
-    })
-    this.setState({
-      states: states,
-    })
-  }
 
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        // this.handleEvent(values)
-        // this.setState({
-        //   loader: true,
-        //   btnDisabeld: true
-        // })
-        // this.funcForUpload(values)
-        console.log(values, 'values')
+        this.setState({
+          loader: true,
+          btnDisabeld: true
+        })
+        this.funcForUpload(values)
       }
     });
   }
-
-  // handleEvent = async (val) => {
-  //   console.log(val, "getproducts")
-
-  //   let responseEcommreceData = await HttpUtils.post('postEcomreceProduct', val)
-  //   console.log(responseEcommreceData, 'reqProductsObj')
-  // }
-
 
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
@@ -700,6 +695,11 @@ class EcommerceForm extends Component {
 
   handleChange = ({ fileList }) => this.setState({ fileList });
 
+  deleteImage(e) {
+    let { imageList } = this.state;
+    imageList = imageList.filter((elem) => elem !== e)
+    this.setState({ imageList: imageList })
+  }
 
   async funcForUpload(values, key) {
     const { fileList } = this.state;
@@ -713,8 +713,6 @@ class EcommerceForm extends Component {
   }
 
   onChangeSizes = (values) => {
-    console.log(values, "onchange")
-    const { sizes } = this.state
     let arr = [];
     arr.push(values[2])
     this.setState({
@@ -755,9 +753,8 @@ class EcommerceForm extends Component {
 
   //-----------------cloudnary function end ------------------//
   async postData(values, response, key) {
-    const { data, objectId } = this.state;
+    const { data, objectId, imageList } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
-
     let objOfProduct = {
       product: values.product,
       categories: values.categories,
@@ -768,26 +765,39 @@ class EcommerceForm extends Component {
       materialType: values.materialType,
       description: values.description,
       color: values.color,
-      images: response,
+      images: [...imageList, ...response],
       shopId: data.shopId,
       shopName: data.shopTitle,
       user_Id: user._id,
       profileId: user.profileId,
+      objectId: objectId
     }
-    console.log(response, 'response')
     console.log(objOfProduct, 'objOfProduct')
-
     let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
+    console.log(responseEcommreceData, 'responseEcommreceData')
 
     if (responseEcommreceData.code == 200) {
-      this.setState({
-        loader: false,
-        btnDisabeld: false,
-        mgs: responseEcommreceData.mgs,
-        productData: responseEcommreceData.content,
-        producId: responseEcommreceData.content._id,
-        goProductDetailPage: true
-      })
+      if(objectId == ''){
+        this.setState({
+          loader: false,
+          btnDisabeld: false,
+          mgs: responseEcommreceData.mgs,
+          productData: responseEcommreceData.content,
+          producId: responseEcommreceData.content._id,
+          goProductDetailPage: true
+        })
+
+      }
+      else{
+        this.setState({
+          loader: false,
+          btnDisabeld: false,
+          mgs: responseEcommreceData.mgs,
+          productData: responseEcommreceData.content[0],
+          producId: responseEcommreceData.content[0]._id,
+          goProductDetailPage: true
+        })
+      }
       console.log(responseEcommreceData, 'reqProductsObj')
       let msg = 'Your product is saved successfully.'
       this.openNotification(msg)
@@ -815,13 +825,13 @@ class EcommerceForm extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice, price, materialType, description, color, productData, goProductDetailPage, producId } = this.state;
-    console.log(sizes, "Sizes")
-    // if (goProductDetailPage) {
-    //   return (
-    //     <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
-    //   )
-    // }
+    const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice, price, materialType, description, color, productData, goProductDetailPage, producId, imageList } = this.state;
+    console.log(imageList, "imageList");
+    if (goProductDetailPage) {
+      return (
+        <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
+      )
+    }
 
     const uploadButton = (
       <div>
@@ -829,6 +839,34 @@ class EcommerceForm extends Component {
         <div className="ant-upload-text">Upload</div>
       </div>
     );
+    const uploadedImages = (
+      <div style={{ height: '100%' }}>
+        {imageList && imageList.map((elem) => {
+          return (
+            <div className='insideDiv'>
+              <a>
+                <img alt='img1' src={elem} style={{ height: '100%' }} />
+                <span>
+                  <a><Icon title='Preview file' onClick={() =>
+                    this.handlePreview(elem)} type="eye" theme="outlined"
+                    style={{
+                      zIndex: 10, transition: 'all .3s', fontSize: '16px',
+                      width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
+                    }} />
+                  </a>
+                  <Icon title='Remove file' type='delete'
+                    onClick={this.deleteImage.bind(this, elem)}
+                    style={{
+                      zIndex: 10, transition: 'all .3s', fontSize: '16px',
+                      width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
+                    }} />
+                </span>
+              </a>
+            </div>
+          )
+        })}
+      </div>
+    )
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -951,7 +989,7 @@ class EcommerceForm extends Component {
             {getFieldDecorator('color', {
               initialValue: color,
               rules: [{
-                required: true,
+                // type: Array,
                 message: 'Please enter your color!',
                 whitespace: true,
                 type: 'array',
@@ -968,10 +1006,15 @@ class EcommerceForm extends Component {
 
           <Form.Item label="upload">
             {getFieldDecorator('images', {
-
+              rules: [{
+                required: true,
+                message: 'Please upload your Images!',
+                whitespace: true
+              }],
             })
               (
                 <div className="clearfix">
+                  {uploadedImages}
                   <Upload
                     action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                     listType="picture-card"
@@ -979,7 +1022,7 @@ class EcommerceForm extends Component {
                     onPreview={this.handlePreview}
                     onChange={this.handleChange}
                   >
-                    {fileList.length >= 8 ? null : uploadButton}
+                    {imageList && imageList.length + fileList.length >= 8 ? null : uploadButton}
                   </Upload>
                   <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                     <img alt="example" style={{ width: '100%' }} src={previewImage} />

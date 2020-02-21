@@ -78,7 +78,6 @@ ReactDOM.render(
         <Route path="/products_GridStyle" component={GridProducts}></Route>
         <Route path="/products_DetailStyle/:value" component={EproductDetails}></Route>
         <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
-        <Route path="/Forms_addproduct" component={AddProduct}></Route>
         <Route path="/checkOutProduct" component={CheckOutPage}></Route>
         <PrivateRoute path="/shopForm" component={ShopForm}></PrivateRoute>
         <Route path="/EcommerceProfile/:value" component={EcomProile}></Route>

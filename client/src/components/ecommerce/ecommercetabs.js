@@ -38,12 +38,21 @@ class Ecomtabs extends Component {
       showRecordShop: true,
       notFoundFilterDataShop: false,
       filteredDataShop: [],
+      keysOfTabs: '2'
     }
   }
 
   // all proucts data & all Shops
-
+  componentWillMount() {
+    let data = this.props.data
+    if (data) {
+      this.setState({
+        keysOfTabs: data.keyOfTab,
+      })
+    }
+  }
   async componentDidMount() {
+
     let res = await HttpUtils.get('getYourProduct');
     if (res) {
       if (res.code == 200) {
@@ -52,11 +61,11 @@ class Ecomtabs extends Component {
         let products = res.content;
         for (var i = 0; i < products.length; i++) {
           let size = products[i].sizes;
-          const colors = products[i].color.charAt(0).toUpperCase() + products[i].color.substring(1);
-          if (colorsOfProducts.indexOf(colors) == -1) {
-            colorsOfProducts.push(colors)
-          }
-          for (var j = 0; j < size.length; j++) {            
+          // const colors = products[i].color.charAt(0).toUpperCase() + products[i].color.substring(1);
+          // if (colorsOfProducts.indexOf(colors) == -1) {
+          //   colorsOfProducts.push(colors)
+          // }
+          for (var j = 0; j < size.length; j++) {
             const sizesOfTheProducts = size[j].charAt(0).toUpperCase() + size[j].substring(1);
             if (sizesOfProducts.indexOf(sizesOfTheProducts) == -1) {
               sizesOfProducts.push(sizesOfTheProducts)
@@ -83,7 +92,7 @@ class Ecomtabs extends Component {
       if (shops.code == 200) {
         let shopsData = shops.content
         for (var i = 0; i < shopsData.length; i++) {
-          const cities = shopsData[i].shopCity.charAt(0).toUpperCase() + shopsData[i].shopCity.substring(1);
+          const cities = shopsData[i].shopCity[0].charAt(0).toUpperCase() + shopsData[i].shopCity[0].substring(1);
           if (locationCitiesShops.indexOf(cities) == -1) {
             locationCitiesShops.push(cities)
           }
@@ -92,6 +101,14 @@ class Ecomtabs extends Component {
           shopsData: shops.content,
           locationCitiesShops: locationCitiesShops
         })
+      }
+      let data = this.props.data
+      if (data) {
+        this.setState({
+          shopCategory: data.category
+        })
+        filterShopCategory = data.category
+        this.filterKeysGetShops()
       }
     }
   }
@@ -438,6 +455,7 @@ class Ecomtabs extends Component {
   }
 
   filterKeysGetShops = () => {
+    console.log(filterShopCategory , 'filterKeysGetShops')
     let categoryOfShop = [];
     let locationOfShop = [];
     let filterKeys = [];
@@ -487,7 +505,7 @@ class Ecomtabs extends Component {
       }
       else if (filterKeys[i] == 'locationShop') {
         data = shopsData.filter((elem) => {
-          return elem.shopCity && filterShopLocation.includes(elem.shopCity)
+          return elem.shopCity[0] && filterShopLocation.includes(elem.shopCity[0])
         })
       }
     }
@@ -533,7 +551,7 @@ class Ecomtabs extends Component {
         }
         else if (filterKeys[i] == 'locationShop') {
           filteredData = data1.filter((elem) => {
-            return elem.shopCity && filterShopLocation.includes(elem.shopCity)
+            return elem.shopCity[0] && filterShopLocation.includes(elem.shopCity[0])
           })
         }
       }
@@ -600,11 +618,11 @@ class Ecomtabs extends Component {
     const { productsData, filteredData, colorsProduct, sizesProduct, notFoundFilterData, showRecord,
       categoryofProduct, categoryProduct, colorsofProduct, sizesofProducts,
       shopsData, filteredDataShop, locationCitiesShops, shopCategory, shopLocation,
-      showRecordShop, notFoundFilterDataShop } = this.state;
-    
+      showRecordShop, notFoundFilterDataShop, keysOfTabs } = this.state;
+
     return (
       <div className="">
-        <Tabs defaultActiveKey="2" style={{ textAlign: "center" }}>
+        <Tabs defaultActiveKey={keysOfTabs} style={{ textAlign: "center" }}>
           <TabPane tab="What you are looking for?" disabled key="1">
             <div>
             </div>

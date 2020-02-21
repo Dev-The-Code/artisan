@@ -531,6 +531,7 @@ class ShopForm extends Component {
 
     componentDidMount() {
         let data = this.props.location.state;
+        console.log(data , 'data')
         if (data) {
             this.setState({
                 shopTitle: data.shopTitle,

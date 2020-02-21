@@ -2317,6 +2317,7 @@ app.post('/api/postshop', (req, res) => {
       bankName: shopData.bankName,
       ibank: shopData.ibank,
       swift: shopData.swift,
+      shopEmail: shopData.shopEmail
     })
     postShopData.save(function (err, data) {
       if (err) {
@@ -2493,7 +2494,7 @@ app.get('/api/getShops', (req, res) => {
 app.post('/api/postYourProduct', (req, res) => {
   var postData = req.body;
   // console.log(req.body.images,'iiiimmmmaaggessss')
-  // if (postData.objectId === '') {
+  if (postData.objectId == '') {
   const postDataReq = new postEcomProduct({
     user_Id: postData.user_Id,
     profileId: postData.profileId,
@@ -2526,7 +2527,24 @@ app.post('/api/postYourProduct', (req, res) => {
       });
     }
   })
-  // }
+  }
+  else if (postData.objectId != '') {
+    postEcomProduct.findOneAndUpdate(
+      { "_id": postData.objectId },
+      { $set: _.omit(postData, '_id') },
+      { new: true }
+    ).then(() => {
+      postEcomProduct.find({ "_id": postData.objectId }, function (err, documents) {
+        res.send({
+          error: err,
+          content: documents,
+          code: 200,
+          msg: 'data updated successfullly'
+        });
+        //db.close();
+      })
+    }).catch(() => res.status(422).send({ msg: 'Internal server error' }));
+  }
 })
 
 app.get('/api/getYourProduct', (req, res) => {
@@ -2540,7 +2558,7 @@ app.get('/api/getYourProduct', (req, res) => {
     else if (ecommerceData) {
       res.send({
         code: 200,
-        msg: 'All Ecommerce Data',
+        msg: 'Ecommerce Data',
         content: ecommerceData
       })
     }

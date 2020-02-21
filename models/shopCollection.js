@@ -22,6 +22,7 @@ var shopCollection = new mongoose.Schema({
     bankName: { type: String },
     ibank: { type: String },
     swift: { type: String },
+    shopEmail: { type: String }
 
 });
 //categorySchema.plugin(uniqueValidator);
