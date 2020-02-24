@@ -12,12 +12,17 @@ let filterSubCategoryName = [];
 let filterColorFamily = [];
 let filterSizes = [];
 
+let filterShopCategory = [];
+let filterShopLocation = [];
+
 class Ecomtabs extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: false,
       productsData: [],
+      colorsProduct: [],
+      sizesProduct: [],
       filteredData: [],
       notFoundFilterData: false,
       showRecord: true,
@@ -26,20 +31,52 @@ class Ecomtabs extends Component {
       colorsofProduct: [],
       sizesofProducts: [],
 
-
       shopsData: [],
-      locationCitiesShops: []
+      locationCitiesShops: [],
+      shopCategory: [],
+      shopLocation: [],
+      showRecordShop: true,
+      notFoundFilterDataShop: false,
+      filteredDataShop: [],
+      keysOfTabs: '2'
     }
   }
 
   // all proucts data & all Shops
-
+  componentWillMount() {
+    let data = this.props.data
+    if (data) {
+      this.setState({
+        keysOfTabs: data.keyOfTab,
+      })
+    }
+  }
+  
   async componentDidMount() {
     let res = await HttpUtils.get('getYourProduct');
     if (res) {
       if (res.code == 200) {
+        let colorsOfProducts = [];
+        let sizesOfProducts = [];
+        let products = res.content;
+        for (var i = 0; i < products.length; i++) {
+          let size = products[i].sizes;
+          // const colors = products[i].color.charAt(0).toUpperCase() + products[i].color.substring(1);
+          // if (colorsOfProducts.indexOf(colors) == -1) {
+          //   colorsOfProducts.push(colors)
+          // }
+          for (var j = 0; j < size.length; j++) {
+            const sizesOfTheProducts = size[j].charAt(0).toUpperCase() + size[j].substring(1);
+            if (sizesOfProducts.indexOf(sizesOfTheProducts) == -1) {
+              sizesOfProducts.push(sizesOfTheProducts)
+            }
+          }
+
+        }
         this.setState({
-          productsData: res.content,
+          productsData: products,
+          colorsProduct: colorsOfProducts,
+          sizesProduct: sizesOfProducts,
         })
       }
     }
@@ -55,7 +92,7 @@ class Ecomtabs extends Component {
       if (shops.code == 200) {
         let shopsData = shops.content
         for (var i = 0; i < shopsData.length; i++) {
-          const cities = shopsData[i].shopCity.charAt(0).toUpperCase() + shopsData[i].shopCity.substring(1);
+          const cities = shopsData[i].shopCity[0].charAt(0).toUpperCase() + shopsData[i].shopCity[0].substring(1);
           if (locationCitiesShops.indexOf(cities) == -1) {
             locationCitiesShops.push(cities)
           }
@@ -64,6 +101,14 @@ class Ecomtabs extends Component {
           shopsData: shops.content,
           locationCitiesShops: locationCitiesShops
         })
+      }
+      let data = this.props.data
+      if (data) {
+        this.setState({
+          shopCategory: data.category
+        })
+        filterShopCategory = data.category
+        this.filterKeysGetShops()
       }
     }
   }
@@ -159,11 +204,11 @@ class Ecomtabs extends Component {
       }
       else if (filterKeys[i] == 'sizes') {
         data = productsData.filter((elem) => {
-          return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) || 
-          elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-          elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-          elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-          elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+          return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
+            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+            elem.sizes[4] && filterSizes.includes(elem.sizes[4])
         })
       }
     }
@@ -204,11 +249,11 @@ class Ecomtabs extends Component {
         }
         else if (filterKeys[i] == 'sizes') {
           data1 = productsData.filter((elem) => {
-            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) || 
-            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-            elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
+              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
           })
         }
       }
@@ -224,12 +269,12 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'sizes') {
-          filteredData = productsData.filter((elem) => {
-            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) || 
-            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-            elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+          filteredData = data1.filter((elem) => {
+            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
+              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
           })
         }
       }
@@ -273,11 +318,11 @@ class Ecomtabs extends Component {
         }
         else if (filterKeys[i] == 'sizes') {
           data1 = productsData.filter((elem) => {
-            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) || 
-            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-            elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
+              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
           })
         }
       }
@@ -293,12 +338,12 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'sizes') {
-          data2 = productsData.filter((elem) => {
-            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) || 
-            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-            elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+          data2 = data1.filter((elem) => {
+            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
+              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
           })
         }
       }
@@ -314,12 +359,12 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'sizes') {
-          filteredData = productsData.filter((elem) => {
-            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) || 
-            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-            elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+          filteredData = data2.filter((elem) => {
+            return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
+              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
           })
         }
       }
@@ -395,14 +440,189 @@ class Ecomtabs extends Component {
 
   }
 
+  onChangeShop = (value) => {
+    this.setState({
+      shopCategory: value
+    })
+    filterShopCategory = value;
+    this.filterKeysGetShops()
+
+  }
+
+  onChangeShopLocation = (value) => {
+    filterShopLocation = value;
+    this.filterKeysGetShops()
+  }
+
+  filterKeysGetShops = () => {
+    console.log(filterShopCategory , 'filterKeysGetShops')
+    let categoryOfShop = [];
+    let locationOfShop = [];
+    let filterKeys = [];
+
+    if (filterShopCategory) {
+      if (filterShopCategory.length > 0) {
+        filterKeys.push('categoryShop')
+      }
+      for (var i = 0; i < filterShopCategory.length; i++) {
+        categoryOfShop.push(filterShopCategory[i])
+      }
+    }
+    if (filterShopLocation) {
+      if (filterShopLocation.length > 0) {
+        filterKeys.push('locationShop')
+      }
+      for (var i = 0; i < filterShopLocation.length; i++) {
+        locationOfShop.push(filterShopLocation[i])
+      }
+    }
+    this.setState({
+      shopCategory: categoryOfShop,
+      shopLocation: locationOfShop,
+    })
+
+    this.filterShopsData(filterKeys)
+
+  }
+
+  filterShopsData = (filterKeys) => {
+    if (filterKeys.length == 1) {
+      this.filterShopWithOneKey(filterKeys);
+    }
+    else if (filterKeys.length == 2) {
+      this.filterShopWithTwoKeys(filterKeys);
+    }
+  }
+
+  filterShopWithOneKey = (filterKeys) => {
+    const { shopsData } = this.state;
+    let data;
+    for (var i = 0; i < filterKeys.length; i++) {
+      if (filterKeys[i] == 'categoryShop') {
+        data = shopsData.filter((elem) => {
+          return elem.shopCategories[0] && filterShopCategory.includes(elem.shopCategories[0])
+        })
+      }
+      else if (filterKeys[i] == 'locationShop') {
+        data = shopsData.filter((elem) => {
+          return elem.shopCity[0] && filterShopLocation.includes(elem.shopCity[0])
+        })
+      }
+    }
+    if (data.length == 0) {
+      this.setState({
+        notFoundFilterDataShop: true,
+        filteredDataShop: data,
+        showRecordShop: false
+      })
+    }
+    else {
+      this.setState({
+        notFoundFilterDataShop: false,
+        filteredDataShop: data,
+        showRecordShop: false
+      })
+    }
+  }
+
+  filterShopWithTwoKeys = (filterKeys) => {
+    const { shopsData } = this.state;
+    let data1;
+    let filteredData;
+
+    for (var i = 0; i < filterKeys.length; i++) {
+      if (i == 0) {
+        if (filterKeys[i] == 'categoryShop') {
+          data1 = shopsData.filter((elem) => {
+            return elem.shopCategories[0] && filterShopCategory.includes(elem.shopCategories[0])
+          })
+        }
+        else if (filterKeys[i] == 'locationShop') {
+          data1 = shopsData.filter((elem) => {
+            return elem.shopCity && filterShopLocation.includes(elem.shopCity)
+          })
+        }
+      }
+      if (i == 1) {
+        if (filterKeys[i] == 'categoryShop') {
+          filteredData = data1.filter((elem) => {
+            return elem.shopCategories[0] && filterShopCategory.includes(elem.shopCategories[0])
+          })
+        }
+        else if (filterKeys[i] == 'locationShop') {
+          filteredData = data1.filter((elem) => {
+            return elem.shopCity[0] && filterShopLocation.includes(elem.shopCity[0])
+          })
+        }
+      }
+    }
+
+    if (filteredData.length == 0) {
+      this.setState({
+        notFoundFilterDataShop: true,
+        filteredDataShop: filteredData,
+        showRecordShop: false
+      })
+    }
+    else {
+      this.setState({
+        notFoundFilterDataShop: false,
+        filteredDataShop: filteredData,
+        showRecordShop: false
+      })
+    }
+  }
+
+  removeValuesShops = (param, value) => {
+    let arr = [];
+    if (param == "categoryShop") {
+      filterShopCategory = arr
+      this.setState({
+        shopCategory: arr
+      })
+    }
+    else if (param == "locationShop") {
+      let arr1 = [];
+      for (var i = 0; i < filterShopLocation.length; i++) {
+        if (filterShopLocation[i] != value) {
+          arr1.push(filterShopLocation[i])
+        }
+      }
+      filterShopLocation = arr1
+    }
+    this.filterKeysGetShops();
+    if (filterShopCategory.length == 0 && filterShopLocation.length == 0) {
+      this.setState({
+        showRecordShop: true,
+        notFoundFilterDataShop: false,
+        filteredDataShop: [],
+      })
+    }
+    else {
+      this.filterKeysGetShops();
+    }
+  }
+
+  showAllShops = () => {
+    filterShopCategory = [];
+    filterShopLocation = [];
+    this.setState({
+      showRecordShop: true,
+      notFoundFilterDataShop: false,
+      filteredDataShop: [],
+    })
+    this.filterKeysGetShops();
+  }
 
   render() {
-    const { productsData, filteredData, notFoundFilterData, showRecord,
+    const { productsData, filteredData, colorsProduct, sizesProduct, notFoundFilterData, showRecord,
       categoryofProduct, categoryProduct, colorsofProduct, sizesofProducts,
-      shopsData, locationCitiesShops, } = this.state;
+      shopsData, filteredDataShop, locationCitiesShops, shopCategory, shopLocation,
+      showRecordShop, notFoundFilterDataShop, keysOfTabs } = this.state;
+
     return (
       <div className="">
-        <Tabs defaultActiveKey="2" style={{ textAlign: "center" }}>
+        <Tabs defaultActiveKey={keysOfTabs} style={{ textAlign: "center" }}>
           <TabPane tab="What you are looking for?" disabled key="1">
             <div>
             </div>
@@ -428,7 +648,7 @@ class Ecomtabs extends Component {
                   {recordFound ? */}
                   <Eshopcard productsData={productsData} filteredData={filteredData} notFoundFilterData={notFoundFilterData}
                     categoryofProduct={categoryofProduct} colorsofProduct={colorsofProduct} sizesofProducts={sizesofProducts}
-                    showRecord={showRecord} removeValue={this.removeValue} showAllProducts ={this.showAllProducts}/>
+                    showRecord={showRecord} removeValue={this.removeValue} showAllProducts={this.showAllProducts} />
                   {/* : null} */}
                 </div>
               </div>
@@ -440,12 +660,17 @@ class Ecomtabs extends Component {
                 <div className="col-md-3" style={{ backgroundColor: "white", marginTop: "-1.4vw" }}>
                   <Tabs defaultActiveKey="1" style={{ textAlign: "left" }}>
                     <TabPane tab="Filters" key="1">
-                      <ShopFilterTab locationCitiesShops={locationCitiesShops} />
+                      <ShopFilterTab locationCitiesShops={locationCitiesShops}
+                        onChangeShop={this.onChangeShop} onChangeShopLocation={this.onChangeShopLocation}
+                        shopCategory={shopCategory} shopLocation={shopLocation} />
                     </TabPane>
                   </Tabs>
                 </div>
                 <div className="col-md-9">
-                  <ShopCards shopsData={shopsData} />
+                  <ShopCards shopsData={shopsData} filteredDataShop={filteredDataShop}
+                    shopCategory={shopCategory} shopLocation={shopLocation}
+                    removeValuesShops={this.removeValuesShops} showAllShops={this.showAllShops}
+                    showRecordShop={showRecordShop} notFoundFilterDataShop={notFoundFilterDataShop} />
                 </div>
               </div>
             </div>

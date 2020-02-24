@@ -7,7 +7,7 @@ import { Link, Redirect } from "react-router-dom";
 import RelatedInformation from './relatedInformation';
 
 
-class 
+class
   PthreeColumn extends Component {
   constructor(props) {
     super(props)
@@ -27,13 +27,13 @@ class
 
   showDescription = () => {
     const { data } = this.state;
-    this.setState({dataDescription:data.description, hideDescriptionbtn:false})     
+    this.setState({ dataDescription: data.description, hideDescriptionbtn: false })
   }
 
   lessDescription = () => {
     const { data } = this.state;
-    this.setState({dataDescription:data.description.slice(0,150),hideDescriptionbtn:true})
-         
+    this.setState({ dataDescription: data.description.slice(0, 150), hideDescriptionbtn: true })
+
   }
 
   componentDidMount() {
@@ -49,8 +49,8 @@ class
         data: data,
         images: data.images,
         imgUrl: data.images[0],
-        dataDescription:data.description.slice(0,150)
-        
+        dataDescription: data.description.slice(0, 150)
+
       })
     }
   }
@@ -81,7 +81,7 @@ class
     })
   }
   render() {
-    const { dataDescription,data, count, commentData, editProduct } = this.state;
+    const { dataDescription, data, count, commentData, editProduct } = this.state;
     const { profileId } = this.props;
     if (editProduct) {
       return (
@@ -92,9 +92,9 @@ class
       <div class="container" style={{ width: "80%", padding: "0px" }}>
         <div class="card-three-column">
           <div class="row" style={{ padding: "15px" }}>
-            <div class="col-md-6" style={{padding:"0"}}>
+            <div class="col-md-6" style={{ padding: "0" }}>
               <div className="row">
-                <div className="col-md-2" style={{padding:"0"}}>
+                <div className="col-md-2" style={{ padding: "0" }}>
                   <ul class="preview-thumbnail nav nav-tabs">
                     {this.state.images.map(img => <li onClick={() => this.renderImagesinLi(img)}><a ><img src={img} /></a></li>)}
                   </ul>
@@ -103,14 +103,14 @@ class
                   <div className="preview">
                     <div class="preview-pic tab-content">
                       <div class="tab-pane active" id="pic-1"><img src={this.state.imgUrl} /></div>
-                    </div> 
-                  </div>    
+                    </div>
+                  </div>
                 </div>
               </div>
-              
-            </div> 
-              
-  
+
+            </div>
+
+
             <div className="col-md-6">
               <div className="new-card">
                 <div className="produc-features">
@@ -120,93 +120,97 @@ class
                     </div>
                     <div className="col-md-2">
                       {data.profileId == profileId ? <Icon
-                          type="edit" size={26}
-                          style={{ marginLeft: '10%', cursor: 'pointer' }}
-                          onClick={() => { this.onGoEditProduct() }}
-                        >
-                        </Icon>
-                      : null}
+                        type="edit" size={26}
+                        style={{ marginLeft: '10%', cursor: 'pointer' }}
+                        onClick={() => { this.onGoEditProduct() }}
+                      >
+                      </Icon>
+                        : null}
                     </div>
                   </div>
                   <div>
                     {data.price ?
-                            <span>
-                              <h4>
-                                Price: { data.price.number} {data.price.currency}
-                              </h4>
-                            </span>
-                    : null}
+                      <span>
+                        <h4>
+                          Price: {data.price.number} {data.price.currency}
+                        </h4>
+                      </span>
+                      : null}
                   </div>
                   <div>
                     {data.salePrice ?
-                            <span>
-                              <h4>
-                                Sale Price: { data.salePrice.number} {data.price.currency}
-                              </h4>
-                            </span>
-                    : null}
+                      <span>
+                        <h4>
+                          Sale Price: {data.salePrice.number} {data.price.currency}
+                        </h4>
+                      </span>
+                      : null}
                   </div>
                 </div>
+                <div>
+                  <span>Qty:</span>
+                  <span> <InputNumber min={0} max={10} defaultValue={1} onChange={this.onChange} /></span>
+                </div>
                 <div className="row center_global row">
-                      <button style={{ textAlign: 'center', width: "90%", marginTop: "20px" }} className="btn button_custom"
-                        onClick={() => this.props.shoppingCartCount(count)}
-                        onClick={this.addTocart}
-                      >Add to cart</button>
-                    </div>
+                  <button style={{ textAlign: 'center', width: "90%", marginTop: "20px" }} className="btn button_custom"
+                    onClick={() => this.props.shoppingCartCount(count)}
+                    onClick={this.addTocart}
+                  >Add to cart</button>
+                </div>
               </div>
 
-              
+
               <div className="new-card">
                 <div className="produc-features">
-                    <span style={{ display: 'inline-flex' }}>
-                      <Icon type="unordered-list" style={{ marginRight: "5px" }} />
-                      <h5>Desciption</h5>
-                    </span>
-                    <p>
-                        {dataDescription}
-                    </p>  
-                  </div>
-                    {this.state.hideDescriptionbtn ? 
-                      <button onClick={this.showDescription}>see more</button>
-                    :
-                      <button onClick={this.lessDescription}>see less</button>
-                    }
+                  <span style={{ display: 'inline-flex' }}>
+                    <Icon type="unordered-list" style={{ marginRight: "5px" }} />
+                    <h5>Desciption</h5>
+                  </span>
+                  <p>
+                    {dataDescription}
+                  </p>
+                </div>
+                {this.state.hideDescriptionbtn ?
+                  <button onClick={this.showDescription}>see more</button>
+                  :
+                  <button onClick={this.lessDescription}>see less</button>
+                }
               </div>
-              
-              
+
+
               <div className="new-card">
                 <div className="produc-features">
-                    <span style={{ display: 'inline-flex' }}>
-                      <Icon type="unordered-list" style={{ marginRight: "5px" }} />
-                      <h5>Product Features</h5>
-                    </span>
-                    <p>{data.productFeature} </p>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <p>Color: <strong>{data.color}</strong></p>
-                        <p>Material Type: <strong>{data.materialType}</strong></p>
-                      </div>
-                      <div className="col-md-6">
-                        <p>Quantity: <strong>{data.quantity}</strong></p>
-                        
-                        
-                          
-                            <p>Sizes: <strong>{data.sizes}</strong></p>
-                            
-                      
-                      </div>
+                  <span style={{ display: 'inline-flex' }}>
+                    <Icon type="unordered-list" style={{ marginRight: "5px" }} />
+                    <h5>Product Features</h5>
+                  </span>
+                  <p>{data.productFeature} </p>
+                  <div className="row">
+                    <div className="col-md-6">
+                      <p>Color: <strong>{data.color}</strong></p>
+                      <p>Material Type: <strong>{data.materialType}</strong></p>
                     </div>
+                    <div className="col-md-6">
+                      <p>Quantity: <strong>{data.quantity}</strong></p>
+
+
+
+                      <p>Sizes: <strong>{data.sizes}</strong></p>
+
+
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        
-        {data &&
-              <ProductReviews shopId={this.props.shopId} productId={this.props.productId}
-              />}
-              </div>
-    
-                  {/* <h3 class=""
+
+          {data &&
+            <ProductReviews shopId={this.props.shopId} productId={this.props.productId}
+            />}
+        </div>
+
+        {/* <h3 class=""
                   >{data.product}</h3>
                   <Link to={{
                     pathname: `/EcommerceProfile/${data.shopId}`,
@@ -219,30 +223,30 @@ class
                     </div>
                   </Link>
                   <h3>{'$' + data.price} & Free Shipping</h3> */}
-                 
-                  
-                 
-                    
-                    {/* <ul className="margins">
+
+
+
+
+        {/* <ul className="margins">
                       <p>Description: {data.description}</p>
                     </ul>  */}
-                  
-                  {/* <div>
+
+        {/* <div>
                     <h4 className="margin"> From The Manufacturer </h4>
                     <h5>{data.manufacturer} <br />{data.manufacturerPart}</h5>
                     <p>Warranty Description: {data.warrantyDescription}</p>
                   </div> */}
-                
-              
-                  {/* <h2>Product Features</h2>
+
+
+        {/* <h2>Product Features</h2>
                   <p>{data.productFeature} </p> */}
-                  {/* {data.sizes && data.sizes.map((elem , key)=>{
+        {/* {data.sizes && data.sizes.map((elem , key)=>{
                     return(<p class="vote">Size: <strong>{elem}</strong></p>)
 
                   })} */}
-                  
-  
-              {/* <div className="new-card" style={{marginTop:"20px"}}>
+
+
+        {/* <div className="new-card" style={{marginTop:"20px"}}>
                   <div className="product-manufacturer">
                     <h2>Manufacturer </h2>
                     <h5>{data.manufacturer} <br />{data.manufacturerPart}</h5>
@@ -250,9 +254,9 @@ class
                     <p>{data.warrantyDescription}</p>
                   </div>
               </div> */}
-              
-            
-              {/* <div className="row">
+
+
+        {/* <div className="row">
                 <div class="details col-md-7">
                   <h3 class="product-title"
                   >{data.product}</h3>
@@ -311,8 +315,8 @@ class
 
 
               <ProductFaq /> */}
-              </div>
-        
+      </div>
+
     )
   }
 }

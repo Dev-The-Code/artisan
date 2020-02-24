@@ -78,21 +78,17 @@ ReactDOM.render(
         <Route path="/Admin" component={AdminScreen}> </Route>
 
         {/*============Ecommerce=============*/}
-        <Route path="/market_ecommerceMarket" component={EcommerceMarket}></Route>
+        <Route path="/explore_Market" component={EcommerceMarket}></Route>
         <Route path="/detail_ecommercedetail" component={EcomDetail}></Route>
         <Route path="/products_GridStyle" component={GridProducts}></Route>
         <Route path="/products_DetailStyle/:value" component={EproductDetails}></Route>
         <Route path="/Forms_Ecommerce" component={EcomForms}></Route>
-        <Route path="/Forms_addproduct" component={AddProduct}></Route>
         <Route path="/checkOutProduct" component={CheckOutPage}></Route>
         <PrivateRoute path="/shopForm" component={ShopForm}></PrivateRoute>
-        <PrivateRoute path="/shopForm2" component={ShopForm2}></PrivateRoute>
         <Route path="/EcommerceProfile/:value" component={EcomProile}></Route>
         <Route path="/oderList/:value" component={OrderList}></Route>
 
         {/*============Ecommerce=============*/}
-
-
 
         <Route path="/profile_user/:value" component={ProfileUser}></Route>
         <Route path="/profile_userDetail" component={ProfileUser}></Route>

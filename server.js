@@ -1217,6 +1217,26 @@ app.get('/api/getprofile', function (req, res) {
     }
   });
 });
+
+/*====================get all profiles============================================================*/
+
+app.get('/api/getprofiles', function (req, res) {
+  profiledata.find(function (err, profileUsers) {
+    if (err) {
+      res.send({
+        code: 404,
+        msg: 'Something went wrong'
+      })
+    }
+    else if (profileUsers) {
+      res.send({
+        code: 200,
+        msg: 'All Profiles Data',
+        content: profileUsers
+      })
+    }
+  })
+});
 /*====================get profile api end==============================================================*/
 
 /*===================post change password API start==========================================================*/
@@ -1446,7 +1466,6 @@ app.post('/api/postJobPortal', (req, res) => {
 app.post('/api/postEventPortal', (req, res) => {
   let postEventPortal = req.body;
   if (postEventPortal.objectId === '') {
-    console.log(postEventPortal, 'if objId is empty')
     let eventData = new eventPortal({
       address: postEventPortal.address,
       city: postEventPortal.city,
@@ -1517,7 +1536,6 @@ app.post('/api/postEventPortal', (req, res) => {
       if (err) {
         return res.status(400).json({ "Unexpected Error:: ": err });
       }
-      console.log(eventData, 'else objId is not empty')
       eventData.address = postEventPortal.address;
       eventData.city = postEventPortal.city;
       eventData.closingTime = postEventPortal.closingTime;
@@ -1580,8 +1598,6 @@ app.post('/api/postEventPortal', (req, res) => {
 app.post('/api/eventTicket', (req, res) => {
   let ticketInfo = req.body.obj;
   let mailTicket = req.body.data;
-  console.log(req.body, 'bodyyyyyyyy')
-
   let ticketData = new eventTicket({
     address: ticketInfo.address,
     city: ticketInfo.city,
@@ -2301,6 +2317,7 @@ app.post('/api/postshop', (req, res) => {
       bankName: shopData.bankName,
       ibank: shopData.ibank,
       swift: shopData.swift,
+      shopEmail: shopData.shopEmail
     })
     postShopData.save(function (err, data) {
       if (err) {
@@ -2477,7 +2494,7 @@ app.get('/api/getShops', (req, res) => {
 app.post('/api/postYourProduct', (req, res) => {
   var postData = req.body;
   // console.log(req.body.images,'iiiimmmmaaggessss')
-  // if (postData.objectId === '') {
+  if (postData.objectId == '') {
   const postDataReq = new postEcomProduct({
     user_Id: postData.user_Id,
     profileId: postData.profileId,
@@ -2510,7 +2527,24 @@ app.post('/api/postYourProduct', (req, res) => {
       });
     }
   })
-  // }
+  }
+  else if (postData.objectId != '') {
+    postEcomProduct.findOneAndUpdate(
+      { "_id": postData.objectId },
+      { $set: _.omit(postData, '_id') },
+      { new: true }
+    ).then(() => {
+      postEcomProduct.find({ "_id": postData.objectId }, function (err, documents) {
+        res.send({
+          error: err,
+          content: documents,
+          code: 200,
+          msg: 'data updated successfullly'
+        });
+        //db.close();
+      })
+    }).catch(() => res.status(422).send({ msg: 'Internal server error' }));
+  }
 })
 
 app.get('/api/getYourProduct', (req, res) => {
@@ -2524,7 +2558,7 @@ app.get('/api/getYourProduct', (req, res) => {
     else if (ecommerceData) {
       res.send({
         code: 200,
-        msg: 'All Ecommerce Data',
+        msg: 'Ecommerce Data',
         content: ecommerceData
       })
     }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import superagent from "superagent";
 import sha1 from "sha1";
 import { HttpUtils } from "../../../Services/HttpUtils";
-import { Redirect } from "react-router-dom";
 import {
   Form,
   Select,
@@ -18,12 +18,7 @@ import {
   Col,
   Modal,
   Spin,
-  Switch,
-  Radio,
-  Slider,
-  Rate,
 } from 'antd';
-
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -88,15 +83,15 @@ const categories = [
       }, {
         value: 'Sandals',
         label: 'Sandals',
-      },{
+      }, {
         value: 'Slippers',
         label: 'Slippers',
-      },{
+      }, {
         value: 'Loafers & Slip Ons',
         label: 'Loafers & Slip Ons',
-      },{
+      }, {
 
-      },{
+      }, {
         value: 'Oxfords & Wingtips',
         label: 'Oxfords & Wingtips',
       }],
@@ -124,64 +119,64 @@ const categories = [
       }, {
         value: 'Clogs & Mules',
         label: 'Clogs & Mules',
-      },{
+      }, {
         value: 'Oxfords & Tie Shoes',
         label: 'Oxfords & Tie Shoes',
-      },{
+      }, {
         value: 'Costume Shows',
         label: 'Costume Shows',
       }],
     }]
   },
   {
-    value: 'Bags & Puses',
-    label: 'Bags & Puses',
+    value: 'Bags & Purses',
+    label: 'Bags & Purses',
+    children: [{
+      value: 'Handbags',
+      label: 'Handbags',
       children: [{
-        value: 'Handbags',
-        label: 'Handbags',
-          children: [{
-            value: 'Shoulder bags',
-            label: 'Shoulder bags', 
-          },{
-            value: 'Clutches & Evening Bags',
-            label: 'Clutches & Evening Bags',
-          },{
-            value: 'Crossbody Bags',
-            label: 'Crossbody Bags',
-          },{
-            value: 'Top HandleBags',
-            label: 'Top HandleBags',
-          }]
-      },{
-        value: 'Wallets & Money Clips',
-        label: 'Wallets & Money Clips',
-          children:[{
-            value: 'Wallets',
-            label: 'Wallets',
-          },{
-            value: 'Business Card Cases',
-            label: 'Business Card Cases',
-          },{
-            value: 'Money Clips',
-            label: 'Money Clips',
-          }]
-      },{
-        value: 'Electronic Cases',
-        label: 'Electronic Cases',
-          children:[{
-            value: 'Phone Cases',
-            label: 'Phone Cases',
-          },{
-            value: 'Laptop Sleeves',
-            label: 'Laptop Sleeves',
-          },{
-            value: 'Tablet & E-Reader Cases',
-            label: 'Tablet & E-Reader Cases',
-          },{
-            value: 'Camera Bags ',
-            label: 'Camera Bags ',
-          }]
+        value: 'Shoulder bags',
+        label: 'Shoulder bags',
+      }, {
+        value: 'Clutches & Evening Bags',
+        label: 'Clutches & Evening Bags',
+      }, {
+        value: 'Crossbody Bags',
+        label: 'Crossbody Bags',
+      }, {
+        value: 'Top HandleBags',
+        label: 'Top HandleBags',
       }]
+    }, {
+      value: 'Wallets & Money Clips',
+      label: 'Wallets & Money Clips',
+      children: [{
+        value: 'Wallets',
+        label: 'Wallets',
+      }, {
+        value: 'Business Card Cases',
+        label: 'Business Card Cases',
+      }, {
+        value: 'Money Clips',
+        label: 'Money Clips',
+      }]
+    }, {
+      value: 'Electronic Cases',
+      label: 'Electronic Cases',
+      children: [{
+        value: 'Phone Cases',
+        label: 'Phone Cases',
+      }, {
+        value: 'Laptop Sleeves',
+        label: 'Laptop Sleeves',
+      }, {
+        value: 'Tablet & E-Reader Cases',
+        label: 'Tablet & E-Reader Cases',
+      }, {
+        value: 'Camera Bags ',
+        label: 'Camera Bags ',
+      }]
+    }]
   },
   {
     value: 'Jwellery',
@@ -230,19 +225,19 @@ const categories = [
       }, {
         value: 'Dangle & Drop Earrings',
         label: 'Dangle & Drop Earrings',
-      },{
+      }, {
         value: 'Stud Earrings',
         label: 'Stud Earrings',
-      },{
+      }, {
         value: 'Hoop Earrings',
         label: 'Hoop Earrings',
-      },{
-        value: 'Clip-On Earrings', 
+      }, {
+        value: 'Clip-On Earrings',
         label: 'Clip-On Earrings',
-      },{
-        value: 'Chandelier Earrings', 
+      }, {
+        value: 'Chandelier Earrings',
         label: 'Chandelier Earrings',
-      },{
+      }, {
         value: 'Screw Back Earrings',
         label: 'Screw Back Earrings',
       }]
@@ -270,10 +265,10 @@ const categories = [
       }, {
         value: 'Monogram & Name Necklaces',
         label: 'Monogram & Name Necklaces',
-      },{
+      }, {
         value: 'Lockets',
         label: 'Lockets',
-      },{
+      }, {
         value: 'Bib Necklaces',
         label: 'Bib Necklaces'
       }]
@@ -304,9 +299,9 @@ const categories = [
       }, {
         value: 'Midi Rings',
         label: 'Midi Rings',
-      },{
-        value:'Triplet & Double Rings',
-        label:'Triplet & Double Rings',
+      }, {
+        value: 'Triplet & Double Rings',
+        label: 'Triplet & Double Rings',
       }]
     }, {
       value: 'Accessories',
@@ -343,10 +338,10 @@ const categories = [
       }, {
         value: 'Wall Decals & Murals',
         label: 'Wall Decals & Murals',
-      },{
+      }, {
         value: 'Wallpapers',
         label: 'Wallpapers',
-      },{
+      }, {
         value: 'Wall Stencils',
         label: 'Wall Stencils',
       }]
@@ -376,7 +371,7 @@ const categories = [
       }, {
         value: 'Wax Melts',
         label: 'Wax Melts',
-      },{
+      }, {
         value: 'Incense',
         label: 'Incense',
       }]
@@ -393,9 +388,9 @@ const categories = [
       }, {
         value: 'Pet ID Tags',
         label: 'Pet ID Tags',
-      },{
+      }, {
         value: 'Pet Leashes',
-        label: 'Pet Leashes', 
+        label: 'Pet Leashes',
       }, {
         value: 'Pet Harnesses & Backpacks',
         label: 'Pet Harnesses & Backpacks',
@@ -409,10 +404,10 @@ const categories = [
       }, {
         value: 'Pet Hammocks',
         label: 'Pet Hammocks',
-      },{
+      }, {
         value: 'Play Furniture',
         label: 'Play Furniture',
-      },{
+      }, {
         value: 'Pet Steps',
         label: 'Pet Steps',
       }]
@@ -462,13 +457,13 @@ const categories = [
       }, {
         value: 'Bird Cages',
         label: 'Bird Cages',
-      },{
+      }, {
         value: 'Pet Totes',
         label: 'Pet Totes',
-      },{
+      }, {
         value: 'Pet Crates & Kennels',
         label: 'Pet Crates & Kennels',
-      },{
+      }, {
         value: 'Coops',
         label: 'Coops',
       }]
@@ -485,10 +480,10 @@ const categories = [
       }, {
         value: 'Coffee & End Tables',
         label: 'Coffee & End Tables',
-      },{
+      }, {
         value: 'Chairs & Ottomans',
         label: 'Chairs & Ottomans',
-      },{
+      }, {
         value: 'Floor Cushions',
         label: 'Floor Cushions',
       }]
@@ -543,66 +538,83 @@ const categories = [
     }]
   }];
 
-const sizes = [
+const sizesOfProducts = [
   {
-    value: 'xtra-small',
-    label: 'Xtra Small',
+    label: 'Clothing',
+    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
   },
   {
-    value: 'small',
-    label: 'Small',
+    label: 'Shoes',
+    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
   },
   {
-    value: 'medium',
-    label: 'Medium',
+    label: 'Bags & Purses',
+    value: []
   },
   {
-    value: 'large',
-    label: 'Large',
+    label: 'Jwellery',
+    value: ['Universal']
   },
   {
-    value: 'xtra-large',
-    label: 'Xtra Large',
+    label: 'Decor',
+    value: ['Per Squre Feet']
   },
   {
-    value: 'XXl',
-    label: 'XX Large',
+    label: 'Pets',
+    value: []
+  },
+  {
+    label: 'Furniture',
+    value: ['King', 'Queen', 'Single']
   }
+]
 
-];
 
+const colorsOfProducts = [
+  {
+    label: 'Clothing',
+    value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+      'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+      'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+      'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',]
+  },
+  {
+    label: 'Shoes',
+    value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+      'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+      'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+      'Brown', 'Camel Brown', "Chocolate Brown",]
+  },
+  {
+    label: 'Bags & Purses',
+    value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+      'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+      'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+      'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+  },
+  {
+    label: 'Jwellery',
+    value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+      "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+      'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+  },
+  {
+    label: 'Decor',
+    value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+      "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+  },
+  {
+    label: 'Pets',
+    value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+      "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+  },
+  {
+    label: 'Furniture',
+    value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+      "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+  }
+]
 
-const color = [{
-  value: 'Black',
-  label: 'Black',
-},{
-  value: 'Blue',
-  label: 'Blue',
-},{
-  value: 'Green',
-  label: 'Green',
-},{
-  value: 'Yellow',
-  label: 'Yellow',
-},{
-  value: 'White',
-  label: 'White',
-},{
-  value: 'Brown',
-  label: 'Brown',
-},{
-  value: 'Red',
-  label: 'Red',
-},{
-  value: 'Maroon',
-  label: 'Maroon',
-},{
-  value: 'Customize',
-  label: 'Customize',
-},{
-  value: 'Orange',
-  label: 'Orange',
-}];
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -662,8 +674,6 @@ class PriceInput extends React.Component {
 }
 
 
-
-
 class EcommerceForm extends Component {
 
   constructor(props) {
@@ -688,42 +698,53 @@ class EcommerceForm extends Component {
       color: [],
       productData: "",
       goProductDetailPage: false,
-      producId: ''
+      producId: '',
+      imageList: [],
+      renderSizes: [],
+      renderColors: []
     }
   }
 
 
   componentDidMount() {
     let data = this.props.data;
-    if (data) {
+    if (data._id != undefined) {
+      this.setState({
+        product: data.product,
+        category: data.categories,
+        sizes: data.sizes,
+        price: data.price,
+        salePrice: data.salePrice,
+        materialType: data.materialType,
+        description: data.description,
+        data: data.color,
+        quantity: data.quantity,
+        objectId: data._id,
+        data: data,
+        imageList: data.images
+      })
+    }
+    else if (data._id == undefined) {
       this.setState({
         data: data
       })
     }
   }
 
+
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        // this.handleEvent(values)
-        // this.setState({
-        //   loader: true,
-        //   btnDisabeld: true
-        // })
-        // this.funcForUpload(values)
-        console.log(values, 'values')
+        this.setState({
+          loader: true,
+          btnDisabeld: true
+        })
+        this.funcForUpload(values)
       }
     });
   }
-
-  // handleEvent = async (val) => {
-  //   console.log(val, "getproducts")
-
-  //   let responseEcommreceData = await HttpUtils.post('postEcomreceProduct', val)
-  //   console.log(responseEcommreceData, 'reqProductsObj')
-  // }
-
 
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
@@ -748,6 +769,11 @@ class EcommerceForm extends Component {
 
   handleChange = ({ fileList }) => this.setState({ fileList });
 
+  deleteImage(e) {
+    let { imageList } = this.state;
+    imageList = imageList.filter((elem) => elem !== e)
+    this.setState({ imageList: imageList })
+  }
 
   async funcForUpload(values, key) {
     const { fileList } = this.state;
@@ -760,18 +786,36 @@ class EcommerceForm extends Component {
     })
   }
 
-  onChangeSizes = (values) => {
-    console.log(values, "onchange")
-    const {sizes} = this.state
-    let arr=[];
-    arr.push(values[2])
-    this.setState({
-      sizes: arr
-    })
+  onChangeGetSizes = (values) => {
+
+    for (var i = 0; i < sizesOfProducts.length; i++) {
+      if (values[0] == sizesOfProducts[i].label) {
+        this.setState({
+          renderSizes: sizesOfProducts[i].value
+        })
+        // console.log(sizesOfProducts[i].value)
+      }
+    }
+    for (var j = 0; j < colorsOfProducts.length; j++) {
+      if (values[0] == colorsOfProducts[j].label) {
+        this.setState({
+          renderColors: colorsOfProducts[j].value
+        })
+        // console.log(colorsOfProducts[i].value)
+      }
+    }
+    // renderSizes: [],
+    // renderColors: []
+
+    // let arr = [];
+    // arr.push(values[2])
+    // this.setState({
+    //   sizes: arr
+    // })
 
 
   }
-  
+
   //--------------function for cloudnary url ---------------
   uploadFile = (files) => {
     const image = files.originFileObj
@@ -803,9 +847,8 @@ class EcommerceForm extends Component {
 
   //-----------------cloudnary function end ------------------//
   async postData(values, response, key) {
-    const { data, objectId } = this.state;
+    const { data, objectId, imageList } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
-
     let objOfProduct = {
       product: values.product,
       categories: values.categories,
@@ -816,27 +859,37 @@ class EcommerceForm extends Component {
       materialType: values.materialType,
       description: values.description,
       color: values.color,
-      images: response,
+      images: [...imageList, ...response],
       shopId: data.shopId,
       shopName: data.shopTitle,
       user_Id: user._id,
       profileId: user.profileId,
+      objectId: objectId
     }
-    console.log(response , 'response')
-    console.log(objOfProduct , 'objOfProduct')
-
     let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
 
     if (responseEcommreceData.code == 200) {
-      this.setState({
-        loader: false,
-        btnDisabeld: false,
-        mgs: responseEcommreceData.mgs,
-        productData: responseEcommreceData.content,
-        producId: responseEcommreceData.content._id,
-        goProductDetailPage: true
-      })
-      console.log(responseEcommreceData, 'reqProductsObj')
+      if (objectId == '') {
+        this.setState({
+          loader: false,
+          btnDisabeld: false,
+          mgs: responseEcommreceData.mgs,
+          productData: responseEcommreceData.content,
+          producId: responseEcommreceData.content._id,
+          goProductDetailPage: true
+        })
+
+      }
+      else {
+        this.setState({
+          loader: false,
+          btnDisabeld: false,
+          mgs: responseEcommreceData.mgs,
+          productData: responseEcommreceData.content[0],
+          producId: responseEcommreceData.content[0]._id,
+          goProductDetailPage: true
+        })
+      }
       let msg = 'Your product is saved successfully.'
       this.openNotification(msg)
     }
@@ -863,13 +916,13 @@ class EcommerceForm extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { previewVisible,  previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice, price, materialType, description, color, productData, goProductDetailPage , producId} = this.state;
-    console.log(sizes,"Sizes")
-    // if (goProductDetailPage) {
-    //   return (
-    //     <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
-    //   )
-    // }
+    const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice,
+      price, materialType, description, color, productData, goProductDetailPage, producId, imageList, renderSizes, renderColors } = this.state;
+    if (goProductDetailPage) {
+      return (
+        <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
+      )
+    }
 
     const uploadButton = (
       <div>
@@ -877,6 +930,34 @@ class EcommerceForm extends Component {
         <div className="ant-upload-text">Upload</div>
       </div>
     );
+    const uploadedImages = (
+      <div style={{ height: '100%' }}>
+        {imageList && imageList.map((elem) => {
+          return (
+            <div className='insideDiv'>
+              <a>
+                <img alt='img1' src={elem} style={{ height: '100%' }} />
+                <span>
+                  <a><Icon title='Preview file' onClick={() =>
+                    this.handlePreview(elem)} type="eye" theme="outlined"
+                    style={{
+                      zIndex: 10, transition: 'all .3s', fontSize: '16px',
+                      width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
+                    }} />
+                  </a>
+                  <Icon title='Remove file' type='delete'
+                    onClick={this.deleteImage.bind(this, elem)}
+                    style={{
+                      zIndex: 10, transition: 'all .3s', fontSize: '16px',
+                      width: '30px', color: 'rgba(255, 255, 255, 0.85)', margin: '0 4px'
+                    }} />
+                </span>
+              </a>
+            </div>
+          )
+        })}
+      </div>
+    )
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -908,11 +989,11 @@ class EcommerceForm extends Component {
                   message: 'Please select your product category'
                 },
               ],
-            })(<Cascader options={categories} onChange={this.onChangeSizes}/>)}
+            })(<Cascader options={categories} onChange={this.onChangeGetSizes} />)}
           </Form.Item>
 
           {/*Sizes*/}
-          <Form.Item label="Select Sizes">
+          {renderSizes.length > 0 && <Form.Item label="Select Sizes">
             {getFieldDecorator('sizes', {
               initialValue: sizes,
               rules: [
@@ -921,26 +1002,48 @@ class EcommerceForm extends Component {
             })(
               <Checkbox.Group style={{ width: '100%' }}>
                 <Row>
-                  <Col span={8}>
-                    <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox value="Small">Small</Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox value="Medium">Medium</Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox value="Large">Large</Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox value="Xrta-Large">Xtra Large</Checkbox>
-                  </Col>
+                  {renderSizes && renderSizes.map((elem, key) => {
+                    return (
+                      // <div className="">
+                      // <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
+                      // </div>
+                      <Col span={8}>
+                        <Checkbox value={elem}>{elem}</Checkbox>
+                      </Col>
+                    )
+                  })}
                 </Row>
-              </Checkbox.Group>,
+              </Checkbox.Group>
             )}
           </Form.Item>
+          }
 
+          {/*Color*/}
+          {renderColors.length > 0 && <Form.Item label="Product Color">
+            {getFieldDecorator('color', {
+              initialValue: color,
+              rules: [
+                { required: true, message: 'Please select your Colors!', type: 'array' },
+              ],
+            })(
+              <Checkbox.Group style={{ width: '100%' }}>
+                <Row>
+                  {renderColors && renderColors.map((elem, key) => {
+                    return (
+                      // <div className="">
+                      // <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
+                      // </div>
+                      <Col span={8}>
+                        <Checkbox value={elem}>{elem}</Checkbox>
+                      </Col>
+                    )
+                  })}
+                </Row>
+
+              </Checkbox.Group>
+            )}
+          </Form.Item>
+          }
           {/*Quantity*/}
           <Form.Item label="Select Quantity">
             {getFieldDecorator('quantity', {
@@ -993,31 +1096,19 @@ class EcommerceForm extends Component {
             })(<TextArea rows={4} />)}
           </Form.Item>
 
-
-          {/*Color*/}
-          <Form.Item label="Product Color">
-            {getFieldDecorator('color', {
-              initialValue: color,
-              rules: [{
-                required: true,
-                message: 'Please enter your color!',
-                whitespace: true,
-                type: 'array',
-              }],
-            })(<Select mode="multiple" placeholder="Please select favourite colors">
-              <Option value="blue">Blue</Option>
-            </Select>)}
-          </Form.Item>
-
-
           {/*Uplaod Images*/}
 
           <Form.Item label="upload">
             {getFieldDecorator('images', {
-
+              rules: [{
+                required: true,
+                message: 'Please upload your Images!',
+                whitespace: true
+              }],
             })
               (
                 <div className="clearfix">
+                  {uploadedImages}
                   <Upload
                     action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                     listType="picture-card"
@@ -1025,7 +1116,7 @@ class EcommerceForm extends Component {
                     onPreview={this.handlePreview}
                     onChange={this.handleChange}
                   >
-                    {fileList.length >= 8 ? null : uploadButton}
+                    {imageList && imageList.length + fileList.length >= 8 ? null : uploadButton}
                   </Upload>
                   <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                     <img alt="example" style={{ width: '100%' }} src={previewImage} />

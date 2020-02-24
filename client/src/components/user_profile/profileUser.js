@@ -58,6 +58,7 @@ class ProfileUser extends Component {
     handleLocalStorage = async () => {
         let userObj = JSON.parse(localStorage.getItem('user'))
         let profileIdFromPath = this.props.location.pathname.slice(14)
+
         if (userObj != null) {
             if (userObj.profileId == profileIdFromPath) {
                 this.getprofileData(userObj.profileId, userObj._id)
@@ -87,19 +88,21 @@ class ProfileUser extends Component {
         let req = await HttpUtils.get('getprofile?profileId=' + id)
         if (req) {
             let user = req.content;
-            this.setState({
-                name: user.name,
-                email: user.email,
-                location: user.location,
-                description: user.description,
-                desLen: user.description ? 500 - user.description.length : 500,
-                phone: user.phone,
-                twitter: user.twitterlink,
-                facebook: user.facebooklink,
-                imageUrl: user.imageurl,
-                url: user.imageurl
-            })
-            this.getAllBusiness(userId)
+            if (user) {
+                this.setState({
+                    name: user.name,
+                    email: user.email,
+                    location: user.location,
+                    description: user.description,
+                    desLen: user.description ? 500 - user.description.length : 500,
+                    phone: user.phone,
+                    twitter: user.twitterlink,
+                    facebook: user.facebooklink,
+                    imageUrl: user.imageurl,
+                    url: user.imageurl
+                })
+                this.getAllBusiness(userId)
+            }
         }
     }
 
@@ -110,31 +113,31 @@ class ProfileUser extends Component {
         let arr4 = [];
         let arr5;
 
-        let req = await HttpUtils.get('marketplace')
-        req.roomrentsdata && req.roomrentsdata.map((elem) => {
-            if (elem.user_id === id) {
-                let data = { ...elem, ...{ route: 'rooms' } }
-                arr1.push(data)
-            }
-        })
-        req.business && req.business.map((elem) => {
-            if (elem.user_id === id) {
-                let data = { ...elem, ...{ route: 'business' } }
-                arr2.push(data)
-            }
-        })
-        req.busell && req.busell.map((elem) => {
-            if (elem.userid === id) {
-                let data = { ...elem, ...{ route: 'buySell' } }
-                arr3.push(data)
-            }
-        })
-        req.jobPortalData && req.jobPortalData.map((elem) => {
-            if (elem.user_id === id) {
-                let data = { ...elem, ...{ route: 'jobPortal' } }
-                arr4.push(data)
-            }
-        })
+        // let req = await HttpUtils.get('marketplace')
+        // req.roomrentsdata && req.roomrentsdata.map((elem) => {
+        //     if (elem.user_id === id) {
+        //         let data = { ...elem, ...{ route: 'rooms' } }
+        //         arr1.push(data)
+        //     }
+        // })
+        // req.business && req.business.map((elem) => {
+        //     if (elem.user_id === id) {
+        //         let data = { ...elem, ...{ route: 'business' } }
+        //         arr2.push(data)
+        //     }
+        // })
+        // req.busell && req.busell.map((elem) => {
+        //     if (elem.userid === id) {
+        //         let data = { ...elem, ...{ route: 'buySell' } }
+        //         arr3.push(data)
+        //     }
+        // })
+        // req.jobPortalData && req.jobPortalData.map((elem) => {
+        //     if (elem.user_id === id) {
+        //         let data = { ...elem, ...{ route: 'jobPortal' } }
+        //         arr4.push(data)
+        //     }
+        // })
         // req.ecommerce && req.ecommerce.map((elem) => {
         //     if (elem.user_Id === id) {
         //         let data = { ...elem, ...{ route: 'ecommerce' } }
@@ -337,28 +340,29 @@ class ProfileUser extends Component {
     }
 
     editBusiness = (e) => {
-        if (e.route === "buySell") {
-            this.setState({
-                buySell: true,
-                data: e,
-            })
-        } else if (e.route === "business") {
-            this.setState({
-                business: true,
-                data: e,
-            })
-        } else if (e.route === "rooms") {
-            this.setState({
-                rooms: true,
-                data: e,
-            })
-        } else if (e.route === "jobPortal") {
-            this.setState({
-                jobPortal: true,
-                data: e,
-            })
-        }
-        else if (e.route === "ecommerce") {
+        // if (e.route === "buySell") {
+        //     this.setState({
+        //         buySell: true,
+        //         data: e,
+        //     })
+        // } else if (e.route === "business") {
+        //     this.setState({
+        //         business: true,
+        //         data: e,
+        //     })
+        // } else if (e.route === "rooms") {
+        //     this.setState({
+        //         rooms: true,
+        //         data: e,
+        //     })
+        // } else if (e.route === "jobPortal") {
+        //     this.setState({
+        //         jobPortal: true,
+        //         data: e,
+        //     })
+        // }
+        // else 
+        if (e.route === "ecommerce") {
             this.setState({
                 ecommerce: true,
                 data: e,
@@ -386,24 +390,25 @@ class ProfileUser extends Component {
         const { imageUrl, profileSec, changePass, name, email, description, phone, twitter, facebook, location,
             listing, listData1, listData2, listData3, listData4, listData5, buySell, business, rooms, jobPortal,
             ecommerce, data, allData, publicSection, reviewProfile } = this.state;
-        if (buySell) {
-            return (
-                <Redirect to={{ pathname: '/postad_buysell', state: data }} />
-            )
-        } else if (business) {
-            return (
-                <Redirect to={{ pathname: '/postad_business', state: data }} />
-            )
-        } else if (rooms) {
-            return (
-                <Redirect to={{ pathname: '/postad_Roommates', state: data }} />
-            )
-        } else if (jobPortal) {
-            return (
-                <Redirect to={{ pathname: '/postad_jobPortal', state: data }} />
-            )
-        }
-        else if (ecommerce) {
+        // if (buySell) {
+        //     return (
+        //         <Redirect to={{ pathname: '/postad_buysell', state: data }} />
+        //     )
+        // } else if (business) {
+        //     return (
+        //         <Redirect to={{ pathname: '/postad_business', state: data }} />
+        //     )
+        // } else if (rooms) {
+        //     return (
+        //         <Redirect to={{ pathname: '/postad_Roommates', state: data }} />
+        //     )
+        // } else if (jobPortal) {
+        //     return (
+        //         <Redirect to={{ pathname: '/postad_jobPortal', state: data }} />
+        //     )
+        // }
+        // else 
+        if (ecommerce) {
             return (
                 <Redirect to={{ pathname: `/Forms_Ecommerce`, state: data }} />
             )
@@ -746,175 +751,6 @@ class ProfileUser extends Component {
                                             </div>}
                                             {/*===============Ad Listing start=================*/}
                                             {listing && <Tabs defaultActiveKey="1">
-                                                {/* <TabPane tab='Room Renting' key="1">
-                                                    <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '20px' }}>
-                                                            <div className="row">
-                                                                {listData1.length ? listData1.map((elem) => {
-                                                                    let img = elem.imageurl && elem.imageurl[0] ||
-                                                                        '../images/images.jpg';
-                                                                    let title = elem.postingtitle || ''
-                                                                    let str = elem.discription || '';
-                                                                    if (str.length > 45) {
-                                                                        str = str.substring(0, 45);
-                                                                        str = str + '...'
-                                                                    }
-                                                                    return (
-                                                                        <div className="col-md-4"
-                                                                            style={{
-                                                                                marginBottom: '20px',
-                                                                                marginTop: '20px'
-                                                                            }}>
-                                                                            <div className="card">
-                                                                                <Link to={{ pathname: `/detail_roomRent`, state: elem }}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
-                                                                                    <i className="glyphicon glyphicon-edit"
-                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
-                                                                                        <span style={{ margin: "7px" }}>
-                                                                                            Edit</span>
-                                                                                    </i></a>
-                                                                                <i className="glyphicon glyphicon-trash"
-                                                                                    style={{
-                                                                                        padding: "16px", marginTop: "8px", float: "right",
-                                                                                        color: "gray"
-                                                                                    }}><span style={{ margin: "7px" }}>
-                                                                                        Remove</span></i>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    )
-                                                                }) :
-                                                                    noData
-                                                                }
-                                                            </div>
-                                                            {/*!!listData.length && <span style={{textAlign:"center"}}><Pagination defaultCurrent={1} defaultPageSize={6} total={allData.length} onChange={this.onChange} /></span>
-                                                        </div>
-                                                    </div>
-                                                </TabPane> */}
-                                                {/* <TabPane tab='Bussiness Listing' key="2">
-                                                    <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '20px' }}>
-                                                            <div className="row">
-                                                                {listData2.length ? listData2.map((elem) => {
-                                                                    let img = elem.businessImages && elem.businessImages[0] || '../images/images.jpg';
-                                                                    let title = elem.businessname || ''
-                                                                    let str = elem.description || '';
-                                                                    if (str.length > 45) {
-                                                                        str = str.substring(0, 45);
-                                                                        str = str + '...'
-                                                                    }
-                                                                    return (
-                                                                        <div className="col-md-4"
-                                                                            style={{
-                                                                                marginBottom: '20px',
-                                                                                marginTop: '20px'
-                                                                            }}>
-                                                                            <div className="card">
-                                                                                <Link to={{ pathname: `/detail_business`, state: elem }}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
-                                                                                    <i className="glyphicon glyphicon-edit"
-                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
-                                                                                        <span style={{ margin: "7px" }}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash"
-                                                                                    style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}>
-                                                                                    <span style={{ margin: "7px" }}>Remove</span></i>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    )
-                                                                }) :
-                                                                    noData
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </TabPane> */}
-                                                {/* <TabPane tab='Buy & Sell' key="3">
-                                                    <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '20px' }}>
-                                                            <div className="row">
-                                                                {listData3.length ? listData3.map((elem) => {
-                                                                    let img = elem.images && elem.images[0] || '../images/images.jpg';
-                                                                    let title = elem.title || ''
-                                                                    let str = elem.description || '';
-                                                                    if (str.length > 45) {
-                                                                        str = str.substring(0, 45);
-                                                                        str = str + '...'
-                                                                    }
-                                                                    return (
-                                                                        <div className="col-md-4"
-                                                                            style={{
-                                                                                marginBottom: '20px',
-                                                                                marginTop: '20px'
-                                                                            }}>
-                                                                            <div className="card">
-                                                                                <Link to={{ pathname: `/detail_buySell`, state: elem }}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}><i className="glyphicon glyphicon-edit" style={{ padding: "16px", marginTop: "8px", color: "gray" }}><span style={{ margin: "7px" }}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash" style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}><span style={{ margin: "7px" }}>Remove</span></i>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    )
-                                                                }) :
-                                                                    noData
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </TabPane> */}
-                                                {/* <TabPane tab='Job Portal' key="4">
-                                                    <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
-                                                        <div className="index-content" style={{ marginTop: '20px' }}>
-                                                            <div className="row">
-                                                                {listData4.length ? listData4.map((elem) => {
-                                                                    let img = elem.arr_url && elem.arr_url[0] || '../images/images.jpg';
-                                                                    let title = elem.compName || ''
-                                                                    let str = elem.compDescription || '';
-                                                                    if (str.length > 45) {
-                                                                        str = str.substring(0, 45);
-                                                                        str = str + '...'
-                                                                    }
-                                                                    return (
-                                                                        <div className="col-md-4"
-                                                                            style={{
-                                                                                marginBottom: '20px',
-                                                                                marginTop: '20px'
-                                                                            }}>
-                                                                            <div className="card">
-                                                                                <Link to={{ pathname: `/detail_jobPortal`, state: elem }}>
-                                                                                    <img alt='' src={img} />
-                                                                                    <h4>{title}</h4>
-                                                                                    <p>{str}</p>
-                                                                                </Link>
-                                                                                <a onClick={this.editBusiness.bind(this, elem)}>
-                                                                                    <i className="glyphicon glyphicon-edit"
-                                                                                        style={{ padding: "16px", marginTop: "8px", color: "gray" }}>
-                                                                                        <span style={{ margin: "7px" }}>Edit</span></i></a>
-                                                                                <i className="glyphicon glyphicon-trash"
-                                                                                    style={{ padding: "16px", marginTop: "8px", float: "right", color: "gray" }}>
-                                                                                    <span style={{ margin: "7px" }}>Remove</span></i>
-                                                                            </div>
-                                                                        </div>
-                                                                    )
-                                                                }) :
-                                                                    noData
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </TabPane> */}
                                                 <TabPane tab='E Commerce' key="1">
                                                     <div className="secondfold" style={{ backgroundColor: '#FBFAFA' }}>
                                                         <div className="index-content" style={{ marginTop: '20px' }}>

@@ -33,7 +33,6 @@ class EproductDetail extends Component {
   }
   async componentDidMount() {
     let data = this.props.location.state;
-    console.log(data ,'data')
     const userData = JSON.parse(localStorage.getItem('user'));
     if (userData) {
       this.setState({

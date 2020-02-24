@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './shopFilterTab.css';
 import { Cascader, Checkbox } from 'antd';
 
-
 const category = [
   {
     value: 'Clothing',
@@ -46,20 +45,18 @@ class FourEcom extends Component {
 
     }
   }
-  onChange = (e) => {
-    console.log(e, 'e')
-  }
 
   render() {
-    const { categories, location, onChange, locationCitiesShops } = this.props;
+    const { locationCitiesShops, onChangeShop, onChangeShopLocation, shopCategory , shopLocation} = this.props;
     return (
       <div>
         <div className="" style={{ padding: "15px" }}>
           <h4 style={{ fontWeight: '700' }}>Related Categories</h4>
           <ol style={{ marginTop: "0", marginLeft: "38px" }}>
             <Cascader
+              value={shopCategory}
               options={category}
-              onChange={this.onChange}
+              onChange={onChangeShop}
             />
           </ol>
         </div>
@@ -68,7 +65,8 @@ class FourEcom extends Component {
         <div className="" style={{ display: "grid", padding: "15px" }}>
           <h4 style={{ fontWeight: '700' }}>Location</h4>
           <Checkbox.Group style={{ width: '100%' }}
-          //  onChange={onChange.bind(this, 'brand name')}
+            onChange={onChangeShopLocation}
+            value={shopLocation}
           >
             <div className="" style={{ display: "grid" }}>
               {locationCitiesShops && locationCitiesShops.map((elem, key) => {

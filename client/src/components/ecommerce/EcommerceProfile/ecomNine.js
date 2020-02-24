@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ecomNine.css';
-import { Rate } from 'antd';
+import { Rate, Spin, Icon } from 'antd';
 import { Link } from "react-router-dom";
 
 
@@ -12,6 +12,8 @@ class EcomNine extends Component {
 
     render() {
         const { allProducts, filterDataShow, filteredData, filterDataNotFound, categoriesName, removeCategories } = this.props;
+        const antIcon =
+            <Icon type="loading" style={{ fontSize: '110px' }} spin />;
         return (
             <div className="container" style={{ padding: '0px', width: '100%' }}>
                 {categoriesName.length > 0 ?
@@ -21,6 +23,9 @@ class EcomNine extends Component {
                     </div> : null}
                 <div className="row">
                     <div className="col-md-12">
+                        {allProducts.length == 0 ?
+                            <div style={{ textAlign: 'center' }}> <Spin indicator={antIcon} /> </div>
+                            : null}
                         {filterDataShow ?
                             filteredData && filteredData.map((elem, key) => {
                                 return (

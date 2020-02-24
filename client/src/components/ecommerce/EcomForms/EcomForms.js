@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import HeaderMenu from '../../header/headermenu';
-import Slider from '../../header/Slider';
 import Footer from '../../footer/footer';
-import KeywordsForm from './keywordsForm';
 import EcommerceForm from './ecommerceforms';
-import EcomTabs from './EcomTabs';
-import NewForm from './new_form';
-import VitalInfo from './EvitalInfo';
-import OfferInfo from './OfferInfo';
 import './ecomform.css'
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 class EcomForms extends Component {
   constructor(props) {
@@ -28,7 +22,6 @@ class EcomForms extends Component {
           </div>
         </div>
         <div className="container">
-          {/* <EcomTabs data={this.props.location.state} /> */}
           <EcommerceForm data={this.props.location.state}/>
         </div>
         <Footer />

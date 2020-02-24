@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './EcomShopcard.css'
+import { Spin, Icon } from 'antd';
 
 class EshopCard extends Component {
   constructor(props) {
@@ -8,6 +9,8 @@ class EshopCard extends Component {
   }
   render() {
     const { showRecord, productsData, notFoundFilterData, filteredData, removeValue, showAllProducts, colorsofProduct, categoryofProduct, sizesofProducts } = this.props;
+    const antIcon =
+    <Icon type="loading" style={{ fontSize: '110px' }} spin />;
     return (
 
       <div className="container" style={{ width: "100%" }}>
@@ -54,6 +57,9 @@ class EshopCard extends Component {
           </div>}
         <div className="row">
           <div className="col-md-12">
+            {productsData.length == 0 ?
+              <div style={{ textAlign: 'center' }}> <Spin indicator={antIcon} /> </div>
+              : null}
             {notFoundFilterData && filteredData.length == 0 ?
               <div>
                 <p>

@@ -5,7 +5,9 @@ import Ecomtabs from './ecommercetabs';
 
 
 class EcommerceMarket extends Component {
-
+  constructor(props) {
+    super(props)
+  }
 
   render() {
     return (
@@ -15,7 +17,7 @@ class EcommerceMarket extends Component {
             <div className="visible-xs" style={{ marginTop: '-119px' }}></div>
             <div className="background-image">
               <HeaderMenu />
-              <Ecomtabs />
+              <Ecomtabs data={this.props.location.state} />
             </div>
           </div>
         </span>

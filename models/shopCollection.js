@@ -8,20 +8,21 @@ var shopCollection = new mongoose.Schema({
     images: { type: Array },
     shopAddress: { type: String },
     shopCategories: { type: Array },
-    shopCity: { type: String },
+    shopCity: { type: Array },
     shopDescription: { type: String },
-    shopState: { type: String },
+    shopState: { type: Array },
     shopTitle: { type: String },
     profileId: { type: String },
     userId: { type: String },
     shopPurpose: { type: String },
     shopLogo: { type: Array },
     percantageOfShop: { type: Number },
-    accountTitle:{type: String},
-    bankAddress:{type: String},
-    bankName:{type: String},
-    ibank:{type: String},
-    swift:{type: String},
+    accountTitle: { type: String },
+    bankAddress: { type: String },
+    bankName: { type: String },
+    ibank: { type: String },
+    swift: { type: String },
+    shopEmail: { type: String }
 
 });
 //categorySchema.plugin(uniqueValidator);
