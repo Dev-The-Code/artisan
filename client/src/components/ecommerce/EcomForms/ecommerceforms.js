@@ -129,8 +129,8 @@ const categories = [
     }]
   },
   {
-    value: 'Bags & Puses',
-    label: 'Bags & Puses',
+    value: 'Bags & Purses',
+    label: 'Bags & Purses',
     children: [{
       value: 'Handbags',
       label: 'Handbags',
@@ -538,6 +538,83 @@ const categories = [
     }]
   }];
 
+const sizesOfProducts = [
+  {
+    label: 'Clothing',
+    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
+  },
+  {
+    label: 'Shoes',
+    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+  },
+  {
+    label: 'Bags & Purses',
+    value: []
+  },
+  {
+    label: 'Jwellery',
+    value: ['Universal']
+  },
+  {
+    label: 'Decor',
+    value: ['Per Squre Feet']
+  },
+  {
+    label: 'Pets',
+    value: []
+  },
+  {
+    label: 'Furniture',
+    value: ['King', 'Queen', 'Single']
+  }
+]
+
+
+const colorsOfProducts = [
+  {
+    label: 'Clothing',
+    value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+      'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+      'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+      'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',]
+  },
+  {
+    label: 'Shoes',
+    value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+      'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+      'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+      'Brown', 'Camel Brown', "Chocolate Brown",]
+  },
+  {
+    label: 'Bags & Purses',
+    value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+      'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+      'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+      'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+  },
+  {
+    label: 'Jwellery',
+    value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+      "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+      'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+  },
+  {
+    label: 'Decor',
+    value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+      "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+  },
+  {
+    label: 'Pets',
+    value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+      "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+  },
+  {
+    label: 'Furniture',
+    value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+      "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+  }
+]
+
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -597,8 +674,6 @@ class PriceInput extends React.Component {
 }
 
 
-
-
 class EcommerceForm extends Component {
 
   constructor(props) {
@@ -624,16 +699,16 @@ class EcommerceForm extends Component {
       productData: "",
       goProductDetailPage: false,
       producId: '',
-      imageList: []
+      imageList: [],
+      renderSizes: [],
+      renderColors: []
     }
   }
 
 
   componentDidMount() {
     let data = this.props.data;
-    console.log(data, 'data')
     if (data._id != undefined) {
-      console.log('edit product')
       this.setState({
         product: data.product,
         category: data.categories,
@@ -650,7 +725,6 @@ class EcommerceForm extends Component {
       })
     }
     else if (data._id == undefined) {
-      console.log('add product')
       this.setState({
         data: data
       })
@@ -712,12 +786,32 @@ class EcommerceForm extends Component {
     })
   }
 
-  onChangeSizes = (values) => {
-    let arr = [];
-    arr.push(values[2])
-    this.setState({
-      sizes: arr
-    })
+  onChangeGetSizes = (values) => {
+
+    for (var i = 0; i < sizesOfProducts.length; i++) {
+      if (values[0] == sizesOfProducts[i].label) {
+        this.setState({
+          renderSizes: sizesOfProducts[i].value
+        })
+        // console.log(sizesOfProducts[i].value)
+      }
+    }
+    for (var j = 0; j < colorsOfProducts.length; j++) {
+      if (values[0] == colorsOfProducts[j].label) {
+        this.setState({
+          renderColors: colorsOfProducts[j].value
+        })
+        // console.log(colorsOfProducts[i].value)
+      }
+    }
+    // renderSizes: [],
+    // renderColors: []
+
+    // let arr = [];
+    // arr.push(values[2])
+    // this.setState({
+    //   sizes: arr
+    // })
 
 
   }
@@ -772,12 +866,10 @@ class EcommerceForm extends Component {
       profileId: user.profileId,
       objectId: objectId
     }
-    console.log(objOfProduct, 'objOfProduct')
     let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
-    console.log(responseEcommreceData, 'responseEcommreceData')
 
     if (responseEcommreceData.code == 200) {
-      if(objectId == ''){
+      if (objectId == '') {
         this.setState({
           loader: false,
           btnDisabeld: false,
@@ -788,7 +880,7 @@ class EcommerceForm extends Component {
         })
 
       }
-      else{
+      else {
         this.setState({
           loader: false,
           btnDisabeld: false,
@@ -798,7 +890,6 @@ class EcommerceForm extends Component {
           goProductDetailPage: true
         })
       }
-      console.log(responseEcommreceData, 'reqProductsObj')
       let msg = 'Your product is saved successfully.'
       this.openNotification(msg)
     }
@@ -825,8 +916,8 @@ class EcommerceForm extends Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice, price, materialType, description, color, productData, goProductDetailPage, producId, imageList } = this.state;
-    console.log(imageList, "imageList");
+    const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice,
+      price, materialType, description, color, productData, goProductDetailPage, producId, imageList, renderSizes, renderColors } = this.state;
     if (goProductDetailPage) {
       return (
         <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
@@ -898,11 +989,11 @@ class EcommerceForm extends Component {
                   message: 'Please select your product category'
                 },
               ],
-            })(<Cascader options={categories} onChange={this.onChangeSizes} />)}
+            })(<Cascader options={categories} onChange={this.onChangeGetSizes} />)}
           </Form.Item>
 
           {/*Sizes*/}
-          <Form.Item label="Select Sizes">
+          {renderSizes.length > 0 && <Form.Item label="Select Sizes">
             {getFieldDecorator('sizes', {
               initialValue: sizes,
               rules: [
@@ -911,26 +1002,48 @@ class EcommerceForm extends Component {
             })(
               <Checkbox.Group style={{ width: '100%' }}>
                 <Row>
-                  <Col span={8}>
-                    <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox value="Small">Small</Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox value="Medium">Medium</Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox value="Large">Large</Checkbox>
-                  </Col>
-                  <Col span={8}>
-                    <Checkbox value="Xrta-Large">Xtra Large</Checkbox>
-                  </Col>
+                  {renderSizes && renderSizes.map((elem, key) => {
+                    return (
+                      // <div className="">
+                      // <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
+                      // </div>
+                      <Col span={8}>
+                        <Checkbox value={elem}>{elem}</Checkbox>
+                      </Col>
+                    )
+                  })}
                 </Row>
-              </Checkbox.Group>,
+              </Checkbox.Group>
             )}
           </Form.Item>
+          }
 
+          {/*Color*/}
+          {renderColors.length > 0 && <Form.Item label="Product Color">
+            {getFieldDecorator('color', {
+              initialValue: color,
+              rules: [
+                { required: true, message: 'Please select your Colors!', type: 'array' },
+              ],
+            })(
+              <Checkbox.Group style={{ width: '100%' }}>
+                <Row>
+                  {renderColors && renderColors.map((elem, key) => {
+                    return (
+                      // <div className="">
+                      // <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
+                      // </div>
+                      <Col span={8}>
+                        <Checkbox value={elem}>{elem}</Checkbox>
+                      </Col>
+                    )
+                  })}
+                </Row>
+
+              </Checkbox.Group>
+            )}
+          </Form.Item>
+          }
           {/*Quantity*/}
           <Form.Item label="Select Quantity">
             {getFieldDecorator('quantity', {
@@ -982,25 +1095,6 @@ class EcommerceForm extends Component {
               }],
             })(<TextArea rows={4} />)}
           </Form.Item>
-
-
-          {/*Color*/}
-          <Form.Item label="Product Color">
-            {getFieldDecorator('color', {
-              initialValue: color,
-              rules: [{
-                // type: Array,
-                message: 'Please enter your color!',
-                whitespace: true,
-                type: 'array',
-              }],
-            })(<Select mode="multiple" placeholder="Please select favourite colors">
-              <Option value="blue">Blue</Option>
-              <Option value="blue">Black</Option>
-
-            </Select>)}
-          </Form.Item>
-
 
           {/*Uplaod Images*/}
 
