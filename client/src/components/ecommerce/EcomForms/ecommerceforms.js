@@ -701,7 +701,8 @@ class EcommerceForm extends Component {
       producId: '',
       imageList: [],
       renderSizes: [],
-      renderColors: []
+      renderColors: [],
+      skuId: ''
     }
   }
 
@@ -741,6 +742,8 @@ class EcommerceForm extends Component {
           loader: true,
           btnDisabeld: true
         })
+        // console.log(values , 'values')
+
         this.funcForUpload(values)
       }
     });
@@ -793,7 +796,6 @@ class EcommerceForm extends Component {
         this.setState({
           renderSizes: sizesOfProducts[i].value
         })
-        // console.log(sizesOfProducts[i].value)
       }
     }
     for (var j = 0; j < colorsOfProducts.length; j++) {
@@ -801,19 +803,8 @@ class EcommerceForm extends Component {
         this.setState({
           renderColors: colorsOfProducts[j].value
         })
-        // console.log(colorsOfProducts[i].value)
       }
     }
-    // renderSizes: [],
-    // renderColors: []
-
-    // let arr = [];
-    // arr.push(values[2])
-    // this.setState({
-    //   sizes: arr
-    // })
-
-
   }
 
   //--------------function for cloudnary url ---------------
@@ -849,6 +840,21 @@ class EcommerceForm extends Component {
   async postData(values, response, key) {
     const { data, objectId, imageList } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
+    let res = await HttpUtils.get('getYourProduct');
+    let sku;
+    if (res) {
+      let totalProducts = res.content.length + 1000;
+      // console.log(totalProducts, 'totalProducts')
+      // console.log(values, 'totalProducts')
+      let productWord = values.product.slice(0, 2);
+      let categoryWord = values.categories[0].slice(0, 2) + values.categories[1].slice(0, 2) + values.categories[2].slice(0, 2);
+      let materialTypeWord = values.materialType.slice(0, 1);
+      // console.log(productWord, 'productWord')
+      // console.log(categoryWord, 'categoryWord')
+      // console.log(materialTypeWord, 'materialTypeWord')
+      sku = categoryWord + productWord + materialTypeWord + totalProducts;
+      console.log(sku, 'sku')
+    }
     let objOfProduct = {
       product: values.product,
       categories: values.categories,
@@ -866,43 +872,43 @@ class EcommerceForm extends Component {
       profileId: user.profileId,
       objectId: objectId
     }
-    let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
+    // let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
 
-    if (responseEcommreceData.code == 200) {
-      if (objectId == '') {
-        this.setState({
-          loader: false,
-          btnDisabeld: false,
-          mgs: responseEcommreceData.mgs,
-          productData: responseEcommreceData.content,
-          producId: responseEcommreceData.content._id,
-          goProductDetailPage: true
-        })
+    // if (responseEcommreceData.code == 200) {
+    //   if (objectId == '') {
+    //     this.setState({
+    //       loader: false,
+    //       btnDisabeld: false,
+    //       mgs: responseEcommreceData.mgs,
+    //       productData: responseEcommreceData.content,
+    //       producId: responseEcommreceData.content._id,
+    //       goProductDetailPage: true
+    //     })
 
-      }
-      else {
-        this.setState({
-          loader: false,
-          btnDisabeld: false,
-          mgs: responseEcommreceData.mgs,
-          productData: responseEcommreceData.content[0],
-          producId: responseEcommreceData.content[0]._id,
-          goProductDetailPage: true
-        })
-      }
-      let msg = 'Your product is saved successfully.'
-      this.openNotification(msg)
-    }
-    else {
-      this.setState({
-        loader: false,
-        btnDisabeld: false,
-        mgs: responseEcommreceData.mgs,
-        goProductDetailPage: false,
-      })
-    }
-    let msg = 'Your product is not submit successfully.'
-    this.openNotification(msg)
+    //   }
+    //   else {
+    //     this.setState({
+    //       loader: false,
+    //       btnDisabeld: false,
+    //       mgs: responseEcommreceData.mgs,
+    //       productData: responseEcommreceData.content[0],
+    //       producId: responseEcommreceData.content[0]._id,
+    //       goProductDetailPage: true
+    //     })
+    //   }
+    //   let msg = 'Your product is saved successfully.'
+    //   this.openNotification(msg)
+    // }
+    // else {
+    //   this.setState({
+    //     loader: false,
+    //     btnDisabeld: false,
+    //     mgs: responseEcommreceData.mgs,
+    //     goProductDetailPage: false,
+    //   })
+    // }
+    // let msg = 'Your product is not submit successfully.'
+    // this.openNotification(msg)
   }
 
 
@@ -1004,9 +1010,6 @@ class EcommerceForm extends Component {
                 <Row>
                   {renderSizes && renderSizes.map((elem, key) => {
                     return (
-                      // <div className="">
-                      // <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
-                      // </div>
                       <Col span={8}>
                         <Checkbox value={elem}>{elem}</Checkbox>
                       </Col>
