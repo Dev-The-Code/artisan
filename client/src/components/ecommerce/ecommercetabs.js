@@ -51,8 +51,8 @@ class Ecomtabs extends Component {
       })
     }
   }
+  
   async componentDidMount() {
-
     let res = await HttpUtils.get('getYourProduct');
     if (res) {
       if (res.code == 200) {
