@@ -25,6 +25,7 @@ import ShopForm from './components/ecommerce/shops/ShopForm'
 import ShopForm2 from './components/ecommerce/shops/ShopForm2'
 import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile';
 import OrderList from './components/ecommerce/shops/orderList';
+import AdminScreen from './components/admin/adminScreen';
 
 import { PrivateRoute } from './components/signin_seperate';
 
@@ -71,6 +72,10 @@ ReactDOM.render(
         <Route exact path="/" component={HomePage}></Route>
         <Route path="/sigin" component={Signin}></Route>
         <Route exact path="/reset/:token" component={ResetPassword} />
+
+        {/*==========Admin Screens==============*/}
+
+        <Route path="/Admin" component={AdminScreen}> </Route>
 
         {/*============Ecommerce=============*/}
         <Route path="/explore_Market" component={EcommerceMarket}></Route>
