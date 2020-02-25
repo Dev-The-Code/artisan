@@ -702,12 +702,23 @@ class EcommerceForm extends Component {
       imageList: [],
       renderSizes: [],
       renderColors: [],
-      skuId: ''
+      skuId: '',
+      date: '',
+      time: '',
+      shopId: '',
+      shopName: ''
     }
   }
 
 
   componentDidMount() {
+    let date = new Date().getDate();
+    let month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
+    const hours = new Date().getHours();
+    let min = new Date().getMinutes();
+    const sec = new Date().getSeconds();
+
     let data = this.props.data;
     if (data._id != undefined) {
       this.setState({
@@ -722,12 +733,18 @@ class EcommerceForm extends Component {
         quantity: data.quantity,
         objectId: data._id,
         data: data,
-        imageList: data.images
+        imageList: data.images,
+        shopId: data.shopId,
+        shopName: data.shopName
       })
     }
     else if (data._id == undefined) {
       this.setState({
-        data: data
+        data: data,
+        shopId: data.shopId,
+        shopName: data.shopTitle,
+        date: year + '-' + month + '-' + date,
+        time: hours + ':' + min + ':' + sec,
       })
     }
   }
@@ -742,9 +759,7 @@ class EcommerceForm extends Component {
           loader: true,
           btnDisabeld: true
         })
-        // console.log(values , 'values')
-
-        this.funcForUpload(values)
+        this.genrateskuid(values)
       }
     });
   }
@@ -756,6 +771,31 @@ class EcommerceForm extends Component {
     callback('Price must greater than zero!');
   };
 
+
+  genrateskuid = async (values) => {
+    const { skuId } = this.state;
+    if (skuId == '') {
+      let res = await HttpUtils.get('getYourProduct');
+      let sku;
+      if (res) {
+        let totalProducts = res.content.length + 1000;
+        let productWord = values.product.slice(0, 2).toLowerCase();
+        let categoryWord = values.categories[0].slice(0, 2) + values.categories[1].slice(0, 2) + values.categories[2].slice(0, 2);
+        sku = categoryWord + productWord + totalProducts;
+        this.setState({
+          skuId: sku
+        })
+      }
+    }
+    this.funcForUpload(values)
+  }
+  // validateNumber(rule, value, callback) {
+  //   if (isNaN(value)) {
+  //     callback('Please type Numbers');
+  //   } else {
+  //     callback()
+  //   }
+  // }
 
   handleCancel = () => this.setState({ previewVisible: false });
 
@@ -838,23 +878,9 @@ class EcommerceForm extends Component {
 
   //-----------------cloudnary function end ------------------//
   async postData(values, response, key) {
-    const { data, objectId, imageList } = this.state;
+    const { shopId, shopName, objectId, imageList, skuId, date, time } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
-    let res = await HttpUtils.get('getYourProduct');
-    let sku;
-    if (res) {
-      let totalProducts = res.content.length + 1000;
-      // console.log(totalProducts, 'totalProducts')
-      // console.log(values, 'totalProducts')
-      let productWord = values.product.slice(0, 2);
-      let categoryWord = values.categories[0].slice(0, 2) + values.categories[1].slice(0, 2) + values.categories[2].slice(0, 2);
-      let materialTypeWord = values.materialType.slice(0, 1);
-      // console.log(productWord, 'productWord')
-      // console.log(categoryWord, 'categoryWord')
-      // console.log(materialTypeWord, 'materialTypeWord')
-      sku = categoryWord + productWord + materialTypeWord + totalProducts;
-      console.log(sku, 'sku')
-    }
+
     let objOfProduct = {
       product: values.product,
       categories: values.categories,
@@ -866,12 +892,16 @@ class EcommerceForm extends Component {
       description: values.description,
       color: values.color,
       images: [...imageList, ...response],
-      shopId: data.shopId,
-      shopName: data.shopTitle,
+      shopId: shopId,
+      shopName: shopName,
       user_Id: user._id,
       profileId: user.profileId,
-      objectId: objectId
+      objectId: objectId,
+      productSKU: skuId,
+      date: date,
+      time: time
     }
+    console.log(objOfProduct, 'objOfProduct')
     // let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
 
     // if (responseEcommreceData.code == 200) {
@@ -1051,9 +1081,13 @@ class EcommerceForm extends Component {
           <Form.Item label="Select Quantity">
             {getFieldDecorator('quantity', {
               initialValue: quantity,
-
+              rules: [{
+                required: true,
+                message: 'Please Enter Quantity',
+                // validator: this.validateNumber 
+              }],
             })(
-              <InputNumber min={1} max={5000} />
+              <InputNumber min={0} max={5000} />
             )}
 
           </Form.Item>
@@ -1062,7 +1096,11 @@ class EcommerceForm extends Component {
           <Form.Item label="Price">
             {getFieldDecorator('price', {
               initialValue: price,
-              rules: [{ validator: this.checkPrice }],
+              rules: [{
+                required: true,
+                message: 'Please Enter Price',
+                validator: this.checkPrice
+              }],
             })(<PriceInput />)}
           </Form.Item>
 
@@ -1070,7 +1108,9 @@ class EcommerceForm extends Component {
           <Form.Item label="Sale Price">
             {getFieldDecorator('salePrice', {
               initialValue: salePrice,
-              rules: [{ validator: this.checkPrice }],
+              // rules: [{ 
+              //   validator: this.validateNumber 
+              // }],
             })(<PriceInput />)}
           </Form.Item>
 
@@ -1080,7 +1120,6 @@ class EcommerceForm extends Component {
               {
                 initialValue: materialType,
                 rules: [{
-                  required: true,
                   message: 'Please enter your material type!',
                   whitespace: true
                 }],

@@ -408,82 +408,82 @@ const cities = [
     }, {
         value: 'Rawalakot',
         label: 'Rawalakot',
-    },{
+    }, {
         value: 'Rawalpindi',
         label: 'Rawalpindi',
-    },{
+    }, {
         value: 'Sadiqabad',
         label: 'Sadiqabad',
-    },{
+    }, {
         value: 'Sagri',
         label: 'Sagri',
-    },{
+    }, {
         value: 'Sahiwal',
         label: 'Sahiwal',
-    },{
+    }, {
         value: 'Sambrial',
         label: 'Sambrial',
-    },{
+    }, {
         value: 'Samundri',
         label: 'Samundri',
-    },{
+    }, {
         value: 'Sangla Hill',
         label: 'Sangla Hill',
-    },{
+    }, {
         value: 'Sarai Alamgir',
         label: 'Sarai Alamgir',
-    },{
+    }, {
         value: 'Sargodha',
         label: 'Sargodha',
-    },{
+    }, {
         value: 'Shakargarh',
         label: 'Shakargarh',
-    },{
+    }, {
         value: 'Sheikhupura',
         label: 'Sheikhupura',
-    },{
+    }, {
         value: 'Shujaabad',
         label: 'Shujaabad',
-    },{
+    }, {
         value: 'Sialkot',
         label: 'Sialkot',
-    },{
+    }, {
         value: 'Sohawa',
         label: 'Sohawa',
-    },{
+    }, {
         value: 'Soianwala',
         label: 'Soianwala',
-    },{
+    }, {
         value: 'Siranwali',
         label: 'Siranwali',
-    },{
+    }, {
         value: 'Sukkur',
         label: 'Sukkur',
-    },{
+    }, {
         value: 'Tandlianwala',
         label: 'Tandlianwala',
-    },{
+    }, {
         value: 'Talagang',
         label: 'Talagang',
-    },{
+    }, {
         value: 'Taxila',
         label: 'Taxila',
-    },{
+    }, {
         value: 'Toba Tek Singh',
         label: 'Toba Tek Singh',
-    },{
+    }, {
         value: 'Vehari',
         label: 'Vehari',
-    },{
+    }, {
         value: 'Wah Cantonment',
         label: 'Wah Cantonment',
-    },{
+    }, {
         value: 'Wazirabad',
         label: 'Wazirabad',
-    },{
+    }, {
         value: 'Yazman',
         label: 'Yazman',
-    },{
+    }, {
         value: 'Zafarwal',
         label: 'Zafarwal',
     }
@@ -526,12 +526,20 @@ class ShopForm extends Component {
             objectId: '',
             showAlert: false,
             gridImages: false,
+            date: '',
+            time: '',
+            sellerId: ''
         }
     }
 
     componentDidMount() {
+        let date = new Date().getDate();
+        let month = new Date().getMonth() + 1;
+        const year = new Date().getFullYear();
+        const hours = new Date().getHours();
+        let min = new Date().getMinutes();
+        const sec = new Date().getSeconds();
         let data = this.props.location.state;
-        console.log(data , 'data')
         if (data) {
             this.setState({
                 shopTitle: data.shopTitle,
@@ -550,8 +558,16 @@ class ShopForm extends Component {
                 bankName: data.bankName,
                 ibank: data.ibank,
                 swift: data.swift,
+                date: data.date,
+                time: data.time,
+                sellerId: data.sellerId
                 // fileListLogo: data.shopLogo,
-
+            })
+        }
+        else {
+            this.setState({
+                date: year + '-' + month + '-' + date,
+                time: hours + ':' + min + ':' + sec,
             })
         }
     }
@@ -711,8 +727,7 @@ class ShopForm extends Component {
                         bannerImg = { ...banner[0], ...{ id: 'gridImage' } };
 
                     arr.push(coverImg, bannerImg)
-                    console.log(values, 'values')
-                    this.funcForUpload(values, arr, fileList, fileListLogo)
+                    this.genrateSellerId(values, arr, fileList, fileListLogo)
                 }
                 else if (coverPhoto == undefined || banner == undefined) {
                     this.setState({
@@ -727,6 +742,25 @@ class ShopForm extends Component {
 
             }
         })
+    }
+
+    genrateSellerId = async (values, arr, fileList, fileListLogo) => {
+        const { sellerId } = this.state;
+        if (sellerId == '') {
+            let res = await HttpUtils.get('getShops');
+            let sellerUniqueId;
+            if (res) {
+                console.log(values , 'values')
+                let totalProducts = res.content.length + 1000;
+                let productWord = values.shopTitle.slice(0, 2).toLowerCase();
+                let categoryWord = values.shopCategories0[0].slice(0, 2);
+                sellerUniqueId = categoryWord + productWord + totalProducts;
+                this.setState({
+                    sellerId: sellerUniqueId
+                })
+            }
+        }
+        this.funcForUpload(values, arr, fileList, fileListLogo)
     }
 
     uploadFile = (files) => {
@@ -786,7 +820,7 @@ class ShopForm extends Component {
     }
 
     async postData(values, response, images, logo) {
-        const { keyFor, shopPurpose, objectId } = this.state;
+        const { keyFor, shopPurpose, objectId, date, time, sellerId } = this.state;
         let cetogires = [];
         let cover = '';
         let banner = '';
@@ -831,9 +865,12 @@ class ShopForm extends Component {
             ibank: values.ibank,
             bankAddress: values.bankAddress,
             swift: values.swift,
+            date: date,
+            time: time,
+            sellerId: sellerId
         }
-
         let reqShopObj = await HttpUtils.post('postshop', shopObj)
+        console.log(reqShopObj , 'reqShopObj')
         if (reqShopObj.code === 200) {
             if (objectId != '') {
                 this.setState({
@@ -882,7 +919,9 @@ class ShopForm extends Component {
     };
 
     render() {
-        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert, gridImages } = this.state;
+        const { date, time, fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, 
+            previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert, 
+            gridImages } = this.state;
         const { getFieldDecorator, getFieldValue } = this.props.form;
         if (goShop) {
             return (
