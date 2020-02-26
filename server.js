@@ -2317,7 +2317,10 @@ app.post('/api/postshop', (req, res) => {
       bankName: shopData.bankName,
       ibank: shopData.ibank,
       swift: shopData.swift,
-      shopEmail: shopData.shopEmail
+      shopEmail: shopData.shopEmail,
+      date: shopData.date,
+      time: shopData.time,
+      sellerId:shopData.sellerId
     })
     postShopData.save(function (err, data) {
       if (err) {
@@ -2495,38 +2498,42 @@ app.post('/api/postYourProduct', (req, res) => {
   var postData = req.body;
   // console.log(req.body.images,'iiiimmmmaaggessss')
   if (postData.objectId == '') {
-  const postDataReq = new postEcomProduct({
-    user_Id: postData.user_Id,
-    profileId: postData.profileId,
-    shopId: postData.shopId,
-    shopName: postData.shopName,
-    product: postData.product,
-    categories: postData.categories,
-    sizes: postData.sizes,
-    quantity: postData.quantity,
-    price: postData.price,
-    salePrice: postData.salePrice,
-    materialType: postData.materialType,
-    description: postData.description,
-    color: postData.color,
-    images: postData.images,
-  })
-  postDataReq.save(function (err, data) {
-    if (err) {
-      res.send({
-        code: 500,
-        content: 'Internal Server Error',
-        msg: 'API not called properly'
-      })
-    }
-    else if (data) {
-      res.send({
-        code: 200,
-        msg: 'Data saved successfully',
-        content: data
-      });
-    }
-  })
+    const postDataReq = new postEcomProduct({
+      user_Id: postData.user_Id,
+      profileId: postData.profileId,
+      shopId: postData.shopId,
+      shopName: postData.shopName,
+      product: postData.product,
+      categories: postData.categories,
+      sizes: postData.sizes,
+      quantity: postData.quantity,
+      price: postData.price,
+      salePrice: postData.salePrice,
+      materialType: postData.materialType,
+      description: postData.description,
+      color: postData.color,
+      images: postData.images,
+      productSKU: postData.productSKU,
+      date: postData.date,
+      time: postData.time,
+
+    })
+    postDataReq.save(function (err, data) {
+      if (err) {
+        res.send({
+          code: 500,
+          content: 'Internal Server Error',
+          msg: 'API not called properly'
+        })
+      }
+      else if (data) {
+        res.send({
+          code: 200,
+          msg: 'Data saved successfully',
+          content: data
+        });
+      }
+    })
   }
   else if (postData.objectId != '') {
     postEcomProduct.findOneAndUpdate(

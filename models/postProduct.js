@@ -17,6 +17,9 @@ var postProduct = new mongoose.Schema({
   description: { type: String },
   color: { type: Array },
   images: { type: Array },
+  productSKU: { type: String },
+  date:{type:String},
+  time:{type:String},
 
 });
 

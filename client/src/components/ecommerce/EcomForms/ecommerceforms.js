@@ -1089,7 +1089,12 @@ class EcommerceForm extends Component {
       producId: '',
       imageList: [],
       renderSizes: [],
-      renderColors: []
+      renderColors: [],
+      skuId: '',
+      date: '',
+      time: '',
+      shopId: '',
+      shopName: ''
     }
   }
 
@@ -1119,6 +1124,13 @@ class EcommerceForm extends Component {
  
 
   componentDidMount() {
+    let date = new Date().getDate();
+    let month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
+    const hours = new Date().getHours();
+    let min = new Date().getMinutes();
+    const sec = new Date().getSeconds();
+
     let data = this.props.data;
     if (data._id != undefined) {
       this.setState({
@@ -1133,12 +1145,18 @@ class EcommerceForm extends Component {
         quantity: data.quantity,
         objectId: data._id,
         data: data,
-        imageList: data.images
+        imageList: data.images,
+        shopId: data.shopId,
+        shopName: data.shopName
       })
     }
     else if (data._id == undefined) {
       this.setState({
-        data: data
+        data: data,
+        shopId: data.shopId,
+        shopName: data.shopTitle,
+        date: year + '-' + month + '-' + date,
+        time: hours + ':' + min + ':' + sec,
       })
     }
   }
@@ -1153,7 +1171,7 @@ class EcommerceForm extends Component {
           loader: true,
           btnDisabeld: true
         })
-        this.funcForUpload(values)
+        this.genrateskuid(values)
       }
     });
   }
@@ -1165,6 +1183,31 @@ class EcommerceForm extends Component {
     callback('Price must greater than zero!');
   };
 
+
+  genrateskuid = async (values) => {
+    const { skuId } = this.state;
+    if (skuId == '') {
+      let res = await HttpUtils.get('getYourProduct');
+      let sku;
+      if (res) {
+        let totalProducts = res.content.length + 1000;
+        let productWord = values.product.slice(0, 2).toLowerCase();
+        let categoryWord = values.categories[0].slice(0, 2) + values.categories[1].slice(0, 2) + values.categories[2].slice(0, 2);
+        sku = categoryWord + productWord + totalProducts;
+        this.setState({
+          skuId: sku
+        })
+      }
+    }
+    this.funcForUpload(values)
+  }
+  // validateNumber(rule, value, callback) {
+  //   if (isNaN(value)) {
+  //     callback('Please type Numbers');
+  //   } else {
+  //     callback()
+  //   }
+  // }
 
   handleCancel = () => this.setState({ previewVisible: false });
 
@@ -1205,7 +1248,6 @@ class EcommerceForm extends Component {
         this.setState({
           renderSizes: sizesOfProducts[i].value
         })
-        // console.log(sizesOfProducts[i].value)
       }
     }
     for (var j = 0; j < colorsOfProducts.length; j++) {
@@ -1213,19 +1255,8 @@ class EcommerceForm extends Component {
         this.setState({
           renderColors: colorsOfProducts[j].value
         })
-        // console.log(colorsOfProducts[i].value)
       }
     }
-    // renderSizes: [],
-    // renderColors: []
-
-    // let arr = [];
-    // arr.push(values[2])
-    // this.setState({
-    //   sizes: arr
-    // })
-
-
   }
 
   //--------------function for cloudnary url ---------------
@@ -1259,8 +1290,9 @@ class EcommerceForm extends Component {
 
   //-----------------cloudnary function end ------------------//
   async postData(values, response, key) {
-    const { data, objectId, imageList } = this.state;
+    const { shopId, shopName, objectId, imageList, skuId, date, time } = this.state;
     var user = JSON.parse(localStorage.getItem('user'));
+
     let objOfProduct = {
       product: values.product,
       categories: values.categories,
@@ -1272,49 +1304,53 @@ class EcommerceForm extends Component {
       description: values.description,
       color: values.color,
       images: [...imageList, ...response],
-      shopId: data.shopId,
-      shopName: data.shopTitle,
+      shopId: shopId,
+      shopName: shopName,
       user_Id: user._id,
       profileId: user.profileId,
-      objectId: objectId
+      objectId: objectId,
+      productSKU: skuId,
+      date: date,
+      time: time
     }
-    let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
+    console.log(objOfProduct, 'objOfProduct')
+    // let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
 
-    if (responseEcommreceData.code == 200) {
-      if (objectId == '') {
-        this.setState({
-          loader: false,
-          btnDisabeld: false,
-          mgs: responseEcommreceData.mgs,
-          productData: responseEcommreceData.content,
-          producId: responseEcommreceData.content._id,
-          goProductDetailPage: true
-        })
+    // if (responseEcommreceData.code == 200) {
+    //   if (objectId == '') {
+    //     this.setState({
+    //       loader: false,
+    //       btnDisabeld: false,
+    //       mgs: responseEcommreceData.mgs,
+    //       productData: responseEcommreceData.content,
+    //       producId: responseEcommreceData.content._id,
+    //       goProductDetailPage: true
+    //     })
 
-      }
-      else {
-        this.setState({
-          loader: false,
-          btnDisabeld: false,
-          mgs: responseEcommreceData.mgs,
-          productData: responseEcommreceData.content[0],
-          producId: responseEcommreceData.content[0]._id,
-          goProductDetailPage: true
-        })
-      }
-      let msg = 'Your product is saved successfully.'
-      this.openNotification(msg)
-    }
-    else {
-      this.setState({
-        loader: false,
-        btnDisabeld: false,
-        mgs: responseEcommreceData.mgs,
-        goProductDetailPage: false,
-      })
-    }
-    let msg = 'Your product is not submit successfully.'
-    this.openNotification(msg)
+    //   }
+    //   else {
+    //     this.setState({
+    //       loader: false,
+    //       btnDisabeld: false,
+    //       mgs: responseEcommreceData.mgs,
+    //       productData: responseEcommreceData.content[0],
+    //       producId: responseEcommreceData.content[0]._id,
+    //       goProductDetailPage: true
+    //     })
+    //   }
+    //   let msg = 'Your product is saved successfully.'
+    //   this.openNotification(msg)
+    // }
+    // else {
+    //   this.setState({
+    //     loader: false,
+    //     btnDisabeld: false,
+    //     mgs: responseEcommreceData.mgs,
+    //     goProductDetailPage: false,
+    //   })
+    // }
+    // let msg = 'Your product is not submit successfully.'
+    // this.openNotification(msg)
   }
 
 
@@ -1426,9 +1462,6 @@ class EcommerceForm extends Component {
                 <Row>
                   {renderSizes && renderSizes.map((elem, key) => {
                     return (
-                      // <div className="">
-                      // <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
-                      // </div>
                       <Col span={8}>
                         <Checkbox value={elem}>{elem}</Checkbox>
                       </Col>
@@ -1470,9 +1503,13 @@ class EcommerceForm extends Component {
           <Form.Item label="Select Quantity">
             {getFieldDecorator('quantity', {
               initialValue: quantity,
-
+              rules: [{
+                required: true,
+                message: 'Please Enter Quantity',
+                // validator: this.validateNumber 
+              }],
             })(
-              <InputNumber min={1} max={5000} />
+              <InputNumber min={0} max={5000} />
             )}
 
           </Form.Item>
@@ -1481,7 +1518,11 @@ class EcommerceForm extends Component {
           <Form.Item label="Price">
             {getFieldDecorator('price', {
               initialValue: price,
-              rules: [{ validator: this.checkPrice }],
+              rules: [{
+                required: true,
+                message: 'Please Enter Price',
+                validator: this.checkPrice
+              }],
             })(<PriceInput />)}
           </Form.Item>
 
@@ -1489,7 +1530,9 @@ class EcommerceForm extends Component {
           <Form.Item label="Sale Price">
             {getFieldDecorator('salePrice', {
               initialValue: salePrice,
-              rules: [{ validator: this.checkPrice }],
+              // rules: [{ 
+              //   validator: this.validateNumber 
+              // }],
             })(<PriceInput />)}
           </Form.Item>
 
@@ -1499,7 +1542,6 @@ class EcommerceForm extends Component {
               {
                 initialValue: materialType,
                 rules: [{
-                  required: true,
                   message: 'Please enter your material type!',
                   whitespace: true
                 }],
