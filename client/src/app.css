@@ -215,9 +215,9 @@ font-family: 'Crimson Text', serif !important;
 .ant-form-item-label{
   line-height: 7px
 }
-.ant-modal-footer{
+/* .ant-modal-footer{
   display:none;
-}
+} */
 .center_global{
   text-align: center
 }
@@ -1251,9 +1251,7 @@ h6{
 .ant-form-item-label{
   line-height: 7px
 }
-.ant-modal-footer{
-  display:none;
-}
+
 .center_global{
   text-align: center
 }
