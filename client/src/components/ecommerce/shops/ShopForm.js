@@ -746,7 +746,7 @@ class ShopForm extends Component {
 
     genrateSellerId = async (values, arr, fileList, fileListLogo) => {
         const { sellerId } = this.state;
-        if (sellerId == '') {
+        if (sellerId == ''|| sellerId == undefined) {
             let res = await HttpUtils.get('getShops');
             let sellerUniqueId;
             if (res) {
