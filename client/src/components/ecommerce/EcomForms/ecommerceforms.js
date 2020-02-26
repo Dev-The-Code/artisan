@@ -1610,6 +1610,7 @@ class EcommerceForm extends Component {
                   </Select>
 
                   <Input  suffix="Centimeter" />
+                  <Button>Add</Button>
               </Modal>
             </div>
           
