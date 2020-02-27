@@ -144,8 +144,6 @@ const categories = [
         value: 'Loafers & Slip Ons',
         label: 'Loafers & Slip Ons',
       }, {
-
-      }, {
         value: 'Oxfords & Wingtips',
         label: 'Oxfords & Wingtips',
       }],
@@ -177,7 +175,7 @@ const categories = [
         value: 'Oxfords & Tie Shoes',
         label: 'Oxfords & Tie Shoes',
       }, {
-        value: 'Costume Shows',
+        value: `Costume Shows`,
         label: 'Costume Shows',
       }],
     }]
@@ -227,8 +225,8 @@ const categories = [
         value: 'Tablet & E-Reader Cases',
         label: 'Tablet & E-Reader Cases',
       }, {
-        value: 'Camera Bags ',
-        label: 'Camera Bags ',
+        value: 'Camera Bags',
+        label: 'Camera Bags',
       }]
     }]
   },
@@ -239,7 +237,7 @@ const categories = [
       value: 'Body Jwellery',
       label: 'Body Jwellery',
       children: [{
-        value: 'HairJwellery',
+        value: 'Hair Jwellery',
         label: 'Hair Jwellery',
       }, {
         value: 'Anklets',
@@ -357,29 +355,32 @@ const categories = [
         value: 'Triplet & Double Rings',
         label: 'Triplet & Double Rings',
       }]
-    }, {
-      value: 'Accessories',
-      label: 'Accessories',
-      children: [{
-        value: 'Hair Accessories',
-        label: 'Hair Accessories',
-      }, {
-        value: 'Hats & Caps',
-        label: 'Hats & Caps',
-      }, {
-        value: 'Keychains & Lanyards',
-        label: 'Keychains & Lanyards',
-      }, {
-        value: 'Scarves & Wraps',
-        label: 'Scarves & Wraps',
-      }, {
-        value: 'Suits & Tie Accessories',
-        label: 'Suits & Tie Accessories',
-      }, {
-        value: 'Baby Accessories',
-        label: 'Baby Accessories',
-      }]
-    }]
+    }
+    // , 
+    // {
+    //   value: 'Accessories',
+    //   label: 'Accessories',
+    //   children: [{
+    //     value: 'Hair Accessories',
+    //     label: 'Hair Accessories',
+    //   }, {
+    //     value: 'Hats & Caps',
+    //     label: 'Hats & Caps',
+    //   }, {
+    //     value: 'Keychains & Lanyards',
+    //     label: 'Keychains & Lanyards',
+    //   }, {
+    //     value: 'Scarves & Wraps',
+    //     label: 'Scarves & Wraps',
+    //   }, {
+    //     value: 'Suits & Tie Accessories',
+    //     label: 'Suits & Tie Accessories',
+    //   }, {
+    //     value: 'Baby Accessories',
+    //     label: 'Baby Accessories',
+    //   }]
+    // }
+  ]
   }, {
     value: 'Decor',
     label: 'Decor',
@@ -616,7 +617,7 @@ const sizesOfProducts = [
   },
   {
     label: 'Skirts',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
+    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large', "Xtra Xtra Large"]
   },
   {
     label: 'Jackets & Coats',
@@ -624,11 +625,11 @@ const sizesOfProducts = [
   },
   {
     label: 'Trousers & Pants',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
+    value: ['28', '30', "32", '34', '36']
   },
   {
     label: 'Women Jumpers',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
+    value: ['32', '34', "36", '38', '40', '42', '44', '46']
   },
   {
     label: 'Costumes',
@@ -636,44 +637,64 @@ const sizesOfProducts = [
   },
   /*Shoes*/
   {
-    label: 'Sneakers',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    label: 'Sneakers & Athletic Shoes',
+    value: ['39', '40', '41', "42", '43', '44', '45', '46']
   },
   {
     label: 'Boots',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    value: ['39', '40', '41', "42", '43', '44', '45', '46']
   },
   {
-    label: 'Sandles',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    label: 'Sandals',
+    value: ['39', '40', '41', "42", '43', '44', '45', '46']
   },
   {
     label: 'Slippers',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    value: ['39', '40', '41', "42", '43', '44', '45', '46']
   },
   {
-    label: 'Loafers',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    label: 'Loafers & Slip Ons',
+    value: ['39', '40', '41', "42", '43', '44', '45', '46']
+  },
+  {
+    label: 'Oxfords & Wingtips',
+    value: ['39', '40', '41', "42", '43', '44', '45', '46']
+  },
+  {
+    label: 'Sandals',
+    value: ['35', '36', '37', '38', '39', '40', '41', "42"]
+  },
+  {
+    label: 'Boots',
+    value: ['35', '36', '37', '38', '39', '40', '41', "42"]
+  },
+  {
+    label: 'Sneakers & Athletic Shoes',
+    value: ['35', '36', '37', '38', '39', '40', '41', "42"]
   },
   {
     label: 'Slip Ons',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    value: ['35', '36', '37', '38', '39', '40', '41', "42"]
   },
   {
     label: 'Pumps',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    value: ['35', '36', '37', '38', '39', '40', '41', "42"]
+  },
+  {
+    label: 'Slippers',
+    value: ['35', '36', '37', '38', '39', '40', '41', "42"]
   },
   {
     label: 'Clogs & Mules',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    value: ['35', '36', '37', '38', '39', '40', '41', "42"]
   },
   {
-    label: 'Oxford & Tie Shoes',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    label: 'Oxfords & Tie Shoes',
+    value: ['35', '36', '37', '38', '39', '40', '41', "42"]
   },
   {
-    label: 'Custome Shoes',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
+    label: 'Costume Shows',
+    value: ['35', '36', '37', '38', '39', '40', '41', "42"]
   },
   /*Bags and Purses*/
   {
@@ -689,7 +710,7 @@ const sizesOfProducts = [
     value: []
   },
   {
-    label: 'Top Handlebags',
+    label: 'Top HandleBags',
     value: []
   },
   {
@@ -731,156 +752,194 @@ const sizesOfProducts = [
   },
   {
     label: 'Nose Rings & Studs',
-    value: ['Universal']
+    value: ['6mm', 'Universal']
   },
   {
     label: 'Gauge & Plug Earring',
-    value: ['Universal']
+    value: ['6mm', '8mm', '10mm']
   },
   {
     label: 'Toe Rings',
-    value: ['Universal']
+    value: ['Adjustable']
   },
   {
     label: 'Woven & Braided Bracelets',
-    value: ['Universal']
+    value: ['One Size', 'N/a', 'Small', 'Medium', "Large", , '10 CM', '12 CM', '14 CM',
+      '15 CM', '16 CM', '17 CM', '18 CM', '19 CM', '20 CM', '22 CM', '24 CM', '10 MM', '60 MM', '65 MM', '70 MM']
   },
   {
     label: 'Beaded Bracelets',
-    value: ['Universal']
+    value: ['One Size', 'N/a', 'Small', 'Medium', "Large", , '10 CM', '12 CM', '14 CM',
+      '15 CM', '16 CM', '17 CM', '18 CM', '19 CM', '20 CM', '22 CM', '24 CM', '10 MM', '60 MM', '65 MM', '70 MM']
   },
   {
     label: 'Charm Bracelets',
-    value: ['Universal']
+    value: ['One Size', 'N/a', 'Small', 'Medium', "Large", , '10 CM', '12 CM', '14 CM',
+      '15 CM', '16 CM', '17 CM', '18 CM', '19 CM', '20 CM', '22 CM', '24 CM', '10 MM', '60 MM', '65 MM', '70 MM']
   },
   {
     label: 'Cuff Bracelets',
-    value: ['Universal']
+    value: ['One Size', 'N/a', 'Small', 'Medium', "Large", , '10 CM', '12 CM', '14 CM',
+      '15 CM', '16 CM', '17 CM', '18 CM', '19 CM', '20 CM', '22 CM', '24 CM', '10 MM', '60 MM', '65 MM', '70 MM']
   },
   {
     label: 'Ear Jackets & Climber',
-    value: ['Universal']
+    value: ['One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+      '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
   },
   {
     label: 'Dangle & Drop Earrings',
-    value: ['Universal']
+    value: ['One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+      '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
   },
   {
     label: 'Stud Earrings',
-    value: ['Universal']
+    value: ['One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+      '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
   },
   {
     label: 'Hoop Earrings',
-    value: ['Universal']
+    value: ['One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+      '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
   },
   {
     label: 'Clip-On Earrings',
-    value: ['Universal']
+    value: ['One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+      '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
   },
   {
     label: 'Chandelier Earrings',
-    value: ['Universal']
+    value: ['One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+      '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
   },
   {
     label: 'Screw Back Earrings',
-    value: ['Universal']
+    value: ['One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+      '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
   },
   {
     label: 'Pendants',
-    value: ['Universal']
+    value: ['One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+      '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+      '65 CM', '70 CM', '80 CM']
   },
   {
     label: 'Beaded Necklaces',
-    value: ['Universal']
+    value: ['One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+      '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+      '65 CM', '70 CM', '80 CM']
   },
   {
     label: 'Charm Necklaces',
-    value: ['Universal']
+    value: ['One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+      '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+      '65 CM', '70 CM', '80 CM']
   },
   {
     label: 'Chokers',
-    value: ['Universal']
+    value: ['One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+      '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+      '65 CM', '70 CM', '80 CM']
   },
   {
     label: 'Crystal Necklaces',
-    value: ['Universal']
+    value: ['One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+      '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+      '65 CM', '70 CM', '80 CM']
   },
   {
     label: 'Chains',
-    value: ['Universal']
+    value: ['One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+      '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+      '65 CM', '70 CM', '80 CM']
   },
   {
     label: 'Monogram & Name Necklaces',
-    value: ['Universal']
+    value: ['One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+      '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+      '65 CM', '70 CM', '80 CM']
   },
   {
     label: 'Lockets',
-    value: ['Universal']
+    value: ['One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+      '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+      '65 CM', '70 CM', '80 CM']
   },
   {
     label: 'Bib Necklaces',
-    value: ['Universal']
+    value: ['One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+      '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+      '65 CM', '70 CM', '80 CM']
   },
   {
     label: 'Wedding & Engagement',
-    value: ['Universal']
+    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
+  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
   },
   {
     label: 'Signet Rings',
-    value: ['Universal']
+    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
+  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
   },
   {
     label: 'Statement Rings',
-    value: ['Universal']
+    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
+  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
   },
   {
     label: 'Bands',
-    value: ['Universal']
+    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
+  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
   },
   {
     label: 'Solitaire Rings',
-    value: ['Universal']
+    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
+  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
   },
   {
     label: 'Stackable Rings',
-    value: ['Universal']
+    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
+  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
   },
   {
     label: 'Multi-Stone Rings',
-    value: ['Universal']
+    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
+  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
   },
   {
     label: 'Midi Rings',
-    value: ['Universal']
+    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
+  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
   },
   {
     label: 'Triplet & Double Rings',
-    value: ['Universal']
+    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
+  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
   },
-  {
-    label: 'Hair Accessories',
-    value: ['Universal']
-  },
-  {
-    label: 'Hats & Caps',
-    value: ['Universal']
-  },
-  {
-    label: 'Keychains & Lanyards',
-    value: ['Universal']
-  },
-  {
-    label: 'Sarves & Wraps',
-    value: ['Universal']
-  },
-  {
-    label: 'Suits & Tie Accessories',
-    value: ['Universal']
-  },
-  {
-    label: 'Babay Accessories',
-    value: ['Universal']
-  },
+  // {
+  //   label: 'Hair Accessories',
+  //   value: ['Universal']
+  // },
+  // {
+  //   label: 'Hats & Caps',
+  //   value: ['Universal']
+  // },
+  // {
+  //   label: 'Keychains & Lanyards',
+  //   value: ['Universal']
+  // },
+  // {
+  //   label: 'Sarves & Wraps',
+  //   value: ['Universal']
+  // },
+  // {
+  //   label: 'Suits & Tie Accessories',
+  //   value: ['Universal']
+  // },
+  // {
+  //   label: 'Babay Accessories',
+  //   value: ['Universal']
+  // },
 
   /*Decor*/
   {
@@ -1494,28 +1553,28 @@ class EcommerceForm extends Component {
 
           {/*Width*/}
           <Form.Item label="Select Width">
-          {getFieldDecorator('width', {
+            {getFieldDecorator('width', {
               // initialValue: width,
               rules: [{
                 required: true,
                 message: 'Please enter product width!',
                 whitespace: true
               }],
-            })( <Input placeholder="Input Width" />)}
-           
+            })(<Input placeholder="Input Width" />)}
+
 
           </Form.Item>
 
           {/*height*/}
           <Form.Item label="Select Height">
-          {getFieldDecorator('height', {
+            {getFieldDecorator('height', {
               // initialValue: height,
               rules: [{
                 required: true,
                 message: 'Please enter product height!',
                 whitespace: true
               }],
-            })( <Input placeholder="Input Height" />)}
+            })(<Input placeholder="Input Height" />)}
           </Form.Item>
 
 
