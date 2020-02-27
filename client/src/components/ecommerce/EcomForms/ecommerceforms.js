@@ -28,7 +28,7 @@ const { TextArea } = Input;
 const columns = [
   {
     title: 'Width',
-    dataIndex: 'width', 
+    dataIndex: 'width',
   },
   {
     title: 'Lenth',
@@ -38,12 +38,12 @@ const columns = [
     title: 'Pricing',
     dataIndex: 'pricing',
   },
-  {
-    title: 'Visible',
-    dataIndex: 'visible'
+  // {
+  //   title: 'Visible',
+  //   dataIndex: 'visible'
 
 
-  }
+  // }
 ];
 
 const data = [
@@ -51,28 +51,28 @@ const data = [
     key: '1',
     width: 'John Brown',
     length: 32,
-    pricing:  <Input prefix="￥" />,
+    pricing: <Input prefix="Rs. " />,
     visible: <Switch defaultChecked onChange={onChange} />,
   },
   {
     key: '2',
     width: 'Jim Green',
     length: 42,
-    pricing: <Input prefix="￥" />,
+    pricing: <Input prefix="Rs. " />,
     visible: <Switch defaultChecked onChange={onChange} />,
   },
   {
     key: '3',
     width: 'Joe Black',
     length: 32,
-    pricing: <Input prefix="￥" />,
+    pricing: <Input prefix="Rs. " />,
     visible: <Switch defaultChecked onChange={onChange} />,
   },
   {
     key: '4',
     width: 'Disabled User',
     length: 99,
-    pricing: <Input prefix="￥" />,
+    pricing: <Input prefix="Rs. " />,
     visible: <Switch defaultChecked onChange={onChange} />,
   },
 ];
@@ -886,10 +886,10 @@ const sizesOfProducts = [
   {
     label: 'Wall Hangings',
     value: ['Per Squrefit', 'Per Inch', 'Per Centimeter', 'Per Meter'],
-      children: [{
-        value: ['2inches', '5 inches', '15 inche'],
-        label:  'Per Squarefit',
-      }
+    children: [{
+      value: ['2inches', '5 inches', '15 inche'],
+      label: 'Per Squarefit',
+    }
     ]
   },
   {
@@ -898,7 +898,7 @@ const sizesOfProducts = [
   },
   {
     label: 'Wallpapers',
-    value: ['6.7- 7.5ft', 	'7.5- 8.2ft', '8.2- 9ft',	'9- 9.10ft',	'9.10- 10.8ft', '10.8- 11.6ft',	'11.6- 12.4ft',	'12.4"- 13.1ft']
+    value: ['6.7- 7.5ft', '7.5- 8.2ft', '8.2- 9ft', '9- 9.10ft', '9.10- 10.8ft', '10.8- 11.6ft', '11.6- 12.4ft', '12.4"- 13.1ft']
   },
   {
     label: 'Wall Stencils',
@@ -1044,8 +1044,8 @@ class PriceInput extends React.Component {
     );
   }
 }
- /*Variation table*/
- const rowSelection = {
+/*Variation table*/
+const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
@@ -1061,7 +1061,7 @@ function onChange(checked) {
 }
 
 class EcommerceForm extends Component {
-  
+
   state = { visible: false };
 
   constructor(props) {
@@ -1121,7 +1121,7 @@ class EcommerceForm extends Component {
 
   /*Modal End*/
 
- 
+
 
   componentDidMount() {
     let date = new Date().getDate();
@@ -1259,7 +1259,7 @@ class EcommerceForm extends Component {
     }
   }
 
-  //--------------function for cloudnary url ---------------
+  //--------------function for cloudnary url ---------------//
   uploadFile = (files) => {
     const image = files.originFileObj
     const cloudName = 'dxk0bmtei'
@@ -1440,16 +1440,8 @@ class EcommerceForm extends Component {
             })(<Cascader options={categories} onChange={this.onChangeGetSizes} />)}
           </Form.Item>
 
-          {/*Width*/}
-          <Form.Item label="Select Width">
-            <Input placeholder="Input Width" />
-          </Form.Item>
-            
-          {/*height*/}
-          <Form.Item label="Select Height">
-            <Input placeholder="Input Height" />
-          </Form.Item>
-          
+
+
           {/*Sizes*/}
           {renderSizes.length > 0 && <Form.Item label="Select Sizes">
             {getFieldDecorator('sizes', {
@@ -1499,6 +1491,93 @@ class EcommerceForm extends Component {
             )}
           </Form.Item>
           }
+
+          {/*Width*/}
+          <Form.Item label="Select Width">
+          {getFieldDecorator('width', {
+              // initialValue: width,
+              rules: [{
+                required: true,
+                message: 'Please enter product width!',
+                whitespace: true
+              }],
+            })( <Input placeholder="Input Width" />)}
+           
+
+          </Form.Item>
+
+          {/*height*/}
+          <Form.Item label="Select Height">
+          {getFieldDecorator('height', {
+              // initialValue: height,
+              rules: [{
+                required: true,
+                message: 'Please enter product height!',
+                whitespace: true
+              }],
+            })( <Input placeholder="Input Height" />)}
+          </Form.Item>
+
+
+
+          {/*Variation*/}
+
+          <h4>Variations</h4>
+          <p>Add available options like color or size. Buyers will choose from these during checkout.</p>
+
+          <div>
+            <Button type="primary" onClick={this.showModal}>
+              Open Modal
+              </Button>
+            <Modal
+              title="Basic Modal"
+              visible={this.state.visible}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+            >
+              <Select
+                showSearch
+                style={{ width: 200 }}
+                placeholder="Choose variation type"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                <Option value="Primary Color">Primary Color</Option>
+                <Option value="Width">Width</Option>
+                <Option value="Height">Height</Option>
+                <Option value="Size">Size</Option>
+                <Option value="Depth">Depth</Option>
+                <Option value="Material">Material</Option>
+              </Select>,
+
+                  <Select
+                showSearch
+                style={{ width: 200 }}
+                placeholder="Select Unit"
+                optionFilterProp="children"
+                filterOption={(input, option) =>
+                  option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                <Option value="Centimeter">Centimeter</Option>
+                <Option value="Feet">Feet</Option>
+                <Option value="Inches">Inches</Option>
+                <Option value="Meter">Meter</Option>
+                <Option value="Milimeter">Milimeter</Option>
+                <Option value="Yards">Yards</Option>
+              </Select>
+
+              <Input suffix="Centimeter" />
+            </Modal>
+          </div>
+
+          {/*Variation table*/}
+          <Table rowSelection={rowSelection} columns={columns} dataSource={data} />,
+
+
+
           {/*Quantity*/}
           <Form.Item label="Select Quantity">
             {getFieldDecorator('quantity', {
@@ -1559,63 +1638,6 @@ class EcommerceForm extends Component {
               }],
             })(<TextArea rows={4} />)}
           </Form.Item>
-        
-          {/*Variation*/}
-
-          <h4>Variations</h4>
-          <p>Add available options like color or size. Buyers will choose from these during checkout.</p>
-          
-            <div>
-              <Button type="primary" onClick={this.showModal}>
-                Open Modal
-              </Button>
-              <Modal
-                title="Basic Modal"
-                visible={this.state.visible}
-                onOk={this.handleOk}
-                onCancel={this.handleCancel}
-              >
-                  <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="Choose variation type"
-                    optionFilterProp="children"
-                    filterOption={(input, option) =>
-                      option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    <Option value="Primary Color">Primary Color</Option>
-                    <Option value="Width">Width</Option>
-                    <Option value="Height">Height</Option>
-                    <Option value="Size">Size</Option>
-                    <Option value="Depth">Depth</Option>
-                    <Option value="Material">Material</Option>
-                  </Select>,
-
-                  <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="Select Unit"
-                    optionFilterProp="children"
-                    filterOption={(input, option) =>
-                      option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    <Option value="Centimeter">Centimeter</Option>
-                    <Option value="Feet">Feet</Option>
-                    <Option value="Inches">Inches</Option>
-                    <Option value="Meter">Meter</Option>
-                    <Option value="Milimeter">Milimeter</Option>
-                    <Option value="Yards">Yards</Option>
-                  </Select>
-
-                  <Input  suffix="Centimeter" />
-              </Modal>
-            </div>
-          
-          {/*Variation table*/}
-          <Table rowSelection={rowSelection} columns={columns} dataSource={data} />,
-                    
           {/*Uplaod Images*/}
 
           <Form.Item label="upload">
@@ -1673,7 +1695,7 @@ class EcommerceForm extends Component {
           </div>}
         </Form>
 
-        
+
       </div>
     );
   }
