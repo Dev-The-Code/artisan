@@ -49,31 +49,31 @@ const columns = [
 const data = [
   {
     key: '1',
-    width: 'John Brown',
+    width: '40',
     length: 32,
     pricing: <Input prefix="Rs. " />,
-    visible: <Switch defaultChecked onChange={onChange} />,
+    // visible: <Switch defaultChecked onChange={onChange} />,
   },
   {
     key: '2',
-    width: 'Jim Green',
+    width: '40',
     length: 42,
     pricing: <Input prefix="Rs. " />,
-    visible: <Switch defaultChecked onChange={onChange} />,
+    // visible: <Switch defaultChecked onChange={onChange} />,
   },
   {
     key: '3',
-    width: 'Joe Black',
+    width: '40',
     length: 32,
     pricing: <Input prefix="Rs. " />,
-    visible: <Switch defaultChecked onChange={onChange} />,
+    // visible: <Switch defaultChecked onChange={onChange} />,
   },
   {
     key: '4',
-    width: 'Disabled User',
+    width: '30',
     length: 99,
     pricing: <Input prefix="Rs. " />,
-    visible: <Switch defaultChecked onChange={onChange} />,
+    // visible: <Switch defaultChecked onChange={onChange} />,
   },
 ];
 
@@ -355,32 +355,7 @@ const categories = [
         value: 'Triplet & Double Rings',
         label: 'Triplet & Double Rings',
       }]
-    }
-    // , 
-    // {
-    //   value: 'Accessories',
-    //   label: 'Accessories',
-    //   children: [{
-    //     value: 'Hair Accessories',
-    //     label: 'Hair Accessories',
-    //   }, {
-    //     value: 'Hats & Caps',
-    //     label: 'Hats & Caps',
-    //   }, {
-    //     value: 'Keychains & Lanyards',
-    //     label: 'Keychains & Lanyards',
-    //   }, {
-    //     value: 'Scarves & Wraps',
-    //     label: 'Scarves & Wraps',
-    //   }, {
-    //     value: 'Suits & Tie Accessories',
-    //     label: 'Suits & Tie Accessories',
-    //   }, {
-    //     value: 'Baby Accessories',
-    //     label: 'Baby Accessories',
-    //   }]
-    // }
-  ]
+    }]
   }, {
     value: 'Decor',
     label: 'Decor',
@@ -744,11 +719,11 @@ const sizesOfProducts = [
   /*Jwelery*/
   {
     label: 'Hair Jwellery',
-    value: ['Universal']
+    value: ['Universal', '6mm', '8mm', '10mm']
   },
   {
     label: 'Anklets',
-    value: ['Universal']
+    value: ['Universal', '6mm', '8mm', '10mm']
   },
   {
     label: 'Nose Rings & Studs',
@@ -873,127 +848,236 @@ const sizesOfProducts = [
   },
   {
     label: 'Wedding & Engagement',
-    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
-  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
+    value: ['One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+      '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
   },
   {
     label: 'Signet Rings',
-    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
-  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
+    value: ['One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+      '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
   },
   {
     label: 'Statement Rings',
-    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
-  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
+    value: ['One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+      '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
   },
   {
     label: 'Bands',
-    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
-  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
+    value: ['One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+      '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
   },
   {
     label: 'Solitaire Rings',
-    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
-  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
+    value: ['One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+      '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
   },
   {
     label: 'Stackable Rings',
-    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
-  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
+    value: ['One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+      '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
   },
   {
     label: 'Multi-Stone Rings',
-    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
-  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
+    value: ['One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+      '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
   },
   {
     label: 'Midi Rings',
-    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
-  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
+    value: ['One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+      '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
   },
   {
     label: 'Triplet & Double Rings',
-    value: ['One Size' , 'Adjustable' , 'N/a' , 'Small' , 'Medium' , 'Large' , 
-  '5' , '6', '7' , '8' , '9','10','11','12','16','17' , '18' , '19' , '20' , '21' , '22' , '16 MM' , '17 MM' , '18 MM']
+    value: ['One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+      '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
   },
-  // {
-  //   label: 'Hair Accessories',
-  //   value: ['Universal']
-  // },
-  // {
-  //   label: 'Hats & Caps',
-  //   value: ['Universal']
-  // },
-  // {
-  //   label: 'Keychains & Lanyards',
-  //   value: ['Universal']
-  // },
-  // {
-  //   label: 'Sarves & Wraps',
-  //   value: ['Universal']
-  // },
-  // {
-  //   label: 'Suits & Tie Accessories',
-  //   value: ['Universal']
-  // },
-  // {
-  //   label: 'Babay Accessories',
-  //   value: ['Universal']
-  // },
-
   /*Decor*/
   {
     label: 'Wall Hangings',
-    value: ['Per Squrefit', 'Per Inch', 'Per Centimeter', 'Per Meter'],
-    children: [{
-      value: ['2inches', '5 inches', '15 inche'],
-      label: 'Per Squarefit',
-    }
-    ]
+    value: ['Width', 'Height', 'Add Variation']
   },
   {
     label: 'Wall Decals & Murals',
-    value: ['']
+    value: ['Width', 'Height', 'Add Variation']
   },
   {
     label: 'Wallpapers',
-    value: ['6.7- 7.5ft', '7.5- 8.2ft', '8.2- 9ft', '9- 9.10ft', '9.10- 10.8ft', '10.8- 11.6ft', '11.6- 12.4ft', '12.4"- 13.1ft']
+    value: ['Width', 'Height', 'Add Variation']
   },
   {
     label: 'Wall Stencils',
-    value: ['Small', 'Medium', 'Large']
+    value: ['Width', 'Height', 'Add Variation']
   },
   {
     label: 'Cushions',
-    value: ['XS', 'S', 'M', 'XL']
+    value: ['Width', 'Height', 'Add Variation']
   },
   {
     label: 'Frames',
-    value: ['Per Squre Feet']
+    value: ['Width', 'Height', 'Add Variation']
   },
   {
     label: 'Candles',
-    value: ['Per Squre Feet']
+    value: ['Not Width', ' Not Height']
   },
   {
     label: 'Candle Holders',
-    value: ['Per Squre Feet']
+    value: ['Not Width', ' Not Height']
   },
   {
     label: 'Wax Melts',
-    value: ['Per Squre Feet']
+    value: ['Not Width', ' Not Height']
   },
   {
     label: 'Incense',
-    value: ['Per Squre Feet']
+    value: ['Not Width', ' Not Height']
   },
   {
-    label: 'Pets',
+    label: 'Pet Collars & Jwellery',
     value: []
   },
   {
-    label: 'Furniture',
-    value: ['King', 'Queen', 'Single']
+    label: 'Pet ID Tags',
+    value: []
+  },
+  {
+    label: 'Pet Leashes',
+    value: []
+  },
+  {
+    label: 'Pet Harnesses & Backpacks',
+    value: []
+  },
+  {
+    label: 'Pet Beds & Cots',
+    value: ['Small', 'Medium', 'Large', 'Extra Large']
+  },
+  {
+    label: 'Pet Hammocks',
+    value: ['Small', 'Medium', 'Large', 'Extra Large']
+  },
+  {
+    label: 'Play Furniture',
+    value: ['Small', 'Medium', 'Large', 'Extra Large']
+  },
+  {
+    label: 'Pet Steps',
+    value: ['Small', 'Medium', 'Large', 'Extra Large']
+  },
+  {
+    label: 'Pet Jackets',
+    value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+  },
+  {
+    label: 'Pet Tops',
+    value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+  },
+  {
+    label: 'Pet Dresses',
+    value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+  },
+  {
+    label: 'Pet Hat & Wigs',
+    value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+  },
+  {
+    label: 'Pet Booties',
+    value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+  },
+  {
+    label: 'Pet Shoes',
+    value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+  }, {
+    label: 'Pet Neckwear',
+    value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+  }, {
+    label: 'Pet Bows and Bells',
+    value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+  },
+  {
+    label: 'Pet Houses',
+    value: [],
+  }, {
+    label: 'Aquariums & Tank Decor',
+    value: [],
+  }, {
+    label: 'Nests & Bags',
+    value: [],
+  }, {
+    label: 'Pet Slings',
+    value: [],
+  }, {
+    label: 'Bird Cages',
+    value: [],
+  }, {
+    label: 'Pet Totes',
+    value: [],
+  }, {
+    label: 'Pet Crates & Kennels',
+    value: [],
+  }, {
+    label: 'Coops',
+    value: [],
+  },
+  {
+    label: 'Drawer Pulls & Knobs',
+    value: [],
+  }, {
+    label: 'Coffee & End Tables',
+    value: ['Add Variation'],
+  }, {
+    label: 'Chairs & Ottomans',
+    value: [],
+  },
+  {
+    label: 'Floor Cushions',
+    value: [],
+  },
+  {
+    label: 'Kitchen & Dinning Tables',
+    value: ['Add Variation'],
+  },
+  {
+    label: 'Dining Chairs',
+    value: ['Add Variation'],
+  },
+  {
+    label: 'Stools & Banquettes',
+    value: ['Add Variation'],
+  },
+  {
+    label: 'Buffets & China Cabinets',
+    value: ['Add Variation'],
+  },
+  {
+    label: 'Dressers & Armoires',
+    value: ['Add Variation'],
+  },
+  {
+    label: 'Vanities & Nightstands',
+    value: ['Add Variation'],
+  },
+  {
+    label: 'Beds & Headboards',
+    value: ['One size', '2 Persons', '3 Person', '4 Person', 'Extra Single',
+      'Single', 'Double', 'Super King', 'King', 'Queen'],
+  },
+  {
+    label: 'Steps & Stools',
+    value: ['Add Variation'],
+  },
+  {
+    value: 'Desks, Tables & Chairs',
+    label: ['Add Variation'],
+  }, {
+    value: 'Bean Bag Chairs',
+    label: ['Add Variation'],
+  }, {
+    value: 'Steps & Stools',
+    label: ['Add Variation'],
+  }, {
+    value: 'Toddlers Beds',
+    label: ['Toddler'],
   }
 ]
 
@@ -1075,10 +1159,6 @@ class PriceInput extends React.Component {
       });
     }
   };
-
-
-
-
   render() {
     const { size, value } = this.props;
     return (
@@ -1103,26 +1183,23 @@ class PriceInput extends React.Component {
     );
   }
 }
-/*Variation table*/
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-  getCheckboxProps: record => ({
-    disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    name: record.name,
-  }),
-};
+// /*Variation table*/
+// const rowSelection = {
+//   onChange: (selectedRowKeys, selectedRows) => {
+//     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+//   },
+//   getCheckboxProps: record => ({
+//     disabled: record.name === 'Disabled User', // Column configuration not to be checked
+//     name: record.name,
+//   }),
+// };
 
 /*switch function*/
-function onChange(checked) {
-  console.log(`switch to ${checked}`);
-}
+// function onChange(checked) {
+//   console.log(`switch to ${checked}`);
+// }
 
 class EcommerceForm extends Component {
-
-  state = { visible: false };
-
   constructor(props) {
     super(props)
     this.state = {
@@ -1153,7 +1230,8 @@ class EcommerceForm extends Component {
       date: '',
       time: '',
       shopId: '',
-      shopName: ''
+      shopName: '',
+      visible: false
     }
   }
 
@@ -1260,6 +1338,7 @@ class EcommerceForm extends Component {
     }
     this.funcForUpload(values)
   }
+
   // validateNumber(rule, value, callback) {
   //   if (isNaN(value)) {
   //     callback('Please type Numbers');
@@ -1437,6 +1516,7 @@ class EcommerceForm extends Component {
         <div className="ant-upload-text">Upload</div>
       </div>
     );
+
     const uploadedImages = (
       <div style={{ height: '100%' }}>
         {imageList && imageList.map((elem) => {
@@ -1465,11 +1545,14 @@ class EcommerceForm extends Component {
         })}
       </div>
     )
+
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
     };
+
     const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+
     return (
       <div>
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
@@ -1564,6 +1647,28 @@ class EcommerceForm extends Component {
 
 
           </Form.Item>
+          <Form.Item label="Select Width Unit">
+            {getFieldDecorator('widthUnit', {
+              // initialValue: width,
+              rules: [{
+                required: true,
+                message: 'Please enter product width Unit!',
+                whitespace: true
+              }],
+            })(
+              <Select
+                style={{ width: '32%' }}
+                onChange={this.handleUnits}
+              >
+                <Option value="Centimeter">Centimeter</Option>
+                <Option value="Feet">Feet</Option>
+                <Option value="Inches">Inches</Option>
+                <Option value="Meter">Meter</Option>
+                <Option value="Milimeter">Milimeter</Option>
+                <Option value="Yards">Yards</Option>
+              </Select>
+            )}
+          </Form.Item>
 
           {/*height*/}
           <Form.Item label="Select Height">
@@ -1577,10 +1682,30 @@ class EcommerceForm extends Component {
             })(<Input placeholder="Input Height" />)}
           </Form.Item>
 
-
+          <Form.Item label="Select Height Unit">
+            {getFieldDecorator('heightUnit', {
+              // initialValue: width,
+              rules: [{
+                required: true,
+                message: 'Please enter product height Unit!',
+                whitespace: true
+              }],
+            })(
+              <Select
+                style={{ width: '32%' }}
+                onChange={this.handleUnits}
+              >
+                <Option value="Centimeter">Centimeter</Option>
+                <Option value="Feet">Feet</Option>
+                <Option value="Inches">Inches</Option>
+                <Option value="Meter">Meter</Option>
+                <Option value="Milimeter">Milimeter</Option>
+                <Option value="Yards">Yards</Option>
+              </Select>
+            )}
+          </Form.Item>
 
           {/*Variation*/}
-
           <h4>Variations</h4>
           <p>Add available options like color or size. Buyers will choose from these during checkout.</p>
 
@@ -1599,16 +1724,13 @@ class EcommerceForm extends Component {
                 style={{ width: 200 }}
                 placeholder="Choose variation type"
                 optionFilterProp="children"
-                filterOption={(input, option) =>
-                  option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                }
+              // filterOption={(input, option) =>
+              //   option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              // }
               >
-                <Option value="Primary Color">Primary Color</Option>
+                <Option value="">Select Options</Option>
                 <Option value="Width">Width</Option>
                 <Option value="Height">Height</Option>
-                <Option value="Size">Size</Option>
-                <Option value="Depth">Depth</Option>
-                <Option value="Material">Material</Option>
               </Select>,
 
                   <Select
@@ -1616,9 +1738,9 @@ class EcommerceForm extends Component {
                 style={{ width: 200 }}
                 placeholder="Select Unit"
                 optionFilterProp="children"
-                filterOption={(input, option) =>
-                  option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                }
+              // filterOption={(input, option) =>
+              //   option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              // }
               >
                 <Option value="Centimeter">Centimeter</Option>
                 <Option value="Feet">Feet</Option>
@@ -1633,7 +1755,7 @@ class EcommerceForm extends Component {
           </div>
 
           {/*Variation table*/}
-          <Table rowSelection={rowSelection} columns={columns} dataSource={data} />,
+          <Table columns={columns} dataSource={data} />,
 
 
 
@@ -1763,3 +1885,5 @@ class EcommerceForm extends Component {
 const WrappedEcommerceForm = Form.create({ name: 'register' })(EcommerceForm);
 
 export default WrappedEcommerceForm;
+
+
