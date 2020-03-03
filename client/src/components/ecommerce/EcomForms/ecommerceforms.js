@@ -1921,8 +1921,17 @@ class EcommerceForm extends Component {
       visible: false,
       showWidth: false,
       showHeight: false,
-      showVariations:false,
-      hide:false
+      showVariations: false,
+      hide: false,
+      variationTypeOne: '',
+      variationTypeTwo: '',
+      variationTypeOneUnit: '',
+      variationTypeTwoUnit: '',
+      addVariationVal: '',
+      variationUnitValueOne: '',
+      variationUnitValueTwo:'',
+      addMultiValueOne: [],
+      addMultiValueTwo: []
     }
   }
 
@@ -1978,6 +1987,7 @@ class EcommerceForm extends Component {
     });
   }
 
+  //select sizes & colors respectively with product category
   onChangeGetSizes = (values) => {
     console.log(values, 'values')
     let sizesWithCategory;
@@ -2031,29 +2041,30 @@ class EcommerceForm extends Component {
                 })
               }
             }
-
           }
         }
       }
     }
   }
 
-  onChangePickSizes =(values) =>{
-   let variation = values.indexOf('Add Variation')
-    if(variation != -1){
+  //user select add variation through sizes check boxes
+  onChangePickSizes = (values) => {
+    let variation = values.indexOf('Add Variation')
+    if (variation != -1) {
       this.setState({
-        showWidth:true,
-        showHeight:true
+        showWidth: true,
+        showHeight: true
       })
     }
-    else if(variation == -1){
+    else if (variation == -1) {
       this.setState({
-        showWidth:false,
-        showHeight:false
+        showWidth: false,
+        showHeight: false
       })
     }
-
   }
+
+  //user add the variation not for one size the product but multiple
   showVariation = () => {
     this.setState({
       showHeight: false,
@@ -2062,7 +2073,8 @@ class EcommerceForm extends Component {
     })
   }
 
-  showWidthHieght = ()=>{
+  //show height & width inupt & units
+  showWidthHieght = () => {
     this.setState({
       showHeight: true,
       showWidth: true,
@@ -2070,20 +2082,127 @@ class EcommerceForm extends Component {
     })
   }
 
-  hideInputs = ()=>{
+  //hide height & width inupt & units 
+  hideInputs = () => {
     this.setState({
       showHeight: false,
       showWidth: false,
-      hide:true
+      hide: true
     })
   }
-  showInputs = () =>{
+
+  //show height & width inupt & units 
+  showInputs = () => {
     this.setState({
       showHeight: true,
       showWidth: true,
-      hide:false
+      hide: false
     })
   }
+
+  //pick variation from modal of the variation
+  onChangeVariation = (values) => {
+    console.log(values, 'values')
+    const { variationTypeOne } = this.state;
+    if (variationTypeOne == '') {
+      this.setState({
+        variationTypeOne: values,
+        addVariationVal: ''
+      })
+    }
+    else {
+      this.setState({
+        variationTypeTwo: values,
+        addVariationVal: ''
+      })
+    }
+  }
+
+  //delete variation 
+  deleteVariOne = () => {
+    this.setState({
+      variationTypeOne: '',
+      variationTypeOneUnit: ''
+    })
+  }
+
+  deleteVariTwo = () => {
+    this.setState({
+      variationTypeTwo: '',
+      variationTypeTwoUnit: ''
+    })
+  }
+
+  //on change variation unit
+  onChangeVariationUnits = (values) => {
+    this.setState({
+      variationTypeOneUnit: values
+    })
+  }
+
+  onChangeVariationUnitsTwo = (values) => {
+    this.setState({
+      variationTypeTwoUnit: values
+    })
+  }
+
+  //edit variation unit 
+  editvariOneUnit = () => {
+    this.setState({
+      variationTypeOneUnit: ''
+    })
+  }
+
+  editvariTwoUnit = () => {
+    this.setState({
+      variationTypeTwoUnit: ''
+    })
+  }
+
+  //unit input value
+  inputValueOne = (e) => {
+    this.setState({
+      variationUnitValueOne: e.target.value
+    })
+  }
+
+  inputValueTwo = (e) => {
+    this.setState({
+      variationUnitValueTwo: e.target.value
+    })
+  }
+
+  //add multiple value of the variation 1st value
+  addmultipleUnitValOne = () => {
+    const { addMultiValueOne, variationTypeOneUnit, variationUnitValueOne } = this.state;
+    let obj = {
+      firstVariationUnitValue: variationUnitValueOne,
+      firstVariationUnit: variationTypeOneUnit,
+    }
+    let arr = []
+    arr.push(obj)
+    arr = [...arr, ...addMultiValueOne]
+    this.setState({
+      addMultiValueOne: arr,
+      variationUnitValueOne: ''
+    })
+  }
+
+  addmultipleUnitValTwo = () => {
+    const { addMultiValueTwo, variationTypeTwoUnit, variationUnitValueTwo } = this.state;
+    let obj = {
+      secondVariationUnitValue: variationUnitValueTwo,
+      secondVariationUnit: variationTypeTwoUnit,
+    }
+    let arr = []
+    arr.push(obj)
+    arr = [...arr, ...addMultiValueTwo]
+    this.setState({
+      addMultiValueTwo: arr,
+      variationUnitValueTwo: ''
+    })
+  }
+
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
       return callback();
@@ -2093,11 +2212,11 @@ class EcommerceForm extends Component {
 
   validateNumber(rule, value, callback) {
     if (isNaN(value)) {
-        callback('Please type Numbers');
+      callback('Please type Numbers');
     } else {
-        callback()
+      callback()
     }
-}
+  }
 
   /*Modal Open*/
   showModal = () => {
@@ -2277,13 +2396,14 @@ class EcommerceForm extends Component {
     const { getFieldDecorator } = this.props.form;
     const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice,
       price, materialType, description, color, productData, goProductDetailPage, producId, imageList, renderSizes, renderColors,
-      showWidth, showHeight , showVariations , hide} = this.state;
+      showWidth, showHeight, showVariations, hide, variationTypeOne, variationTypeOneUnit, variationTypeTwo, addVariationVal,
+      variationTypeTwoUnit, variationUnitValueOne,variationUnitValueTwo, addMultiValueOne , addMultiValueTwo} = this.state;
     if (goProductDetailPage) {
       return (
         <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
       )
     }
-
+    console.log(addMultiValueOne, 'addMultiValueOne')
     const uploadButton = (
       <div>
         <Icon type="plus" />
@@ -2364,7 +2484,7 @@ class EcommerceForm extends Component {
                 { required: true, message: 'Please select your sizes!', type: 'array' },
               ],
             })(
-              <Checkbox.Group style={{ width: '100%' }} onChange = {this.onChangePickSizes}>
+              <Checkbox.Group style={{ width: '100%' }} onChange={this.onChangePickSizes}>
                 <Row>
                   {renderSizes && renderSizes.map((elem, key) => {
                     return (
@@ -2452,9 +2572,9 @@ class EcommerceForm extends Component {
                   whitespace: true,
                   required: true,
                   message: 'Please enter product height!',
-              },
-              { validator: this.validateNumber.bind(this) }]
-              
+                },
+                { validator: this.validateNumber.bind(this) }]
+
               })(<Input placeholder="Input Height" />)}
             </Form.Item>
           }
@@ -2488,67 +2608,140 @@ class EcommerceForm extends Component {
           {showWidth && showHeight &&
             <p onClick={this.hideInputs}>Hide height & width</p>
           }
-           {hide &&
+          {hide &&
             <p onClick={this.showInputs}>Add height & width</p>
           }
           {showVariations &&
             < span onClick={this.showWidthHieght}>Hide Variation Show Width Height</span>
           }
           {/*Variation*/}
-          {showVariations && 
-          <div>
-          <h4>Variations</h4>
-          <p>Add available options like sizes. Buyers will choose from these during checkout.</p>
-          <div>
-            <Button type="primary" onClick={this.showModal}>
-              Add Variation
+          {showVariations &&
+            <div>
+              <h4>Variations</h4>
+              <p>Add available options like sizes. Buyers will choose from these during checkout.</p>
+              <div>
+                <Button type="primary" onClick={this.showModal}>
+                  Add Variation
               </Button>
-            <Modal
-              title="Basic Modal"
-              visible={this.state.visible}
-              onOk={this.handleOk}
-              onCancel={this.handleCancelModal}
-            >
-              <Select
-                showSearch
-                style={{ width: 200 }}
-                placeholder="Choose variation type"
-                optionFilterProp="children"
-              // filterOption={(input, option) =>
-              //   option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              // }
-              >
-                <Option value="">Select Options</Option>
-                <Option value="Width">Width</Option>
-                <Option value="Height">Height</Option>
-              </Select>,
-  
-                  <Select
-                showSearch
-                style={{ width: 200 }}
-                placeholder="Select Unit"
-                optionFilterProp="children"
-              // filterOption={(input, option) =>
-              //   option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              // }
-              >
-                <Option value="Centimeter">Centimeter</Option>
-                <Option value="Feet">Feet</Option>
-                <Option value="Inches">Inches</Option>
-                <Option value="Meter">Meter</Option>
-                <Option value="Milimeter">Milimeter</Option>
-                <Option value="Yards">Yards</Option>
-              </Select>
+                <Modal
+                  title="Add Variation"
+                  visible={this.state.visible}
+                  onOk={this.handleOk}
+                  onCancel={this.handleCancelModal}
+                >
+                  <div>List all the options you offer. Buyers will see them in the order they are here.</div>
+                  {variationTypeOne && <div>
+                    <span>{variationTypeOne}</span>
+                    {variationTypeOneUnit && <span onClick={this.editvariOneUnit}>Edit unit</span>}
+                    <span onClick={this.deleteVariOne}>Delete</span>
 
-              <Input suffix="Centimeter" />
-            </Modal>
-          </div>
+                    {variationTypeOneUnit == '' &&
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Select Unit"
+                        optionFilterProp="children"
+                        onChange={this.onChangeVariationUnits}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        <Option value="Centimeter">Centimeter</Option>
+                        <Option value="Feet">Feet</Option>
+                        <Option value="Inches">Inches</Option>
+                        <Option value="Meter">Meter</Option>
+                        <Option value="Milimeter">Milimeter</Option>
+                        <Option value="Yards">Yards</Option>
+                      </Select>
+                    }
 
-          {/*Variation table*/}
-          <Table columns={columns} dataSource={data} />,
+                    {variationTypeOneUnit != '' &&
+                      <div>
+                        <Input value={variationUnitValueOne} onChange={this.inputValueOne}
+                          type="Number" suffix={variationTypeOneUnit} />
+                        <button onClick={this.addmultipleUnitValOne}>Add</button>
+                        {addMultiValueOne && addMultiValueOne.map((elem, key) => {
+                          return (<div>
+                            <span>{elem.firstVariationUnitValue + " " +
+                              elem.firstVariationUnit}</span>
+                            <button>X</button>
+                          </div>)
+                        })}
+                      </div>}
+
+                  </div>}
+
+                  {variationTypeTwo && <div>
+                    <span>{variationTypeTwo}</span>
+                    {variationTypeTwoUnit && <span onClick={this.editvariTwoUnit}>Edit unit</span>}
+                    <span onClick={this.deleteVariTwo}>Delete</span>
+
+                    {variationTypeTwoUnit == '' &&
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Select Unit"
+                        optionFilterProp="children"
+                        onChange={this.onChangeVariationUnitsTwo}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        <Option value="Centimeter">Centimeter</Option>
+                        <Option value="Feet">Feet</Option>
+                        <Option value="Inches">Inches</Option>
+                        <Option value="Meter">Meter</Option>
+                        <Option value="Milimeter">Milimeter</Option>
+                        <Option value="Yards">Yards</Option>
+                      </Select>
+                    }
+                    {variationTypeTwoUnit != '' &&
+                      <div>
+                        {/* {addMultiValueOne &&} */}
+                        <Input value={variationUnitValueTwo} onChange={this.inputValueTwo}
+                          type="Number" suffix={variationTypeTwoUnit} />
+                        <button onClick={this.addmultipleUnitValTwo}>Add</button>
+                        {addMultiValueTwo && addMultiValueTwo.map((elem, key) => {
+                          return (<div>
+                            <span>{elem.secondVariationUnitValue + " " +
+                              elem.secondVariationUnit}</span>
+                            <button>X</button>
+                          </div>)
+                        })}
+                      </div>
+                    }
+
+                  </div>}
+
+                  {variationTypeOne != '' && variationTypeTwo != '' ?
+                    null :
+                    <div>
+                      <div>Add Variation</div>
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Choose variation type"
+                        optionFilterProp="children"
+                        onChange={this.onChangeVariation}
+                        value={addVariationVal}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        <Option value="">Choose variation type</Option>
+                        <Option value="Height">Height</Option>
+                        <Option value="Width">Width</Option>
+                      </Select>
+                    </div>
+                  }
+                </Modal>
+              </div>
+
+              {/*Variation table*/}
+              <Table columns={columns} dataSource={data} />,
           </div>
           }
-  
+
           {/*Quantity*/}
           <Form.Item label="Select Quantity">
             {getFieldDecorator('quantity', {
