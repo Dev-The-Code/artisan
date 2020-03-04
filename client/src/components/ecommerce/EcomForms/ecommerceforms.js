@@ -20,31 +20,25 @@ import {
   Spin,
   Table,
 } from 'antd';
+import './ecommreceform.css'
+
 const { Option } = Select;
 const { TextArea } = Input;
 
 //for varidation of the product
 
-const columns = [
-  {
-    title: 'Width',
-    dataIndex: 'width',
-  },
-  {
-    title: 'Lenth',
-    dataIndex: 'length',
-  },
-  {
-    title: 'Pricing',
-    dataIndex: 'pricing',
-  },
-  // {
-  //   title: 'Visible',
-  //   dataIndex: 'visible'
-
-
-  // }
-];
+const columns = [{
+  title: 'Width',
+  dataIndex: 'width',
+},
+{
+  title: 'Lenth',
+  dataIndex: 'length',
+},
+{
+  title: 'Pricing',
+  dataIndex: 'pricing',
+}];
 
 const data = [
   {
@@ -52,29 +46,25 @@ const data = [
     width: '40',
     length: 32,
     pricing: <Input prefix="Rs. " />,
-    // visible: <Switch defaultChecked onChange={onChange} />,
   },
   {
     key: '2',
     width: '40',
     length: 42,
     pricing: <Input prefix="Rs. " />,
-    // visible: <Switch defaultChecked onChange={onChange} />,
   },
   {
     key: '3',
     width: '40',
     length: 32,
     pricing: <Input prefix="Rs. " />,
-    // visible: <Switch defaultChecked onChange={onChange} />,
   },
   {
     key: '4',
     width: '30',
     length: 99,
     pricing: <Input prefix="Rs. " />,
-    // visible: <Switch defaultChecked onChange={onChange} />,
-  },
+  }
 ];
 
 //category of the product
@@ -1874,6 +1864,8 @@ class PriceInput extends React.Component {
     );
   }
 }
+
+
 // /*Variation table*/
 // const rowSelection = {
 //   onChange: (selectedRowKeys, selectedRows) => {
@@ -1929,9 +1921,11 @@ class EcommerceForm extends Component {
       variationTypeTwoUnit: '',
       addVariationVal: '',
       variationUnitValueOne: '',
-      variationUnitValueTwo:'',
+      variationUnitValueTwo: '',
       addMultiValueOne: [],
-      addMultiValueTwo: []
+      addMultiValueTwo: [],
+      emptyInput1: false,
+      emptyInput2: false
     }
   }
 
@@ -1989,14 +1983,11 @@ class EcommerceForm extends Component {
 
   //select sizes & colors respectively with product category
   onChangeGetSizes = (values) => {
-    console.log(values, 'values')
     let sizesWithCategory;
     for (var i = 0; i < sizesOfProducts.length; i++) {
-      // console.log(sizesOfProducts[i], 'sizesOfProducts[i]')
       if (values[0] == sizesOfProducts[i].value) {
         let value = sizesOfProducts[i].children
         for (var j = 0; j < value.length; j++) {
-          // console.log(value[j], 'value[j]')
           if (values[1] == value[j].value) {
             let sizes = value[j].children;
             for (var k = 0; k < sizes.length; k++) {
@@ -2026,16 +2017,13 @@ class EcommerceForm extends Component {
     })
 
     for (var i = 0; i < colorsOfProducts.length; i++) {
-      // console.log(colorsOfProducts[i], 'colorsOfProducts[i]')
       if (values[0] == colorsOfProducts[i].value) {
         let value = colorsOfProducts[i].children
         for (var j = 0; j < value.length; j++) {
-          // console.log(value[j], 'value[j]')
           if (values[1] == value[j].value) {
             let colors = value[j].children;
             for (var k = 0; k < colors.length; k++) {
               if (values[2] == colors[k].label) {
-                // console.log(colors[k].value, 'colors of drop down')
                 this.setState({
                   renderColors: colors[k].value
                 })
@@ -2102,7 +2090,6 @@ class EcommerceForm extends Component {
 
   //pick variation from modal of the variation
   onChangeVariation = (values) => {
-    console.log(values, 'values')
     const { variationTypeOne } = this.state;
     if (variationTypeOne == '') {
       this.setState({
@@ -2122,28 +2109,57 @@ class EcommerceForm extends Component {
   deleteVariOne = () => {
     this.setState({
       variationTypeOne: '',
-      variationTypeOneUnit: ''
+      variationTypeOneUnit: '',
+      addMultiValueOne: []
     })
   }
 
   deleteVariTwo = () => {
     this.setState({
       variationTypeTwo: '',
-      variationTypeTwoUnit: ''
+      variationTypeTwoUnit: '',
+      addMultiValueTwo: []
     })
   }
 
   //on change variation unit
   onChangeVariationUnits = (values) => {
+    const { addMultiValueOne } = this.state;
+    let arr = [];
+
     this.setState({
       variationTypeOneUnit: values
     })
+    if (addMultiValueOne) {
+      if (addMultiValueOne.length > 0) {
+        for (var i = 0; i < addMultiValueOne.length; i++) {
+          addMultiValueOne[i].firstVariationUnit = values;
+          arr.push(addMultiValueOne[i])
+        }
+      }
+      this.setState({
+        addMultiValueOne: arr
+      })
+    }
   }
 
   onChangeVariationUnitsTwo = (values) => {
+    const { addMultiValueTwo } = this.state;
+    let arr = [];
     this.setState({
       variationTypeTwoUnit: values
     })
+    if (addMultiValueTwo) {
+      if (addMultiValueTwo.length > 0) {
+        for (var i = 0; i < addMultiValueTwo.length; i++) {
+          addMultiValueTwo[i].secondVariationUnit = values;
+          arr.push(addMultiValueTwo[i])
+        }
+      }
+      this.setState({
+        addMultiValueTwo: arr
+      })
+    }
   }
 
   //edit variation unit 
@@ -2175,33 +2191,138 @@ class EcommerceForm extends Component {
   //add multiple value of the variation 1st value
   addmultipleUnitValOne = () => {
     const { addMultiValueOne, variationTypeOneUnit, variationUnitValueOne } = this.state;
-    let obj = {
-      firstVariationUnitValue: variationUnitValueOne,
-      firstVariationUnit: variationTypeOneUnit,
+
+    if (variationUnitValueOne != '') {
+      let obj = {
+        firstVariationUnitValue: variationUnitValueOne,
+        firstVariationUnit: variationTypeOneUnit,
+      }
+      let arr = []
+      arr.push(obj)
+      arr = [...arr, ...addMultiValueOne]
+      this.setState({
+        addMultiValueOne: arr,
+        variationUnitValueOne: '',
+        emptyInput1: false
+      })
     }
-    let arr = []
-    arr.push(obj)
-    arr = [...arr, ...addMultiValueOne]
+    else {
+      this.setState({
+        emptyInput1: true
+      })
+    }
+  }
+
+  //add multiple value of the variation 2nd value
+  addmultipleUnitValTwo = () => {
+    const { addMultiValueTwo, variationTypeTwoUnit, variationUnitValueTwo } = this.state;
+    if (variationUnitValueTwo != '') {
+      let obj = {
+        secondVariationUnitValue: variationUnitValueTwo,
+        secondVariationUnit: variationTypeTwoUnit,
+      }
+      let arr = []
+      arr.push(obj)
+      arr = [...arr, ...addMultiValueTwo]
+      this.setState({
+        addMultiValueTwo: arr,
+        variationUnitValueTwo: '',
+        emptyInput2: false
+      })
+    }
+    else {
+      this.setState({
+        emptyInput2: true
+      })
+    }
+  }
+
+  // remove first variations value from vari 
+  removeFirstVariVal = (val) => {
+    const { addMultiValueOne } = this.state;
+    let arrVal = []
+    for (var i = 0; i < addMultiValueOne.length; i++) {
+      if (addMultiValueOne[i].firstVariationUnitValue != val.firstVariationUnitValue) {
+        arrVal.push(addMultiValueOne[i])
+      }
+    }
     this.setState({
-      addMultiValueOne: arr,
-      variationUnitValueOne: ''
+      addMultiValueOne: arrVal
     })
   }
 
-  addmultipleUnitValTwo = () => {
-    const { addMultiValueTwo, variationTypeTwoUnit, variationUnitValueTwo } = this.state;
-    let obj = {
-      secondVariationUnitValue: variationUnitValueTwo,
-      secondVariationUnit: variationTypeTwoUnit,
+  // remove second variations value from vari 
+  removeSecondVariVal = (val) => {
+    const { addMultiValueTwo } = this.state;
+    let arrVal = []
+    for (var i = 0; i < addMultiValueTwo.length; i++) {
+      if (addMultiValueTwo[i].secondVariationUnitValue != val.secondVariationUnitValue) {
+        arrVal.push(addMultiValueTwo[i])
+      }
     }
-    let arr = []
-    arr.push(obj)
-    arr = [...arr, ...addMultiValueTwo]
     this.setState({
-      addMultiValueTwo: arr,
-      variationUnitValueTwo: ''
+      addMultiValueTwo: arrVal
     })
   }
+
+  /*Modal Open*/
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = e => {
+    const { variationTypeOne, addMultiValueOne, variationTypeTwo, addMultiValueTwo } = this.state;
+    let columns = []
+    let obj1 = {
+      title: variationTypeOne,
+      dataIndex: variationTypeOne,
+    }
+    columns.push(obj1)
+    let obj2 = {
+      title: variationTypeTwo,
+      dataIndex: variationTypeTwo,
+    }
+    columns.push(obj2)
+    let obj3 = {
+      title: "Pricing",
+      dataIndex: "Pricing",
+    }
+    columns.push(obj3)
+    // console.log(addMultiValueOne, "addMultiValueOne handle ok called");
+    // console.log(addMultiValueTwo, "addMultiValueTwo handle ok called");
+
+    let key = 1;
+    let arr = []
+    for (var i = 0; i < addMultiValueOne.length; i++) {
+      for (var j = 0; j < addMultiValueTwo.length; j++) {
+        let obj = {
+          key: key,
+          variationTypeOne: addMultiValueOne[i].firstVariationUnitValue,
+          variationTypeTwo: addMultiValueTwo[j].secondVariationUnitValue,
+          Pricing: <Input prefix="Rs. " />,
+        }
+        key++
+        arr.push(obj)
+      }
+    }
+
+    console.log(columns, 'columns')
+    console.log(arr, 'aaarrrr')
+    this.setState({
+      visible: false,
+    });
+
+  };
+
+  handleCancelModal = e => {
+    this.setState({
+      visible: false,
+    });
+  };
+  /*Modal End*/
+
 
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
@@ -2218,27 +2339,6 @@ class EcommerceForm extends Component {
     }
   }
 
-  /*Modal Open*/
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  };
-
-  handleCancelModal = e => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  };
-  /*Modal End*/
 
   handleCancel = () => this.setState({ previewVisible: false });
 
@@ -2397,13 +2497,12 @@ class EcommerceForm extends Component {
     const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice,
       price, materialType, description, color, productData, goProductDetailPage, producId, imageList, renderSizes, renderColors,
       showWidth, showHeight, showVariations, hide, variationTypeOne, variationTypeOneUnit, variationTypeTwo, addVariationVal,
-      variationTypeTwoUnit, variationUnitValueOne,variationUnitValueTwo, addMultiValueOne , addMultiValueTwo} = this.state;
+      variationTypeTwoUnit, variationUnitValueOne, variationUnitValueTwo, addMultiValueOne, addMultiValueTwo, emptyInput1, emptyInput2 } = this.state;
     if (goProductDetailPage) {
       return (
         <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
       )
     }
-    console.log(addMultiValueOne, 'addMultiValueOne')
     const uploadButton = (
       <div>
         <Icon type="plus" />
@@ -2658,13 +2757,14 @@ class EcommerceForm extends Component {
                     {variationTypeOneUnit != '' &&
                       <div>
                         <Input value={variationUnitValueOne} onChange={this.inputValueOne}
-                          type="Number" suffix={variationTypeOneUnit} />
+                          type="Number" suffix={variationTypeOneUnit}
+                          className={emptyInput1 ? "error" : ''} />
                         <button onClick={this.addmultipleUnitValOne}>Add</button>
                         {addMultiValueOne && addMultiValueOne.map((elem, key) => {
                           return (<div>
                             <span>{elem.firstVariationUnitValue + " " +
                               elem.firstVariationUnit}</span>
-                            <button>X</button>
+                            <button onClick={this.removeFirstVariVal.bind(this, elem)}>X</button>
                           </div>)
                         })}
                       </div>}
@@ -2699,13 +2799,14 @@ class EcommerceForm extends Component {
                       <div>
                         {/* {addMultiValueOne &&} */}
                         <Input value={variationUnitValueTwo} onChange={this.inputValueTwo}
-                          type="Number" suffix={variationTypeTwoUnit} />
+                          type="Number" suffix={variationTypeTwoUnit}
+                          className={emptyInput2 ? "error" : ''} />
                         <button onClick={this.addmultipleUnitValTwo}>Add</button>
                         {addMultiValueTwo && addMultiValueTwo.map((elem, key) => {
                           return (<div>
                             <span>{elem.secondVariationUnitValue + " " +
                               elem.secondVariationUnit}</span>
-                            <button>X</button>
+                            <button onClick={this.removeSecondVariVal.bind(this, elem)}>X</button>
                           </div>)
                         })}
                       </div>
@@ -2738,8 +2839,8 @@ class EcommerceForm extends Component {
               </div>
 
               {/*Variation table*/}
-              <Table columns={columns} dataSource={data} />,
-          </div>
+              <Table columns={columns} dataSource={data} />
+            </div>
           }
 
           {/*Quantity*/}
