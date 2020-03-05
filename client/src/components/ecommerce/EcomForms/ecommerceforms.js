@@ -25,48 +25,6 @@ import './ecommreceform.css'
 const { Option } = Select;
 const { TextArea } = Input;
 
-//for varidation of the product
-
-const columns = [{
-  title: 'Width',
-  dataIndex: 'width',
-},
-{
-  title: 'Lenth',
-  dataIndex: 'length',
-},
-{
-  title: 'Pricing',
-  dataIndex: 'pricing',
-}];
-
-const data = [
-  {
-    key: '1',
-    width: '40',
-    length: 32,
-    pricing: <Input prefix="Rs. " />,
-  },
-  {
-    key: '2',
-    width: '40',
-    length: 42,
-    pricing: <Input prefix="Rs. " />,
-  },
-  {
-    key: '3',
-    width: '40',
-    length: 32,
-    pricing: <Input prefix="Rs. " />,
-  },
-  {
-    key: '4',
-    width: '30',
-    length: 99,
-    pricing: <Input prefix="Rs. " />,
-  }
-];
-
 //category of the product
 const categories = [
   {
@@ -1808,6 +1766,7 @@ const colorsOfProducts = [
     }]
   }];
 
+let variValues = [];
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -1866,18 +1825,6 @@ class PriceInput extends React.Component {
 }
 
 
-// /*Variation table*/
-// const rowSelection = {
-//   onChange: (selectedRowKeys, selectedRows) => {
-//     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-//   },
-//   getCheckboxProps: record => ({
-//     disabled: record.name === 'Disabled User', // Column configuration not to be checked
-//     name: record.name,
-//   }),
-// };
-
-
 class EcommerceForm extends Component {
   constructor(props) {
     super(props)
@@ -1925,7 +1872,11 @@ class EcommerceForm extends Component {
       addMultiValueOne: [],
       addMultiValueTwo: [],
       emptyInput1: false,
-      emptyInput2: false
+      emptyInput2: false,
+      columns: [],
+      dataForVariation: [],
+      variationPrices: []
+
     }
   }
 
@@ -1984,6 +1935,7 @@ class EcommerceForm extends Component {
   //select sizes & colors respectively with product category
   onChangeGetSizes = (values) => {
     let sizesWithCategory;
+    let colorsWithCategory;
     for (var i = 0; i < sizesOfProducts.length; i++) {
       if (values[0] == sizesOfProducts[i].value) {
         let value = sizesOfProducts[i].children
@@ -2012,10 +1964,6 @@ class EcommerceForm extends Component {
       }
     }
 
-    this.setState({
-      renderSizes: sizesWithCategory
-    })
-
     for (var i = 0; i < colorsOfProducts.length; i++) {
       if (values[0] == colorsOfProducts[i].value) {
         let value = colorsOfProducts[i].children
@@ -2024,20 +1972,24 @@ class EcommerceForm extends Component {
             let colors = value[j].children;
             for (var k = 0; k < colors.length; k++) {
               if (values[2] == colors[k].label) {
-                this.setState({
-                  renderColors: colors[k].value
-                })
+                colorsWithCategory = colors[k].value
+
               }
             }
           }
         }
       }
     }
+    this.setState({
+      renderSizes: sizesWithCategory,
+      renderColors: colorsWithCategory
+    })
   }
 
   //user select add variation through sizes check boxes
   onChangePickSizes = (values) => {
     let variation = values.indexOf('Add Variation')
+    console.log(values, 'values')
     if (variation != -1) {
       this.setState({
         showWidth: true,
@@ -2047,7 +1999,8 @@ class EcommerceForm extends Component {
     else if (variation == -1) {
       this.setState({
         showWidth: false,
-        showHeight: false
+        showHeight: false,
+        showVariations: false
       })
     }
   }
@@ -2199,7 +2152,7 @@ class EcommerceForm extends Component {
       }
       let arr = []
       arr.push(obj)
-      arr = [...arr, ...addMultiValueOne]
+      arr = [...addMultiValueOne, ...arr]
       this.setState({
         addMultiValueOne: arr,
         variationUnitValueOne: '',
@@ -2223,7 +2176,7 @@ class EcommerceForm extends Component {
       }
       let arr = []
       arr.push(obj)
-      arr = [...arr, ...addMultiValueTwo]
+      arr = [...addMultiValueTwo, ...arr]
       this.setState({
         addMultiValueTwo: arr,
         variationUnitValueTwo: '',
@@ -2265,6 +2218,25 @@ class EcommerceForm extends Component {
     })
   }
 
+  //variation price get 
+  onChangeVariationPrice = (key, firstVariUnit, firstVariValue, secondVariUnit, secondVariValue, priceValue) => {
+
+    // creating obj of the variation values
+    let obj = {
+      key: key,
+      firstVariUnit: firstVariUnit,
+      firstVariValue: firstVariValue,
+      secondVariUnit: secondVariUnit,
+      secondVariValue: secondVariValue,
+      price: priceValue.target.value
+    }
+    variValues[key] = obj;
+
+    this.setState({
+      variationPrices: variValues
+
+    })
+  }
   /*Modal Open*/
   showModal = () => {
     this.setState({
@@ -2290,28 +2262,28 @@ class EcommerceForm extends Component {
       dataIndex: "Pricing",
     }
     columns.push(obj3)
-    // console.log(addMultiValueOne, "addMultiValueOne handle ok called");
-    // console.log(addMultiValueTwo, "addMultiValueTwo handle ok called");
 
-    let key = 1;
+    let key = 0;
     let arr = []
     for (var i = 0; i < addMultiValueOne.length; i++) {
       for (var j = 0; j < addMultiValueTwo.length; j++) {
         let obj = {
           key: key,
-          variationTypeOne: addMultiValueOne[i].firstVariationUnitValue,
-          variationTypeTwo: addMultiValueTwo[j].secondVariationUnitValue,
-          Pricing: <Input prefix="Rs. " />,
+          [variationTypeOne]: addMultiValueOne[i].firstVariationUnitValue,
+          [variationTypeTwo]: addMultiValueTwo[j].secondVariationUnitValue,
+          Pricing: <Input prefix="Rs. " onChange={this.onChangeVariationPrice.bind(this, key,
+            variationTypeOne, addMultiValueOne[i].firstVariationUnitValue,
+            variationTypeTwo, addMultiValueTwo[j].secondVariationUnitValue)} />,
         }
         key++
         arr.push(obj)
       }
     }
 
-    console.log(columns, 'columns')
-    console.log(arr, 'aaarrrr')
     this.setState({
       visible: false,
+      columns: columns,
+      dataForVariation: arr
     });
 
   };
@@ -2380,6 +2352,7 @@ class EcommerceForm extends Component {
     this.funcForUpload(values)
   }
 
+  //upload all images of cloudnary
   async funcForUpload(values, key) {
     const { fileList } = this.state;
     Promise.all(fileList.map((val) => {
@@ -2421,9 +2394,14 @@ class EcommerceForm extends Component {
   }
 
   //-----------------cloudnary function end ------------------//
+
+  //post data on api
   async postData(values, response, key) {
-    const { shopId, shopName, objectId, imageList, skuId, date, time } = this.state;
+    const { shopId, shopName, objectId, imageList, skuId, date, time, variationPrices } = this.state;
+
     var user = JSON.parse(localStorage.getItem('user'));
+    console.log(values, 'values')
+
     let objOfProduct = {
       product: values.product,
       categories: values.categories,
@@ -2434,6 +2412,11 @@ class EcommerceForm extends Component {
       materialType: values.materialType,
       description: values.description,
       color: values.color,
+      width: values.width,
+      widthUnit: values.widthUnit,
+      height: values.height,
+      heightUnit: values.heightUnit,
+      variationPrices: variationPrices,
       images: [...imageList, ...response],
       shopId: shopId,
       shopName: shopName,
@@ -2444,8 +2427,9 @@ class EcommerceForm extends Component {
       date: date,
       time: time
     }
+    let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
     console.log(objOfProduct, 'objOfProduct')
-    // let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
+    console.log(responseEcommreceData, 'responseEcommreceData')
 
     // if (responseEcommreceData.code == 200) {
     //   if (objectId == '') {
@@ -2484,6 +2468,7 @@ class EcommerceForm extends Component {
     // this.openNotification(msg)
   }
 
+  //open notification
   openNotification(msg) {
     notification.open({
       message: 'Success ',
@@ -2497,7 +2482,8 @@ class EcommerceForm extends Component {
     const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice,
       price, materialType, description, color, productData, goProductDetailPage, producId, imageList, renderSizes, renderColors,
       showWidth, showHeight, showVariations, hide, variationTypeOne, variationTypeOneUnit, variationTypeTwo, addVariationVal,
-      variationTypeTwoUnit, variationUnitValueOne, variationUnitValueTwo, addMultiValueOne, addMultiValueTwo, emptyInput1, emptyInput2 } = this.state;
+      variationTypeTwoUnit, variationUnitValueOne, variationUnitValueTwo, addMultiValueOne, addMultiValueTwo, emptyInput1, emptyInput2,
+      columns, dataForVariation } = this.state;
     if (goProductDetailPage) {
       return (
         <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
@@ -2576,12 +2562,14 @@ class EcommerceForm extends Component {
           </Form.Item>
 
           {/*Sizes*/}
-          {renderSizes.length > 0 && <Form.Item label="Select Sizes">
+          {renderSizes && renderSizes.length > 0 && <Form.Item label="Select Sizes">
             {getFieldDecorator('sizes', {
               initialValue: sizes,
-              rules: [
-                { required: true, message: 'Please select your sizes!', type: 'array' },
-              ],
+              rules: [{
+                required: true,
+                message: 'Please select your sizes!',
+                type: 'array'
+              }],
             })(
               <Checkbox.Group style={{ width: '100%' }} onChange={this.onChangePickSizes}>
                 <Row>
@@ -2599,7 +2587,7 @@ class EcommerceForm extends Component {
           }
 
           {/*Color*/}
-          {renderColors.length > 0 && <Form.Item label="Product Color">
+          {renderColors && renderColors.length > 0 && <Form.Item label="Product Color">
             {getFieldDecorator('color', {
               initialValue: color,
               rules: [
@@ -2839,7 +2827,7 @@ class EcommerceForm extends Component {
               </div>
 
               {/*Variation table*/}
-              <Table columns={columns} dataSource={data} />
+              <Table columns={columns} dataSource={dataForVariation} />
             </div>
           }
 
