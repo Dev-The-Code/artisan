@@ -1875,7 +1875,8 @@ class EcommerceForm extends Component {
       emptyInput2: false,
       columns: [],
       dataForVariation: [],
-      variationPrices: []
+      variationPrices: [],
+      cheakVariValidation: false
 
     }
   }
@@ -1920,14 +1921,39 @@ class EcommerceForm extends Component {
   }
 
   handleSubmit = e => {
+    const { variationPrices, cheakVariValidation } = this.state;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.setState({
-          loader: true,
-          btnDisabeld: true
-        })
-        this.genrateskuid(values)
+
+        if (variationPrices && variationPrices.length > 0) {
+          console.log('if condition true')
+          console.log(variationPrices, 'variationPrices if condition true')
+          for (var i = 0; i < variationPrices.length; i++) {
+            if (variationPrices[i].Pricing == '0') {
+              this.setState({
+                cheakVariValidation: true
+              })
+            }
+          }
+          // if (cheakVariValidation != true) {
+          //   this.setState({
+          //     loader: true,
+          //     btnDisabeld: true,
+          //     cheakVariValidation: false
+          //   })
+          //   this.genrateskuid(values)
+          // }
+        }
+        else if (cheakVariValidation != true) {
+          console.log('else condition true')
+          this.setState({
+            loader: true,
+            btnDisabeld: true,
+            cheakVariValidation: false
+          })
+          this.genrateskuid(values)
+        }
       }
     });
   }
@@ -1955,6 +1981,14 @@ class EcommerceForm extends Component {
                         showHeight: true
                       })
                     }
+
+
+                  }
+                  else {
+                    this.setState({
+                      showWidth: false,
+                      showHeight: false
+                    })
                   }
                 }
               }
@@ -2264,7 +2298,9 @@ class EcommerceForm extends Component {
     columns.push(obj3)
 
     let key = 0;
-    let arr = []
+    let arr = [];
+    let key1 = 0;
+    let arr1 = []
     for (var i = 0; i < addMultiValueOne.length; i++) {
       for (var j = 0; j < addMultiValueTwo.length; j++) {
         let obj = {
@@ -2279,11 +2315,24 @@ class EcommerceForm extends Component {
         arr.push(obj)
       }
     }
+    for (var k = 0; k < addMultiValueOne.length; k++) {
+      for (var l = 0; l < addMultiValueTwo.length; l++) {
+        let obj = {
+          key1: key1,
+          [variationTypeOne]: addMultiValueOne[k].firstVariationUnitValue,
+          [variationTypeTwo]: addMultiValueTwo[l].secondVariationUnitValue,
+          Pricing: "0"
+        }
+        key1++
+        arr1.push(obj)
+      }
+    }
 
     this.setState({
       visible: false,
       columns: columns,
-      dataForVariation: arr
+      dataForVariation: arr,
+      variationPrices: arr1
     });
 
   };
@@ -2483,7 +2532,7 @@ class EcommerceForm extends Component {
       price, materialType, description, color, productData, goProductDetailPage, producId, imageList, renderSizes, renderColors,
       showWidth, showHeight, showVariations, hide, variationTypeOne, variationTypeOneUnit, variationTypeTwo, addVariationVal,
       variationTypeTwoUnit, variationUnitValueOne, variationUnitValueTwo, addMultiValueOne, addMultiValueTwo, emptyInput1, emptyInput2,
-      columns, dataForVariation } = this.state;
+      columns, dataForVariation, cheakVariValidation } = this.state;
     if (goProductDetailPage) {
       return (
         <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
@@ -2828,6 +2877,7 @@ class EcommerceForm extends Component {
 
               {/*Variation table*/}
               <Table columns={columns} dataSource={dataForVariation} />
+              {cheakVariValidation && <div>Please add the prices of variations or hide variation</div>}
             </div>
           }
 
