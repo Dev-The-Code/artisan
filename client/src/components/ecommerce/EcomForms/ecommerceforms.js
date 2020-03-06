@@ -20,64 +20,13 @@ import {
   Modal,
   Spin,
   Table,
-  Switch,
 } from 'antd';
+import './ecommreceform.css'
+
 const { Option } = Select;
 const { TextArea } = Input;
 
-
-const columns = [
-  {
-    title: 'Width',
-    dataIndex: 'width', 
-  },
-  {
-    title: 'Lenth',
-    dataIndex: 'length',
-  },
-  {
-    title: 'Pricing',
-    dataIndex: 'pricing',
-  },
-  {
-    title: 'Visible',
-    dataIndex: 'visible'
-
-
-  }
-];
-
-const data = [
-  {
-    key: '1',
-    width: 'John Brown',
-    length: 32,
-    pricing:  <Input prefix="￥" />,
-    visible: <Switch defaultChecked onChange={onChange} />,
-  },
-  {
-    key: '2',
-    width: 'Jim Green',
-    length: 42,
-    pricing: <Input prefix="￥" />,
-    visible: <Switch defaultChecked onChange={onChange} />,
-  },
-  {
-    key: '3',
-    width: 'Joe Black',
-    length: 32,
-    pricing: <Input prefix="￥" />,
-    visible: <Switch defaultChecked onChange={onChange} />,
-  },
-  {
-    key: '4',
-    width: 'Disabled User',
-    length: 99,
-    pricing: <Input prefix="￥" />,
-    visible: <Switch defaultChecked onChange={onChange} />,
-  },
-];
-
+//category of the product
 const categories = [
   {
     value: 'Clothing',
@@ -108,11 +57,11 @@ const categories = [
         value: 'Skirts',
         label: 'Skirts',
       }, {
-        value: 'Jackets',
         label: 'Jackets & Coats',
+        value: 'Jackets & Coats',
       }, {
-        value: 'Trousers',
         label: 'Trousers & Pants',
+        value: 'Trousers & Pants',
       }, {
         value: 'Jumpers',
         label: 'Jumpers',
@@ -145,8 +94,6 @@ const categories = [
         value: 'Loafers & Slip Ons',
         label: 'Loafers & Slip Ons',
       }, {
-
-      }, {
         value: 'Oxfords & Wingtips',
         label: 'Oxfords & Wingtips',
       }],
@@ -178,8 +125,8 @@ const categories = [
         value: 'Oxfords & Tie Shoes',
         label: 'Oxfords & Tie Shoes',
       }, {
-        value: 'Costume Shows',
         label: 'Costume Shows',
+        value: 'Costume Shows',
       }],
     }]
   },
@@ -228,8 +175,8 @@ const categories = [
         value: 'Tablet & E-Reader Cases',
         label: 'Tablet & E-Reader Cases',
       }, {
-        value: 'Camera Bags ',
-        label: 'Camera Bags ',
+        value: 'Camera Bags',
+        label: 'Camera Bags',
       }]
     }]
   },
@@ -240,7 +187,7 @@ const categories = [
       value: 'Body Jwellery',
       label: 'Body Jwellery',
       children: [{
-        value: 'HairJwellery',
+        value: 'Hair Jwellery',
         label: 'Hair Jwellery',
       }, {
         value: 'Anklets',
@@ -357,28 +304,6 @@ const categories = [
       }, {
         value: 'Triplet & Double Rings',
         label: 'Triplet & Double Rings',
-      }]
-    }, {
-      value: 'Accessories',
-      label: 'Accessories',
-      children: [{
-        value: 'Hair Accessories',
-        label: 'Hair Accessories',
-      }, {
-        value: 'Hats & Caps',
-        label: 'Hats & Caps',
-      }, {
-        value: 'Keychains & Lanyards',
-        label: 'Keychains & Lanyards',
-      }, {
-        value: 'Scarves & Wraps',
-        label: 'Scarves & Wraps',
-      }, {
-        value: 'Suits & Tie Accessories',
-        label: 'Suits & Tie Accessories',
-      }, {
-        value: 'Baby Accessories',
-        label: 'Baby Accessories',
       }]
     }]
   }, {
@@ -593,401 +518,1267 @@ const categories = [
     }]
   }];
 
+// sizes with of the product
 const sizesOfProducts = [
-  /*Clothing*/
   {
-    label: 'Jackets',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  {
-    label: 'Jumpers',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  {
-    label: 'Costumes',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  {
-    label: 'Dresses',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  {
-    label: 'Tops',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  {
-    label: 'Skirts',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  {
-    label: 'Jackets & Coats',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  {
-    label: 'Trousers & Pants',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  {
-    label: 'Women Jumpers',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  {
-    label: 'Costumes',
-    value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large']
-  },
-  /*Shoes*/
-  {
-    label: 'Sneakers',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  {
-    label: 'Boots',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  {
-    label: 'Sandles',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  {
-    label: 'Slippers',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  {
-    label: 'Loafers',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  {
-    label: 'Slip Ons',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  {
-    label: 'Pumps',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  {
-    label: 'Clogs & Mules',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  {
-    label: 'Oxford & Tie Shoes',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  {
-    label: 'Custome Shoes',
-    value: ['35', '36', '37', '38', '39', '40', '41', "42", '43', '44', '45', '46', '47', '48']
-  },
-  /*Bags and Purses*/
-  {
-    label: 'Shoulder bags',
-    value: []
-  },
-  {
-    label: 'Clutches & Evening Bags',
-    value: []
-  },
-  {
-    label: 'Crossbody Bags',
-    value: []
-  },
-  {
-    label: 'Top Handlebags',
-    value: []
-  },
-  {
-    label: 'Wallets',
-    value: []
-  },
-  {
-    label: 'Business Card Cases',
-    value: []
-  },
-  {
-    label: 'Money Clips',
-    value: []
-  },
-  {
-    label: 'Phone Cases',
-    value: []
-  },
-  {
-    label: 'Laptop Sleeves',
-    value: []
-  },
-  {
-    label: 'Tablet & E-Reader Cases',
-    value: []
-  },
-  {
-    label: 'Camera Bags',
-    value: []
-  },
-  /*Jwelery*/
-  {
-    label: 'Hair Jwellery',
-    value: ['Universal']
-  },
-  {
-    label: 'Anklets',
-    value: ['Universal']
-  },
-  {
-    label: 'Nose Rings & Studs',
-    value: ['Universal']
-  },
-  {
-    label: 'Gauge & Plug Earring',
-    value: ['Universal']
-  },
-  {
-    label: 'Toe Rings',
-    value: ['Universal']
-  },
-  {
-    label: 'Woven & Braided Bracelets',
-    value: ['Universal']
-  },
-  {
-    label: 'Beaded Bracelets',
-    value: ['Universal']
-  },
-  {
-    label: 'Charm Bracelets',
-    value: ['Universal']
-  },
-  {
-    label: 'Cuff Bracelets',
-    value: ['Universal']
-  },
-  {
-    label: 'Ear Jackets & Climber',
-    value: ['Universal']
-  },
-  {
-    label: 'Dangle & Drop Earrings',
-    value: ['Universal']
-  },
-  {
-    label: 'Stud Earrings',
-    value: ['Universal']
-  },
-  {
-    label: 'Hoop Earrings',
-    value: ['Universal']
-  },
-  {
-    label: 'Clip-On Earrings',
-    value: ['Universal']
-  },
-  {
-    label: 'Chandelier Earrings',
-    value: ['Universal']
-  },
-  {
-    label: 'Screw Back Earrings',
-    value: ['Universal']
-  },
-  {
-    label: 'Pendants',
-    value: ['Universal']
-  },
-  {
-    label: 'Beaded Necklaces',
-    value: ['Universal']
-  },
-  {
-    label: 'Charm Necklaces',
-    value: ['Universal']
-  },
-  {
-    label: 'Chokers',
-    value: ['Universal']
-  },
-  {
-    label: 'Crystal Necklaces',
-    value: ['Universal']
-  },
-  {
-    label: 'Chains',
-    value: ['Universal']
-  },
-  {
-    label: 'Monogram & Name Necklaces',
-    value: ['Universal']
-  },
-  {
-    label: 'Lockets',
-    value: ['Universal']
-  },
-  {
-    label: 'Bib Necklaces',
-    value: ['Universal']
-  },
-  {
-    label: 'Wedding & Engagement',
-    value: ['Universal']
-  },
-  {
-    label: 'Signet Rings',
-    value: ['Universal']
-  },
-  {
-    label: 'Statement Rings',
-    value: ['Universal']
-  },
-  {
-    label: 'Bands',
-    value: ['Universal']
-  },
-  {
-    label: 'Solitaire Rings',
-    value: ['Universal']
-  },
-  {
-    label: 'Stackable Rings',
-    value: ['Universal']
-  },
-  {
-    label: 'Multi-Stone Rings',
-    value: ['Universal']
-  },
-  {
-    label: 'Midi Rings',
-    value: ['Universal']
-  },
-  {
-    label: 'Triplet & Double Rings',
-    value: ['Universal']
-  },
-  {
-    label: 'Hair Accessories',
-    value: ['Universal']
-  },
-  {
-    label: 'Hats & Caps',
-    value: ['Universal']
-  },
-  {
-    label: 'Keychains & Lanyards',
-    value: ['Universal']
-  },
-  {
-    label: 'Sarves & Wraps',
-    value: ['Universal']
-  },
-  {
-    label: 'Suits & Tie Accessories',
-    value: ['Universal']
-  },
-  {
-    label: 'Babay Accessories',
-    value: ['Universal']
-  },
-
-  /*Decor*/
-  {
-    label: 'Wall Hangings',
-    value: ['Per Squrefit', 'Per Inch', 'Per Centimeter', 'Per Meter'],
+    value: 'Clothing',
+    label: 'Clothing',
+    children: [{
+      value: 'Mens',
+      label: 'Mens',
       children: [{
-        value: ['2inches', '5 inches', '15 inche'],
-        label:  'Per Squarefit',
-      }
-    ]
-  },
-  {
-    label: 'Wall Decals & Murals',
-    value: ['']
-  },
-  {
-    label: 'Wallpapers',
-    value: ['6.7- 7.5ft', 	'7.5- 8.2ft', '8.2- 9ft',	'9- 9.10ft',	'9.10- 10.8ft', '10.8- 11.6ft',	'11.6- 12.4ft',	'12.4"- 13.1ft']
-  },
-  {
-    label: 'Wall Stencils',
-    value: ['Small', 'Medium', 'Large']
-  },
-  {
-    label: 'Cushions',
-    value: ['XS', 'S', 'M', 'XL']
-  },
-  {
-    label: 'Frames',
-    value: ['Per Squre Feet']
-  },
-  {
-    label: 'Candles',
-    value: ['Per Squre Feet']
-  },
-  {
-    label: 'Candle Holders',
-    value: ['Per Squre Feet']
-  },
-  {
-    label: 'Wax Melts',
-    value: ['Per Squre Feet']
-  },
-  {
-    label: 'Incense',
-    value: ['Per Squre Feet']
-  },
-  {
-    label: 'Pets',
-    value: []
-  },
-  {
-    label: 'Drawer Pulls & Knobs',
-    value: [],
-  },
-  {
-    
-  }
-]
+        label: 'Jackets',
+        value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large'],
+      }, {
+        label: 'Jumpers',
+        value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large'],
+      }, {
+        label: 'Costumes',
+        value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large'],
+      }],
+    }, {
+      value: 'Womens',
+      label: 'Womens',
+      children: [{
+        label: 'Dresses',
+        value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large', "Xtra Xtra Large"],
+      }, {
+        label: 'Tops',
+        value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large'],
+      }, {
+        label: 'Skirts',
+        value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large'],
+      }, {
+        label: 'Jackets & Coats',
+        value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large'],
+      }, {
+        label: 'Trousers & Pants',
+        value: ['28', '30', "32", '34', '36'],
+      }, {
+        label: 'Jumpers',
+        value: ['32', '34', "36", '38', '40', '42', '44', '46'],
+      }, {
+        label: 'Costumes',
+        value: ['Xtra Small', 'Small', "Medium", 'Large', 'Xtra Large'],
+      }],
+    }]
 
+  },
+  {
+    value: 'Shoes',
+    label: 'Shoes',
+    children: [{
+      value: 'Mens',
+      label: 'Mens',
+      children: [{
+        label: 'Sneakers & Athletic Shoes',
+        value: ['39', '40', '41', "42", '43', '44', '45', '46'],
+      }, {
+        label: 'Boots',
+        value: ['39', '40', '41', "42", '43', '44', '45', '46'],
+      }, {
+        label: 'Sandals',
+        value: ['39', '40', '41', "42", '43', '44', '45', '46'],
+      }, {
+        label: 'Slippers',
+        value: ['39', '40', '41', "42", '43', '44', '45', '46'],
+      }, {
+        label: 'Loafers & Slip Ons',
+        value: ['39', '40', '41', "42", '43', '44', '45', '46'],
+      }, {
+        label: 'Oxfords & Wingtips',
+        value: ['39', '40', '41', "42", '43', '44', '45', '46'],
+      }],
+    }, {
+      value: 'Womens',
+      label: 'Womens',
+      children: [{
+        label: 'Sandals',
+        value: ['35', '36', '37', '38', '39', '40', '41', "42"],
+      }, {
+        label: 'Boots',
+        value: ['35', '36', '37', '38', '39', '40', '41', "42"],
+      }, {
+        label: 'Sneakers & Athletic Shoes',
+        value: ['35', '36', '37', '38', '39', '40', '41', "42"],
+      }, {
+        label: 'Slip Ons',
+        value: ['35', '36', '37', '38', '39', '40', '41', "42"],
+      }, {
+        label: 'Pumps',
+        value: ['35', '36', '37', '38', '39', '40', '41', "42"],
+      }, {
+        label: 'Slippers',
+        value: ['35', '36', '37', '38', '39', '40', '41', "42"],
+      }, {
+        label: 'Clogs & Mules',
+        value: ['35', '36', '37', '38', '39', '40', '41', "42"],
+      }, {
+        label: 'Oxfords & Tie Shoes',
+        value: ['35', '36', '37', '38', '39', '40', '41', "42"],
+      }, {
+        label: 'Costume Shows',
+        value: ['35', '36', '37', '38', '39', '40', '41', "42"],
+      }],
+    }]
+  },
+  {
+    value: 'Bags & Purses',
+    label: 'Bags & Purses',
+    children: [{
+      label: 'Handbags',
+      value: 'Handbags',
+      children: [{
+        label: 'Shoulder bags',
+        value: [],
+      }, {
+        label: 'Clutches & Evening Bags',
+        value: [],
+      }, {
+        label: 'Crossbody Bags',
+        value: [],
+      }, {
+        label: 'Top HandleBags',
+        value: [],
+      }]
+    }, {
+      label: 'Wallets & Money Clips',
+      value: 'Wallets & Money Clips',
+      children: [{
+        label: 'Wallets',
+        value: [],
+      }, {
+        label: 'Business Card Cases',
+        value: [],
+      }, {
+        label: 'Money Clips',
+        value: [],
+      }]
+    }, {
+      label: 'Electronic Cases',
+      value: 'Electronic Cases',
+      children: [{
+        label: 'Phone Cases',
+        value: [],
+      }, {
+        label: 'Laptop Sleeves',
+        value: [],
+      }, {
+        label: 'Tablet & E-Reader Cases',
+        value: [],
+      }, {
+        label: 'Camera Bags',
+        value: [],
+      }]
+    }]
+  },
+  {
+    value: 'Jwellery',
+    label: 'Jwellery',
+    children: [{
+      value: 'Body Jwellery',
+      label: 'Body Jwellery',
+      children: [{
+        label: 'Hair Jwellery',
+        value: ['Add Variation', 'Universal', '6mm', '8mm', '10mm']
+      }, {
+        label: 'Anklets',
+        value: ['Add Variation', 'Universal', '6mm', '8mm', '10mm']
+      }, {
+        label: 'Nose Rings & Studs',
+        value: ['Add Variation', '6mm', 'Universal']
+      }, {
+        label: 'Gauge & Plug Earring',
+        value: ['Add Variation', '6mm', '8mm', '10mm']
+      }, {
+        label: 'Toe Rings',
+        value: ['Add Variation', 'Adjustable']
+      }]
+    }, {
+      value: 'Bracelets',
+      label: 'Bracelets',
+      children: [{
+        label: 'Woven & Braided Bracelets',
+        value: ['Add Variation', 'One Size', 'N/a', 'Small', 'Medium', "Large", , '10 CM', '12 CM', '14 CM',
+          '15 CM', '16 CM', '17 CM', '18 CM', '19 CM', '20 CM', '22 CM', '24 CM', '10 MM', '60 MM', '65 MM', '70 MM'],
+      }, {
+        label: 'Beaded Bracelets',
+        value: ['Add Variation', 'One Size', 'N/a', 'Small', 'Medium', "Large", , '10 CM', '12 CM', '14 CM',
+          '15 CM', '16 CM', '17 CM', '18 CM', '19 CM', '20 CM', '22 CM', '24 CM', '10 MM', '60 MM', '65 MM', '70 MM']
+      }, {
+        label: 'Charm Bracelets',
+        value: ['Add Variation', 'One Size', 'N/a', 'Small', 'Medium', "Large", , '10 CM', '12 CM', '14 CM',
+          '15 CM', '16 CM', '17 CM', '18 CM', '19 CM', '20 CM', '22 CM', '24 CM', '10 MM', '60 MM', '65 MM', '70 MM']
+      }, {
+        label: 'Cuff Bracelets',
+        value: ['Add Variation', 'One Size', 'N/a', 'Small', 'Medium', "Large", , '10 CM', '12 CM', '14 CM',
+          '15 CM', '16 CM', '17 CM', '18 CM', '19 CM', '20 CM', '22 CM', '24 CM', '10 MM', '60 MM', '65 MM', '70 MM']
+      }]
+    }, {
+      value: 'Earring',
+      label: 'Earring',
+      children: [{
+        label: 'Ear Jackets & Climber',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+          '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
+      }, {
+        label: 'Dangle & Drop Earrings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+          '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
+      }, {
+        label: 'Stud Earrings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+          '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
+      }, {
+        label: 'Hoop Earrings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+          '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
+      }, {
+        label: 'Clip-On Earrings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+          '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
+      }, {
+        label: 'Chandelier Earrings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+          '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
+      }, {
+        label: 'Screw Back Earrings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', '2 MM', '3 MM', '5 MM', '6 MM', '8 MM', '10 MM', '12 MM', '15 MM',
+          '20 MM', '25 MM', '30 MM', '40 MM', '50 MM', '55 MM', '60 MM', '65 MM', '70 MM', '100 MM']
+      }]
+    }, {
+      value: 'Necklaces',
+      label: 'Necklaces',
+      children: [{
+        label: 'Pendants',
+        value: ['Add Variation', 'One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+          '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+          '65 CM', '70 CM', '80 CM']
+      }, {
+        label: 'Beaded Necklaces',
+        value: ['Add Variation', 'One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+          '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+          '65 CM', '70 CM', '80 CM']
+      }, {
+        label: 'Charm Necklaces',
+        value: ['Add Variation', 'One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+          '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+          '65 CM', '70 CM', '80 CM']
+      }, {
+        label: 'Chokers',
+        value: ['Add Variation', 'One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+          '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+          '65 CM', '70 CM', '80 CM']
+      }, {
+        label: 'Crystal Necklaces',
+        value: ['Add Variation', 'One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+          '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+          '65 CM', '70 CM', '80 CM']
+      }, {
+        label: 'Chains',
+        value: ['Add Variation', 'One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+          '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+          '65 CM', '70 CM', '80 CM']
+      }, {
+        label: 'Monogram & Name Necklaces',
+        value: ['Add Variation', 'One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+          '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+          '65 CM', '70 CM', '80 CM']
+      }, {
+        label: 'Lockets',
+        value: ['Add Variation', 'One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+          '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+          '65 CM', '70 CM', '80 CM']
+      }, {
+        label: 'Bib Necklaces',
+        value: ['Add Variation', 'One Size', '6 MM', '8 MM', '10 MM', '12 MM', '25 MM', '30 MM', '700 MM', '800 MM', '40 CM',
+          '41 CM', '42 CM', '43 CM', '44 CM', '45 CM', '46 CM', '47 CM', '48 CM', '49 CM', '50 CM', '55 CM', '60 CM',
+          '65 CM', '70 CM', '80 CM']
+      }]
+    }, {
+      value: 'Rings',
+      label: 'Rings',
+      children: [{
+        label: 'Wedding & Engagement',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+          '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM'],
+      }, {
+        label: 'Signet Rings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+          '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
+      }, {
+        label: 'Statement Rings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+          '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
+      }, {
+        label: 'Bands',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+          '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
+      }, {
+        label: 'Solitaire Rings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+          '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
+      }, {
+        label: 'Stackable Rings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+          '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
+      }, {
+        label: 'Multi-Stone Rings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+          '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
+      }, {
+        label: 'Midi Rings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+          '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
+      }, {
+        label: 'Triplet & Double Rings',
+        value: ['Add Variation', 'One Size', 'Adjustable', 'N/a', 'Small', 'Medium', 'Large',
+          '5', '6', '7', '8', '9', '10', '11', '12', '16', '17', '18', '19', '20', '21', '22', '16 MM', '17 MM', '18 MM']
+      }]
+    }]
+  }, {
+    value: 'Decor',
+    label: 'Decor',
+    children: [{
+      label: 'Wall Decor',
+      value: 'Wall Decor',
+      children: [{
+        label: 'Wall Hangings',
+        value: ['Add Variation']
+      }, {
+        label: 'Wall Decals & Murals',
+        value: ['Add Variation']
+      }, {
+        label: 'Wallpapers',
+        value: ['Add Variation']
+      }, {
+        label: 'Wall Stencils',
+        value: ['Add Variation']
+      }]
+    }, {
+      value: 'Decorative Cushions',
+      label: 'Decorative Cushions',
+      children: [{
+        label: 'Cushions',
+        value: ['Add Variation'],
+      }]
+    }, {
+      value: 'Picture Frames',
+      label: 'Picture Frames',
+      children: [{
+        label: 'Frames',
+        value: ['Add Variation'],
+      }]
+    }, {
+      value: 'Candles & Holders',
+      label: 'Candles & Holders',
+      children: [{
+        label: 'Candles',
+        value: ['Add Variation'],
+      }, {
+        label: 'Candle Holders',
+        value: ['Add Variation'],
+      }, {
+        label: 'Wax Melts',
+        value: ['Add Variation'],
+      }, {
+        label: 'Incense',
+        value: ['Add Variation'],
+      }]
+    }]
+  }, {
+    value: 'Pets',
+    label: 'Pets',
+// <<<<<<< HEAD
+//     value: []
+//   },
+//   {
+//     label: 'Drawer Pulls & Knobs',
+//     value: [],
+//   },
+//   {
+    
+//   }
+// ]
+    children: [{
+      value: 'Collars & Leashes',
+      label: 'Collars & Leashes',
+      children: [{
+        label: 'Pet Collars & Jwellery',
+        value: ['Add Variation']
+      }, {
+        label: 'Pet ID Tags',
+        value: ['Add Variation']
+      }, {
+        label: 'Pet Leashes',
+        value: ['Add Variation']
+      }, {
+        label: 'Pet Harnesses & Backpacks',
+        value: ['Add Variation']
+      }]
+    }, {
+      value: 'Furniture',
+      label: 'Furniture',
+      children: [{
+        label: 'Pet Beds & Cots',
+        value: ['Add Variation', 'Small', 'Medium', 'Large', 'Extra Large'],
+      }, {
+        label: 'Pet Hammocks',
+        value: ['Add Variation', 'Small', 'Medium', 'Large', 'Extra Large'],
+      }, {
+        label: 'Play Furniture',
+        value: ['Add Variation', 'Small', 'Medium', 'Large', 'Extra Large'],
+      }, {
+        label: 'Pet Steps',
+        value: ['Add Variation', 'Small', 'Medium', 'Large', 'Extra Large'],
+      }]
+    }, {
+      value: 'Colting & Shoes',
+      label: 'Colting & Shoes',
+      children: [{
+        label: 'Pet Jackets',
+        value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+      }, {
+        label: 'Pet Tops',
+        value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+      }, {
+        label: 'Pet Dresses',
+        value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+      }, {
+        label: 'Pet Hat & Wigs',
+        value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+      }, {
+        label: 'Pet Booties',
+        value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+      }, {
+        label: 'Pet Shoes',
+        value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+      }, {
+        label: 'Pet Neckwear',
+        value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+      }, {
+        label: 'Pet Bows and Bells',
+        value: ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', '4XL', 'Big']
+      }]
+    }, {
+      value: 'Carriers & House',
+      label: 'Carriers & House',
+      children: [{
+        label: 'Pet Houses',
+        value: ['Add Variation'],
+      }, {
+        label: 'Aquariums & Tank Decor',
+        value: ['Add Variation'],
+      }, {
+        label: 'Nests & Bags',
+        value: ['Add Variation'],
+      }, {
+        label: 'Pet Slings',
+        value: ['Add Variation'],
+      }, {
+        label: 'Bird Cages',
+        value: ['Add Variation'],
+      }, {
+        label: 'Pet Totes',
+        value: ['Add Variation'],
+      }, {
+        label: 'Pet Crates & Kennels',
+        value: ['Add Variation'],
+      }, {
+        label: 'Coops',
+        value: ['Add Variation'],
+      }]
+    }]
+  }, {
+    value: 'Furniture',
+    label: 'Furniture',
+    children: [{
+      value: 'Living Room',
+      label: 'Living Room',
+      children: [{
+        label: 'Drawer Pulls & Knobs',
+        value: ['Add Variation'],
+      }, {
+        label: 'Coffee & End Tables',
+        value: ['Add Variation'],
+      }, {
+        label: 'Chairs & Ottomans',
+        value: ['Add Variation'],
+      }, {
+        label: 'Floor Cushions',
+        value: ['Add Variation'],
+      }]
+    }, {
+      value: 'Dinning Room',
+      label: 'Dinning Room',
+      children: [{
+        label: 'Kitchen & Dinning Tables',
+        value: ['Add Variation'],
+      }, {
+        label: 'Dining Chairs',
+        value: ['Add Variation'],
+      }, {
+        label: 'Stools & Banquettes',
+        value: ['Add Variation'],
+      }, {
+        label: 'Buffets & China Cabinets',
+        value: ['Add Variation'],
+      }]
+    }, {
+      value: 'Bedroom',
+      label: 'Bedroom',
+      children: [{
+        label: 'Dressers & Armoires',
+        value: ['Add Variation'],
+      }, {
+        label: 'Vanities & Nightstands',
+        value: ['Add Variation'],
+      }, {
+        label: 'Beds & Headboards',
+        value: ['Add Variation', 'One size', '2 Persons', '3 Person', '4 Person', 'Extra Single',
+          'Single', 'Double', 'Super King', 'King', 'Queen'],
+      }, {
+        label: 'Steps & Stools',
+        value: ['Add Variation'],
+      }]
+    }, {
+      value: 'Kids Furniture',
+      label: 'Kids Furniture',
+      children: [{
+        label: 'Desks, Tables & Chairs',
+        value: ['Add Variation'],
+      }, {
+        label: 'Bean Bag Chairs',
+        value: ['Add Variation'],
+      }, {
+        label: 'Steps & Stools',
+        value: ['Add Variation'],
+      }, {
+        label: 'Toddlers Beds',
+        value: ['Add Variation', 'Toddler'],
+      }]
+    }]
+  }];
+
+// colors with of the product
 
 const colorsOfProducts = [
   {
-    label: 'Jackets',
-    value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
-      'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
-      'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
-      'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',]
+    value: 'Clothing',
+    label: 'Clothing',
+    children: [{
+      value: 'Mens',
+      label: 'Mens',
+      children: [{
+        label: 'Jackets',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }, {
+        label: 'Jumpers',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }, {
+        label: 'Costumes',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }],
+    }, {
+      value: 'Womens',
+      label: 'Womens',
+      children: [{
+        label: 'Dresses',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }, {
+        label: 'Tops',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }, {
+        label: 'Skirts',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }, {
+        label: 'Jackets & Coats',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }, {
+        label: 'Trousers & Pants',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }, {
+        label: 'Jumpers',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }, {
+        label: 'Costumes',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Coffe',],
+      }],
+    }]
   },
   {
+    value: 'Shoes',
     label: 'Shoes',
-    value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
-      'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
-      'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
-      'Brown', 'Camel Brown', "Chocolate Brown",]
+    children: [{
+      value: 'Mens',
+      label: 'Mens',
+      children: [{
+        label: 'Sneakers & Athletic Shoes',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Boots',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Sandals',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Slippers',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Loafers & Slip Ons',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Oxfords & Wingtips',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }],
+    }, {
+      value: 'Womens',
+      label: 'Womens',
+      children: [{
+        label: 'Sandals',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Boots',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Sneakers & Athletic Shoes',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Slip Ons',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Pumps',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Slippers',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Clogs & Mules',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Oxfords & Tie Shoes',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }, {
+        label: 'Costume Shows',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Pink', 'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown",]
+      }],
+    }]
   },
   {
+    value: 'Bags & Purses',
     label: 'Bags & Purses',
-    value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
-      'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
-      'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
-      'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+    children: [{
+      value: 'Handbags',
+      label: 'Handbags',
+      children: [{
+        label: 'Shoulder bags',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }, {
+        label: 'Clutches & Evening Bags',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }, {
+        label: 'Crossbody Bags',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }, {
+        label: 'Top HandleBags',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }]
+    }, {
+      value: 'Wallets & Money Clips',
+      label: 'Wallets & Money Clips',
+      children: [{
+        label: 'Wallets',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }, {
+        label: 'Business Card Cases',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }, {
+        label: 'Money Clips',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }]
+    }, {
+      value: 'Electronic Cases',
+      label: 'Electronic Cases',
+      children: [{
+        label: 'Phone Cases',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }, {
+        label: 'Laptop Sleeves',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }, {
+        label: 'Tablet & E-Reader Cases',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }, {
+        label: 'Camera Bags',
+        value: ['Yellow', 'Light Green', 'Green', ' Army Green', "Orange", 'Blue', 'Light Blue', 'Dark Blue', 'Navy Blue',
+          'Black', "Multi Color", 'Kahki', 'Maroon', 'Charcoal', "Purple", 'White', 'Off White', 'Ash White',
+          'Ash Grey', 'Grey', "light Grey", 'Dark Grey', 'Silver', "Magenta", 'Rose Red', 'Red', 'Beige', 'Coffe',
+          'Brown', 'Camel Brown', "Chocolate Brown", 'Gold', 'Pink', 'Hot Pink', "Cream"]
+      }]
+    }]
   },
   {
+    value: 'Jwellery',
     label: 'Jwellery',
-    value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
-      "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
-      'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
-  },
-  {
+    children: [{
+      value: 'Body Jwellery',
+      label: 'Body Jwellery',
+      children: [{
+        label: 'Hair Jwellery',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Anklets',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Nose Rings & Studs',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Gauge & Plug Earring',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Toe Rings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }]
+    }, {
+      value: 'Bracelets',
+      label: 'Bracelets',
+      children: [{
+        label: 'Woven & Braided Bracelets',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Beaded Bracelets',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Charm Bracelets',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Cuff Bracelets',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }]
+    }, {
+      value: 'Earring',
+      label: 'Earring',
+      children: [{
+        label: 'Ear Jackets & Climber',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Dangle & Drop Earrings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Stud Earrings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Hoop Earrings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Clip-On Earrings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Chandelier Earrings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Screw Back Earrings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }]
+    }, {
+      value: 'Necklaces',
+      label: 'Necklaces',
+      children: [{
+        label: 'Pendants',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Beaded Necklaces',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Charm Necklaces',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Chokers',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Crystal Necklaces',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Chains',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Monogram & Name Necklaces',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Lockets',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Bib Necklaces',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }]
+    }, {
+      value: 'Rings',
+      label: 'Rings',
+      children: [{
+        label: 'Wedding & Engagement',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Signet Rings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Statement Rings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Bands',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Solitaire Rings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Stackable Rings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Multi-Stone Rings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Midi Rings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }, {
+        label: 'Triplet & Double Rings',
+        value: ['Silver', 'Golden', 'Gold', "Rose Gold", "Black", "Multi Color", 'White', "Antique White", 'Off White',
+          "Light Blue", 'Blue', "Rose Red", 'Red', "Pink", 'Green', "Purple", "Brown", "Yellow", "Maroon", 'Grey', 'Orange',
+          'Bronze', 'Beige', "Champagen", 'Coffe', "Neutral"]
+      }]
+    }]
+  }, {
+    value: 'Decor',
     label: 'Decor',
-    value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
-      "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
-  },
-  {
+    children: [{
+      value: 'Wall Decor',
+      label: 'Wall Decor',
+      children: [{
+        label: 'Wall Hangings',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Wall Decals & Murals',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Wallpapers',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Wall Stencils',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }, {
+      value: 'Decorative Cushions',
+      label: 'Decorative Cushions',
+      children: [{
+        label: 'Cushions',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }, {
+      value: 'Picture Frames',
+      label: 'Picture Frames',
+      children: [{
+        label: 'Frames',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }, {
+      value: 'Candles & Holders',
+      label: 'Candles & Holders',
+      children: [{
+        label: 'Candles',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Candle Holders',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Wax Melts',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Incense',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }]
+  }, {
+    value: 'Pets',
     label: 'Pets',
-    value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
-      "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
-  },
-  {
+    children: [{
+      value: 'Collars & Leashes',
+      label: 'Collars & Leashes',
+      children: [{
+        label: 'Pet Collars & Jwellery',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet ID Tags',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Leashes',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Harnesses & Backpacks',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }, {
+      value: 'Furniture',
+      label: 'Furniture',
+      children: [{
+        label: 'Pet Beds & Cots',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Hammocks',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Play Furniture',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Steps',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }, {
+      label: 'Colting & Shoes',
+      value: 'Colting & Shoes',
+      children: [{
+        label: 'Pet Jackets',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Tops',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Dresses',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Hat & Wigs',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Booties',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Shoes',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Neckwear',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Bows and Bells',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }, {
+      label: 'Carriers & House',
+      value: 'Carriers & House',
+      children: [{
+        label: 'Pet Houses',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Aquariums & Tank Decor',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Nests & Bags',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Slings',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Bird Cages',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Totes',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Pet Crates & Kennels',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Coops',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }]
+  }, {
+    value: 'Furniture',
     label: 'Furniture',
-    value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
-      "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
-  }
-]
+    children: [{
+      value: 'Living Room',
+      label: 'Living Room',
+      children: [{
+        label: 'Drawer Pulls & Knobs',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Coffee & End Tables',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Chairs & Ottomans',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Floor Cushions',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }, {
+      value: 'Dinning Room',
+      label: 'Dinning Room',
+      children: [{
+        label: 'Kitchen & Dinning Tables',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Dining Chairs',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Stools & Banquettes',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Buffets & China Cabinets',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }, {
+      value: 'Bedroom',
+      label: 'Bedroom',
+      children: [{
+        label: 'Dressers & Armoires',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Vanities & Nightstands',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Beds & Headboards',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Steps & Stools',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }, {
+      label: 'Kids Furniture',
+      value: 'Kids Furniture',
+      children: [{
+        label: 'Desks, Tables & Chairs',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Bean Bag Chairs',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Steps & Stools',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }, {
+        label: 'Toddlers Beds',
+        value: ['Beige', 'Black', "Blue", "Bronze", "Brown", "Clear", "Copper", "Gold", "Grey", "Green", "Orange", "Pink",
+          "Purple", "Rainbow", "Red", "Rose Gold", "Silver", "White Yellow"]
+      }]
+    }]
+  }];
 
+let variValues = [];
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -1020,10 +1811,6 @@ class PriceInput extends React.Component {
       });
     }
   };
-
-
-
-
   render() {
     const { size, value } = this.props;
     return (
@@ -1048,26 +1835,9 @@ class PriceInput extends React.Component {
     );
   }
 }
- /*Variation table*/
- const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-  getCheckboxProps: record => ({
-    disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    name: record.name,
-  }),
-};
 
-/*switch function*/
-function onChange(checked) {
-  console.log(`switch to ${checked}`);
-}
 
 class EcommerceForm extends Component {
-  
-  state = { visible: false };
-
   constructor(props) {
     super(props)
     this.state = {
@@ -1098,36 +1868,34 @@ class EcommerceForm extends Component {
       date: '',
       time: '',
       shopId: '',
-      shopName: ''
+      shopName: '',
+      visible: false,
+      showWidth: false,
+      showHeight: false,
+      showVariations: false,
+      hide: false,
+      variationTypeOne: '',
+      variationTypeTwo: '',
+      variationTypeOneUnit: '',
+      variationTypeTwoUnit: '',
+      addVariationVal: '',
+      variationUnitValueOne: '',
+      variationUnitValueTwo: '',
+      addMultiValueOne: [],
+      addMultiValueTwo: [],
+      emptyInput1: false,
+      emptyInput2: false,
+      columns: [],
+      dataForVariation: [],
+      variationPrices: [],
+      cheakVariValidation: false
+
     }
   }
 
-  /*Modal Open*/
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  };
-
-  handleCancel = e => {
-    console.log(e);
-    this.setState({
-      visible: false,
-    });
-  };
-
-  /*Modal End*/
-
- 
-
   componentDidMount() {
+    let data = this.props.data;
+
     let date = new Date().getDate();
     let month = new Date().getMonth() + 1;
     const year = new Date().getFullYear();
@@ -1135,7 +1903,6 @@ class EcommerceForm extends Component {
     let min = new Date().getMinutes();
     const sec = new Date().getSeconds();
 
-    let data = this.props.data;
     if (data._id != undefined) {
       this.setState({
         product: data.product,
@@ -1165,20 +1932,430 @@ class EcommerceForm extends Component {
     }
   }
 
-
-
   handleSubmit = e => {
+    const { variationPrices, cheakVariValidation } = this.state;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.setState({
-          loader: true,
-          btnDisabeld: true
-        })
-        this.genrateskuid(values)
+
+        if (variationPrices && variationPrices.length > 0) {
+          console.log('if condition true')
+          console.log(variationPrices, 'variationPrices if condition true')
+          for (var i = 0; i < variationPrices.length; i++) {
+            if (variationPrices[i].Pricing == '0') {
+              this.setState({
+                cheakVariValidation: true
+              })
+            }
+          }
+          // if (cheakVariValidation != true) {
+          //   this.setState({
+          //     loader: true,
+          //     btnDisabeld: true,
+          //     cheakVariValidation: false
+          //   })
+          //   this.genrateskuid(values)
+          // }
+        }
+        else if (cheakVariValidation != true) {
+          console.log('else condition true')
+          this.setState({
+            loader: true,
+            btnDisabeld: true,
+            cheakVariValidation: false
+          })
+          this.genrateskuid(values)
+        }
       }
     });
   }
+
+  //select sizes & colors respectively with product category
+  onChangeGetSizes = (values) => {
+    let sizesWithCategory;
+    let colorsWithCategory;
+    for (var i = 0; i < sizesOfProducts.length; i++) {
+      if (values[0] == sizesOfProducts[i].value) {
+        let value = sizesOfProducts[i].children
+        for (var j = 0; j < value.length; j++) {
+          if (values[1] == value[j].value) {
+            let sizes = value[j].children;
+            for (var k = 0; k < sizes.length; k++) {
+              if (values[2] == sizes[k].label) {
+                sizesWithCategory = sizes[k].value
+                let lengthOfTheArray = sizesWithCategory.length;
+                for (var l = 0; l < sizesWithCategory.length; l++) {
+                  if (sizesWithCategory[l] == "Add Variation") {
+                    if (lengthOfTheArray == 1) {
+                      sizesWithCategory = []
+                      this.setState({
+                        showWidth: true,
+                        showHeight: true
+                      })
+                    }
+
+
+                  }
+                  else {
+                    this.setState({
+                      showWidth: false,
+                      showHeight: false
+                    })
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    for (var i = 0; i < colorsOfProducts.length; i++) {
+      if (values[0] == colorsOfProducts[i].value) {
+        let value = colorsOfProducts[i].children
+        for (var j = 0; j < value.length; j++) {
+          if (values[1] == value[j].value) {
+            let colors = value[j].children;
+            for (var k = 0; k < colors.length; k++) {
+              if (values[2] == colors[k].label) {
+                colorsWithCategory = colors[k].value
+
+              }
+            }
+          }
+        }
+      }
+    }
+    this.setState({
+      renderSizes: sizesWithCategory,
+      renderColors: colorsWithCategory
+    })
+  }
+
+  //user select add variation through sizes check boxes
+  onChangePickSizes = (values) => {
+    let variation = values.indexOf('Add Variation')
+    console.log(values, 'values')
+    if (variation != -1) {
+      this.setState({
+        showWidth: true,
+        showHeight: true
+      })
+    }
+    else if (variation == -1) {
+      this.setState({
+        showWidth: false,
+        showHeight: false,
+        showVariations: false
+      })
+    }
+  }
+
+  //user add the variation not for one size the product but multiple
+  showVariation = () => {
+    this.setState({
+      showHeight: false,
+      showWidth: false,
+      showVariations: true
+    })
+  }
+
+  //show height & width inupt & units
+  showWidthHieght = () => {
+    this.setState({
+      showHeight: true,
+      showWidth: true,
+      showVariations: false
+    })
+  }
+
+  //hide height & width inupt & units 
+  hideInputs = () => {
+    this.setState({
+      showHeight: false,
+      showWidth: false,
+      hide: true
+    })
+  }
+
+  //show height & width inupt & units 
+  showInputs = () => {
+    this.setState({
+      showHeight: true,
+      showWidth: true,
+      hide: false
+    })
+  }
+
+  //pick variation from modal of the variation
+  onChangeVariation = (values) => {
+    const { variationTypeOne } = this.state;
+    if (variationTypeOne == '') {
+      this.setState({
+        variationTypeOne: values,
+        addVariationVal: ''
+      })
+    }
+    else {
+      this.setState({
+        variationTypeTwo: values,
+        addVariationVal: ''
+      })
+    }
+  }
+
+  //delete variation 
+  deleteVariOne = () => {
+    this.setState({
+      variationTypeOne: '',
+      variationTypeOneUnit: '',
+      addMultiValueOne: []
+    })
+  }
+
+  deleteVariTwo = () => {
+    this.setState({
+      variationTypeTwo: '',
+      variationTypeTwoUnit: '',
+      addMultiValueTwo: []
+    })
+  }
+
+  //on change variation unit
+  onChangeVariationUnits = (values) => {
+    const { addMultiValueOne } = this.state;
+    let arr = [];
+
+    this.setState({
+      variationTypeOneUnit: values
+    })
+    if (addMultiValueOne) {
+      if (addMultiValueOne.length > 0) {
+        for (var i = 0; i < addMultiValueOne.length; i++) {
+          addMultiValueOne[i].firstVariationUnit = values;
+          arr.push(addMultiValueOne[i])
+        }
+      }
+      this.setState({
+        addMultiValueOne: arr
+      })
+    }
+  }
+
+  onChangeVariationUnitsTwo = (values) => {
+    const { addMultiValueTwo } = this.state;
+    let arr = [];
+    this.setState({
+      variationTypeTwoUnit: values
+    })
+    if (addMultiValueTwo) {
+      if (addMultiValueTwo.length > 0) {
+        for (var i = 0; i < addMultiValueTwo.length; i++) {
+          addMultiValueTwo[i].secondVariationUnit = values;
+          arr.push(addMultiValueTwo[i])
+        }
+      }
+      this.setState({
+        addMultiValueTwo: arr
+      })
+    }
+  }
+
+  //edit variation unit 
+  editvariOneUnit = () => {
+    this.setState({
+      variationTypeOneUnit: ''
+    })
+  }
+
+  editvariTwoUnit = () => {
+    this.setState({
+      variationTypeTwoUnit: ''
+    })
+  }
+
+  //unit input value
+  inputValueOne = (e) => {
+    this.setState({
+      variationUnitValueOne: e.target.value
+    })
+  }
+
+  inputValueTwo = (e) => {
+    this.setState({
+      variationUnitValueTwo: e.target.value
+    })
+  }
+
+  //add multiple value of the variation 1st value
+  addmultipleUnitValOne = () => {
+    const { addMultiValueOne, variationTypeOneUnit, variationUnitValueOne } = this.state;
+
+    if (variationUnitValueOne != '') {
+      let obj = {
+        firstVariationUnitValue: variationUnitValueOne,
+        firstVariationUnit: variationTypeOneUnit,
+      }
+      let arr = []
+      arr.push(obj)
+      arr = [...addMultiValueOne, ...arr]
+      this.setState({
+        addMultiValueOne: arr,
+        variationUnitValueOne: '',
+        emptyInput1: false
+      })
+    }
+    else {
+      this.setState({
+        emptyInput1: true
+      })
+    }
+  }
+
+  //add multiple value of the variation 2nd value
+  addmultipleUnitValTwo = () => {
+    const { addMultiValueTwo, variationTypeTwoUnit, variationUnitValueTwo } = this.state;
+    if (variationUnitValueTwo != '') {
+      let obj = {
+        secondVariationUnitValue: variationUnitValueTwo,
+        secondVariationUnit: variationTypeTwoUnit,
+      }
+      let arr = []
+      arr.push(obj)
+      arr = [...addMultiValueTwo, ...arr]
+      this.setState({
+        addMultiValueTwo: arr,
+        variationUnitValueTwo: '',
+        emptyInput2: false
+      })
+    }
+    else {
+      this.setState({
+        emptyInput2: true
+      })
+    }
+  }
+
+  // remove first variations value from vari 
+  removeFirstVariVal = (val) => {
+    const { addMultiValueOne } = this.state;
+    let arrVal = []
+    for (var i = 0; i < addMultiValueOne.length; i++) {
+      if (addMultiValueOne[i].firstVariationUnitValue != val.firstVariationUnitValue) {
+        arrVal.push(addMultiValueOne[i])
+      }
+    }
+    this.setState({
+      addMultiValueOne: arrVal
+    })
+  }
+
+  // remove second variations value from vari 
+  removeSecondVariVal = (val) => {
+    const { addMultiValueTwo } = this.state;
+    let arrVal = []
+    for (var i = 0; i < addMultiValueTwo.length; i++) {
+      if (addMultiValueTwo[i].secondVariationUnitValue != val.secondVariationUnitValue) {
+        arrVal.push(addMultiValueTwo[i])
+      }
+    }
+    this.setState({
+      addMultiValueTwo: arrVal
+    })
+  }
+
+  //variation price get 
+  onChangeVariationPrice = (key, firstVariUnit, firstVariValue, secondVariUnit, secondVariValue, priceValue) => {
+
+    // creating obj of the variation values
+    let obj = {
+      key: key,
+      firstVariUnit: firstVariUnit,
+      firstVariValue: firstVariValue,
+      secondVariUnit: secondVariUnit,
+      secondVariValue: secondVariValue,
+      price: priceValue.target.value
+    }
+    variValues[key] = obj;
+
+    this.setState({
+      variationPrices: variValues
+
+    })
+  }
+  /*Modal Open*/
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = e => {
+    const { variationTypeOne, addMultiValueOne, variationTypeTwo, addMultiValueTwo } = this.state;
+    let columns = []
+    let obj1 = {
+      title: variationTypeOne,
+      dataIndex: variationTypeOne,
+    }
+    columns.push(obj1)
+    let obj2 = {
+      title: variationTypeTwo,
+      dataIndex: variationTypeTwo,
+    }
+    columns.push(obj2)
+    let obj3 = {
+      title: "Pricing",
+      dataIndex: "Pricing",
+    }
+    columns.push(obj3)
+
+    let key = 0;
+    let arr = [];
+    let key1 = 0;
+    let arr1 = []
+    for (var i = 0; i < addMultiValueOne.length; i++) {
+      for (var j = 0; j < addMultiValueTwo.length; j++) {
+        let obj = {
+          key: key,
+          [variationTypeOne]: addMultiValueOne[i].firstVariationUnitValue,
+          [variationTypeTwo]: addMultiValueTwo[j].secondVariationUnitValue,
+          Pricing: <Input prefix="Rs. " onChange={this.onChangeVariationPrice.bind(this, key,
+            variationTypeOne, addMultiValueOne[i].firstVariationUnitValue,
+            variationTypeTwo, addMultiValueTwo[j].secondVariationUnitValue)} />,
+        }
+        key++
+        arr.push(obj)
+      }
+    }
+    for (var k = 0; k < addMultiValueOne.length; k++) {
+      for (var l = 0; l < addMultiValueTwo.length; l++) {
+        let obj = {
+          key1: key1,
+          [variationTypeOne]: addMultiValueOne[k].firstVariationUnitValue,
+          [variationTypeTwo]: addMultiValueTwo[l].secondVariationUnitValue,
+          Pricing: "0"
+        }
+        key1++
+        arr1.push(obj)
+      }
+    }
+
+    this.setState({
+      visible: false,
+      columns: columns,
+      dataForVariation: arr,
+      variationPrices: arr1
+    });
+
+  };
+
+  handleCancelModal = e => {
+    this.setState({
+      visible: false,
+    });
+  };
+  /*Modal End*/
+
 
   checkPrice = (rule, value, callback) => {
     if (value.number > 0) {
@@ -1187,31 +2364,14 @@ class EcommerceForm extends Component {
     callback('Price must greater than zero!');
   };
 
-
-  genrateskuid = async (values) => {
-    const { skuId } = this.state;
-    if (skuId == '') {
-      let res = await HttpUtils.get('getYourProduct');
-      let sku;
-      if (res) {
-        let totalProducts = res.content.length + 1000;
-        let productWord = values.product.slice(0, 2).toLowerCase();
-        let categoryWord = values.categories[0].slice(0, 2) + values.categories[1].slice(0, 2) + values.categories[2].slice(0, 2);
-        sku = categoryWord + productWord + totalProducts;
-        this.setState({
-          skuId: sku
-        })
-      }
+  validateNumber(rule, value, callback) {
+    if (isNaN(value)) {
+      callback('Please type Numbers');
+    } else {
+      callback()
     }
-    this.funcForUpload(values)
   }
-  // validateNumber(rule, value, callback) {
-  //   if (isNaN(value)) {
-  //     callback('Please type Numbers');
-  //   } else {
-  //     callback()
-  //   }
-  // }
+
 
   handleCancel = () => this.setState({ previewVisible: false });
 
@@ -1234,6 +2394,26 @@ class EcommerceForm extends Component {
     this.setState({ imageList: imageList })
   }
 
+  //genrate SKU Of the product
+  genrateskuid = async (values) => {
+    const { skuId } = this.state;
+    if (skuId == '') {
+      let res = await HttpUtils.get('getYourProduct');
+      let sku;
+      if (res) {
+        let totalProducts = res.content.length + 1000;
+        let productWord = values.product.slice(0, 2).toLowerCase();
+        let categoryWord = values.categories[0].slice(0, 2) + values.categories[1].slice(0, 2) + values.categories[2].slice(0, 2);
+        sku = categoryWord + productWord + totalProducts;
+        this.setState({
+          skuId: sku
+        })
+      }
+    }
+    this.funcForUpload(values)
+  }
+
+  //upload all images of cloudnary
   async funcForUpload(values, key) {
     const { fileList } = this.state;
     Promise.all(fileList.map((val) => {
@@ -1245,25 +2425,8 @@ class EcommerceForm extends Component {
     })
   }
 
-  onChangeGetSizes = (values) => {
 
-    for (var i = 0; i < sizesOfProducts.length; i++) {
-      if (values[2] == sizesOfProducts[i].label) {
-        this.setState({
-          renderSizes: sizesOfProducts[i].value
-        })
-      }
-    }
-    for (var j = 0; j < colorsOfProducts.length; j++) {
-      if (values[2] == colorsOfProducts[j].label) {
-        this.setState({
-          renderColors: colorsOfProducts[j].value
-        })
-      }
-    }
-  }
-
-  //--------------function for cloudnary url ---------------
+  //--------------function for cloudnary url ---------------//
   uploadFile = (files) => {
     const image = files.originFileObj
     const cloudName = 'dxk0bmtei'
@@ -1291,11 +2454,14 @@ class EcommerceForm extends Component {
     })
   }
 
-
   //-----------------cloudnary function end ------------------//
+
+  //post data on api
   async postData(values, response, key) {
-    const { shopId, shopName, objectId, imageList, skuId, date, time } = this.state;
+    const { shopId, shopName, objectId, imageList, skuId, date, time, variationPrices } = this.state;
+
     var user = JSON.parse(localStorage.getItem('user'));
+    console.log(values, 'values')
 
     let objOfProduct = {
       product: values.product,
@@ -1307,6 +2473,11 @@ class EcommerceForm extends Component {
       materialType: values.materialType,
       description: values.description,
       color: values.color,
+      width: values.width,
+      widthUnit: values.widthUnit,
+      height: values.height,
+      heightUnit: values.heightUnit,
+      variationPrices: variationPrices,
       images: [...imageList, ...response],
       shopId: shopId,
       shopName: shopName,
@@ -1317,8 +2488,9 @@ class EcommerceForm extends Component {
       date: date,
       time: time
     }
+    let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
     console.log(objOfProduct, 'objOfProduct')
-    // let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
+    console.log(responseEcommreceData, 'responseEcommreceData')
 
     // if (responseEcommreceData.code == 200) {
     //   if (objectId == '') {
@@ -1357,7 +2529,7 @@ class EcommerceForm extends Component {
     // this.openNotification(msg)
   }
 
-
+  //open notification
   openNotification(msg) {
     notification.open({
       message: 'Success ',
@@ -1369,19 +2541,22 @@ class EcommerceForm extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { previewVisible, previewImage, fileList, btnDisabeld, mgs, loader, product, category, sizes, quantity, salePrice,
-      price, materialType, description, color, productData, goProductDetailPage, producId, imageList, renderSizes, renderColors } = this.state;
+      price, materialType, description, color, productData, goProductDetailPage, producId, imageList, renderSizes, renderColors,
+      showWidth, showHeight, showVariations, hide, variationTypeOne, variationTypeOneUnit, variationTypeTwo, addVariationVal,
+      variationTypeTwoUnit, variationUnitValueOne, variationUnitValueTwo, addMultiValueOne, addMultiValueTwo, emptyInput1, emptyInput2,
+      columns, dataForVariation, cheakVariValidation } = this.state;
     if (goProductDetailPage) {
       return (
         <Redirect to={{ pathname: `/products_DetailStyle/${producId}`, state: productData }} />
       )
     }
-
     const uploadButton = (
       <div>
         <Icon type="plus" />
         <div className="ant-upload-text">Upload</div>
       </div>
     );
+
     const uploadedImages = (
       <div style={{ height: '100%' }}>
         {imageList && imageList.map((elem) => {
@@ -1410,11 +2585,14 @@ class EcommerceForm extends Component {
         })}
       </div>
     )
+
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
     };
+
     const antIcon = <Icon type="loading" style={{ fontSize: 120 }} spin />;
+
     return (
       <div>
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
@@ -1444,25 +2622,17 @@ class EcommerceForm extends Component {
             })(<Cascader options={categories} onChange={this.onChangeGetSizes} />)}
           </Form.Item>
 
-          {/*Width*/}
-          <Form.Item label="Select Width">
-            <Input placeholder="Input Width" />
-          </Form.Item>
-            
-          {/*height*/}
-          <Form.Item label="Select Height">
-            <Input placeholder="Input Height" />
-          </Form.Item>
-          
           {/*Sizes*/}
-          {renderSizes.length > 0 && <Form.Item label="Select Sizes">
+          {renderSizes && renderSizes.length > 0 && <Form.Item label="Select Sizes">
             {getFieldDecorator('sizes', {
               initialValue: sizes,
-              rules: [
-                { required: true, message: 'Please select your sizes!', type: 'array' },
-              ],
+              rules: [{
+                required: true,
+                message: 'Please select your sizes!',
+                type: 'array'
+              }],
             })(
-              <Checkbox.Group style={{ width: '100%' }}>
+              <Checkbox.Group style={{ width: '100%' }} onChange={this.onChangePickSizes}>
                 <Row>
                   {renderSizes && renderSizes.map((elem, key) => {
                     return (
@@ -1478,7 +2648,7 @@ class EcommerceForm extends Component {
           }
 
           {/*Color*/}
-          {renderColors.length > 0 && <Form.Item label="Product Color">
+          {renderColors && renderColors.length > 0 && <Form.Item label="Product Color">
             {getFieldDecorator('color', {
               initialValue: color,
               rules: [
@@ -1489,20 +2659,240 @@ class EcommerceForm extends Component {
                 <Row>
                   {renderColors && renderColors.map((elem, key) => {
                     return (
-                      // <div className="">
-                      // <Checkbox value="Xtra-Small">Xtra Small</Checkbox>
-                      // </div>
                       <Col span={8}>
                         <Checkbox value={elem}>{elem}</Checkbox>
                       </Col>
                     )
                   })}
                 </Row>
-
               </Checkbox.Group>
             )}
           </Form.Item>
           }
+
+          {/*Width*/}
+          {showWidth &&
+            <Form.Item label="Select Width">
+              {getFieldDecorator('width', {
+                // initialValue: width,
+                rules: [{
+                  required: true,
+                  message: 'Please enter product width!',
+                  whitespace: true
+                },
+                { validator: this.validateNumber.bind(this) }],
+              })(<Input placeholder="Input Width" />)}
+
+
+            </Form.Item>
+          }
+          {showWidth &&
+            <Form.Item label="Select Width Unit">
+              {getFieldDecorator('widthUnit', {
+                // initialValue: width,
+                rules: [{
+                  required: true,
+                  message: 'Please enter product width Unit!',
+                  whitespace: true
+                }],
+              })(
+                <Select
+                  style={{ width: '32%' }}
+                  onChange={this.handleUnits}
+                >
+                  <Option value="Centimeter">Centimeter</Option>
+                  <Option value="Feet">Feet</Option>
+                  <Option value="Inches">Inches</Option>
+                  <Option value="Meter">Meter</Option>
+                  <Option value="Milimeter">Milimeter</Option>
+                  <Option value="Yards">Yards</Option>
+                </Select>
+              )}
+            </Form.Item>
+          }
+
+          {/*height*/}
+          {showHeight &&
+            <Form.Item label="Select Height">
+              {getFieldDecorator('height', {
+                // initialValue: height,
+                rules: [{
+                  whitespace: true,
+                  required: true,
+                  message: 'Please enter product height!',
+                },
+                { validator: this.validateNumber.bind(this) }]
+
+              })(<Input placeholder="Input Height" />)}
+            </Form.Item>
+          }
+          {showHeight &&
+            <Form.Item label="Select Height Unit">
+              {getFieldDecorator('heightUnit', {
+                // initialValue: width,
+                rules: [{
+                  required: true,
+                  message: 'Please enter product height Unit!',
+                  whitespace: true
+                }],
+              })(
+                <Select
+                  style={{ width: '32%' }}
+                  onChange={this.handleUnits}
+                >
+                  <Option value="Centimeter">Centimeter</Option>
+                  <Option value="Feet">Feet</Option>
+                  <Option value="Inches">Inches</Option>
+                  <Option value="Meter">Meter</Option>
+                  <Option value="Milimeter">Milimeter</Option>
+                  <Option value="Yards">Yards</Option>
+                </Select>
+              )}
+            </Form.Item>
+          }
+          {showWidth && showHeight &&
+            < span onClick={this.showVariation}>Add Variation on the product</span>
+          }
+          {showWidth && showHeight &&
+            <p onClick={this.hideInputs}>Hide height & width</p>
+          }
+          {hide &&
+            <p onClick={this.showInputs}>Add height & width</p>
+          }
+          {showVariations &&
+            < span onClick={this.showWidthHieght}>Hide Variation Show Width Height</span>
+          }
+          {/*Variation*/}
+          {showVariations &&
+            <div>
+              <h4>Variations</h4>
+              <p>Add available options like sizes. Buyers will choose from these during checkout.</p>
+              <div>
+                <Button type="primary" onClick={this.showModal}>
+                  Add Variation
+              </Button>
+                <Modal
+                  title="Add Variation"
+                  visible={this.state.visible}
+                  onOk={this.handleOk}
+                  onCancel={this.handleCancelModal}
+                >
+                  <div>List all the options you offer. Buyers will see them in the order they are here.</div>
+                  {variationTypeOne && <div>
+                    <span>{variationTypeOne}</span>
+                    {variationTypeOneUnit && <span onClick={this.editvariOneUnit}>Edit unit</span>}
+                    <span onClick={this.deleteVariOne}>Delete</span>
+
+                    {variationTypeOneUnit == '' &&
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Select Unit"
+                        optionFilterProp="children"
+                        onChange={this.onChangeVariationUnits}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        <Option value="Centimeter">Centimeter</Option>
+                        <Option value="Feet">Feet</Option>
+                        <Option value="Inches">Inches</Option>
+                        <Option value="Meter">Meter</Option>
+                        <Option value="Milimeter">Milimeter</Option>
+                        <Option value="Yards">Yards</Option>
+                      </Select>
+                    }
+
+                    {variationTypeOneUnit != '' &&
+                      <div>
+                        <Input value={variationUnitValueOne} onChange={this.inputValueOne}
+                          type="Number" suffix={variationTypeOneUnit}
+                          className={emptyInput1 ? "error" : ''} />
+                        <button onClick={this.addmultipleUnitValOne}>Add</button>
+                        {addMultiValueOne && addMultiValueOne.map((elem, key) => {
+                          return (<div>
+                            <span>{elem.firstVariationUnitValue + " " +
+                              elem.firstVariationUnit}</span>
+                            <button onClick={this.removeFirstVariVal.bind(this, elem)}>X</button>
+                          </div>)
+                        })}
+                      </div>}
+
+                  </div>}
+
+                  {variationTypeTwo && <div>
+                    <span>{variationTypeTwo}</span>
+                    {variationTypeTwoUnit && <span onClick={this.editvariTwoUnit}>Edit unit</span>}
+                    <span onClick={this.deleteVariTwo}>Delete</span>
+
+                    {variationTypeTwoUnit == '' &&
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Select Unit"
+                        optionFilterProp="children"
+                        onChange={this.onChangeVariationUnitsTwo}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        <Option value="Centimeter">Centimeter</Option>
+                        <Option value="Feet">Feet</Option>
+                        <Option value="Inches">Inches</Option>
+                        <Option value="Meter">Meter</Option>
+                        <Option value="Milimeter">Milimeter</Option>
+                        <Option value="Yards">Yards</Option>
+                      </Select>
+                    }
+                    {variationTypeTwoUnit != '' &&
+                      <div>
+                        {/* {addMultiValueOne &&} */}
+                        <Input value={variationUnitValueTwo} onChange={this.inputValueTwo}
+                          type="Number" suffix={variationTypeTwoUnit}
+                          className={emptyInput2 ? "error" : ''} />
+                        <button onClick={this.addmultipleUnitValTwo}>Add</button>
+                        {addMultiValueTwo && addMultiValueTwo.map((elem, key) => {
+                          return (<div>
+                            <span>{elem.secondVariationUnitValue + " " +
+                              elem.secondVariationUnit}</span>
+                            <button onClick={this.removeSecondVariVal.bind(this, elem)}>X</button>
+                          </div>)
+                        })}
+                      </div>
+                    }
+
+                  </div>}
+
+                  {variationTypeOne != '' && variationTypeTwo != '' ?
+                    null :
+                    <div>
+                      <div>Add Variation</div>
+                      <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="Choose variation type"
+                        optionFilterProp="children"
+                        onChange={this.onChangeVariation}
+                        value={addVariationVal}
+                        filterOption={(input, option) =>
+                          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                      >
+                        <Option value="">Choose variation type</Option>
+                        <Option value="Height">Height</Option>
+                        <Option value="Width">Width</Option>
+                      </Select>
+                    </div>
+                  }
+                </Modal>
+              </div>
+
+              {/*Variation table*/}
+              <Table columns={columns} dataSource={dataForVariation} />
+              {cheakVariValidation && <div>Please add the prices of variations or hide variation</div>}
+            </div>
+          }
+
           {/*Quantity*/}
           <Form.Item label="Select Quantity">
             {getFieldDecorator('quantity', {
@@ -1563,64 +2953,6 @@ class EcommerceForm extends Component {
               }],
             })(<TextArea rows={4} />)}
           </Form.Item>
-        
-          {/*Variation*/}
-
-          <h4>Variations</h4>
-          <p>Add available options like color or size. Buyers will choose from these during checkout.</p>
-          
-            <div>
-              <Button type="primary" onClick={this.showModal}>
-                Open Modal
-              </Button>
-              <Modal
-                title="Basic Modal"
-                visible={this.state.visible}
-                onOk={this.handleOk}
-                onCancel={this.handleCancel}
-              >
-                  <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="Choose variation type"
-                    optionFilterProp="children"
-                    filterOption={(input, option) =>
-                      option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    <Option value="Primary Color">Primary Color</Option>
-                    <Option value="Width">Width</Option>
-                    <Option value="Height">Height</Option>
-                    <Option value="Size">Size</Option>
-                    <Option value="Depth">Depth</Option>
-                    <Option value="Material">Material</Option>
-                  </Select>,
-
-                  <Select
-                    showSearch
-                    style={{ width: 200 }}
-                    placeholder="Select Unit"
-                    optionFilterProp="children"
-                    filterOption={(input, option) =>
-                      option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    <Option value="Centimeter">Centimeter</Option>
-                    <Option value="Feet">Feet</Option>
-                    <Option value="Inches">Inches</Option>
-                    <Option value="Meter">Meter</Option>
-                    <Option value="Milimeter">Milimeter</Option>
-                    <Option value="Yards">Yards</Option>
-                  </Select>
-
-                  <Input  suffix="Centimeter" />
-                  <Button>Add</Button>
-              </Modal>
-            </div>
-          
-          {/*Variation table*/}
-          <Table rowSelection={rowSelection} columns={columns} dataSource={data} />,
-                    
           {/*Uplaod Images*/}
 
           <Form.Item label="upload">
@@ -1689,8 +3021,8 @@ class EcommerceForm extends Component {
           </div>}
         </Form>
 
-        
-      </div>
+
+      </div >
     );
   }
 }
@@ -1698,3 +3030,5 @@ class EcommerceForm extends Component {
 const WrappedEcommerceForm = Form.create({ name: 'register' })(EcommerceForm);
 
 export default WrappedEcommerceForm;
+
+
