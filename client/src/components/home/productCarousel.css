@@ -1,0 +1,171 @@
+.carousel-control.left,.carousel-control.right  {background:none;width:25px;}
+.carousel-control.left {left:-50px;}
+.carousel-control.right {right:-50px;}
+.broun-block {
+    background: url("http://myinstantcms.ru/images/bg-broun1.jpg") repeat scroll center top rgba(0, 0, 0, 0);
+    padding-bottom: 34px;
+}
+.block-text {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 0 #2c2222;
+    color: #626262;
+    font-size: 14px;
+    margin-top: 27px;
+    padding: 15px 18px;
+}
+.block-text a {
+ color: #7d4702;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 21px;
+    text-decoration: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.mark {
+    padding: 12px 0;background:none;
+}
+.block-text p {
+    color: #585858;
+    font-family: Georgia;
+    font-style: italic;
+    line-height: 20px;
+}
+.sprite {
+	background-color: yellow;
+}
+.sprite-i-triangle {
+    background-position: 0 -1298px;
+    height: 44px;
+    width: 50px;
+}
+.block-text ins {
+    bottom: -44px;
+    left: 50%;
+    margin-left: -60px;
+}
+
+
+.block {
+    display: block;
+}
+.zmin {
+    z-index: 1;
+}
+.ab {
+    position: absolute;
+}
+
+.person-text {
+    padding: 10px 0 0;
+    text-align: center;
+    z-index: 2;
+}
+.person-text a {
+    color: #ffcc00;
+    display: block;
+    font-size: 14px;
+    margin-top: 3px;
+    text-decoration: underline;
+}
+.person-text i {
+    color: #fff;
+    font-family: Georgia;
+    font-size: 13px;
+}
+.rel {
+    position: relative;
+}
+
+
+
+
+.ecomshopcard{
+    clear: both;
+    margin-bottom: 25px;
+    margin-top: 0;
+    padding: 0;
+  
+    width: 100%;
+  }
+  
+  .ecomshopcard img{
+    position: relative;
+    color: honeydew;
+  width: 100%;
+  height: 200px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  -webkit-filter: brightness(70%);
+  }
+  
+  
+  .ecomshopcard img:hover{
+    position: relative;
+    color: honeydew;
+    -webkit-filter: brightness(80%);
+    -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  
+  }
+  
+  .shop-btn{
+    background-color: #3C3C47;
+    border-radius: 5px;
+    padding: 5px;
+    width: 45%;
+    color: white;
+    border: #3C3C47;
+  }
+  
+  .ecommerce-card{
+    border: 1px solid #bfbfbf;
+      border-radius: 5px 5px 0px 0px;
+  }
+  .pricing{
+    border: 2px solid white;
+    top: 10px;
+    position: absolute;
+    left: 25px;
+    width: 30%;
+    text-align: center;
+    padding: 5px;
+  }
+  
+  .pricing h4{
+    margin:0; 
+    color:#fafafa;
+    font-weight: 600;
+  }
+  
+  .category{
+    top: 165px;
+    position: absolute;
+    left: 25px;
+    text-align: center;
+    padding: 5px;
+  }
+  
+  .category h4{
+    color: white;
+    text-shadow: 2px 2px 14px;
+  }
+  
+  .otherdetails{
+    text-align: left;
+    padding: 15px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #bfbfbf;
+    background-color: white;
+    display: grid;
+  }
+  
+  .otherdetails h3{
+    font-size: 18px;
+  }
+  

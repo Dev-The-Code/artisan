@@ -24,7 +24,14 @@ import CheckOutPage from './components/ecommerce/checkOutPage';
 import ShopForm from './components/ecommerce/shops/ShopForm'
 import ShopForm2 from './components/ecommerce/shops/ShopForm2'
 import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile';
-import OrderList from './components/ecommerce/shops/orderList';
+import OrderListEcommrce from './components/ecommerce/shops/orderListEcommerce';
+
+import BillingDetail from './components/ecommerce/checkout/billing_detail';
+import FeaturedProduct from './components/admin/featuredProduct';
+import FeaturedShops from './components/admin/featuredShop';
+import OrderListNew from './components/admin/orderList';
+
+
 import AdminScreen from './components/admin/adminScreen';
 
 import { PrivateRoute } from './components/signin_seperate';
@@ -33,6 +40,7 @@ import { PrivateRoute } from './components/signin_seperate';
 //css
 import './app.css';
 import HomePage from './components/home/homePage';
+import OrderListEcommerce from './components/ecommerce/shops/orderListEcommerce';
 
 const initialState = {
   text: '',
@@ -76,6 +84,9 @@ ReactDOM.render(
         {/*==========Admin Screens==============*/}
 
         <Route path="/Admin" component={AdminScreen}> </Route>
+        <Route path="/featured_product" component={FeaturedProduct}></Route>
+        <Route path="/featured_shop" component={FeaturedShops}></Route>
+        <Route path="/order_listnew" component={OrderListNew}></Route>
 
         {/*============Ecommerce=============*/}
         <Route path="/explore_Market" component={EcommerceMarket}></Route>
@@ -86,7 +97,8 @@ ReactDOM.render(
         <Route path="/checkOutProduct" component={CheckOutPage}></Route>
         <PrivateRoute path="/shopForm" component={ShopForm}></PrivateRoute>
         <Route path="/EcommerceProfile/:value" component={EcomProile}></Route>
-        <Route path="/oderList/:value" component={OrderList}></Route>
+        <Route path="/oderList/:value" component={OrderListEcommrce}></Route>
+        <Route path='/checkout_billing' component={BillingDetail}></Route>
 
         {/*============Ecommerce=============*/}
 

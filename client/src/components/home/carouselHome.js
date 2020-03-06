@@ -61,7 +61,7 @@ class CarouselHome extends Component{
                                             <div key={key} className="item active">
                                                 <div className="col-md-4 col-sm-6">
                                                     <div className="">
-                                                        {/* <BussinesCard cardDetails={ elem } detail={detail}/> */}
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

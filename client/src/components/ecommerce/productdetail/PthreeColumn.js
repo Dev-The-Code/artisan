@@ -129,23 +129,40 @@ class
                     </div>
                   </div>
                   <div>
-                    {data.price ?
+                    {data.salePrice ?
                       <span>
-                        <h4>
-                          Price: {data.price.number} {data.price.currency}
-                        </h4>
+                        <h3 style={{color:"rgb(217, 166, 126)"}}>
+                          {data.salePrice.number} {data.price.currency}
+                        </h3>
                       </span>
                       : null}
                   </div>
                   <div>
-                    {data.salePrice ?
-                      <span>
-                        <h4>
-                          Sale Price: {data.salePrice.number} {data.price.currency}
-                        </h4>
+                    {data.price ?
+                      <span style={{color:"	#808080", marginRight:"15px"}}>
+                        
+                          <s>{data.price.number} {data.price.currency}</s>
+                        
                       </span>
+                      
                       : null}
+                      <span>45%</span>
                   </div>
+                  
+                </div>
+                <div className="color-field">
+                      <div className="row">
+                        <div className="col-md-2" style={{paddingRight:"0"}}>
+                          <span>Color Family:</span>
+                        </div>
+                        <div className="col-md-10">
+                            <p>Blue</p>
+                            <div style={{marginBottom:"60px"}}>
+                              <input type="checkbox" checked="checked"/>
+                              <span class="checkmark"></span>
+                            </div>
+                        </div>  
+                      </div>   
                 </div>
                 <div>
                   <span>Qty:</span>
