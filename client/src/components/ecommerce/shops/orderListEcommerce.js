@@ -5,7 +5,7 @@ import HeaderMenu from '../../header/headermenu';
 import { Modal } from 'antd';
 import Footer from '../../footer/footer';
 
-class OrderList extends Component {
+class OrderListEcommerce extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -126,4 +126,4 @@ class OrderList extends Component {
         )
     }
 }
-export default OrderList;
+export default OrderListEcommerce;

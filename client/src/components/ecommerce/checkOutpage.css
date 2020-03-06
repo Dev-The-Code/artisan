@@ -10,22 +10,43 @@
     background-color: rgb(55, 169, 155);
     color: white;
     text-decoration: none;
+    width: 100%;
+}
+
+.browsebtn{
+    background-color: rgb(55, 169, 155);
+    color: white;
+    text-decoration: none;
+    width: 50%;
+    left:25%;
 }
 .cartDetail{
-    list-style-type: none;    
-    font-size: 20px;
-    font-weight: bold;
+    list-style-type: none;
+    font-size: 15px;
     /* padding: 15px; */
+    /* margin: 0; */
+    padding: 0;
 }
 .cartPrice{
     font-size: 20px;
 }
 .panel-body{    
-    border: 1px solid #80808052
+    background-color: white;
 }
 .imgClass{
-    max-width: 55%
+    max-width: 100%
 }
 .modalSucces{
     text-align: "center" !important
+}
+
+.checkout-amount{
+    font-weight: bold;
+    float: right;
+    color: black;
+}
+
+.trashbtn{
+    float:right;
+    margin-top: 12px;
 }

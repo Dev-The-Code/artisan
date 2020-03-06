@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import superagent from "superagent";
 import sha1 from "sha1";
+import './ecomform.css';
 import { HttpUtils } from "../../../Services/HttpUtils";
 import {
   Form,
@@ -888,6 +889,17 @@ const sizesOfProducts = [
   }, {
     value: 'Pets',
     label: 'Pets',
+// <<<<<<< HEAD
+//     value: []
+//   },
+//   {
+//     label: 'Drawer Pulls & Knobs',
+//     value: [],
+//   },
+//   {
+    
+//   }
+// ]
     children: [{
       value: 'Collars & Leashes',
       label: 'Collars & Leashes',
@@ -2968,6 +2980,17 @@ class EcommerceForm extends Component {
                   </Modal>
                 </div>)}
           </Form.Item>
+
+          {/*Delivery Options*/}
+          <div className="delivery-section">
+                <div className="">
+                  <h4><strong>Delivery</strong></h4>
+                  <p> Set clear and realistic delivery expectations for shoppers by providing accurate processing time.</p>
+                </div>
+                <Form.Item>
+                  
+                </Form.Item>
+          </div>
 
 
           {/*Button*/}

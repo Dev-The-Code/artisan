@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import HeaderMenu from '../header/headermenu';
-import { InputNumber, Modal, Spin, Icon, Checkbox } from 'antd';
+import { InputNumber, Modal, Spin, Icon } from 'antd';
 import { Link } from "react-router-dom";
 // import CardDetail from '../../components/events/event_listing/CardDetail';
 import { Elements, StripeProvider } from 'react-stripe-elements';
@@ -10,10 +10,6 @@ import './checkOutpage.css';
 import { Redirect } from 'react-router';
 import imgSucces from './images/succes.gif';
 import Footer from '../footer/footer';
-
-function onChange(e) {
-    console.log(`checked = ${e.target.checked}`);
-  }
 
 class CheckOutPage extends Component {
     constructor(props) {
@@ -60,8 +56,6 @@ class CheckOutPage extends Component {
         this.capturedKeys();
         this.calculateAmount(addToCartData)
     }
-
-
 
     onChange = (data, cartCount) => {
         let addToCartData = JSON.parse(localStorage.getItem('addToCart'))
@@ -257,151 +251,44 @@ class CheckOutPage extends Component {
                     </div>
                 </div>
                 <div className='container'>
-                    <div className="row" style={{padding:"15px"}}>
-                        {/*For Mobile Phones*/}
-                        <div className="visible-xs" style={{backgroundColor:"white", padding:"5px", marginBottom:"30px"}}>
-                        {cartValue && cartValue.map((elem, key) => {
-                        return (
-                                    <div className='panel-body' style={{padding:"0"}}>
-                                        <div className="row" style={{padding:"10px"}}>
-                                            <Checkbox onChange={onChange}>{elem.shopName}</Checkbox>
-                                        </div>
-                                        <hr/>
-                                        <div className="row" style={{padding:"15px"}}>
-                                            <div className="col-xs-1" style={{marginTop:"40px", padding:"0"}}>
-                                                <Checkbox onChange={onChange}>
-                                                </Checkbox>
-                                            </div>
-                                            <div className="col-xs-3">
-                                                <img className='imgClass' src={elem.images[0]}  style={{marginTop:"15px"}}/>
-                                            </div>
-                                            <div className="col-xs-8">
-                                                <ul className='cartDetail'>
-                                                    <li>Product Name : {elem.productName}</li>
-                                                </ul>
-                                                <div className="row">
-                                                    <div className="col-xs-6">
-                                                        <p style={{margin:"0", color:"rgb(217, 166, 126)"}}>$ 5000</p>
-                                                        <span><s> $ {elem.price * elem.cartCount}</s></span> 
-                                                        <span><p> 20 %</p></span>
-                                                    </div>  
-                                                    <div className="col-xs-6">
-                                                        <InputNumber min={1} max={10} defaultValue={elem.cartCount} onChange={this.onChange.bind(this, elem)} />
-                                                        <button type="button" class="trashbtn btn-link btn-xs" onClick={this.removeCartData.bind(this, elem, key)}>
-                                                            <span class="glyphicon glyphicon-trash"> </span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                        
-                                    </div>
-
-                            
-                        )
-                    })}
-                            <div>
-                                <Link rel="noopener noreferrer" to={`/`} style={{ color: 'black', fontSize: '14px' }}>        
-                                    <button className='browsebtn ant-btn post_need' style={{width:"50%",}}>Browse more</button>
-                                </Link>
-                            </div>   
-                        </div>
-
-                        <div className="visible-xs">
-                            {totalAmount != '' ? <div className='panel-body'>
-                                <div className='row' style={{margin:"0"}}>
-                                    
-
-                                    <div className="">
-                                        <ul className='cartDetail'>
-                                            <h2 style={{ fontWeight: 'bold' }}>Total Amount</h2>
-                                            
-                                            <li style={{ marginTop: "15px" }}>
-                                                <span>Amount :</span>
-                                                <span className="checkout-amount" > $ {amount}</span> 
-                                            </li>
-                                            <li style={{ marginTop: "15px" }}>
-                                                <span>GST 10% :</span>
-                                                <span className="checkout-amount" >$ {gst}</span>
-                                            </li>
-                                            <li style={{ marginTop: "15px" }}>
-                                                <span>Pakjazba Fee 10% :</span> 
-                                                <span className="checkout-amount">$ {pakjazbafee}</span>
-                                            </li>
-                                            <li style={{ marginTop: "15px" }}>
-                                                <span>Total Amount:</span>
-                                                <span className="checkout-amount" style={{ color:"rgb(217, 166, 126)"}}> $ {totalAmount}</span>
-                                            </li>
-                                            
-                                        </ul>
-                                        <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' onClick={this.checkOutFunc}>Proceed to checkout</button>
-                                    </div>
-                                </div>
-                            </div> : null}
-                        </div>
-
-                        <div className="col-md-8 hidden-xs" style={{backgroundColor:"white", padding:"15px"}}>
+                    <div className="row">
+                        <div className="col-md-8">
                         {cartValue && cartValue.map((elem, key) => {
                         return (
                                     <div className='panel-body'>
-                                        <div className="row" style={{padding:"10px"}}>
-                                            <Checkbox onChange={onChange}>{elem.shopName}</Checkbox>
-                                        </div>
-                                        <hr/>
-                                        <div className="row" style={{padding:"15px"}}>
-                                            <div className="col-md-1 col-sm-1" style={{marginTop:"35px"}}>
-                                                <Checkbox onChange={onChange}>
-                                                </Checkbox>
-                                            </div>
-                                            <div className="col-md-2 col-sm-2">
+                                        <div className='row'>
+                                            <div className="col-md-3 col-sm-3 col-xs-12">
                                                 <img className='imgClass' src={elem.images[0]} />
                                             </div>
-                                            <div className="col-md-6 col-sm-6">
+                                            <div className="col-md-3 col-sm-3 col-xs-12">
                                                 <ul className='cartDetail'>
                                                     <li>Product Name : {elem.productName}</li>
+                                                    <li style={{ marginTop: "15px" }}>Quantity : {elem.cartCount}</li>
+                                                    <li style={{ marginTop: "15px" }}>Shop Name : {elem.shopName}</li>
                                                 </ul>
                                             </div>
-                                            <div className="col-md-1 col-sm-1" style={{padding:"0",}}>
-                                                <div className="">
-                                                    <p style={{color: "rgb(217, 166, 126)"}}>$ 5000</p>
+                                            <div className="col-md-6 col-sm-6 col-xs-12 cartPrice text-right">
+                                                <div className="col-md-4 col-sm-4 col-xs-12">$ {elem.price * elem.cartCount}</div>
+                                                <div className="col-md-4 col-sm-4 col-xs-12">
+                                                    <span> <InputNumber min={1} max={10} defaultValue={elem.cartCount} onChange={this.onChange.bind(this, elem)} /></span>
                                                 </div>
-                                                <s> $ {elem.price * elem.cartCount}</s>
-                                                
-                                                <div className="">
-                                                 <p> 20 %</p>
-                                                </div>
-                                                
-                                            </div>
-                                            <div className="col-md-2 col-sm-2">
-                                                <InputNumber min={1} max={10} defaultValue={elem.cartCount} onChange={this.onChange.bind(this, elem)} />
-                                                <div>
-                                                    <button type="button" class="trashbtn btn-link btn-xs" onClick={this.removeCartData.bind(this, elem, key)}>
+                                                <div className='col-md-4 col-sm-4 col-xs-12'>
+                                                    <button type="button" class="btn btn-link btn-xs" onClick={this.removeCartData.bind(this, elem, key)}>
                                                         <span class="glyphicon glyphicon-trash"> </span>
                                                     </button>
                                                 </div>
                                             </div>
-
-                                        </div> 
-                                        
+                                        </div>
                                     </div>
 
                             
                         )
                     })}
-                            <div>
-                                <Link rel="noopener noreferrer" to={`/`} style={{ color: 'black', fontSize: '14px' }}>        
-                                    <button className='browsebtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' style={{width:"50%"}}>Browse more</button>
-                                </Link>
-                            </div>   
                         </div>
-
-
-
-
-                        <div className="col-md-4 hidden-xs">
+                        <div className="col-md-4">
                             
                             {totalAmount != '' ? <div className='panel-body'>
-                            <div className='row' style={{margin:"0"}}>
+                            <div className='row'>
                                 
 
                                 <div className="">
@@ -410,34 +297,32 @@ class CheckOutPage extends Component {
                                         
                                         <li style={{ marginTop: "15px" }}>
                                             <span>Amount :</span>
-                                            <span className="checkout-amount" > $ {amount}</span> 
+                                            <span style={{float:"right"}}> $ {amount}</span> 
                                         </li>
                                         <li style={{ marginTop: "15px" }}>
                                             <span>GST 10% :</span>
-                                            <span className="checkout-amount" >$ {gst}</span>
+                                            <span style={{float:"right"}}>$ {gst}</span>
                                         </li>
                                         <li style={{ marginTop: "15px" }}>
                                             <span>Pakjazba Fee 10% :</span> 
-                                            <span className="checkout-amount">$ {pakjazbafee}</span>
+                                            <span style={{float:"right"}}>$ {pakjazbafee}</span>
                                         </li>
                                         <li style={{ marginTop: "15px" }}>
                                             <span>Total Amount:</span>
-                                            <span className="checkout-amount" style={{ color:"rgb(217, 166, 126)"}}> $ {totalAmount}</span>
+                                            <span style={{float:"right"}}> $ {totalAmount}</span>
                                         </li>
                                         
                                     </ul>
-                                    <Link rel="noopener noreferrer" to={`/checkout_billing`}>
-                                        <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' onClick={this.checkOutFunc}>Proceed to checkout</button>
-                                    </Link>
                                 </div>
                             </div>
                         </div> : null}
-                    
-                    
                         {hideBtn ?
                                 <div className='row'> 
-                                    
-                                   
+                                    <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12' onClick={this.checkOutFunc}>Checkout</button>
+                                    <Link rel="noopener noreferrer" to={`/`} style={{ color: 'black', fontSize: '14px' }}>
+                                        
+                                        <button className='checkoutbtn ant-btn post_need col-md-2 col-sm-2 col-xs-12'>Browse more</button>
+                                    </Link>
                                 </div> : null}
                     {noRecordFound && <span style={{ textAlign: "center" }}><h1>Not found....</h1></span>}
                     {noRecordFound && <span style={{ textAlign: "center" }}><h5>you can't buy any product</h5></span>}
@@ -482,8 +367,6 @@ class CheckOutPage extends Component {
 
                     </div>
                         </div>
-                    
-
                     </div>
                     
 
