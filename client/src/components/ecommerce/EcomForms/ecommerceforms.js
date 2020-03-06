@@ -2994,11 +2994,8 @@ class EcommerceForm extends Component {
           </div>
           {loader && <div style={{ textAlign: 'center', marginLeft: '-100px', marginBottom: '15px' }}>
             <Spin indicator={antIcon} />
-
           </div>}
         </Form>
-
-
       </div >
     );
   }
