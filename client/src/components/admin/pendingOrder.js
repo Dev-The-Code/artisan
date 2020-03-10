@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import HeaderMenu from '../header/headermenu';
-import Footer from '../footer/footer';
-import './orderList.css';
 import { Table, Tag, Checkbox, Switch, Input, Tabs } from 'antd';
-import PendingOrder from './pendingOrder';
 
 
 function onChange(checked) {
@@ -166,43 +162,14 @@ const columns = [
     },
   ];
 
-  function callback(key) {
-  console.log(key);
-}
-class OrderListNew extends Component{
-    render(){
-        return(
-            <div className="">
-                <HeaderMenu/>
-                <div style={{marginTop:"110px"}}>
-                    <h2 style={{textAlign:"center"}}>Order List</h2>
-
-                    <div className="container" style={{width:"40%", marginBottom:"15px", marginTop:"15px"}}>
-                        <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
-                    </div>
-                    <div className="container">
-                        <div className="row">
-                            <Tabs defaultActiveKey="1" onChange={callback}>
-                                <TabPane tab="All" key="1">
-                                    <div>
-                                        <Table columns={columns} dataSource={data} />
-                                    </div>
-                                </TabPane>
-                                <TabPane tab="Pending" key="2">
-                                        <PendingOrder/>
-                                </TabPane>
-                                <TabPane tab="Ready To Ship" key="3">
-                                Content of Tab Pane 3
-                                </TabPane>
-                            </Tabs>,
-                        </div>
-                    </div>
+  class PendingOrder extends Component{
+      render(){
+          return(
+                <div className=""> 
+                    <Table columns={columns} dataSource={data} />
                 </div>
-                <Footer/>
-            </div>
+          )
+      }
+  }
 
-        )
-    }
-}
-
-export default OrderListNew;
+  export default PendingOrder;
