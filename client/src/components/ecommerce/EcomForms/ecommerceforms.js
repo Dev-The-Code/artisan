@@ -889,17 +889,17 @@ const sizesOfProducts = [
   }, {
     value: 'Pets',
     label: 'Pets',
-// <<<<<<< HEAD
-//     value: []
-//   },
-//   {
-//     label: 'Drawer Pulls & Knobs',
-//     value: [],
-//   },
-//   {
-    
-//   }
-// ]
+    // <<<<<<< HEAD
+    //     value: []
+    //   },
+    //   {
+    //     label: 'Drawer Pulls & Knobs',
+    //     value: [],
+    //   },
+    //   {
+
+    //   }
+    // ]
     children: [{
       value: 'Collars & Leashes',
       label: 'Collars & Leashes',
@@ -1888,7 +1888,10 @@ class EcommerceForm extends Component {
       columns: [],
       dataForVariation: [],
       variationPrices: [],
-      cheakVariValidation: false
+      cheakVariValidation: false,
+      dayOfMonth: '',
+      monthNo: '',
+      yearCount: ''
 
     }
   }
@@ -1928,6 +1931,9 @@ class EcommerceForm extends Component {
         shopName: data.shopTitle,
         date: year + '-' + month + '-' + date,
         time: hours + ':' + min + ':' + sec,
+        dayOfMonth: date,
+        monthNo: month,
+        yearCount: year
       })
     }
   }
@@ -1948,14 +1954,14 @@ class EcommerceForm extends Component {
               })
             }
           }
-          // if (cheakVariValidation != true) {
-          //   this.setState({
-          //     loader: true,
-          //     btnDisabeld: true,
-          //     cheakVariValidation: false
-          //   })
-          //   this.genrateskuid(values)
-          // }
+          if (cheakVariValidation != true) {
+            this.setState({
+              loader: true,
+              btnDisabeld: true,
+              cheakVariValidation: false
+            })
+            this.genrateskuid(values)
+          }
         }
         else if (cheakVariValidation != true) {
           console.log('else condition true')
@@ -2265,16 +2271,19 @@ class EcommerceForm extends Component {
   }
 
   //variation price get 
-  onChangeVariationPrice = (key, firstVariUnit, firstVariValue, secondVariUnit, secondVariValue, priceValue) => {
+  onChangeVariationPrice = (key, firstVariUnit, firstVariValue, firstVariValueUnit,
+    secondVariUnit, secondVariValue, secondVariValueUnit, priceValue) => {
 
     // creating obj of the variation values
     let obj = {
       key: key,
       firstVariUnit: firstVariUnit,
       firstVariValue: firstVariValue,
+      firstVariValueUnit: firstVariValueUnit,
       secondVariUnit: secondVariUnit,
       secondVariValue: secondVariValue,
-      price: priceValue.target.value
+      secondVariValueUnit: secondVariValueUnit,
+      price: priceValue.target.value,
     }
     variValues[key] = obj;
 
@@ -2291,7 +2300,7 @@ class EcommerceForm extends Component {
   };
 
   handleOk = e => {
-    const { variationTypeOne, addMultiValueOne, variationTypeTwo, addMultiValueTwo } = this.state;
+    const { variationTypeOne, variationTypeOneUnit, addMultiValueOne, variationTypeTwo, variationTypeTwoUnit, addMultiValueTwo } = this.state;
     let columns = []
     let obj1 = {
       title: variationTypeOne,
@@ -2320,8 +2329,8 @@ class EcommerceForm extends Component {
           [variationTypeOne]: addMultiValueOne[i].firstVariationUnitValue,
           [variationTypeTwo]: addMultiValueTwo[j].secondVariationUnitValue,
           Pricing: <Input prefix="Rs. " onChange={this.onChangeVariationPrice.bind(this, key,
-            variationTypeOne, addMultiValueOne[i].firstVariationUnitValue,
-            variationTypeTwo, addMultiValueTwo[j].secondVariationUnitValue)} />,
+            variationTypeOne, variationTypeOneUnit, addMultiValueOne[i].firstVariationUnitValue,
+            variationTypeTwo, variationTypeTwoUnit, addMultiValueTwo[j].secondVariationUnitValue)} />,
         }
         key++
         arr.push(obj)
@@ -2458,7 +2467,8 @@ class EcommerceForm extends Component {
 
   //post data on api
   async postData(values, response, key) {
-    const { shopId, shopName, objectId, imageList, skuId, date, time, variationPrices } = this.state;
+    const { shopId, shopName, objectId, imageList, skuId, date, time, variationPrices, dayOfMonth,
+      monthNo, yearCount } = this.state;
 
     var user = JSON.parse(localStorage.getItem('user'));
     console.log(values, 'values')
@@ -2486,7 +2496,10 @@ class EcommerceForm extends Component {
       objectId: objectId,
       productSKU: skuId,
       date: date,
-      time: time
+      time: time,
+      dayOfMonth: dayOfMonth,
+      monthNo: monthNo,
+      yearCount: yearCount
     }
     let responseEcommreceData = await HttpUtils.post('postYourProduct', objOfProduct)
     console.log(objOfProduct, 'objOfProduct')
@@ -2983,13 +2996,13 @@ class EcommerceForm extends Component {
 
           {/*Delivery Options*/}
           <div className="delivery-section">
-                <div className="">
-                  <h4><strong>Delivery</strong></h4>
-                  <p> Set clear and realistic delivery expectations for shoppers by providing accurate processing time.</p>
-                </div>
-                <Form.Item>
-                  
-                </Form.Item>
+            <div className="">
+              <h4><strong>Delivery</strong></h4>
+              <p> Set clear and realistic delivery expectations for shoppers by providing accurate processing time.</p>
+            </div>
+            <Form.Item>
+
+            </Form.Item>
           </div>
 
 

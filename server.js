@@ -2320,7 +2320,11 @@ app.post('/api/postshop', (req, res) => {
       shopEmail: shopData.shopEmail,
       date: shopData.date,
       time: shopData.time,
-      sellerId:shopData.sellerId
+      sellerId: shopData.sellerId,
+      dayOfMonth: shopData.dayOfMonth,
+      monthNo: shopData.monthNo,
+      yearCount: shopData.yearCount,
+
     })
     postShopData.save(function (err, data) {
       if (err) {
@@ -2498,7 +2502,7 @@ app.post('/api/postYourProduct', (req, res) => {
   var postData = req.body;
   // console.log(req.body.images,'iiiimmmmaaggessss')
   if (postData.objectId == '') {
-    const postDataReq = new postEcomProduct({   
+    const postDataReq = new postEcomProduct({
       product: postData.product,
       categories: postData.categories,
       quantity: postData.quantity,
@@ -2522,7 +2526,9 @@ app.post('/api/postYourProduct', (req, res) => {
       productSKU: postData.productSKU,
       date: postData.date,
       time: postData.time,
-
+      dayOfMonth: postData.dayOfMonth,
+      monthNo: postData.monthNo,
+      yearCount: postData.yearCount,
     })
     postDataReq.save(function (err, data) {
       if (err) {

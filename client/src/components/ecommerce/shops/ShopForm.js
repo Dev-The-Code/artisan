@@ -528,7 +528,10 @@ class ShopForm extends Component {
             gridImages: false,
             date: '',
             time: '',
-            sellerId: ''
+            sellerId: '',
+            dayOfMonth: '',
+            monthNo: '',
+            yearCount: ''
         }
     }
 
@@ -560,7 +563,10 @@ class ShopForm extends Component {
                 swift: data.swift,
                 date: data.date,
                 time: data.time,
-                sellerId: data.sellerId
+                sellerId: data.sellerId,
+                dayOfMonth: date,
+                monthNo: month,
+                yearCount: year
                 // fileListLogo: data.shopLogo,
             })
         }
@@ -746,11 +752,10 @@ class ShopForm extends Component {
 
     genrateSellerId = async (values, arr, fileList, fileListLogo) => {
         const { sellerId } = this.state;
-        if (sellerId == ''|| sellerId == undefined) {
+        if (sellerId == '' || sellerId == undefined) {
             let res = await HttpUtils.get('getShops');
             let sellerUniqueId;
             if (res) {
-                console.log(values , 'values')
                 let totalProducts = res.content.length + 1000;
                 let productWord = values.shopTitle.slice(0, 2).toLowerCase();
                 let categoryWord = values.shopCategories0[0].slice(0, 2);
@@ -820,7 +825,7 @@ class ShopForm extends Component {
     }
 
     async postData(values, response, images, logo) {
-        const { keyFor, shopPurpose, objectId, date, time, sellerId } = this.state;
+        const { keyFor, shopPurpose, objectId, date, time, sellerId, dayOfMonth, monthNo, yearCount } = this.state;
         let cetogires = [];
         let cover = '';
         let banner = '';
@@ -867,10 +872,12 @@ class ShopForm extends Component {
             swift: values.swift,
             date: date,
             time: time,
-            sellerId: sellerId
+            sellerId: sellerId,
+            dayOfMonth: dayOfMonth,
+            monthNo: monthNo,
+            yearCount: yearCount
         }
         let reqShopObj = await HttpUtils.post('postshop', shopObj)
-        console.log(reqShopObj , 'reqShopObj')
         if (reqShopObj.code === 200) {
             if (objectId != '') {
                 this.setState({
@@ -919,8 +926,8 @@ class ShopForm extends Component {
     };
 
     render() {
-        const { date, time, fileList, previewImage, previewVisible, fileListLogo, previewImageLogo, 
-            previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert, 
+        const { fileList, previewImage, previewVisible, fileListLogo, previewImageLogo,
+            previewVisibleLogo, btnDisabeld, mgs, loader, shopData, shopId, goShop, showAlert,
             gridImages } = this.state;
         const { getFieldDecorator, getFieldValue } = this.props.form;
         if (goShop) {

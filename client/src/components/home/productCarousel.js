@@ -1,11 +1,37 @@
 import React, { Component } from 'react';
-// import BussinesCard from '../business/bussinessCard';
-import { isMobile, isTablet, isBrowser } from 'react-device-detect';
 import './productCarousel.css';
 
 
 class productCarousel extends Component {
     render() {
+        // {carousel && carousel.map((elem, key) => {
+        //     <div className="col-md-4 col-sm-6">
+        //         <div className="ecomshopcard">
+        //             <div className="ecommerce-card" >
+        //                 <img alt='img' src={elem.images[0]} />
+        //             </div>
+        //             <div className="">
+        //                 <div className="pricing">
+        //                     <h4 style={{ margin: "0", color: "#337AB7" }}>
+        //                         {elem.price.number} {elem.price.currency}
+        //                     </h4>
+        //                 </div>
+        //                 <div className="category">
+        //                     <h4>
+        //                         {elem.categories[0]}
+        //                     </h4>
+        //                 </div>
+        //             </div>
+        //             <div className="otherdetails">
+        //                 <span><h3>{elem.product}</h3></span>
+        //                 <span><h5>By:{elem.shopName}</h5></span>
+        //                 <button className="shop-btn">Shop Now</button>
+        //             </div>
+
+        //         </div>
+        //     </div>
+        // })}
+
         return (
             <div className="carousel-reviews broun-block">
                 <div className="container" style={{ width: "100%" }}>

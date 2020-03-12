@@ -25,7 +25,10 @@ var shopCollection = new mongoose.Schema({
     shopEmail: { type: String },
     date: { type: String },
     time: { type: String },
-    sellerId: { type: String }
+    sellerId: { type: String },
+    dayOfMonth: { type: String },
+    monthNo: { type: String },
+    yearCount: { type: String },
 });
 //categorySchema.plugin(uniqueValidator);
 mongoose.model('shopCollection', shopCollection);

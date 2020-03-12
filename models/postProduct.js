@@ -27,7 +27,9 @@ var postProduct = new mongoose.Schema({
   productSKU: { type: String },
   date: { type: String },
   time: { type: String },
-
+  dayOfMonth: { type: String },
+  monthNo: { type: String },
+  yearCount: { type: String }
 });
 
 mongoose.model('postProduct', postProduct);

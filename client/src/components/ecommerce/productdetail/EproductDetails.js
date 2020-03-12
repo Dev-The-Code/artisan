@@ -31,6 +31,7 @@ class EproductDetail extends Component {
       shopLogo:'',
     }
   }
+
   async componentDidMount() {
     let data = this.props.location.state;
     const userData = JSON.parse(localStorage.getItem('user'));
@@ -176,12 +177,15 @@ class EproductDetail extends Component {
       })
     }
   }
+
   handleLogin = (e) => {
     this.setState({ goForLogin: true, visible: false })
   }
+
   handleCancel = (e) => {
     this.setState({ visible: false });
   }
+
   render() {
     const { dataShow, data, productId, cartCount, goForLogin, profileId, shopId, shopLogo, productName, shopName, price } = this.state;
     if (goForLogin) {
@@ -226,7 +230,7 @@ class EproductDetail extends Component {
           </div>
           <div className="col   productId={productId}
              -md-12">
-            {dataShow ?
+            {data && dataShow ?
               <PthreeColumn data={data}
                 shoppingCartCount={this.shoppingCartCount}
                 profileId={profileId}
@@ -240,14 +244,17 @@ class EproductDetail extends Component {
               onCancel={this.handleCancel}
             >
               <div className="row">
-                <div className="col-md-6" style={{ textAlign: 'center' }}><button className="btn btn-sm btn2-success" style={{ width: '100%' }} onClick={this.handleLogin}>Login</button></div>
-                <div className="col-md-6" style={{ textAlign: 'center' }}><button className="btn btn-sm btn2-success" style={{ width: '100%' }} onClick={this.handleCancel}>Cancel</button></div>
+                <div className="col-md-6" style={{ textAlign: 'center' }}>
+                  <button className="btn btn-sm btn2-success" style={{ width: '100%' }} 
+                  onClick={this.handleLogin}>Login</button></div>
+                <div className="col-md-6" style={{ textAlign: 'center' }}>
+                  <button className="btn btn-sm btn2-success" style={{ width: '100%' }} 
+                  onClick={this.handleCancel}>Cancel</button></div>
               </div>
             </Modal>}
           </div>
         </div>
       </div>
-
     )
   }
 }
@@ -257,5 +264,3 @@ const mapStateToProps = (state) => {
   })
 }
 export default connect(mapStateToProps)(EproductDetail);
-
-// export default EproductDetail;

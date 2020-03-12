@@ -363,5 +363,4 @@ class ProductReviews extends Component {
     }
 }
 
-// export default ProductReviews;
 export default Form.create()(ProductReviews);
