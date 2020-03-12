@@ -25,13 +25,15 @@ import ShopForm from './components/ecommerce/shops/ShopForm'
 import ShopForm2 from './components/ecommerce/shops/ShopForm2'
 import EcomProile from './components/ecommerce/EcommerceProfile/ecommerceProfile';
 import OrderListEcommrce from './components/ecommerce/shops/orderListEcommerce';
+import AboutUs from './components/About us/aboutUs';
+import ContactUs from './components/Contact us/contactUs';
 
 import BillingDetail from './components/ecommerce/checkout/billing_detail';
+
+import AdminAccess from './components/admin/adminAccess';
 import FeaturedProduct from './components/admin/featuredProduct';
 import FeaturedShops from './components/admin/featuredShop';
 import OrderListNew from './components/admin/orderList';
-
-
 import AdminScreen from './components/admin/adminScreen';
 
 import { PrivateRoute } from './components/signin_seperate';
@@ -81,12 +83,16 @@ ReactDOM.render(
         <Route path="/sigin" component={Signin}></Route>
         <Route exact path="/reset/:token" component={ResetPassword} />
 
+        <Route path="./about_us" component={AboutUs}> </Route>
+        <Route path="./contact_us" component={ContactUs}></Route>
+
         {/*==========Admin Screens==============*/}
 
         <Route path="/Admin" component={AdminScreen}> </Route>
         <Route path="/featured_product" component={FeaturedProduct}></Route>
         <Route path="/featured_shop" component={FeaturedShops}></Route>
         <Route path="/order_listnew" component={OrderListNew}></Route>
+        <Route path="/admin_access" component={AdminAccess}></Route>
 
         {/*============Ecommerce=============*/}
         <Route path="/explore_Market" component={EcommerceMarket}></Route>

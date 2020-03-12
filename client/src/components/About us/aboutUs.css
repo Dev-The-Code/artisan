@@ -1,0 +1,55 @@
+
+  @media only screen and (min-device-width: 330px) and (max-device-width: 767px){
+    .aboutBanerimg{
+        height: 150px;
+        width: 100%;
+        filter: brightness(0.7);
+    }
+    .aboutHeadonBner{
+        color: black;
+        font-size: 25px;
+        font-weight: 600;
+      }
+      .mainRw12{
+          padding: 0;
+          margin-top: -20px;
+          text-align: center !important;
+      }
+  }
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1023px){
+    .aboutBanerimg{
+        height: 250px;
+        width: 100%;
+        filter: brightness(0.7);
+    }
+    .aboutHeadonBner{
+      color: black;
+      font-size: 35px;
+      font-weight: 600;
+      }
+      .mainRw12{
+          padding: 0;
+          margin-top: -20px;
+          text-align: center !important;
+      }
+  }
+  @media only screen and (min-device-width: 1024px){
+    .aboutBanerimg{
+        height: 350px;
+        width: 100%;
+        filter: brightness(0.7);
+    }
+    .aboutHeadonBner{
+      color: black;
+      font-size: 35px;
+      font-weight: 600;
+      }
+      .mainRw12{
+          padding: 0;
+          margin-top: -20px;
+          text-align: center !important;
+      }
+  }
+  .paraONabout{
+    font-size: 13px;
+  }
