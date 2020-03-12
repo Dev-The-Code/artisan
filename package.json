@@ -23,7 +23,7 @@
     "jsonwebtoken": "^8.3.0",
     "jspdf": "^1.4.1",
     "mongodb": "^3.1.1",
-    "mongoose": "^5.2.4",
+    "mongoose": "^5.7.5",
     "mongoose-unique-validator": "^2.0.1",
     "nodemailer": "latest",
     "nodeman": "^1.1.2",
