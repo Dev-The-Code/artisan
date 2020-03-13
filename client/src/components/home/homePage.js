@@ -32,30 +32,31 @@ class HomePage extends Component {
   getProducts = async () => {
     let weeksProduct = [];
     let weekShops = [];
-    
+
     let res = await HttpUtils.get('getYourProduct');
     let data = res.content;
     let resposeShop = await HttpUtils.get('getShops');
     let resposeShopData = resposeShop.content;
-
-    let dayCount = 7;
-    var toDate = new Date();
-    for (var i = dayCount; i = dayCount; i--) {
-      var sevenDaysAgo = moment().subtract(dayCount, 'days').toDate()
-      var dayOfMonthAgo = sevenDaysAgo.getDate();
-      var monthNoOfYear = sevenDaysAgo.getMonth() + 1;
-      var yearNo = sevenDaysAgo.getFullYear();
-      dayCount--;
-      for (var j = 0; j < data.length; j++) {
-        if (dayOfMonthAgo == data[j].dayOfMonth && monthNoOfYear == data[j].monthNo &&
-          yearNo == data[j].yearCount) {
-          weeksProduct.push(data[j])
+    if (data) {
+      let dayCount = 7;
+      var toDate = new Date();
+      for (var i = dayCount; i = dayCount; i--) {
+        var sevenDaysAgo = moment().subtract(dayCount, 'days').toDate()
+        var dayOfMonthAgo = sevenDaysAgo.getDate();
+        var monthNoOfYear = sevenDaysAgo.getMonth() + 1;
+        var yearNo = sevenDaysAgo.getFullYear();
+        dayCount--;
+        for (var j = 0; j < data.length; j++) {
+          if (dayOfMonthAgo == data[j].dayOfMonth && monthNoOfYear == data[j].monthNo &&
+            yearNo == data[j].yearCount) {
+            weeksProduct.push(data[j])
+          }
         }
-      }
-      for (var k = 0; k < resposeShopData.length; k++) {
-        if (dayOfMonthAgo == resposeShopData[k].dayOfMonth && monthNoOfYear == resposeShopData[k].monthNo &&
-          yearNo == resposeShopData[k].yearCount) {
-          weekShops.push(resposeShopData[k])
+        for (var k = 0; k < resposeShopData.length; k++) {
+          if (dayOfMonthAgo == resposeShopData[k].dayOfMonth && monthNoOfYear == resposeShopData[k].monthNo &&
+            yearNo == resposeShopData[k].yearCount) {
+            weekShops.push(resposeShopData[k])
+          }
         }
       }
     }

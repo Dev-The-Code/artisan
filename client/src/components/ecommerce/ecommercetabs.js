@@ -7,7 +7,6 @@ import { HttpUtils } from "../../Services/HttpUtils";
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 
-
 let filterSubCategoryName = [];
 let filterColorFamily = [];
 let filterSizes = [];
@@ -21,8 +20,6 @@ class Ecomtabs extends Component {
     this.state = {
       user: false,
       productsData: [],
-      colorsProduct: [],
-      sizesProduct: [],
       filteredData: [],
       notFoundFilterData: false,
       showRecord: true,
@@ -51,32 +48,14 @@ class Ecomtabs extends Component {
       })
     }
   }
-  
+
   async componentDidMount() {
     let res = await HttpUtils.get('getYourProduct');
     if (res) {
       if (res.code == 200) {
-        let colorsOfProducts = [];
-        let sizesOfProducts = [];
         let products = res.content;
-        for (var i = 0; i < products.length; i++) {
-          let size = products[i].sizes;
-          // const colors = products[i].color.charAt(0).toUpperCase() + products[i].color.substring(1);
-          // if (colorsOfProducts.indexOf(colors) == -1) {
-          //   colorsOfProducts.push(colors)
-          // }
-          for (var j = 0; j < size.length; j++) {
-            const sizesOfTheProducts = size[j].charAt(0).toUpperCase() + size[j].substring(1);
-            if (sizesOfProducts.indexOf(sizesOfTheProducts) == -1) {
-              sizesOfProducts.push(sizesOfTheProducts)
-            }
-          }
-
-        }
         this.setState({
           productsData: products,
-          colorsProduct: colorsOfProducts,
-          sizesProduct: sizesOfProducts,
         })
       }
     }
@@ -127,6 +106,7 @@ class Ecomtabs extends Component {
   /*Color Filteration*/
   onChangeCheckBoxes = (value) => {
     filterColorFamily = value;
+    console.log(filterColorFamily, 'filterColorFamily in on change color')
     this.filterKeysGet();
   }
 
@@ -166,6 +146,10 @@ class Ecomtabs extends Component {
         sizesofProducts.push(filterSizes[i])
       }
     }
+    // console.log(filterKeys, 'filterKeys')
+    // console.log(categoryofProduct, 'categoryofProduct')
+    // console.log(colorsofProduct, 'colorsofProduct')
+    // console.log(sizesofProducts, 'sizesofProducts')
 
     this.setState({
       categoryofProduct: categoryofProduct,
@@ -243,6 +227,8 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'color') {
+          console.log(filterKeys, 'filterKeys colors')
+
           data1 = productsData.filter((elem) => {
             return elem.color && filterColorFamily.includes(elem.color)
           })
@@ -264,11 +250,41 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'color') {
-          filteredData = data1.filter((elem) => {
-            return elem.color && filterColorFamily.includes(elem.color)
+          console.log(data1 , 'data 1')
+          filteredData = data1.filter((elem, key) => {
+            return elem.color[0] && filterColorFamily.includes(elem.color[0]) ||
+              elem.color[1] && filterColorFamily.includes(elem.color[1]) ||
+              elem.color[2] && filterColorFamily.includes(elem.color[2]) ||
+              elem.color[3] && filterColorFamily.includes(elem.color[3]) ||
+              elem.color[4] && filterColorFamily.includes(elem.color[4]) ||
+              elem.color[5] && filterColorFamily.includes(elem.color[5]) ||
+              elem.color[6] && filterColorFamily.includes(elem.color[6]) ||
+              elem.color[7] && filterColorFamily.includes(elem.color[7]) ||
+              elem.color[8] && filterColorFamily.includes(elem.color[8]) ||
+              elem.color[9] && filterColorFamily.includes(elem.color[9]) ||
+              elem.color[10] && filterColorFamily.includes(elem.color[10]) ||
+              elem.color[11] && filterColorFamily.includes(elem.color[11]) ||
+              elem.color[12] && filterColorFamily.includes(elem.color[12]) ||
+              elem.color[13] && filterColorFamily.includes(elem.color[13]) ||
+              elem.color[14] && filterColorFamily.includes(elem.color[14]) ||
+              elem.color[15] && filterColorFamily.includes(elem.color[15]) ||
+              elem.color[16] && filterColorFamily.includes(elem.color[16]) ||
+              elem.color[17] && filterColorFamily.includes(elem.color[17]) ||
+              elem.color[18] && filterColorFamily.includes(elem.color[18]) ||
+              elem.color[19] && filterColorFamily.includes(elem.color[19]) ||
+              elem.color[20] && filterColorFamily.includes(elem.color[20]) ||
+              elem.color[21] && filterColorFamily.includes(elem.color[21]) ||
+              elem.color[22] && filterColorFamily.includes(elem.color[22]) ||
+              elem.color[23] && filterColorFamily.includes(elem.color[23]) ||
+              elem.color[24] && filterColorFamily.includes(elem.color[24]) ||
+              elem.color[25] && filterColorFamily.includes(elem.color[25]) ||
+              elem.color[26] && filterColorFamily.includes(elem.color[26]) ||
+              elem.color[27] && filterColorFamily.includes(elem.color[27]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[28]) 
           })
         }
         else if (filterKeys[i] == 'sizes') {
+          
           filteredData = data1.filter((elem) => {
             return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
               elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
@@ -455,7 +471,7 @@ class Ecomtabs extends Component {
   }
 
   filterKeysGetShops = () => {
-    console.log(filterShopCategory , 'filterKeysGetShops')
+    console.log(filterShopCategory, 'filterKeysGetShops')
     let categoryOfShop = [];
     let locationOfShop = [];
     let filterKeys = [];
@@ -615,7 +631,7 @@ class Ecomtabs extends Component {
   }
 
   render() {
-    const { productsData, filteredData, colorsProduct, sizesProduct, notFoundFilterData, showRecord,
+    const { productsData, filteredData, notFoundFilterData, showRecord,
       categoryofProduct, categoryProduct, colorsofProduct, sizesofProducts,
       shopsData, filteredDataShop, locationCitiesShops, shopCategory, shopLocation,
       showRecordShop, notFoundFilterDataShop, keysOfTabs } = this.state;
