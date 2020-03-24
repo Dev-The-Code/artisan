@@ -72,6 +72,7 @@ class Ecomtabs extends Component {
         let shopsData = shops.content
         for (var i = 0; i < shopsData.length; i++) {
           const cities = shopsData[i].shopCity[0].charAt(0).toUpperCase() + shopsData[i].shopCity[0].substring(1);
+          console.log(cities , 'cities')
           if (locationCitiesShops.indexOf(cities) == -1) {
             locationCitiesShops.push(cities)
           }
@@ -106,7 +107,6 @@ class Ecomtabs extends Component {
   /*Color Filteration*/
   onChangeCheckBoxes = (value) => {
     filterColorFamily = value;
-    console.log(filterColorFamily, 'filterColorFamily in on change color')
     this.filterKeysGet();
   }
 
@@ -146,10 +146,6 @@ class Ecomtabs extends Component {
         sizesofProducts.push(filterSizes[i])
       }
     }
-    // console.log(filterKeys, 'filterKeys')
-    // console.log(categoryofProduct, 'categoryofProduct')
-    // console.log(colorsofProduct, 'colorsofProduct')
-    // console.log(sizesofProducts, 'sizesofProducts')
 
     this.setState({
       categoryofProduct: categoryofProduct,
@@ -183,16 +179,72 @@ class Ecomtabs extends Component {
       }
       else if (filterKeys[i] == 'color') {
         data = productsData.filter((elem) => {
-          return elem.color && filterColorFamily.includes(elem.color)
+          return elem.color[0] && filterColorFamily.includes(elem.color[0]) ||
+            elem.color[1] && filterColorFamily.includes(elem.color[1]) ||
+            elem.color[2] && filterColorFamily.includes(elem.color[2]) ||
+            elem.color[3] && filterColorFamily.includes(elem.color[3]) ||
+            elem.color[4] && filterColorFamily.includes(elem.color[4]) ||
+            elem.color[5] && filterColorFamily.includes(elem.color[5]) ||
+            elem.color[6] && filterColorFamily.includes(elem.color[6]) ||
+            elem.color[7] && filterColorFamily.includes(elem.color[7]) ||
+            elem.color[8] && filterColorFamily.includes(elem.color[8]) ||
+            elem.color[9] && filterColorFamily.includes(elem.color[9]) ||
+            elem.color[10] && filterColorFamily.includes(elem.color[10]) ||
+            elem.color[11] && filterColorFamily.includes(elem.color[11]) ||
+            elem.color[12] && filterColorFamily.includes(elem.color[12]) ||
+            elem.color[13] && filterColorFamily.includes(elem.color[13]) ||
+            elem.color[14] && filterColorFamily.includes(elem.color[14]) ||
+            elem.color[15] && filterColorFamily.includes(elem.color[15]) ||
+            elem.color[16] && filterColorFamily.includes(elem.color[16]) ||
+            elem.color[17] && filterColorFamily.includes(elem.color[17]) ||
+            elem.color[18] && filterColorFamily.includes(elem.color[18]) ||
+            elem.color[19] && filterColorFamily.includes(elem.color[19]) ||
+            elem.color[20] && filterColorFamily.includes(elem.color[20]) ||
+            elem.color[21] && filterColorFamily.includes(elem.color[21]) ||
+            elem.color[22] && filterColorFamily.includes(elem.color[22]) ||
+            elem.color[23] && filterColorFamily.includes(elem.color[23]) ||
+            elem.color[24] && filterColorFamily.includes(elem.color[24]) ||
+            elem.color[25] && filterColorFamily.includes(elem.color[25]) ||
+            elem.color[26] && filterColorFamily.includes(elem.color[26]) ||
+            elem.color[27] && filterColorFamily.includes(elem.color[27]) ||
+            elem.color[28] && filterColorFamily.includes(elem.color[28]) ||
+            elem.color[28] && filterColorFamily.includes(elem.color[29]) ||
+            elem.color[28] && filterColorFamily.includes(elem.color[30]) ||
+            elem.color[28] && filterColorFamily.includes(elem.color[31]) ||
+            elem.color[28] && filterColorFamily.includes(elem.color[32]) ||
+            elem.color[28] && filterColorFamily.includes(elem.color[33]) ||
+            elem.color[28] && filterColorFamily.includes(elem.color[34]) ||
+            elem.color[28] && filterColorFamily.includes(elem.color[35])
         })
       }
       else if (filterKeys[i] == 'sizes') {
         data = productsData.filter((elem) => {
           return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
-            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-            elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+              elem.sizes[4] && filterSizes.includes(elem.sizes[4]) ||
+              elem.sizes[5] && filterSizes.includes(elem.sizes[5]) ||
+              elem.sizes[6] && filterSizes.includes(elem.sizes[6]) ||
+              elem.sizes[7] && filterSizes.includes(elem.sizes[7]) ||
+              elem.sizes[8] && filterSizes.includes(elem.sizes[8]) ||
+              elem.sizes[9] && filterSizes.includes(elem.sizes[9]) ||
+              elem.sizes[10] && filterSizes.includes(elem.sizes[10]) ||
+              elem.sizes[11] && filterSizes.includes(elem.sizes[11]) ||
+              elem.sizes[12] && filterSizes.includes(elem.sizes[12]) ||
+              elem.sizes[13] && filterSizes.includes(elem.sizes[13]) ||
+              elem.sizes[14] && filterSizes.includes(elem.sizes[14]) ||
+              elem.sizes[15] && filterSizes.includes(elem.sizes[15]) ||
+              elem.sizes[16] && filterSizes.includes(elem.sizes[16]) ||
+              elem.sizes[17] && filterSizes.includes(elem.sizes[17]) ||
+              elem.sizes[18] && filterSizes.includes(elem.sizes[18]) ||
+              elem.sizes[19] && filterSizes.includes(elem.sizes[19]) ||
+              elem.sizes[20] && filterSizes.includes(elem.sizes[20]) ||
+              elem.sizes[21] && filterSizes.includes(elem.sizes[21]) ||
+              elem.sizes[22] && filterSizes.includes(elem.sizes[22]) ||
+              elem.sizes[23] && filterSizes.includes(elem.sizes[23]) ||
+              elem.sizes[24] && filterSizes.includes(elem.sizes[24]) ||
+              elem.sizes[25] && filterSizes.includes(elem.sizes[25]) 
         })
       }
     }
@@ -227,19 +279,74 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'color') {
-          console.log(filterKeys, 'filterKeys colors')
 
           data1 = productsData.filter((elem) => {
-            return elem.color && filterColorFamily.includes(elem.color)
+            return elem.color[0] && filterColorFamily.includes(elem.color[0]) ||
+            elem.color[1] && filterColorFamily.includes(elem.color[1]) ||
+            elem.color[2] && filterColorFamily.includes(elem.color[2]) ||
+            elem.color[3] && filterColorFamily.includes(elem.color[3]) ||
+            elem.color[4] && filterColorFamily.includes(elem.color[4]) ||
+            elem.color[5] && filterColorFamily.includes(elem.color[5]) ||
+            elem.color[6] && filterColorFamily.includes(elem.color[6]) ||
+            elem.color[7] && filterColorFamily.includes(elem.color[7]) ||
+            elem.color[8] && filterColorFamily.includes(elem.color[8]) ||
+            elem.color[9] && filterColorFamily.includes(elem.color[9]) ||
+            elem.color[10] && filterColorFamily.includes(elem.color[10]) ||
+            elem.color[11] && filterColorFamily.includes(elem.color[11]) ||
+            elem.color[12] && filterColorFamily.includes(elem.color[12]) ||
+            elem.color[13] && filterColorFamily.includes(elem.color[13]) ||
+            elem.color[14] && filterColorFamily.includes(elem.color[14]) ||
+            elem.color[15] && filterColorFamily.includes(elem.color[15]) ||
+            elem.color[16] && filterColorFamily.includes(elem.color[16]) ||
+            elem.color[17] && filterColorFamily.includes(elem.color[17]) ||
+            elem.color[18] && filterColorFamily.includes(elem.color[18]) ||
+            elem.color[19] && filterColorFamily.includes(elem.color[19]) ||
+            elem.color[20] && filterColorFamily.includes(elem.color[20]) ||
+            elem.color[21] && filterColorFamily.includes(elem.color[21]) ||
+            elem.color[22] && filterColorFamily.includes(elem.color[22]) ||
+            elem.color[23] && filterColorFamily.includes(elem.color[23]) ||
+            elem.color[24] && filterColorFamily.includes(elem.color[24]) ||
+            elem.color[25] && filterColorFamily.includes(elem.color[25]) ||
+            elem.color[26] && filterColorFamily.includes(elem.color[26]) ||
+            elem.color[27] && filterColorFamily.includes(elem.color[27]) ||
+            elem.color[28] && filterColorFamily.includes(elem.color[28])||
+            elem.color[28] && filterColorFamily.includes(elem.color[29])||
+            elem.color[28] && filterColorFamily.includes(elem.color[30])||
+            elem.color[28] && filterColorFamily.includes(elem.color[31])||
+            elem.color[28] && filterColorFamily.includes(elem.color[32])||
+            elem.color[28] && filterColorFamily.includes(elem.color[33])||
+            elem.color[28] && filterColorFamily.includes(elem.color[34])||
+            elem.color[28] && filterColorFamily.includes(elem.color[35])
           })
         }
         else if (filterKeys[i] == 'sizes') {
           data1 = productsData.filter((elem) => {
             return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
-              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+            elem.sizes[4] && filterSizes.includes(elem.sizes[4]) ||
+            elem.sizes[5] && filterSizes.includes(elem.sizes[5]) ||
+            elem.sizes[6] && filterSizes.includes(elem.sizes[6]) ||
+            elem.sizes[7] && filterSizes.includes(elem.sizes[7]) ||
+            elem.sizes[8] && filterSizes.includes(elem.sizes[8]) ||
+            elem.sizes[9] && filterSizes.includes(elem.sizes[9]) ||
+            elem.sizes[10] && filterSizes.includes(elem.sizes[10]) ||
+            elem.sizes[11] && filterSizes.includes(elem.sizes[11]) ||
+            elem.sizes[12] && filterSizes.includes(elem.sizes[12]) ||
+            elem.sizes[13] && filterSizes.includes(elem.sizes[13]) ||
+            elem.sizes[14] && filterSizes.includes(elem.sizes[14]) ||
+            elem.sizes[15] && filterSizes.includes(elem.sizes[15]) ||
+            elem.sizes[16] && filterSizes.includes(elem.sizes[16]) ||
+            elem.sizes[17] && filterSizes.includes(elem.sizes[17]) ||
+            elem.sizes[18] && filterSizes.includes(elem.sizes[18]) ||
+            elem.sizes[19] && filterSizes.includes(elem.sizes[19]) ||
+            elem.sizes[20] && filterSizes.includes(elem.sizes[20]) ||
+            elem.sizes[21] && filterSizes.includes(elem.sizes[21]) ||
+            elem.sizes[22] && filterSizes.includes(elem.sizes[22]) ||
+            elem.sizes[23] && filterSizes.includes(elem.sizes[23]) ||
+            elem.sizes[24] && filterSizes.includes(elem.sizes[24]) ||
+            elem.sizes[25] && filterSizes.includes(elem.sizes[25])
           })
         }
       }
@@ -250,7 +357,7 @@ class Ecomtabs extends Component {
           })
         }
         else if (filterKeys[i] == 'color') {
-          console.log(data1 , 'data 1')
+          console.log(data1, 'data 1')
           filteredData = data1.filter((elem, key) => {
             return elem.color[0] && filterColorFamily.includes(elem.color[0]) ||
               elem.color[1] && filterColorFamily.includes(elem.color[1]) ||
@@ -280,17 +387,46 @@ class Ecomtabs extends Component {
               elem.color[25] && filterColorFamily.includes(elem.color[25]) ||
               elem.color[26] && filterColorFamily.includes(elem.color[26]) ||
               elem.color[27] && filterColorFamily.includes(elem.color[27]) ||
-              elem.color[28] && filterColorFamily.includes(elem.color[28]) 
+              elem.color[28] && filterColorFamily.includes(elem.color[28]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[29]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[30]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[31]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[32]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[33]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[34]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[35])
           })
+          console.log(filteredData, 'filteredData')
         }
         else if (filterKeys[i] == 'sizes') {
-          
+
           filteredData = data1.filter((elem) => {
             return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
-              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+            elem.sizes[4] && filterSizes.includes(elem.sizes[4]) ||
+            elem.sizes[5] && filterSizes.includes(elem.sizes[5]) ||
+            elem.sizes[6] && filterSizes.includes(elem.sizes[6]) ||
+            elem.sizes[7] && filterSizes.includes(elem.sizes[7]) ||
+            elem.sizes[8] && filterSizes.includes(elem.sizes[8]) ||
+            elem.sizes[9] && filterSizes.includes(elem.sizes[9]) ||
+            elem.sizes[10] && filterSizes.includes(elem.sizes[10]) ||
+            elem.sizes[11] && filterSizes.includes(elem.sizes[11]) ||
+            elem.sizes[12] && filterSizes.includes(elem.sizes[12]) ||
+            elem.sizes[13] && filterSizes.includes(elem.sizes[13]) ||
+            elem.sizes[14] && filterSizes.includes(elem.sizes[14]) ||
+            elem.sizes[15] && filterSizes.includes(elem.sizes[15]) ||
+            elem.sizes[16] && filterSizes.includes(elem.sizes[16]) ||
+            elem.sizes[17] && filterSizes.includes(elem.sizes[17]) ||
+            elem.sizes[18] && filterSizes.includes(elem.sizes[18]) ||
+            elem.sizes[19] && filterSizes.includes(elem.sizes[19]) ||
+            elem.sizes[20] && filterSizes.includes(elem.sizes[20]) ||
+            elem.sizes[21] && filterSizes.includes(elem.sizes[21]) ||
+            elem.sizes[22] && filterSizes.includes(elem.sizes[22]) ||
+            elem.sizes[23] && filterSizes.includes(elem.sizes[23]) ||
+            elem.sizes[24] && filterSizes.includes(elem.sizes[24]) ||
+            elem.sizes[25] && filterSizes.includes(elem.sizes[25])
           })
         }
       }
@@ -329,16 +465,72 @@ class Ecomtabs extends Component {
         }
         else if (filterKeys[i] == 'color') {
           data1 = productsData.filter((elem) => {
-            return elem.color && filterColorFamily.includes(elem.color)
+            return elem.color[0] && filterColorFamily.includes(elem.color[0]) ||
+              elem.color[1] && filterColorFamily.includes(elem.color[1]) ||
+              elem.color[2] && filterColorFamily.includes(elem.color[2]) ||
+              elem.color[3] && filterColorFamily.includes(elem.color[3]) ||
+              elem.color[4] && filterColorFamily.includes(elem.color[4]) ||
+              elem.color[5] && filterColorFamily.includes(elem.color[5]) ||
+              elem.color[6] && filterColorFamily.includes(elem.color[6]) ||
+              elem.color[7] && filterColorFamily.includes(elem.color[7]) ||
+              elem.color[8] && filterColorFamily.includes(elem.color[8]) ||
+              elem.color[9] && filterColorFamily.includes(elem.color[9]) ||
+              elem.color[10] && filterColorFamily.includes(elem.color[10]) ||
+              elem.color[11] && filterColorFamily.includes(elem.color[11]) ||
+              elem.color[12] && filterColorFamily.includes(elem.color[12]) ||
+              elem.color[13] && filterColorFamily.includes(elem.color[13]) ||
+              elem.color[14] && filterColorFamily.includes(elem.color[14]) ||
+              elem.color[15] && filterColorFamily.includes(elem.color[15]) ||
+              elem.color[16] && filterColorFamily.includes(elem.color[16]) ||
+              elem.color[17] && filterColorFamily.includes(elem.color[17]) ||
+              elem.color[18] && filterColorFamily.includes(elem.color[18]) ||
+              elem.color[19] && filterColorFamily.includes(elem.color[19]) ||
+              elem.color[20] && filterColorFamily.includes(elem.color[20]) ||
+              elem.color[21] && filterColorFamily.includes(elem.color[21]) ||
+              elem.color[22] && filterColorFamily.includes(elem.color[22]) ||
+              elem.color[23] && filterColorFamily.includes(elem.color[23]) ||
+              elem.color[24] && filterColorFamily.includes(elem.color[24]) ||
+              elem.color[25] && filterColorFamily.includes(elem.color[25]) ||
+              elem.color[26] && filterColorFamily.includes(elem.color[26]) ||
+              elem.color[27] && filterColorFamily.includes(elem.color[27]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[28]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[29]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[30]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[31]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[32]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[33]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[34]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[35])
           })
         }
         else if (filterKeys[i] == 'sizes') {
           data1 = productsData.filter((elem) => {
             return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
-              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+            elem.sizes[4] && filterSizes.includes(elem.sizes[4]) ||
+            elem.sizes[5] && filterSizes.includes(elem.sizes[5]) ||
+            elem.sizes[6] && filterSizes.includes(elem.sizes[6]) ||
+            elem.sizes[7] && filterSizes.includes(elem.sizes[7]) ||
+            elem.sizes[8] && filterSizes.includes(elem.sizes[8]) ||
+            elem.sizes[9] && filterSizes.includes(elem.sizes[9]) ||
+            elem.sizes[10] && filterSizes.includes(elem.sizes[10]) ||
+            elem.sizes[11] && filterSizes.includes(elem.sizes[11]) ||
+            elem.sizes[12] && filterSizes.includes(elem.sizes[12]) ||
+            elem.sizes[13] && filterSizes.includes(elem.sizes[13]) ||
+            elem.sizes[14] && filterSizes.includes(elem.sizes[14]) ||
+            elem.sizes[15] && filterSizes.includes(elem.sizes[15]) ||
+            elem.sizes[16] && filterSizes.includes(elem.sizes[16]) ||
+            elem.sizes[17] && filterSizes.includes(elem.sizes[17]) ||
+            elem.sizes[18] && filterSizes.includes(elem.sizes[18]) ||
+            elem.sizes[19] && filterSizes.includes(elem.sizes[19]) ||
+            elem.sizes[20] && filterSizes.includes(elem.sizes[20]) ||
+            elem.sizes[21] && filterSizes.includes(elem.sizes[21]) ||
+            elem.sizes[22] && filterSizes.includes(elem.sizes[22]) ||
+            elem.sizes[23] && filterSizes.includes(elem.sizes[23]) ||
+            elem.sizes[24] && filterSizes.includes(elem.sizes[24]) ||
+            elem.sizes[25] && filterSizes.includes(elem.sizes[25])
           })
         }
       }
@@ -350,16 +542,72 @@ class Ecomtabs extends Component {
         }
         else if (filterKeys[i] == 'color') {
           data2 = data1.filter((elem) => {
-            return elem.color && filterColorFamily.includes(elem.color)
+            return elem.color[0] && filterColorFamily.includes(elem.color[0]) ||
+              elem.color[1] && filterColorFamily.includes(elem.color[1]) ||
+              elem.color[2] && filterColorFamily.includes(elem.color[2]) ||
+              elem.color[3] && filterColorFamily.includes(elem.color[3]) ||
+              elem.color[4] && filterColorFamily.includes(elem.color[4]) ||
+              elem.color[5] && filterColorFamily.includes(elem.color[5]) ||
+              elem.color[6] && filterColorFamily.includes(elem.color[6]) ||
+              elem.color[7] && filterColorFamily.includes(elem.color[7]) ||
+              elem.color[8] && filterColorFamily.includes(elem.color[8]) ||
+              elem.color[9] && filterColorFamily.includes(elem.color[9]) ||
+              elem.color[10] && filterColorFamily.includes(elem.color[10]) ||
+              elem.color[11] && filterColorFamily.includes(elem.color[11]) ||
+              elem.color[12] && filterColorFamily.includes(elem.color[12]) ||
+              elem.color[13] && filterColorFamily.includes(elem.color[13]) ||
+              elem.color[14] && filterColorFamily.includes(elem.color[14]) ||
+              elem.color[15] && filterColorFamily.includes(elem.color[15]) ||
+              elem.color[16] && filterColorFamily.includes(elem.color[16]) ||
+              elem.color[17] && filterColorFamily.includes(elem.color[17]) ||
+              elem.color[18] && filterColorFamily.includes(elem.color[18]) ||
+              elem.color[19] && filterColorFamily.includes(elem.color[19]) ||
+              elem.color[20] && filterColorFamily.includes(elem.color[20]) ||
+              elem.color[21] && filterColorFamily.includes(elem.color[21]) ||
+              elem.color[22] && filterColorFamily.includes(elem.color[22]) ||
+              elem.color[23] && filterColorFamily.includes(elem.color[23]) ||
+              elem.color[24] && filterColorFamily.includes(elem.color[24]) ||
+              elem.color[25] && filterColorFamily.includes(elem.color[25]) ||
+              elem.color[26] && filterColorFamily.includes(elem.color[26]) ||
+              elem.color[27] && filterColorFamily.includes(elem.color[27]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[28]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[29]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[30]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[31]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[32]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[33]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[34]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[35])
           })
         }
         else if (filterKeys[i] == 'sizes') {
           data2 = data1.filter((elem) => {
             return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
-              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+            elem.sizes[4] && filterSizes.includes(elem.sizes[4]) ||
+            elem.sizes[5] && filterSizes.includes(elem.sizes[5]) ||
+            elem.sizes[6] && filterSizes.includes(elem.sizes[6]) ||
+            elem.sizes[7] && filterSizes.includes(elem.sizes[7]) ||
+            elem.sizes[8] && filterSizes.includes(elem.sizes[8]) ||
+            elem.sizes[9] && filterSizes.includes(elem.sizes[9]) ||
+            elem.sizes[10] && filterSizes.includes(elem.sizes[10]) ||
+            elem.sizes[11] && filterSizes.includes(elem.sizes[11]) ||
+            elem.sizes[12] && filterSizes.includes(elem.sizes[12]) ||
+            elem.sizes[13] && filterSizes.includes(elem.sizes[13]) ||
+            elem.sizes[14] && filterSizes.includes(elem.sizes[14]) ||
+            elem.sizes[15] && filterSizes.includes(elem.sizes[15]) ||
+            elem.sizes[16] && filterSizes.includes(elem.sizes[16]) ||
+            elem.sizes[17] && filterSizes.includes(elem.sizes[17]) ||
+            elem.sizes[18] && filterSizes.includes(elem.sizes[18]) ||
+            elem.sizes[19] && filterSizes.includes(elem.sizes[19]) ||
+            elem.sizes[20] && filterSizes.includes(elem.sizes[20]) ||
+            elem.sizes[21] && filterSizes.includes(elem.sizes[21]) ||
+            elem.sizes[22] && filterSizes.includes(elem.sizes[22]) ||
+            elem.sizes[23] && filterSizes.includes(elem.sizes[23]) ||
+            elem.sizes[24] && filterSizes.includes(elem.sizes[24]) ||
+            elem.sizes[25] && filterSizes.includes(elem.sizes[25])
           })
         }
       }
@@ -371,16 +619,72 @@ class Ecomtabs extends Component {
         }
         else if (filterKeys[i] == 'color') {
           filteredData = data2.filter((elem) => {
-            return elem.color && filterColorFamily.includes(elem.color)
+            return elem.color[0] && filterColorFamily.includes(elem.color[0]) ||
+              elem.color[1] && filterColorFamily.includes(elem.color[1]) ||
+              elem.color[2] && filterColorFamily.includes(elem.color[2]) ||
+              elem.color[3] && filterColorFamily.includes(elem.color[3]) ||
+              elem.color[4] && filterColorFamily.includes(elem.color[4]) ||
+              elem.color[5] && filterColorFamily.includes(elem.color[5]) ||
+              elem.color[6] && filterColorFamily.includes(elem.color[6]) ||
+              elem.color[7] && filterColorFamily.includes(elem.color[7]) ||
+              elem.color[8] && filterColorFamily.includes(elem.color[8]) ||
+              elem.color[9] && filterColorFamily.includes(elem.color[9]) ||
+              elem.color[10] && filterColorFamily.includes(elem.color[10]) ||
+              elem.color[11] && filterColorFamily.includes(elem.color[11]) ||
+              elem.color[12] && filterColorFamily.includes(elem.color[12]) ||
+              elem.color[13] && filterColorFamily.includes(elem.color[13]) ||
+              elem.color[14] && filterColorFamily.includes(elem.color[14]) ||
+              elem.color[15] && filterColorFamily.includes(elem.color[15]) ||
+              elem.color[16] && filterColorFamily.includes(elem.color[16]) ||
+              elem.color[17] && filterColorFamily.includes(elem.color[17]) ||
+              elem.color[18] && filterColorFamily.includes(elem.color[18]) ||
+              elem.color[19] && filterColorFamily.includes(elem.color[19]) ||
+              elem.color[20] && filterColorFamily.includes(elem.color[20]) ||
+              elem.color[21] && filterColorFamily.includes(elem.color[21]) ||
+              elem.color[22] && filterColorFamily.includes(elem.color[22]) ||
+              elem.color[23] && filterColorFamily.includes(elem.color[23]) ||
+              elem.color[24] && filterColorFamily.includes(elem.color[24]) ||
+              elem.color[25] && filterColorFamily.includes(elem.color[25]) ||
+              elem.color[26] && filterColorFamily.includes(elem.color[26]) ||
+              elem.color[27] && filterColorFamily.includes(elem.color[27]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[28]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[29]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[30]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[31]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[32]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[33]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[34]) ||
+              elem.color[28] && filterColorFamily.includes(elem.color[35])
           })
         }
         else if (filterKeys[i] == 'sizes') {
           filteredData = data2.filter((elem) => {
             return elem.sizes[0] && filterSizes.includes(elem.sizes[0]) ||
-              elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
-              elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
-              elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
-              elem.sizes[4] && filterSizes.includes(elem.sizes[4])
+            elem.sizes[1] && filterSizes.includes(elem.sizes[1]) ||
+            elem.sizes[2] && filterSizes.includes(elem.sizes[2]) ||
+            elem.sizes[3] && filterSizes.includes(elem.sizes[3]) ||
+            elem.sizes[4] && filterSizes.includes(elem.sizes[4]) ||
+            elem.sizes[5] && filterSizes.includes(elem.sizes[5]) ||
+            elem.sizes[6] && filterSizes.includes(elem.sizes[6]) ||
+            elem.sizes[7] && filterSizes.includes(elem.sizes[7]) ||
+            elem.sizes[8] && filterSizes.includes(elem.sizes[8]) ||
+            elem.sizes[9] && filterSizes.includes(elem.sizes[9]) ||
+            elem.sizes[10] && filterSizes.includes(elem.sizes[10]) ||
+            elem.sizes[11] && filterSizes.includes(elem.sizes[11]) ||
+            elem.sizes[12] && filterSizes.includes(elem.sizes[12]) ||
+            elem.sizes[13] && filterSizes.includes(elem.sizes[13]) ||
+            elem.sizes[14] && filterSizes.includes(elem.sizes[14]) ||
+            elem.sizes[15] && filterSizes.includes(elem.sizes[15]) ||
+            elem.sizes[16] && filterSizes.includes(elem.sizes[16]) ||
+            elem.sizes[17] && filterSizes.includes(elem.sizes[17]) ||
+            elem.sizes[18] && filterSizes.includes(elem.sizes[18]) ||
+            elem.sizes[19] && filterSizes.includes(elem.sizes[19]) ||
+            elem.sizes[20] && filterSizes.includes(elem.sizes[20]) ||
+            elem.sizes[21] && filterSizes.includes(elem.sizes[21]) ||
+            elem.sizes[22] && filterSizes.includes(elem.sizes[22]) ||
+            elem.sizes[23] && filterSizes.includes(elem.sizes[23]) ||
+            elem.sizes[24] && filterSizes.includes(elem.sizes[24]) ||
+            elem.sizes[25] && filterSizes.includes(elem.sizes[25])
           })
         }
       }
@@ -471,7 +775,6 @@ class Ecomtabs extends Component {
   }
 
   filterKeysGetShops = () => {
-    console.log(filterShopCategory, 'filterKeysGetShops')
     let categoryOfShop = [];
     let locationOfShop = [];
     let filterKeys = [];
@@ -492,6 +795,7 @@ class Ecomtabs extends Component {
         locationOfShop.push(filterShopLocation[i])
       }
     }
+  
     this.setState({
       shopCategory: categoryOfShop,
       shopLocation: locationOfShop,
@@ -523,6 +827,7 @@ class Ecomtabs extends Component {
         data = shopsData.filter((elem) => {
           return elem.shopCity[0] && filterShopLocation.includes(elem.shopCity[0])
         })
+        console.log(data , 'data')
       }
     }
     if (data.length == 0) {

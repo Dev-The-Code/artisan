@@ -846,7 +846,7 @@ class ShopForm extends Component {
             }
         }
         const userData = JSON.parse(localStorage.getItem('user'));
-
+        console.log(cetogires, 'cetogires')
         let shopObj = {
             shopTitle: values.shopTitle,
             shopCategories: cetogires,

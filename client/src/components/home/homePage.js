@@ -6,13 +6,13 @@ import HomeBanner from './homebanner';
 import HeaderMenu from '../header/headermenu';
 import ArtisanStories from './stories';
 import ProductCarousel from './productCarousel';
-import SecondfoldCard from './secondfold_card';
-import ThirdFold from './thirdfold';
-import EcommerceProducts from './ecomerceproductdata';
 import { HttpUtils } from "../../Services/HttpUtils";
 import moment from 'moment'
 import HomeCarouselProduct from './carouselHomeProduct';
 import CarouselHomeShop from './carouselHomeShop';
+import SecondfoldCard from './secondfold_card';
+import ThirdFold from './thirdfold';
+import EcommerceProducts from './ecomerceproductdata';
 
 
 class HomePage extends Component {

@@ -1772,7 +1772,6 @@ class EcommerceFiler extends Component {
   }
 
   onChangeCategory = (values) => {
-    console.log(values, 'val in tab')
     let sizesWithCategorys = [];
     let colorsWithCategory;
     for (var i = 0; i < sizesOfProducts.length; i++) {
